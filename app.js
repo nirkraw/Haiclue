@@ -33,6 +33,8 @@ app.use(
     extended: false,
   })
 );
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
 app.use(bodyParser.json());
 app.use("/api/users", users);
