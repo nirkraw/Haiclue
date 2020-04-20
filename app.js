@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const db = require("./config/keys").mongoURI; 
 const passport = require("passport");
-const User = require("./models/User"); 
+// const User = require("./models/User"); 
 const users = require("./routes/api/users");
+const tiles = require("./routes/api/tiles");
 
 const port = process.env.PORT || 5000;
 
@@ -38,3 +39,4 @@ require("./config/passport")(passport);
 
 app.use(bodyParser.json());
 app.use("/api/users", users);
+app.use("/api/tiles", tiles);

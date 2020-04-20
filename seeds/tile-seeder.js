@@ -22,7 +22,6 @@ for (let i = 0; i < blackWords.length; i++) {
 
  let done = 0;
  for (let i = 0; i < tiles.length; i++) {
-    // console.log(tiles[i]);
    tiles[i].save(function (err, result) {
      done++;
      if (done === tiles.length) {
