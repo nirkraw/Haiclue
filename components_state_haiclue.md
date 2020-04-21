@@ -67,7 +67,7 @@
     entities: {
         tiles: [],
         games: { round: 1 , phase: 1}
-        players: { 
+        players: [
                 player: { 
 
                         handle: "", 
@@ -77,7 +77,7 @@
                         submitted: false
                     } 
                         
-            }
+            ]
     }, 
     
     ui: {
@@ -85,6 +85,10 @@
         timer: {}
     }, 
 
-    errors: {}
+    <!-- errors: {}
 
-    
+    api/game/
+
+    send  -->  {} 
+
+    receive  -->

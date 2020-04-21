@@ -1,6 +1,6 @@
-import * as APIUtil from '../util/tiles_api_util'
+import * as APIUtil from '../util/tiles_api_util';
 
-export const RECEIVE_TILES = "RECEIVE_TILES"
+export const RECEIVE_TILES = "RECEIVE_TILES";
 
 export const receiveTiles = (tiles) => ({
     type: RECEIVE_TILES,
