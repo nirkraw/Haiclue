@@ -1,3 +1,5 @@
 /node_modules
 keys.js 
 scratchpad.js
+.DS_Store
+routes/.DS_Store
