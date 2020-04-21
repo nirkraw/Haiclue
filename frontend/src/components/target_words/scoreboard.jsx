@@ -37,6 +37,7 @@ class ScoreBoard extends React.Component {
 
     render() {
         return (<div className="scoreboardContainer">
+            <h3>Scoreboard</h3>
             <ul>
                 <li className="playerScore">
                     <span className="points">{this.state.playerOne.points}</span>

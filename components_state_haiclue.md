@@ -85,10 +85,6 @@
         timer: {}
     }, 
 
-    <!-- errors: {}
 
-    api/game/
 
-    send  -->  {} 
 
-    receive  -->

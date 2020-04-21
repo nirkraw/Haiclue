@@ -39,15 +39,17 @@ class Timer extends React.Component {
         let secs = 20
         while (secs > 1) {
             setTimeout((secs, ele),1000)
+            secs--;
+
 
         }
     }
 
 
+
     render() {
-        return (<div className="timer">
-        
-        </div>)
+        let secs = 20
+        return (<div className="timer"> secs </div>)
     }
 }
 

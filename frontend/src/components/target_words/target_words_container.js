@@ -8,20 +8,19 @@ import {startingTiles} from "../../reducers/selectors"
 const mapStateToProps = (state) => {
 
     return({
-        tiles: startingTiles(state),// 64 random tiles
-        playerOne: state.entities.players[0],
-        playerTwo: state.entities.players[1],
-        playerThree: state.entities.players[2],
-        playerFour: state.entities.players[3]
+        // tiles: startingTiles(state),// 64 random tiles
+        // playerOne: state.entities.players[0],
+        // playerTwo: state.entities.players[1],
+        // playerThree: state.entities.players[2],
+        // playerFour: state.entities.players[3]
     })
 }
 
 const mapDispatchToProps = (dispatch) => {
     return({
-        fetchTiles: () => dispatch(fetchTiles()),
-        fetchPlayers: () => dispatch(fetchPlayers()),
-        fetchGame: () => dispatch(fetchGame()),
-
+        // fetchTiles: () => dispatch(fetchTiles()),
+        // fetchPlayers: () => dispatch(fetchPlayers()),
+        // fetchGame: () => dispatch(fetchGame()),
     })
 }
 

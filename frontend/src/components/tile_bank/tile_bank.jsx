@@ -6,20 +6,129 @@ class TileBank extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            tiles: [], 
-
+            currentTiles: [
+                {
+                    "_id": "5e9deccab0fb6a39f7219f8d",
+                    "black": "oil",
+                    "white": "brains",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9deccab0fb6a39f7219f8a",
+                    "black": "flat",
+                    "white": "spy",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9deccab0fb6a39f7219f8e",
+                    "black": "bump",
+                    "white": "radio",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9deccab0fb6a39f7219f8b",
+                    "black": "horn",
+                    "white": "badge",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9deccab0fb6a39f7219f8f",
+                    "black": "walking",
+                    "white": "direct",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9dece5146f803a3a1bacf9",
+                    "black": "bump",
+                    "white": "radio",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9dece5146f803a3a1bacf8",
+                    "black": "oil",
+                    "white": "brains",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9dece5146f803a3a1bacf5",
+                    "black": "flat",
+                    "white": "spy",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9dece5146f803a3a1bacf6",
+                    "black": "horn",
+                    "white": "badge",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9dece5146f803a3a1bacf7",
+                    "black": "hurting",
+                    "white": "smart",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9dece5146f803a3a1bacfb",
+                    "black": "stolen",
+                    "white": "share",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9dece5146f803a3a1bacfa",
+                    "black": "walking",
+                    "white": "direct",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9dece5146f803a3a1bacfc",
+                    "black": "space",
+                    "white": "scotch",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9dece5146f803a3a1bacfe",
+                    "black": "saved",
+                    "white": "source",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9dece5146f803a3a1bacfd",
+                    "black": "jam",
+                    "white": "master",
+                    "__v": 0
+                }
+            ], 
+            currentColor: "black",
+            selectedTiles: [], // will be passed down to ClueConstruction
         }
     }
 
     // componentDidMount() {
     //     this.props.fillTileBank()
     // }
-    
-    render (){
 
-        let tileLis;
-        return (<div>
+    // eventually will grab the 15 random tiles from the tile bank
 
+    render() {
+
+        let currentColor = this.state.currentColor;
+        let tiles = this.state.currentTiles.map(tile => {
+            let tileSide = tile[currentColor]; 
+            return (<li className={`color-${currentColor}`}
+                        key={tile.id}>
+                            {tileSide}
+                    </li>)
+        });
+
+        return (<div className="tileBankContainer">
+            <h3>Tilebank</h3>
+                <ul>
+                    {tiles}
+                </ul>
+            <div>
+                <ClueConstruction />
+                {/* Eventually here we will pass down constructed clue array from this.state.selectedTiles */}
+            </div>
         </div>)
     }
 

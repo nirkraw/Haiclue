@@ -2,10 +2,37 @@ import React, { Component } from 'react';
 import Scoreboard from './scoreboard';
 
 
-export default class TargetWords extends Component {
+class TargetWords extends React.Component {
     constructor(props){// fetchTiles, fetchPlayers, fetchGame, tiles (array)
         super(props)
-        this.state = {targetWords: []}
+        this.state = {
+            targetWords: [{
+                    "_id": "5e9deccab0fb6a39f7219f8d",
+                    "black": "oil",
+                    "white": "brains",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9deccab0fb6a39f7219f8a",
+                    "black": "flat",
+                    "white": "spy",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9deccab0fb6a39f7219f8e",
+                    "black": "bump",
+                    "white": "radio",
+                    "__v": 0
+                },
+                {
+                    "_id": "5e9deccab0fb6a39f7219f8b",
+                    "black": "horn",
+                    "white": "badge",
+                    "__v": 0
+                }
+            ], 
+            currentColor: "black"
+        }
 
         this.selectTargetWords = this.selectTargetWords.bind(this);
         this.makeGuess = this.makeGuess.bind(this);
@@ -13,9 +40,9 @@ export default class TargetWords extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchTiles()
-        this.props.fetchPlayers() // fetches players slice of state
-        this.this.props.fetchGame() // fetches game slice of state
+        // this.props.fetchTiles()
+        // this.props.fetchPlayers() // fetches players slice of state
+        // this.this.props.fetchGame() // fetches game slice of state
     }
 
     selectTargetWords() { // figure out best place to call this
@@ -53,8 +80,22 @@ export default class TargetWords extends Component {
     )}
 
     render() {
+
+        let currentColor = this.state.currentColor;
+        let targetWords = this.state.targetWords.map(tile => {
+            let tileSide = tile[currentColor]; 
+            return (<div className={`color-${currentColor}`}
+                        key={tile.id}>
+                            {tileSide}
+                    </div>)
+        });
+
         return (
             <div>
+                <h3>Target Words</h3>
+                <ul>
+                    {targetWords}
+                </ul>
                 {/* <Scoreboard 
                     // playerOne={this.props.playerOne}
                     // playerTwo={this.props.playerTwo}
@@ -66,3 +107,6 @@ export default class TargetWords extends Component {
         )
     }
 }
+
+
+export default TargetWords;
