@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Scoreboard from './scoreboard';
+
 
 export default class TargetWords extends Component {
     constructor(props){// fetchTiles, fetchPlayers, fetchGame, tiles (array)
@@ -53,7 +55,13 @@ export default class TargetWords extends Component {
     render() {
         return (
             <div>
-                
+                <Scoreboard 
+                    playerOne={this.props.playerOne}
+                    playerTwo={this.props.playerTwo}
+                    playerThree={this.props.playerThree}
+                    playerFour={this.props.playerFour}
+                    // takes in as props, the guess from target words
+                />
             </div>
         )
     }

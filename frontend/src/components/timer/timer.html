@@ -1,0 +1,13 @@
+<script type="text/javascript">
+function countDown(sec, ele) {
+    var element = document.getElementById(ele);
+    element.innerHTML = secs+" seconds left";
+
+    secs--;
+    var timer = setTimeout('countDown'(secs, ele),)
+}
+</script>
+
+<div id="status"></div>
+
+<script type="text/javascript">countDown(20, "status");</script>
