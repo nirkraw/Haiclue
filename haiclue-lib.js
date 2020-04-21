@@ -3,9 +3,9 @@
 
 
 
-    // default_state = {player1: [], player2: [], player3: [], player4:[]}
+    // default_state = {clue_array: [], player2: [], player3: [], player4:[]}
 // const newState = Object.assign({}, default_state)
-//     case RECEIVE_PLAYER_1
+//     case RECEIVE_PLAYER_ONE
     
 //         newState.player1 = action.payload
 //         return newState
