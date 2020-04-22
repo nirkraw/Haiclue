@@ -18,7 +18,7 @@ import './css/index.css';
 
 const App = () => (
   <div className='container'>
-        <AuthRoute exact path="/splash" component={SplashContainer} />
+        <AuthRoute exact path="/" component={SplashContainer} />
         <ProtectedRoute path='/game' component={GameContainer} />
   </div>
 );
