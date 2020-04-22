@@ -4,22 +4,22 @@ import {
   Route,
   // Redirect,
   // withRouter,
-  // Switch,
-} from "react-router-dom";
-import Scoreboard from "../components/target_words/scoreboard";
-import MyTargetWord from "./my_target_word/my_target_word";
-import TileBank from "./tile_bank/tile_bank";
-import CurrentClue from "./current_clue/current_clue";
-import SplashContainer from "./splash/splash_container";
-import GameContainer from "./game_container";
-import TesterContainer from "./test_component/tester_container";
-import "./css/index.css";
+  // Switch, 
+} from 'react-router-dom';
+import Scoreboard from '../components/target_words/scoreboard';
+import MyTargetWord from './my_target_word/my_target_word';
+import TileBank from './tile_bank/tile_bank';
+import CurrentClue from './current_clue/current_clue';
+import SplashContainer from './splash/splash_container';
+import GameContainer from './game_container';
+import Timer from './timer/timer'
+import './css/index.css';
 
 const App = () => (
-  <div className="container">
-    <AuthRoute exact path="/" component={SplashContainer} />
-    <Route exact path="/tester" component={TesterContainer} />
-    <ProtectedRoute path="/game" component={GameContainer} />
+  <div className='container'>
+        <AuthRoute exact path="/" component={SplashContainer} />
+        <ProtectedRoute path='/game' component={GameContainer} />
+        <Route exact path="/timer" component={Timer} />
   </div>
 );
 

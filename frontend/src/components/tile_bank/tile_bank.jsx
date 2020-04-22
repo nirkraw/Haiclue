@@ -1,6 +1,7 @@
 import React from 'react';
 import ClueConstruction from './clue_construction';
-
+import ReactCSSTransitionGroup from 'react-transition-group';
+import Tile from './tile';
 
 class TileBank extends React.Component {
     constructor(props) {
@@ -98,9 +99,18 @@ class TileBank extends React.Component {
                     "__v": 0
                 }
             ], 
-            currentColor: "black",
+            currentColor: "black", // will be passed down to ClueConstruction
             selectedTiles: [], // will be passed down to ClueConstruction
         }
+
+        this.addTileToClue = this.addTileToClue.bind(this);
+    }
+
+    addTileToClue(e) {
+
+        debugger; 
+        let newSelectedTiles = this.state.selectedTiles.concat(e.currentTarget.innerText);
+        this.setState({ selectedTiles: newSelectedTiles });
     }
 
     // componentDidMount() {
@@ -114,21 +124,29 @@ class TileBank extends React.Component {
         let currentColor = this.state.currentColor;
         let tiles = this.state.currentTiles.map(tile => {
             let tileSide = tile[currentColor]; 
-            return (<div className={`color-${currentColor} tile`}>
-                            {tileSide}
-                    </div>)
+            return (<Tile   
+                        tile={tile}
+                        currentColor={this.state.currentColor}
+                        onClick={this.addTileToClue}
+                        display={true}>
+                        
+                    </Tile>)
         });
 
         return (<div className="bankAndClueConstructContainer">
          
                 <div className="clueConstructionContainer">
-                    <ClueConstruction />
-                    {/* Eventually here we will pass down constructed clue array from this.state.selectedTiles */}
+                    <ClueConstruction clueConstructionArray={this.state.selectedTiles} currentColor={currentColor}/>
                 </div>
                 
                 <div className="tileBankContainer">
                 <h3>Tilebank</h3>
-                    {tiles}
+                    {/* <ReactCSSTransitionGroup
+                        transitionName="tiles"
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={300}> */}
+                        {tiles}
+                    {/* </ReactCSSTransitionGroup>  */}
                 </div>
        
         </div>)

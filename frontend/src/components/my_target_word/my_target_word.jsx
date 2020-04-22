@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/layout.css';
-
+import green from '../images/green-tile.png';
 
 class MyTargetWord extends React.Component {
     constructor(props) {
@@ -16,8 +16,8 @@ class MyTargetWord extends React.Component {
     render() {
         return (<div className="myTargetWordContainer">
             <h3>My Target Word</h3>
-            <img src="#" className="associatedCard"/>
-            <div className='myTargetWord'>{this.state.word}</div>
+            <img src={green} className="myTargetWordImg"/>
+            <div className='myTargetWord tile'>{this.state.word}</div>
         </div>)
     }
 
