@@ -1,0 +1,18 @@
+@import-normalize;
+
+body {
+    color: white; 
+    /* background-color: #b8b8b8; */
+    background-color: rgb(6, 6, 6);
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+h3 {font-size: 13px; color: red;}
+
+.logo { 
+    font-size: 22px;
+    text-align: center; 
+    width: auto;
+    margin:  0 auto;
+    padding-top: 10px;
+}

@@ -11,10 +11,15 @@
             - dispatch(newRound())
             - selectTargetWords() - selects 4 random words from the tiles slice of state and removes them from slice of state, passes as props to MyTargetWord
             - flipTiles() - flips colors
+
             - makeGuess() - if clue construction is over (checks if all 4 players have their submit slice of state set to true), then if the guessed word is equal to the current player's target word, then assign points through the players state, sets the components this.state.guess to the guessed word
                 // ^^ split up into methods
-                - checkSubmits() - checks if all 4 players have their submit slice of state set to true
+
+                <!-- - checkSubmittedGuesses() - checks if all 4 players have their submit slice of state set to true -->
+
                 - checkGuessedWord() - checks if the guessed word is equal to the current player's target word
+
+
                     - assignPoints() - assign points through the players state, set submitted: false
                 - incrementPhase() - increments the phase slice of state, sets this.state.guess = "" , if phase is greater than 4 sets phase to 0 and increments rounds, if rounds > 4 call gameOver else   calls newRound()
                     - newRound() - dispatch(fetchTiles()) - fetches 64 random tiles, dispatch(newRound()) - resets all appropriate slices of state: target_words: empty, clue_array: empty
@@ -62,8 +67,8 @@
     entities: {
         tiles: [],
         games: { round: 1 , phase: 1}
-        users: { 
-                user: { 
+        players: [
+                player: { 
 
                         handle: "", 
                         points: 0, 
@@ -72,7 +77,7 @@
                         submitted: false
                     } 
                         
-            }
+            ]
     }, 
     
     ui: {
@@ -80,6 +85,6 @@
         timer: {}
     }, 
 
-    errors: {}
 
-    
+
+

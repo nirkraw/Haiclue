@@ -17,13 +17,7 @@ class Splash extends React.Component {
       <div>
         <h1>Haiclue</h1>
         <AuthRoute component={SignupFormContainer} />
-        <br />
-          <AuthRoute component={LoginFormContainer} />
-
-        { (this.props.loggedIn) ? 
-            <button onClick={this.props.logout}> 
-              Logout 
-            </button>  : null }
+        <AuthRoute component={LoginFormContainer} />
       </div>
     );
   }

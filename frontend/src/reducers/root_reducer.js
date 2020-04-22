@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
 import session from './session_reducer';
 import errors from './errors_reducer';
-// import tiles from './tiles_reducer';
+import entities from './entitites_reducer';
 
 const RootReducer = combineReducers({
-    // entities,
+    entities,
     session,
     errors,
     // ui

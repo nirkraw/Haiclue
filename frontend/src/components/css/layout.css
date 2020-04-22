@@ -1,0 +1,114 @@
+
+.topContainer { 
+    padding-top: 30px;
+    width: 55%;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.currentClueContainer {
+    display: none;
+}
+
+.targetScoreContainer { 
+}
+
+.targetWordsContainer {
+}
+
+.pointsSpan {
+    border: 2ps solid white;
+    border-radius: 16px;
+}
+
+.scoreboardContainer {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    justify-content: space-around;
+}
+
+.targetImg {
+    width: 100%;
+}
+
+.targetWordContainer {
+    width: 20%;
+    padding: 0 1% 1% 1%;
+    display: inline-block;
+}
+
+.bottomContainer {
+    padding-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    margin: 20px auto;
+    text-align: center;
+} 
+
+.myTargetWordContainer {
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.tileBankContainer {
+    width: 70%;
+
+}
+
+.bankAndClueConstructContainer {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.clueConstructionContainer{ 
+    width: 40%;  
+    text-align: center;
+    border-bottom: solid 3px white;
+    margin-bottom: 40px;
+
+}
+
+
+.color-black {
+    border-color: white;
+    color: white; 
+}
+
+
+h3 {display: none;}
+
+
+.color-white {
+        border-color: black;
+        color: black;
+}
+
+
+
+.tile { 
+        min-width: 50px;
+        border: 2px solid; 
+        padding: 8px; 
+        margin: 9px;
+        font-size: 18px;
+        border-radius: 12px;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+.tile:hover {
+    border-color: red;
+}
