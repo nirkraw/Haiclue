@@ -2,7 +2,7 @@
   "name": "haiclue",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "apps.js",
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
