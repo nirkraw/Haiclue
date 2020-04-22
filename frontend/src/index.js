@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const preloadedState = {
           session: {
             isAuthenticated: true,
-            user: decodedUser
+            user: decodedUser// id
           }
         };
 

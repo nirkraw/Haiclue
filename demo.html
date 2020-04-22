@@ -1,0 +1,38 @@
+<h1>Hello from Demo3</h1>
+
+<canvas
+  id="ctx"
+  width="500"
+  height="500"
+  style="border: 1px solid #000000;"
+></canvas>
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+  const ctx = document.getElementById("ctx").getContext("2d");
+  ctx.font = "30px Arial";
+
+  const socket = io();
+
+  // const random = Math.random();
+
+  //   const happy = function() {
+  //   socket.emit("happy", {
+  //       reason: "it's my birthday" + random
+  //   });
+  // }
+  // socket.on("serverMsg", function(data) {
+  //     console.log(data.msg)
+  // });
+
+  socket.on("newPositions", function (data) {
+    ctx.clearRect(0, 0, 500, 500);
+
+    for (let i = 0; i < data.length; i++) {
+      ctx.fillText( data[i].number, data[i].x, data[i].y);
+    }
+  }); 
+</script>
+
+<!-- <button onClick="happy()">Happy</button> -->

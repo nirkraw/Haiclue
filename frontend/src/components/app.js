@@ -10,12 +10,15 @@ import {
 } from 'react-router-dom';
 
 import SplashContainer from './splash/splash_container';
+import TesterContainer from './test_component/tester_container'; 
 
 
 
 const App = () => (
   <div>
-        <Route exact path="/" component={SplashContainer} />
+    <Route exact path="/tester" component={TesterContainer}/>
+   
+    <Route exact path="/" component={SplashContainer} />
   </div>
 );
 
