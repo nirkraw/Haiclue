@@ -1,5 +1,5 @@
-import React from "react";
-import { AuthRoute, ProtectedRoute } from "../util/route_util";
+import React from 'react';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import {
   Route,
   // Redirect,
