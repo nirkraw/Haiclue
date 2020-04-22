@@ -14,9 +14,10 @@ import TileBank from './tile_bank/tile_bank';
 import CurrentClue from './current_clue/current_clue';
 import SplashContainer from './splash/splash_container';
 import GameContainer from './game_container';
+import './css/index.css';
 
 const App = () => (
-  <div>
+  <div className='container'>
         <AuthRoute exact path="/splash" component={SplashContainer} />
         <ProtectedRoute path='/game' component={GameContainer} />
   </div>

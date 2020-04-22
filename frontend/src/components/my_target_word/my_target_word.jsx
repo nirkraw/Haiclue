@@ -1,4 +1,6 @@
 import React from 'react';
+import '../css/layout.css';
+
 
 class MyTargetWord extends React.Component {
     constructor(props) {
@@ -12,7 +14,7 @@ class MyTargetWord extends React.Component {
     }
 
     render() {
-        return (<div>
+        return (<div className="myTargetWordContainer">
             <h3>My Target Word</h3>
             <img src="#" className="associatedCard"/>
             <div className='myTargetWord'>{this.state.word}</div>

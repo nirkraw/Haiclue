@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/layout.css';
 
 class ClueContruction extends React.Component {
     constructor(props) {
@@ -26,17 +27,15 @@ class ClueContruction extends React.Component {
         let currentColor = this.state.currentColor;
         let clueConstruction = this.state.clueConstructionArray.map(tile => {
             let tileSide = tile[currentColor];
-            return (<li className={`color-${currentColor}`}
+            return (<div className={`color-${currentColor} tile`}
                         key={tile.id}>
                             {tileSide}
-                    </li>)
+                    </div>)
         });
 
-        return (<div className="clueConstruction"> 
+        return (<div> 
             <h3>Clue Construction</h3>
-            <ul>
                 {clueConstruction}
-            </ul>
         </div>)
     }
 

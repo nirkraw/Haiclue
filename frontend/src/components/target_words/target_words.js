@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import Scoreboard from './scoreboard';
-
+import '../css/layout.css';
+import blue from '../images/blue-tile.png';
+import red from '../images/red-tile.png';
+import green from '../images/green-tile.png';
+import yellow from '../images/yellow-tile.png';
 
 class TargetWords extends React.Component {
     constructor(props){// fetchTiles, fetchPlayers, fetchGame, tiles (array)
@@ -81,28 +85,30 @@ class TargetWords extends React.Component {
 
     render() {
 
+        let cards = [blue, red, green, yellow];
         let currentColor = this.state.currentColor;
-        let targetWords = this.state.targetWords.map(tile => {
+        let targetWords = this.state.targetWords.map((tile, index) => {
             let tileSide = tile[currentColor]; 
-            return (<div className={`color-${currentColor}`}
-                        key={tile.id}>
-                            {tileSide}
+            return (<div className="targetWordContainer">
+                            <img src={cards[index]} className="targetImg" />
+                            <div className={`color-${currentColor} tile`}>{tileSide}</div>
+
                     </div>)
         });
 
         return (
-            <div>
+            <div className="targetScoreContainer">
+                < div className="targetWordsContainer" >
                 <h3>Target Words</h3>
-                <ul>
                     {targetWords}
-                </ul>
-                {/* <Scoreboard 
+                </div>
+                <Scoreboard 
                     // playerOne={this.props.playerOne}
                     // playerTwo={this.props.playerTwo}
                     // playerThree={this.props.playerThree}
                     // playerFour={this.props.playerFour}
                     // takes in as props, the guess from target words
-                /> */}
+                />
             </div>
         )
     }

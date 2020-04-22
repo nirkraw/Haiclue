@@ -7,7 +7,7 @@ import CurrentClue from './current_clue/current_clue';
 import TargetWordsContainer from './target_words/target_words';
 // import ClueConstruction from './tile_bank/clue_construction';
 // import Timer from './timer/timer.jsx';
-
+import '../components/css/grid.css';
 
 class Game extends React.Component {
     constructor(props) {
@@ -22,13 +22,20 @@ class Game extends React.Component {
                     Logout 
                     </button>  : null }
                 {/* <Timer /> */}
-                <TargetWordsContainer />
-                <CurrentClue />
-                <MyTargetWord />
-                <TileBank />
-                <Scoreboard />
-                
-        </div>)
+                <h1 className='logo'>Haiclue!</h1>
+                <div className = 'gameContainer' >
+                <div className="topContainer">
+                        <CurrentClue />
+                        <TargetWordsContainer />
+                </div>
+                <div className='bottomContainer'>
+                        <MyTargetWord />
+                        <TileBank />
+                       
+                </div>
+
+                </div>
+                </div>)
     }
 }
 

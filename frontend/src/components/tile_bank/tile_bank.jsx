@@ -114,19 +114,19 @@ class TileBank extends React.Component {
         let currentColor = this.state.currentColor;
         let tiles = this.state.currentTiles.map(tile => {
             let tileSide = tile[currentColor]; 
-            return (<li className={`color-${currentColor}`}
-                        key={tile.id}>
+            return (<div className={`color-${currentColor} tile`}>
                             {tileSide}
-                    </li>)
+                    </div>)
         });
 
-        return (<div className="tileBankContainer">
-            <h3>Tilebank</h3>
-                <ul>
+        return (<div className="bankAndClueConstructContainer">
+         
+                <div className="tileBankContainer">
+                <h3>Tilebank</h3>
                     {tiles}
-                </ul>
-            <div>
-                <ClueConstruction />
+                </div>
+            <div className="clueConstructionContainer">
+                <ClueConstruction/>
                 {/* Eventually here we will pass down constructed clue array from this.state.selectedTiles */}
             </div>
         </div>)

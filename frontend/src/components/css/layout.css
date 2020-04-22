@@ -1,0 +1,105 @@
+
+.topContainer { 
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.currentClueContainer {
+    width: 33%;
+
+}
+.targetScoreContainer {
+    width: 66%;
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+
+    
+}
+
+.targetWordsContainer,
+.scoreboardContainer {
+    width: 50%;
+}
+
+.targetImg {
+    width: 100%;
+}
+
+.targetWordContainer {
+    width: 28%;
+    padding: 0 5% 5% 5%;
+    display: inline-block;
+}
+
+.bottomContainer {
+
+    padding-top: 30px;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    margin: 20px auto;
+    text-align: center;
+} 
+
+.myTargetWordContainer {
+    width: 33%;
+}
+
+.tileBankContainer {
+    width: 50%;
+
+    z-index: 20;
+}
+
+.bankAndClueConstructContainer {
+     box-sizing: border-box;
+     width: 66%;
+     display: flex;
+     flex-direction: row;
+
+
+}
+
+.clueConstructionContainer{ 
+    width: 40%;  
+    text-align: center;
+    border: 3px dashed white;
+
+}
+
+
+.color-black {
+    border-color: white;
+    color: white; 
+}
+
+
+h3 {display: none;}
+
+
+.color-white {
+        border-color: black;
+        color: black;
+}
+
+
+
+.tile { 
+        min-width: 50px;
+        border: 2px solid; 
+        padding: 8px; 
+        margin: 9px;
+        font-size: 18px;
+        border-radius: 12px;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+.tile:hover {
+    border-color: red;
+}
