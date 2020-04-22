@@ -1,3 +1,6 @@
+// have users auto sign in on sign up
+
+
 // COMPONENTS 
 
     target_words
@@ -88,3 +91,20 @@
 
 
 
+
+
+todays goals
+1 make a form on the login page to create a room
+2 get a player to create a room  (console log and room name on the screen )
+3 make a join form
+4 get a player to join rooms (console log and room name on the screen when they join)
+5 get a emit to send to only players in a specific room
+
+
+6 limit rooms to 4
+7 figure out id system for the 4 players
+
+
+
+// things to do after lunch
+- give route for the create form to test

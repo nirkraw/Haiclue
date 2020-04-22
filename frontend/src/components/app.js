@@ -13,12 +13,14 @@ import CurrentClue from "./current_clue/current_clue";
 import SplashContainer from "./splash/splash_container";
 import GameContainer from "./game_container";
 import TesterContainer from "./test_component/tester_container";
+import CreateLobbyContainer from "./splash/create_lobby_container";
 import "./css/index.css";
 
 const App = () => (
   <div className="container">
     <AuthRoute exact path="/" component={SplashContainer} />
     <Route exact path="/tester" component={TesterContainer} />
+    <ProtectedRoute exact path ="/create-lobby" component={CreateLobbyContainer} />
     <ProtectedRoute path="/game" component={GameContainer} />
   </div>
 );

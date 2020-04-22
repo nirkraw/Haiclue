@@ -7,8 +7,8 @@ export default class Tester extends Component {
     super(props);
     this.state = {
       test: false,
-      // test: false,
-      endpoint: "http://localhost:4000",
+      message: "",
+      endpoint: "http://localhost:4000"
     };
     //  const { endpoint } = this.state;
     // this.socket = socketIOClient(endpoint);
@@ -45,6 +45,10 @@ export default class Tester extends Component {
     // this.setState({ test: toggle });
     // this.setState({test: newNum}) <---------
   }
+
+  emiter2() {
+    // this.socketNsp = socketIOClient('/my-namespace');
+  }
   // emiter() { working with numbers
   //   // debugger
   //   let newNum = this.state.test + 1;
@@ -59,6 +63,7 @@ export default class Tester extends Component {
         <div>
           <h1>it worked!</h1>
           <button onClick={this.emiter}>Click</button>
+          {/* <button onClick={this.emiter2}>Click2</button> */}
         </div>
       );
     else {
@@ -66,6 +71,7 @@ export default class Tester extends Component {
         <div>
           <h1>it did NOT work!</h1>
           <button onClick={this.emiter}>Click</button>
+          <button onClick={this.emiter2}>Click2</button>
         </div>
       );
     }

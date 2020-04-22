@@ -71,19 +71,19 @@ class TargetWords extends React.Component {
 
   checkGuessedWord() {}
 
-  checkSubmittedGuesses() {
-    ///
-    // `this.props.player${this.props.sessionId}.submitted`
+//   checkSubmittedGuesses() {
+//     ///
+//     // `this.props.player${this.props.sessionId}.submitted`
     
-    if(
-      this.props.playerOne.submitted &&
-      this.props.PlayerTwo.submitted &&
-      this.props.playerThree.submitted &&
-      this.props.PlayerFour.submitted
-    ) {
-      startnexround()
-    }
-  }
+//     if(
+//       this.props.playerOne.submitted &&
+//       this.props.PlayerTwo.submitted &&
+//       this.props.playerThree.submitted &&
+//       this.props.PlayerFour.submitted
+//     ) {
+//       startnexround()
+//     }
+//   }
 // if(
 //   this.props.players.forEach(player) => {
 //    if player.submitted === false {
