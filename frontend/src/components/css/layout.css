@@ -1,29 +1,34 @@
 
 .topContainer { 
     padding-top: 30px;
-    display: flex;
-    flex-direction: row;
-    width: auto;
-    margin: 20px auto;
+    width: 55%;
+    margin: 60px auto;
     text-align: center;
 }
 
 .currentClueContainer {
-    width: 33%;
-
-}
-.targetScoreContainer {
-    width: 66%;
-    display: flex; 
-    flex-direction: row;
-    justify-content: space-between;
-
-    
+    display: none;
 }
 
-.targetWordsContainer,
+.targetScoreContainer { 
+}
+
+.targetWordsContainer {
+}
+
+.pointsSpan {
+    border: 2ps solid white;
+    border-radius: 16px;
+}
+
 .scoreboardContainer {
-    width: 50%;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    justify-content: space-around;
 }
 
 .targetImg {
@@ -31,44 +36,48 @@
 }
 
 .targetWordContainer {
-    width: 28%;
-    padding: 0 5% 5% 5%;
+    width: 20%;
+    padding: 0 1% 1% 1%;
     display: inline-block;
 }
 
 .bottomContainer {
-
     padding-top: 30px;
     display: flex;
-    flex-direction: row;
-    width: auto;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
     margin: 20px auto;
     text-align: center;
 } 
 
 .myTargetWordContainer {
-    width: 33%;
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
 
 .tileBankContainer {
-    width: 50%;
+    width: 70%;
 
-    z-index: 20;
 }
 
 .bankAndClueConstructContainer {
-     box-sizing: border-box;
-     width: 66%;
-     display: flex;
-     flex-direction: row;
-
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 
 .clueConstructionContainer{ 
     width: 40%;  
     text-align: center;
-    border: 3px dashed white;
+    border-bottom: solid 3px white;
+    margin-bottom: 40px;
 
 }
 

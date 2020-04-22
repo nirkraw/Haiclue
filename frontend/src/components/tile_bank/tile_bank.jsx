@@ -121,14 +121,16 @@ class TileBank extends React.Component {
 
         return (<div className="bankAndClueConstructContainer">
          
+                <div className="clueConstructionContainer">
+                    <ClueConstruction />
+                    {/* Eventually here we will pass down constructed clue array from this.state.selectedTiles */}
+                </div>
+                
                 <div className="tileBankContainer">
                 <h3>Tilebank</h3>
                     {tiles}
                 </div>
-            <div className="clueConstructionContainer">
-                <ClueConstruction/>
-                {/* Eventually here we will pass down constructed clue array from this.state.selectedTiles */}
-            </div>
+       
         </div>)
     }
 
