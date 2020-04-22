@@ -36,14 +36,12 @@ class ScoreBoard extends React.Component {
     }
 
     render() {
-
         let players = Object.values(this.state).map(player => {
         return (<div>
-                    <span className="pointsSpan">{player.points}</span>
-                    <span className="handleSpan">{player.handle}</span>
+                    <div className="pointsDiv">{player.points}</div>
+                    <div className="handleDiv">{player.handle}</div>
                 </div>)
         });
-
         return (<div className="scoreboardContainer">
             <h3>Score</h3>
                 {players}
