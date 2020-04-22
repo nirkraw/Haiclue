@@ -9,6 +9,10 @@
     display: none;
 }
 
+.hidden {
+    display: none;
+}
+
 .targetScoreContainer { 
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/layout.css';
+import Timer from '../timer/timer';
 
 class ClueContruction extends React.Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class ClueContruction extends React.Component {
         return (<div> 
             <h3>Clue Construction</h3>
                 {clueConstruction}
+            <div><Timer timer='50' /></div>
         </div>)
     }
 

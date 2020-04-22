@@ -110,6 +110,8 @@ class TileBank extends React.Component {
 
         debugger; 
         let newSelectedTiles = this.state.selectedTiles.concat(e.currentTarget.innerText);
+        debugger; 
+        // let remainingTiles = this.state.selectedTiles[currentColor]
         this.setState({ selectedTiles: newSelectedTiles });
     }
 
@@ -124,13 +126,12 @@ class TileBank extends React.Component {
         let currentColor = this.state.currentColor;
         let tiles = this.state.currentTiles.map(tile => {
             let tileSide = tile[currentColor]; 
-            return (<Tile   
+            return (<Tile  
+                        addTileToClue={this.addTileToClue} 
                         tile={tile}
                         currentColor={this.state.currentColor}
-                        onClick={this.addTileToClue}
                         display={true}>
-                        
-                    </Tile>)
+                        </Tile>)
         });
 
         return (<div className="bankAndClueConstructContainer">

@@ -48,7 +48,7 @@ class CurrentClue extends React.Component {
             <h3>Current Clue</h3>
 
                 {clueTiles}
-
+                {/* <div><Timer timer='90' /></div> */}
         </div>)
     }
 
