@@ -67,8 +67,8 @@
     entities: {
         tiles: [],
         games: { round: 1 , phase: 1}
-        users: { 
-                user: { 
+        players: [
+                player: { 
 
                         handle: "", 
                         points: 0, 
@@ -77,7 +77,7 @@
                         submitted: false
                     } 
                         
-            }
+            ]
     }, 
     
     ui: {
@@ -85,6 +85,6 @@
         timer: {}
     }, 
 
-    errors: {}
 
-    
+
+
