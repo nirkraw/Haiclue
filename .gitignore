@@ -1,6 +1,6 @@
 frontend/node_modules 
 /node_modules
-keys.js 
+keys_dev.js
 scratchpad.js
 .DS_Store
 routes/.DS_Store
