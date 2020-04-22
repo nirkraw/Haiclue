@@ -16,7 +16,6 @@ app.use(
 );
 
 app.use(bodyParser.json());
-  
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));
@@ -25,16 +24,15 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-
-app.get("/", (req, res) => {
+// app.get("/", (req, res) => {
   // const user = new User({
     //     handle: "jim",
     //     email: "jim@jim.jim",
     //     password: "jimisgreat123"
     // })
     // user.save();
-    res.send("Hello World!");
-  }); 
+  //   res.send("Hello World!");
+  // }); 
   
   mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
