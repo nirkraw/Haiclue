@@ -1,6 +1,5 @@
-const path = require('path');
-
 const express = require("express");
+const path = require('path');
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -10,8 +9,14 @@ const passport = require("passport");
 const users = require("./routes/api/users");
 const tiles = require("./routes/api/tiles");
 
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
 
-const port = process.env.PORT || 5000;
+app.use(bodyParser.json());
+  
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));
@@ -20,33 +25,30 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
-});
 
 app.get("/", (req, res) => {
-    // const user = new User({
+  // const user = new User({
     //     handle: "jim",
     //     email: "jim@jim.jim",
     //     password: "jimisgreat123"
     // })
     // user.save();
     res.send("Hello World!");
-}); 
-
-mongoose
+  }); 
+  
+  mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to mongoDB"))
   .catch((error) => console.log(error));
+  
+  app.use(passport.initialize());
+  require("./config/passport")(passport);
+  
+  app.use("/api/users", users);
+  app.use("/api/tiles", tiles);
 
-app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-);
-app.use(passport.initialize());
-require("./config/passport")(passport);
+  const port = process.env.PORT || 5000;
 
-app.use(bodyParser.json());
-app.use("/api/users", users);
-app.use("/api/tiles", tiles);
+  app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });
