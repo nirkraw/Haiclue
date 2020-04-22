@@ -5,4 +5,3 @@ scratchpad.js
 .DS_Store
 routes/.DS_Store
 frontend/node_modules
-frontend/public
