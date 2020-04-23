@@ -1,5 +1,4 @@
 import React from 'react';
-import '../css/session.css';
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -37,10 +36,12 @@ class SignupForm extends React.Component {
         <>
             <div className="sessionForm">
                 <form>
-                    <input type="text" value={this.state.handle} onChange={this.handleInput('handle')} placeholder="username"/>
-                    <input type="text" value={this.state.email} onChange={this.handleInput('email')} placeholder="email"/>
-                    <input type="password" value={this.state.password} onChange={this.handleInput('password')}  placeholder="password"/>
-                    <input type="password" value={this.state.password2} onChange={this.handleInput('password2')}  placeholder="password"/>
+                    <h2>Sign Up</h2>
+                    <input type="text" value={this.state.handle} onChange={this.handleInput('handle')} placeholder="Username"/>
+                    <input type="text" value={this.state.email} onChange={this.handleInput('email')} placeholder="Email"/>
+                    <input type="password" value={this.state.password} onChange={this.handleInput('password')}  placeholder="Password"/>
+                    <input type="password" value={this.state.password2} onChange={this.handleInput('password2')}  placeholder="Confirm Password"/>
+                    <br/>
                     <button onClick={this.handleSignupSubmit}>Signup</button>
                     <div>{this.state.errors}</div>
                 </form>
