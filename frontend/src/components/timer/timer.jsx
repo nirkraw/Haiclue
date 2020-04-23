@@ -8,15 +8,15 @@ class Timer extends React.Component {
         }; 
     }
 
-    // componentDidMount() {
-    //     let secs = 20
-    //     while (secs > 1) {
-    //         setTimeout((secs, ele),1000)
-    //         secs--;
+    componentDidMount() {
+        // let secs = 20
+        // while (secs > 1) {
+        //     setTimeout((secs, ele),1000)
+        //     secs--;
 
 
-    //     }
-    // }
+        // }
+    }
 
 
 
@@ -28,9 +28,7 @@ class Timer extends React.Component {
 
 export default Timer; 
 
-
 // makes a timer that is triggered from an event
 // sets a visual countdown
 // after countdown ends timer dissapears
 // timer triggers functions at 0
-

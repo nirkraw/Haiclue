@@ -20,17 +20,15 @@ class Game extends React.Component {
                     <button onClick={this.props.logout}> 
                     Logout 
                     </button>  : null }
-                {/* <Timer /> */}
                 <h1 className='logo'>Haiclue!</h1>
-                <div className = 'gameContainer' >
+                <div className ='gameContainer' >
                     <div className="topContainer">
                             <CurrentClue />
                             <TargetWordsContainer />
                     </div>
                     <div className='bottomContainer'>
                             <MyTargetWord />
-                            <TileBank />
-                        
+                            <TileBank />          
                     </div>
                 </div>
                 </div>)
