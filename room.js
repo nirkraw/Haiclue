@@ -2,10 +2,12 @@ class Room {
   constructor(roomName) {
     this.roomName = roomName;
     this.game = {
+      roomName: roomName,
       targetWords: ["tileObect", "tileObject"], //index to differentiate
       players: {},
     };
 
+    this.playerCount = 0;
     this.errors = [];
     this.addPlayer = this.addPLayer.bind(this);
     this.getGameState = this.getGameState.bind(this);
@@ -19,10 +21,10 @@ class Room {
       number: 0, // default value
     };
 
-    if (Object.values(this.game.players).length < 2) {
-      // should be 4
-      player.number = this.game.players.length + 1;
+    if (Object.values(this.game.players).length < 4) {
+      player.number = Object.values(this.game.players).length + 1;
       this.game.players[handle] = player;
+      this.playerCount++
     } else {
       this.errors.push(
         "This game is full :(, your friends are playing without you."
@@ -31,7 +33,6 @@ class Room {
   }
 
   submit(handle) {
-    // debugger
     const player = this.game.players[handle];
     player.submitted = true;
   }

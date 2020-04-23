@@ -23,12 +23,12 @@ io.on("connect", (socket) => {
   console.log(socket.id + "has been connected");
 
   socket.on("create", (roomName, handle) => {
+    if (!rooms[roomName]) {
     socket.join(roomName);
     socket.emit(
       "receiveMessage",
       `${handle} created and joined Game: ${roomName}`
     );
-    if (!rooms[roomName]) {
       const newRoom = new Room(roomName);
       newRoom.addPlayer(handle, socket.id);
       rooms[roomName] = newRoom;
@@ -39,8 +39,13 @@ io.on("connect", (socket) => {
   });
 
   socket.on("join", (roomName, handle) => {
-    socket.join(roomName);
-    rooms[roomName].addPlayer(handle, socket.id);
+    // debugger 
+    if(rooms[roomName].playerCount < 4) { 
+      socket.join(roomName);
+      rooms[roomName].addPlayer(handle, socket.id);
+    } else {
+    socket.emit("sendErrors", "sorry, try another room");
+    }
     if (rooms[roomName].errors.length > 0) {
       socket.emit("sendErrors", rooms[roomName].errors[0]); // perhaps just send the string directly instead?
     }
@@ -49,7 +54,7 @@ io.on("connect", (socket) => {
   });
 
   socket.on("submit", (roomName, handle) => {
-    // debugger
+    // debugger 
     rooms[roomName].submit(handle);
   });
 
