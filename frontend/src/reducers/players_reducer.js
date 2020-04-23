@@ -11,11 +11,11 @@ export default function(state = initialState, action) {
             };
         case RECEIVE_PLAYER_TWO:
             return {
-                    // either action + state or just action
+                // either action + state or just action
                 };
         case RECEIVE_PLAYER_THREE:
             return {
-                        // either action + state or just action
+                // either action + state or just action
             };
         case RECEIVE_PLAYER_FOUR:
             return {
@@ -27,37 +27,37 @@ export default function(state = initialState, action) {
 }
 
 
-players [p1, p2, p3, p4]
-    p1: { 
-        handle: "", 
-        points: 0, 
-        target_word: "", 
-        clue_array: [], 
-        submitted: false
+// players [p1, p2, p3, p4]
+//     p1: { 
+//         handle: "", 
+//         points: 0, 
+//         target_word: "", 
+//         clue_array: [], 
+//         submitted: false
 
-    } 
-    p2:{ 
+//     } 
+//     p2:{ 
 
-        handle: "", 
-        points: 0, 
-        target_word: "", 
-        clue_array: [], 
-        submitted: false
-    } 
-    p3:{ 
+//         handle: "", 
+//         points: 0, 
+//         target_word: "", 
+//         clue_array: [], 
+//         submitted: false
+//     } 
+//     p3:{ 
 
-        handle: "", 
-        points: 0, 
-        target_word: "", 
-        clue_array: [], 
-        submitted: false
-    } 
-    p4:{ 
+//         handle: "", 
+//         points: 0, 
+//         target_word: "", 
+//         clue_array: [], 
+//         submitted: false
+//     } 
+//     p4:{ 
 
-        handle: "", 
-        points: 0, 
-        target_word: "", 
-        clue_array: [], 
-        submitted: false
-    } 
-}
+//         handle: "", 
+//         points: 0, 
+//         target_word: "", 
+//         clue_array: [], 
+//         submitted: false
+//     } 
+// }

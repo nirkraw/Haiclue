@@ -3,7 +3,7 @@ import SignupFormContainer from './signup_form_container';
 import Instructions from './instructions';
 import React from 'react';
 import { AuthRoute } from '../../util/route_util';
-import {Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 
 class Splash extends React.Component {
