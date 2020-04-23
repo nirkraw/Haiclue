@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import SubmitTestContainer from "./submit_test_container";
 import GameContainer from '../game_container';
+import ENV from '../util/socket_env';
 
 export default class CreateRoomForm extends Component {
   constructor(props) {
@@ -11,7 +12,6 @@ export default class CreateRoomForm extends Component {
       roomName: "",
       message: "",
       errors: "",
-      endpoint: "http://localhost:5000/",
       gameState: null 
     };
 
@@ -21,8 +21,7 @@ export default class CreateRoomForm extends Component {
   }
 
   componentDidMount() {
-    const { endpoint } = this.state;
-    this.socket = socketIOClient(endpoint); 
+    this.socket = socketIOClient(ENV); 
 
     this.socket.on("gameState", (gameState) => {
       // debugger 
