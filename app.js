@@ -45,15 +45,25 @@ io.on("connect", (socket) => {
     if (rooms[roomName].errors.length > 0) {
       socket.emit("sendErrors", rooms[roomName].errors[0]); // perhaps just send the string directly instead?
     }
-    debugger;
+    // debugger;
     socket.emit("receiveMessage", `${handle} joined ${roomName}`);
     socket.on("disconnect", () => console.log("Client disconnected"));
   });
 
-  socket.on("submit", (roomName) => {
-    rooms[roomName].submit(socket.id)
+  socket.on("submit", (roomName, handle) => {
+    // debugger
+    rooms[roomName].submit(handle);
   });
-  // socket.emit("subbmited", ())
+  // socket.emit("submitted", ())
+  setInterval(function () {
+    for (let i in rooms) {
+      let room = rooms[i];
+      let gameState = room.getGameState();
+      // debugger;
+      io.to(room.roomName).emit("gameState", "hi");
+      // io.to(room.roomName).emit("receiveMessage", "hi");
+    }
+  }, 2000);
 });
 
 // io.on("connection", (socket) => {
@@ -72,13 +82,13 @@ io.on("connect", (socket) => {
 //     io.sockets.emit("outgoing", { num: data });
 //   });
 
-//   // setInterval(function () {
-//   //   for (let i in socket_list) {
-//   //     let socket = socket_list[i];
-//   //     debugger
-//   //     socket.emit("outgoing", {num: data_holder});
-//   //   }
-//   // }, 1000 / 25);
+// setInterval(function () {
+//   for (let i in socket_list) {
+//     let socket = socket_list[i];
+//     debugger
+//     socket.emit("outgoing", {num: data_holder});
+//   }
+// }, 1000 / 25);
 
 //   socket.on("disconnect", () => console.log("Client disconnected"));
 // });

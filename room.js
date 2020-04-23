@@ -3,15 +3,17 @@ class Room {
     this.roomName = roomName;
     this.game = {
       targetWords: ["tileObect", "tileObject"], //index to differentiate
-      playerSubmitted: false,
-      playerTwoSubmitted: false,
+      players: {}
+      // playerOneSubmitted: false,
+      // playerTwoSubmitted: false,
       // playerThreeSubmitted: false,
       // playerFourSubmitted: false,
     }; // not sure what does this yet
-    this.players = {};
+    // this.players = {};
     // this.players = [];
     this.errors = [];
     this.addPlayer = this.addPLayer.bind(this);
+    this.getGameState = this.getGameState.bind(this);
   }
 
   // addPLayer(playerHandle, socketId) {
@@ -28,20 +30,20 @@ class Room {
   //   }
   // }
 
-  addPLayer(playerHandle, socketId) {
+  addPLayer(handle, socketId) {
     const player = {
-      playerHandle: playerHandle,
+      handle: handle,
       socketId: socketId,
       submitted: false,
       number: 0, // default value
     };
 
     // if (this.players.length < 2) {
-    if (Object.values(this.players).length < 2) {
+    if (Object.values(this.game.players).length < 2) {
       // should be 4
-      player.number = this.players.length + 1;
+      player.number = this.game.players.length + 1;
       // this.players.push(player);
-      this.players[socketId] = player;
+      this.game.players[handle] = player;
     } else {
       this.errors.push(
         "This game is full :(, your friends are playing without you."
@@ -52,16 +54,19 @@ class Room {
   }
 
   // this.players // array of all the players in the room {handle: ???, socketId: ???}
-  submit(playerSocketId) {
+  submit(handle) {
+    // debugger
     //string ex: "player_one"
-    this.players[playerSocketId].submitted = true;
-    // this.game[playerNumber] = true
+    // this.players[handle].submitted = true;
+    const player = this.game.players[handle]
+    player.submitted = true
     // this.setState({[playerNumber]: true})
   }
 
-  // getGameState(){
-  //   return this.game
-  //   }
+  getGameState() {
+    // debugger 
+    return this.game;
+  }
 
   // createGame(){}
 

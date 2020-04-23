@@ -1,12 +1,11 @@
-import SubmitTest from "./submit_test";
+import CreateRoomForm from "./create_room_form";
 import { connect } from "react-redux";
-import {storeRoomName} from "../../actions/game_actions";
+import { storeRoomName } from "../../actions/game_actions";
 
 const mapStateToProps = (state) => {
   // debugger
   return {
     user: state.session.user,
-    roomName: state.entities.game.roomName 
   };
 };
 
@@ -16,4 +15,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubmitTest);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateRoomForm);

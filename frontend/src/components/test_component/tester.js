@@ -8,7 +8,7 @@ export default class Tester extends Component {
     this.state = {
       test: false,
       message: "",
-      endpoint: "http://localhost:4000"
+      endpoint: "http://localhost:5000"
     };
     //  const { endpoint } = this.state;
     // this.socket = socketIOClient(endpoint);

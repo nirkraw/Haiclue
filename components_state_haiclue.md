@@ -1,4 +1,5 @@
 // have users auto sign in on sign up
+// ensure unique handles at some point
 
 
 // COMPONENTS 
@@ -108,3 +109,5 @@ todays goals
 
 // things to do after lunch
 - give route for the create form to test
+
+// - place gamestates in create form?
