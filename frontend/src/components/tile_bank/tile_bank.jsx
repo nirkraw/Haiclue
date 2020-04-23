@@ -108,7 +108,7 @@ class TileBank extends React.Component {
 
     addTileToClue(e) {
 
-        debugger; 
+        // debugger; 
         let newSelectedTiles = this.state.selectedTiles.concat(e.currentTarget.innerText);
         this.setState({ selectedTiles: newSelectedTiles });
     }

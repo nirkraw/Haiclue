@@ -20,14 +20,14 @@ export const logoutUser = () => ({
 });
 
 export const receiveErrors = errors => {
-    debugger;
+    // debugger;
     return {
     type: RECEIVE_SESSION_ERRORS,
     errors}
 };
 
 export const receiveUserSignIn = () => {
-    debugger;
+    // debugger;
     return ({ type: RECEIVE_USER_SIGN_IN })
 };
 

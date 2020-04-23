@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import { Link } from "react-router-dom";
-import SubmitTestContainer from "../submit_test/submit_test_container";
+// import SubmitTestContainer from "../submit_test/submit_test_container";
 
 export default class CreateRoomForm extends Component {
   constructor(props) {
@@ -11,8 +11,7 @@ export default class CreateRoomForm extends Component {
       roomName: "",
       message: "",
       errors: "",
-      endpoint: "http://localhost:5000/#/create-room",
-      // endpoint: "http://localhost:5000",
+
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -21,9 +20,8 @@ export default class CreateRoomForm extends Component {
   }
 
   componentDidMount() {
-    const { endpoint } = this.state;
 
-    this.socket = socketIOClient(endpoint);// endpoint is undefined?
+    this.socket = socketIOClient('http://localhost:5000/');// endpoint is undefined?
     this.socket.on("outgoing", (data) => {
       this.setState({ test: data.num });
     });
@@ -49,6 +47,7 @@ export default class CreateRoomForm extends Component {
 
   handleRoomCreate(event) {
     event.preventDefault();
+    // debugger
     const { roomName, handle } = this.state;
     this.props.storeRoomName(roomName); 
     this.socket.emit("create", roomName, handle);
@@ -85,7 +84,6 @@ export default class CreateRoomForm extends Component {
             Join
           </button>
         </form>
-        <SubmitTestContainer  />
       </div>
     );
   }

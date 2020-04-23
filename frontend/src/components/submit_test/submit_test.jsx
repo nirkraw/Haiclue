@@ -8,17 +8,17 @@ class SubmitTest extends Component {
     this.state = {
       playerOneSubmitted: false,
       playerTwoSubmitted: false,
-      endpoint: "http://localhost:5000/#/create-room",
+      endpoint: "http://localhost:5000",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     const { endpoint } = this.state;
-    this.socket = socketIOClient(endpoint);
+    this.socket = socketIOClient("http://localhost:5000/");
 
     this.socket.on("gameState", (gameState) => {
-        debugger 
+      // debugger
       for (let i in gameState.players) {
         let player = gameState.players[i];
         if (player.number === 1 && player.submitted) {
@@ -27,6 +27,7 @@ class SubmitTest extends Component {
         if (player.number === 2 && player.submitted) {
           this.setState({ playerTWoSubmitted: true });
         }
+        // debugger 
       }
     });
   }
@@ -54,6 +55,11 @@ class SubmitTest extends Component {
         <button onClick={this.handleSubmit}>Click ME!</button>
         {playerOne}
         {playerTwo}
+        
+       
+                    <button onClick={this.props.logout}> 
+                    Logout 
+                    </button>  
       </div>
     );
   }

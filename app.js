@@ -9,12 +9,11 @@ const users = require("./routes/api/users");
 const tiles = require("./routes/api/tiles");
 const Room = require("./room");
 
-// const http = require("http").Server(app);
-// const io = require("socket.io")(http, {});
-const http = require("http");
-const socketIo = require("socket.io");
-const server = http.createServer(app);
-const io = socketIo(server);
+const http = require('http');
+const server = http.createServer();
+const io = require('socket.io')(server, {
+  pingTimeout: 60000,
+});
 
 const port = process.env.PORT || 5000;
 // const socket_list = {};
@@ -37,6 +36,7 @@ io.on("connect", (socket) => {
     } else {
       socket.emit("sendErrors", "this name is already taken");
     }
+    // debugger
   });
 
   socket.on("join", (roomName, handle) => {
@@ -66,48 +66,11 @@ io.on("connect", (socket) => {
   }, 2000);
 });
 
-// io.on("connection", (socket) => {
-//   console.log("New client connected");
-//   // socket.id = Math.random();
-//   // socket_list[socket.id] = socket;
-
-//   socket.on("incoming data", (data) => {
-//     // data_holder = data
-//     // socket.broadcast.emit("outgoing data", {num: data});
-//     // socket.emit("outgoing", { num: data });
-//     // for (let i in socket_list) {
-//     //   let socket = socket_list[i];
-//     //   debugger
-//     // }
-//     io.sockets.emit("outgoing", { num: data });
-//   });
-
-// setInterval(function () {
-//   for (let i in socket_list) {
-//     let socket = socket_list[i];
-//     debugger
-//     socket.emit("outgoing", {num: data_holder});
-//   }
-// }, 1000 / 25);
-
-//   socket.on("disconnect", () => console.log("Client disconnected"));
-// });
 
 server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-// app.get("/", (req, res) => {
-//     // const user = new User({
-//     //     handle: "jim",
-//     //     email: "jim@jim.jim",
-//     //     password: "jimisgreat123"
-//     // })
-//     // user.save();
-//     res.send("Hello World!");
-// });
-
-// mongoose;
 app.use(
   bodyParser.urlencoded({
     extended: false,
@@ -123,16 +86,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// app.get("/", (req, res) => {
-// const user = new User({
-//     handle: "jim",
-//     email: "jim@jim.jim",
-//     password: "jimisgreat123"
-// })
-// user.save();
-//   res.send("Hello World!");
-// });
-
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to mongoDB"))
@@ -143,17 +96,3 @@ require("./config/passport")(passport);
 
 app.use("/api/users", users);
 app.use("/api/tiles", tiles);
-
-// const port = process.env.PORT || 5000;
-
-// app.listen(port, () => {
-//   console.log(`Listening on port ${port}`);
-// });
-
-// app.listen(port, () => {
-//   console.log(`Listening on port ${port}`);
-// });
-
-// app.listen(port, () => {
-//   console.log(`Listening on port ${port}`);
-// });

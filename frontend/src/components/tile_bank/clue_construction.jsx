@@ -7,9 +7,9 @@ class ClueContruction extends React.Component {
     }
 
     render() {
-        debugger; 
+        // debugger; 
         let currentColor = this.props.currentColor;
-        debugger; 
+        // debugger; 
         let clueConstruction = this.props.clueConstructionArray.map(tile => {
             return (<div className={`color-${currentColor} tile`}>
                             {tile}

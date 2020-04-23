@@ -1,6 +1,7 @@
 import SubmitTest from "./submit_test";
 import { connect } from "react-redux";
 import {storeRoomName} from "../../actions/game_actions";
+import {logout} from '../../actions/session_actions';
 
 const mapStateToProps = (state) => {
   // debugger
@@ -10,10 +11,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
+const mapDispatchToProps = (dispatch) => ({
+
+    logout: () => dispatch(logout()),
     storeRoomName: (roomName) => dispatch(storeRoomName(roomName)),
-  };
-};
+  
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubmitTest);
