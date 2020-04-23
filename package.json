@@ -11,8 +11,7 @@
     "dev": "concurrently \"npm run server\" \"npm run frontend\"",
     "server:debug": "nodemon --inspect app.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
-    }
-  ,
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {

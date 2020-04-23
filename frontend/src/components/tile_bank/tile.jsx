@@ -3,27 +3,29 @@ import React from 'react';
 class Tile extends React.Component {
     constructor(props) {
         super(props)
-        this.state = this.props;
-        this.handleClick= this.handleClick.bind(this)
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(e) {
-        this.props.addTileToClue(e);
+        let type = this.props.type; 
+        this.props.toggleTile(e, type); 
     }
 
     render() {
-        let display = (this.props.display) ? null: (
-            'hidden'
-        );
-
+        let currentColor = this.props.currentColor; 
+        let tileWord = this.props.tile[currentColor];
         return(
-            <div className={`color-${this.props.currentColor} tile`}
+            <>
+            {(this.props.display) ? (<div className={`color-${currentColor} tile`}
                     onClick={this.handleClick}>
-                    {this.props.tile[this.props.currentColor]}
-            </div>
+                    {tileWord}
+                </div>) : <div className="emptyTileSpace">{null}</div>  }
+            </> 
         ) 
     }
 
 }
 
 export default Tile; 
+
