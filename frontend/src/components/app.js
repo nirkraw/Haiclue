@@ -11,8 +11,8 @@ const App = () => (
   <div className='container'>
     <Route exact path="/timer" component={Timer} />
     <AuthRoute exact path="/" component={SplashContainer} />
-    <ProtectedRoute exact path="/create-room" component={CreateRoomContainer} />
-    <ProtectedRoute path="/game" component={GameContainer} />
+    {/* <ProtectedRoute exact path="/create-room" component={CreateRoomContainer} /> */}
+    <ProtectedRoute path="/game" component={CreateRoomContainer} />
   </div>
 );
 

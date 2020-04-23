@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import SubmitTestContainer from "./submit_test_container";
+import GameContainer from '../game_container';
 
 export default class CreateRoomForm extends Component {
   constructor(props) {
@@ -90,6 +91,7 @@ export default class CreateRoomForm extends Component {
           </button>
         </form>
         <SubmitTestContainer gameState={this.state.gameState} socket={this.socket} />
+        <GameContainer gameState={this.state.gameState} socket={this.socket} />
       </div>
     );
   }
