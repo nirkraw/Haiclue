@@ -8,6 +8,7 @@ class SubmitTest extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    // debugger
     this.props.socket.emit(
       "submit",
       this.props.roomName,
@@ -15,28 +16,34 @@ class SubmitTest extends Component {
     );
   }
 
+
   render() {
     const { gameState } = this.props;
-    debugger;
-    let playerOne = <p>Player One: False</p>;
-    let playerTwo = <p>Player Two: False</p>;
+    let button;
+    let players;
     if (gameState) {
-      for (let i in gameState.players) {
-        let player = gameState.players[i];
-        if (player.number === 1 && player.submitted) {
-          playerOne = <p>Player One: True</p>;
-        }
-        if (player.number === 2 && player.submitted) {
-          playerTwo = <p>Player Two: True</p>;
-        }
-      }
+      button = <button onClick={this.handleSubmit}>Click ME!</button>;
+
+      players = Object.values(gameState.players).map(player => {
+        return(
+          <div key={player.socketId}>
+            {player.handle} P: {player.number} : {player.submitted.toString()}
+          </div>
+        )
+      })
+      
+    } else {
+      button = null;
+      players = null
     }
+
+   
 
     return (
       <div>
-        <button onClick={this.handleSubmit}>Click ME!</button>
-        {playerOne}
-        {playerTwo}
+        {button}
+        {/* <button onClick={this.handleSubmit}>Click ME!</button> */}
+        {players}
       </div>
     );
   }
