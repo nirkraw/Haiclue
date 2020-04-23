@@ -95,19 +95,37 @@
 
 
 todays goals
-1 make a form on the login page to create a room
-2 get a player to create a room  (console log and room name on the screen )
-3 make a join form
-4 get a player to join rooms (console log and room name on the screen when they join)
-5 get a emit to send to only players in a specific room
-
-
-6 limit rooms to 4
-7 figure out id system for the 4 players
+favicon
+change browser tab name
+change header size login
+add thumbnail to video
+change submit to join function
+add tiger board logo/link
 
 
 
-// things to do after lunch
-- give route for the create form to test
+//
+backend method startGame() - deployed when 4 players join 
+    setup
+        sort the tile
+        send to players
+        choose 4 target words
+        assign players target word
+    display game container
 
-// - place gamestates in create form?
+phase 1 clue construction
+    build/submit
+
+phase 2 guess 
+    p1 turn
+        scoring
+    p2 turn
+        scoring
+    p3 turn
+        scoring 
+    p4 turn
+        scoring
+
+after last round method 3 game over 
+
+reset
