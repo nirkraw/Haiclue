@@ -32,6 +32,7 @@ io.on("connect", (socket) => {
       const newRoom = new Room(roomName);
       newRoom.addPlayer(handle, socket.id);
       rooms[roomName] = newRoom;
+      rooms[roomName].submit(handle);
     } else {
       socket.emit("sendErrors", "this name is already taken");
     }
@@ -42,6 +43,7 @@ io.on("connect", (socket) => {
     if(rooms[roomName].playerCount < 4) { 
       socket.join(roomName);
       rooms[roomName].addPlayer(handle, socket.id);
+      rooms[roomName].submit(handle);
     } else {
     socket.emit("sendErrors", "sorry, try another room");
     }
@@ -52,10 +54,11 @@ io.on("connect", (socket) => {
     socket.on("disconnect", () => console.log("Client disconnected"));
   });
 
-  socket.on("submit", (roomName, handle) => {
-    // debugger 
-    rooms[roomName].submit(handle);
-  });
+  // socket.on("submit", (roomName, handle) => {
+  //   // debugger 
+  //   rooms[roomName].submit(handle);
+  // });
+
 
   setInterval(function () {
     for (let i in rooms) {

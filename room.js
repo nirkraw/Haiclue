@@ -17,7 +17,7 @@ class Room {
     const player = {
       handle: handle,
       socketId: socketId,
-      submitted: false,
+      joined: false,
       number: 0, // default value
     };
 
@@ -34,7 +34,7 @@ class Room {
 
   submit(handle) {
     const player = this.game.players[handle];
-    player.submitted = true;
+    player.joined = true;
   }
 
   getGameState() {
