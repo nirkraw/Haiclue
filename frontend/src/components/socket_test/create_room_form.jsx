@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import SubmitTestContainer from "./submit_test_container";
 import GameContainer from '../game_container';
-import ENV from '../util/socket_env';
+import ENV from '../../util/socket_env';
 
 export default class CreateRoomForm extends Component {
   constructor(props) {
