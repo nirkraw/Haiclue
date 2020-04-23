@@ -9,6 +9,11 @@ const TileSchema = new Schema({
   white: {// white side word
     type: String, 
     require: true,
+  },
+  display: {
+    type: Boolean,
+    default: true,
+    require: true
   }
 });
 // {id: ???, black: "hello", white: "world"} 
