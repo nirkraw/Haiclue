@@ -8,7 +8,6 @@ export default function(state = initialState, action) {
         case RECEIVE_TILES:
 
         // let tileArr = []
-        // debugger;
         // while (tileArr.length < 64) {
         //    let tile = Math.floor((Math.random() * 216) + 1)
         //    if (tileArr.includes(action.tile.data[tile])) {
@@ -17,6 +16,7 @@ export default function(state = initialState, action) {
         // }   
         // send object no keys send all
         // const newTiles = {tiles: tileArr};
+        
         return Object.assign({}, action.tiles.data);
 
         default:

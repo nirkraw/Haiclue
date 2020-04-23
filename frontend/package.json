@@ -7,7 +7,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
-    "fibers": "^5.0.0",
+    "bufferutil": "^4.0.1",
     "jwt-decode": "^2.2.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
@@ -19,9 +19,8 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "sass": "^1.26.3",
     "socket.io-client": "^2.3.0",
-    "typescript": "^3.8.3"
+    "utf-8-validate": "^5.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

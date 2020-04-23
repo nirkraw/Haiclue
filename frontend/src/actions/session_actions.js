@@ -1,5 +1,3 @@
-// src/actions/session_actions.jse
-
 import * as APIUtil from '../util/session_api_util';
 import jwt_decode from 'jwt-decode';
 
@@ -7,8 +5,6 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
-
-// actions
 
 export const receiveCurrentUser = currentUser => ({
     type: RECEIVE_CURRENT_USER,
@@ -20,18 +16,14 @@ export const logoutUser = () => ({
 });
 
 export const receiveErrors = errors => {
-    // debugger;
     return {
     type: RECEIVE_SESSION_ERRORS,
     errors}
 };
 
 export const receiveUserSignIn = () => {
-    // debugger;
     return ({ type: RECEIVE_USER_SIGN_IN })
 };
-
-// thunk action creators
 
 export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken')

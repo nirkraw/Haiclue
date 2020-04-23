@@ -16,7 +16,7 @@ class MyTargetWord extends React.Component {
     render() {
         return (<div className="myTargetWordContainer">
             <h3>My Target Word</h3>
-            <img src={green} className="myTargetWordImg"/>
+            <img src={green} className="myTargetWordImg" alt="green"/>
             <div className='myTargetWord tile'>{this.state.word}</div>
         </div>)
     }

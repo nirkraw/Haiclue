@@ -1,32 +1,49 @@
 import React from 'react';
+import '../css/timer.css';
 
 class Timer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            secs: 20
-        }; 
+            secs: 10, 
+            timeClass: ""
+
+        };
     }
 
     componentDidMount() {
-        // let secs = 20
-        // while (secs > 1) {
-        //     setTimeout((secs, ele),1000)
-        //     secs--;
-
-
-        // }
+        this.interval = setInterval(() => {
+            if (this.state.secs === 0) {
+                clearInterval(this.interval)
+                //your pretty socket code here!
+            } else if ((this.state.secs < 7) && (this.state.secs % 2 === 0)) {
+                this.setState({
+                    secs: (this.state.secs - 1),
+                    timeClass: "timer-flash",
+                })
+            } else {
+                this.setState({
+                    secs: (this.state.secs - 1),
+                    timeClass: "",
+                })
+            }
+        }, 1000)
     }
 
 
+    componentWillUnmount() {
+        clearInterval(this.interval) //safety precaution
+    }
 
     render() {
         let secs = this.state.secs
-        return (<div className="timer"> {secs} </div>)
+        let timeClass = this.state.timeClass
+        return (
+            <div className={`timer ${timeClass}`} >time left {secs} </div>
+        )
     }
 }
-
-export default Timer; 
+export default Timer;
 
 // makes a timer that is triggered from an event
 // sets a visual countdown

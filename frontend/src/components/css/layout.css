@@ -1,18 +1,12 @@
 
 .topContainer { 
-    width: 55%;
-    margin: 60px auto;
+    width: 60%;
+    margin: 50px auto;
     text-align: center;
 }
 
 .currentClueContainer {
     display: none;
-}
-
-.targetScoreContainer { 
-}
-
-.targetWordsContainer {
 }
 
 .pointsDiv {
@@ -54,8 +48,8 @@
 }
 
 .targetWordContainer {
-    width: 18%;
-    padding: 2%;
+    width: 130px;
+    padding: 5px;
     display: inline-block;
 }
 
@@ -97,6 +91,7 @@
 
 .tileBankContainer {
     width: 90%;
+    max-width: 1100px;
 }
 
 .bankAndClueConstructContainer {
@@ -127,10 +122,11 @@ h3 {display: none;}
 .color-white {
         border-color: black;
         color: black;
+        background-color:white;
 }
 
 .tile { 
-        width: 95px;
+        width: 120px;
         border: 2px solid; 
         padding: 10px; 
         margin: 6px;
@@ -138,7 +134,20 @@ h3 {display: none;}
         border-radius: 12px;
         display: inline-block;
         font-weight: bold;
+        box-sizing: border-box;
     }
+
+.emptyTileSpace {
+    width: 120px;
+    padding: 9px;
+    border: 2px solid;
+    border-color: rgb(6, 6, 6);
+    border-radius: 12px;
+    display: inline-block;
+    margin: 6px;
+    font-weight: bold;
+    box-sizing: border-box;
+}
 
 .tile:hover {
     border-color: red;

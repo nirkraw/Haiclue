@@ -8,16 +8,15 @@ const passport = require("passport");
 const users = require("./routes/api/users");
 const tiles = require("./routes/api/tiles");
 const Room = require("./room");
-
-const http = require('http');
-const server = http.createServer();
-const io = require('socket.io')(server, {
-  pingTimeout: 60000,
-});
+const http = require("http");
+const socketIo = require("socket.io");
+const server = http.createServer(app);
+const io = socketIo(server);
+// const http = require("http").Server(app);
+// const io = require("socket.io")(http, {});
 
 const port = process.env.PORT || 5000;
-// const socket_list = {};
-// let data_holder = 0;
+
 
 const rooms = {};
 io.on("connect", (socket) => {
@@ -45,7 +44,6 @@ io.on("connect", (socket) => {
     if (rooms[roomName].errors.length > 0) {
       socket.emit("sendErrors", rooms[roomName].errors[0]); // perhaps just send the string directly instead?
     }
-    // debugger;
     socket.emit("receiveMessage", `${handle} joined ${roomName}`);
     socket.on("disconnect", () => console.log("Client disconnected"));
   });
@@ -54,18 +52,16 @@ io.on("connect", (socket) => {
     // debugger
     rooms[roomName].submit(handle);
   });
-  // socket.emit("submitted", ())
+
   setInterval(function () {
     for (let i in rooms) {
       let room = rooms[i];
       let gameState = room.getGameState();
       // debugger;
-      io.to(room.roomName).emit("gameState", "hi");
-      // io.to(room.roomName).emit("receiveMessage", "hi");
+      io.to(room.roomName).emit("gameState", gameState);
     }
   }, 2000);
 });
-
 
 server.listen(port, () => {
   console.log(`Listening on port ${port}`);
@@ -76,6 +72,13 @@ app.use(
     extended: false,
   })
 );
+
+
+
+
+
+
+
 
 app.use(bodyParser.json());
 

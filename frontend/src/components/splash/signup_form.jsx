@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../css/session.css';
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -26,7 +26,6 @@ class SignupForm extends React.Component {
     }
 
 
-
     handleSignupSubmit(e) {
         e.preventDefault();
         this.props.signup(this.state)
@@ -36,7 +35,7 @@ class SignupForm extends React.Component {
 
     return (
         <>
-            <div>
+            <div className="sessionForm">
                 <form>
                     <input type="text" value={this.state.handle} onChange={this.handleInput('handle')} placeholder="username"/>
                     <input type="text" value={this.state.email} onChange={this.handleInput('email')} placeholder="email"/>

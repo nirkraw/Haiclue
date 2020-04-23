@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Scoreboard from './scoreboard';
 import '../css/layout.css';
 import blue from '../images/blue-tile.png';
@@ -7,7 +7,7 @@ import green from '../images/green-tile.png';
 import yellow from '../images/yellow-tile.png';
 
 class TargetWords extends React.Component {
-    constructor(props){// fetchTiles, fetchPlayers, fetchGame, tiles (array)
+    constructor(props){ // fetchTiles, fetchPlayers, fetchGame, tiles (array)
         super(props)
         this.state = {
             targetWords: [{
@@ -102,12 +102,12 @@ class TargetWords extends React.Component {
 
     render() {
 
-        let cards = [blue, red, green, yellow];
+        let cards = [ {blue: blue}, {red: red}, {green: green}, {yellow: yellow}];
         let currentColor = this.state.currentColor;
         let targetWords = this.state.targetWords.map((tile, index) => {
             let tileSide = tile[currentColor]; 
             return (<div className="targetWordContainer">
-                            <img src={cards[index]} className="targetImg" />
+                            <img src={Object.values(cards[index])} className="targetImg" alt={Object.keys(cards[index])}/>
                             <div className={`color-${currentColor} tile`}>{tileSide}</div>
 
                     </div>)
