@@ -1,0 +1,85 @@
+.splashContainer {
+    width: 100%;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.splashContainer h1 {
+    font-size: 65px;
+    width: 500px;
+    margin-top:80px;
+    padding-left: 100px;
+}
+.formContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: left;
+    margin-bottom: 100px;
+}
+
+.sessionForm {
+    width: 30%;
+
+}
+.sessionForm input {
+    width: 100%;
+    /* height: 20px; */
+    margin: 10px 0 10px 0 ;
+    font-weight: bold;
+    font-size: 18px;
+    color: white; 
+    background-color: rgb(6, 6, 6);
+    border: none;
+    border-bottom: white 2px solid;
+    padding:10px;
+}
+
+input::placeholder {
+    color: #e3ab00;
+    opacity: 1;
+}
+
+
+input:focus {
+    outline: none;
+}
+
+.sessionForm button {
+    margin-top: 50px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    background-color: white;
+    border-radius: 22px;
+    width: 150px;
+    float: right;
+}
+
+.sessionForm button:hover {   
+    background-color: #00c8a6;
+    border-color: #00c8a6;
+}
+
+.sessionForm button:focus{
+    outline: none;
+}
+
+.instructionsContainer video:focus {
+    outline: none;
+   
+}
+
+
+.splashCards {
+    display: block;
+    margin: 0 auto;
+    width: 20%;
+}
+.splashCards img {
+    padding: 2%;
+    width: 50%;
+    box-sizing: border-box;
+}
