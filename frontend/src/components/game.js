@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Scoreboard from '../components/target_words/scoreboard';
+// import Scoreboard from '../components/target_words/scoreboard';
 import MyTargetWord from './my_target_word/my_target_word';
 import TileBank from './tile_bank/tile_bank';
 import CurrentClue from './current_clue/current_clue';
@@ -10,9 +10,9 @@ import TargetWordsContainer from './target_words/target_words';
 import '../components/css/grid.css';
 
 class Game extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+    // constructor(props) {
+    //     super(props)
+    // }
 
     render() {
         return (<div>

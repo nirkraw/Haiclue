@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
-import { Link } from "react-router-dom";
-import SubmitTestContainer from "../submit_test/submit_test_container";
+import SubmitTestContainer from "./submit_test_container";
 
 export default class CreateRoomForm extends Component {
   constructor(props) {
@@ -11,8 +10,8 @@ export default class CreateRoomForm extends Component {
       roomName: "",
       message: "",
       errors: "",
-      endpoint: "http://localhost:5000/#/create-room",
-      // endpoint: "http://localhost:5000",
+      endpoint: "http://localhost:5000/",
+      gameState: null 
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -22,25 +21,28 @@ export default class CreateRoomForm extends Component {
 
   componentDidMount() {
     const { endpoint } = this.state;
+    this.socket = socketIOClient(endpoint); 
 
-    this.socket = socketIOClient(endpoint);// endpoint is undefined?
-    this.socket.on("outgoing", (data) => {
-      this.setState({ test: data.num });
+    this.socket.on("gameState", (gameState) => {
+      // debugger 
+      this.setState({gameState: gameState})
     });
+
     this.socket.on("receiveMessage", (data) => {
       // debugger
       this.setState({ message: data });
     });
-
+    
     this.socket.on("sendErrors", (data) => {
       this.setState({ errors: data });
     });
-
+    
     this.socket.on("connect", (socket) => {
       console.log("Frontend Connected! Socket Id: " + this.socket.id);
     });
+    console.log("######################################It has mounted again ########################################")
   }
-
+  
   handleInput(field) {
     return (e) => {
       this.setState({ [field]: e.target.value });
@@ -50,7 +52,7 @@ export default class CreateRoomForm extends Component {
   handleRoomCreate(event) {
     event.preventDefault();
     const { roomName, handle } = this.state;
-    this.props.storeRoomName(roomName); 
+    this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, handle);
     this.setState({ roomName: "", handle: "" });
   }
@@ -63,6 +65,7 @@ export default class CreateRoomForm extends Component {
   }
 
   render() {
+    // debugger
     let welcome = "not joined";
     if (this.state.message) welcome = this.state.message;
     return (
@@ -85,7 +88,7 @@ export default class CreateRoomForm extends Component {
             Join
           </button>
         </form>
-        <SubmitTestContainer  />
+        <SubmitTestContainer gameState={this.state.gameState} socket={this.socket} />
       </div>
     );
   }

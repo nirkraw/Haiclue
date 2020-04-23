@@ -5,7 +5,7 @@ import SignupFormContainer from './signup_form_container';
 import React from 'react';
 import {
   AuthRoute,
-  ProtectedRoute
+  // ProtectedRoute
 } from '../../util/route_util';
 
 
