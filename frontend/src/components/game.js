@@ -3,12 +3,15 @@ import MyTargetWordContainer from "./my_target_word/my_target_word_container";
 import TileBank from "./tile_bank/tile_bank";
 import CurrentClue from "./current_clue/current_clue";
 import TargetWordsContainer from "./target_words/target_words_container";
+import './css/index.css';
 
 const Game = (props) => (
   <div>
-    {props.loggedIn ? <button onClick={props.logout}>Logout</button> : null}
+    <div className="logout-button">
+    {props.loggedIn ? <button className="tile" onClick={props.logout}>Logout</button> : null}
+    </div>
 
-    <h1 className="logo">Haiclue!</h1>
+      <h1 className="logo">Haiclue</h1>
     <div className="gameContainer">
       <div className="topContainer">
         <CurrentClue />

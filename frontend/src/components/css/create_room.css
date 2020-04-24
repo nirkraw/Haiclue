@@ -1,0 +1,22 @@
+.butts {
+    width: 100px;
+    height: 50px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.room-container { 
+    width: 600px; 
+    margin: 0 auto;}
+
+.players-container {
+    position: absolute;
+}
+
+
+
+.room-container h1 {
+    font-size: 48px;
+    margin-top:50px;
+    text-align: center;
+}

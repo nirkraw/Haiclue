@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import GameContainer from '../game_container';
 import ENV from '../../util/socket_env';
+import '../css/create_room.css';
 
 export default class CreateRoomForm extends Component {
   constructor(props) {
@@ -67,10 +68,11 @@ export default class CreateRoomForm extends Component {
   }
 
   
-
   render() {
+
+
     const {gameState} = this.state
-    let welcome = "not joined";
+    let welcome = "Create or Join a Room";
     if (this.state.message) welcome = this.state.message;
     let players;
 
@@ -85,30 +87,48 @@ export default class CreateRoomForm extends Component {
     } else {
       players = null;
     }
-      
-    return (
-      <div className="">
-        {this.state.errors ? <h1>{this.state.errors}</h1> : <h1>{welcome}</h1>}
-        <form>
-          <label>
-            Room Name
-            <input
-              type="text"
-              placeholder="Enter Room Name"
-              value={this.state.roomName}
-              onChange={this.handleInput("roomName")}
-            />
-          </label>
-          <button className="butts" type="submit" onClick={this.handleRoomCreate}>
-            Create
-          </button>
-          <button className="butts" type="submit" onClick={this.handleRoomJoin}>
-            Join
-          </button>
-        </form>
-         {players}
-        <GameContainer gameState={this.state.gameState} socket={this.socket} />
-      </div>
+
+
+    let joinRoom = (<div className="room-container"> 
+          
+          <div className="logout-button">
+              {this.props.loggedIn ? <div className="tile" onClick={this.props.logout}>Logout</div> : null}
+          </div>
+
+          {this.state.errors ? <h1>{this.state.errors}</h1> : <h1>{welcome}</h1>}    
+          <form>
+            <label>
+              Room Name
+              <input
+                type="text"
+                placeholder="Enter Room Name"
+                value={this.state.roomName}
+                onChange={this.handleInput("roomName")}
+              />
+            </label>
+            <button className="butts" type="submit" onClick={this.handleRoomCreate}>
+              Create
+            </button>
+            <button className="butts" type="submit" onClick={this.handleRoomJoin}>
+              Join
+            </button>
+          </form>
+          {players}
+        </div>) 
+
+
+    let view = (gameState) ? 
+        ((gameState.gameStarted) ? 
+            (<div>
+              <div className="players-container">{players}</div>
+              <GameContainer gameState={this.state.gameState} socket={this.socket}/> </div>)
+            : (joinRoom))   
+        : (joinRoom)
+
+
+    return (<>
+        {view}
+      </>
     );
   }
 }

@@ -2,22 +2,35 @@
     position: absolute;
     right: 60px;
     top: 60px;
-    color: black;
+    /* color: black;
     font-weight: bold;
     background-color: white;
-    font-family: 'Helvetica Neue', sans-serif;
-    border: solid 4px #b8b8b8;
-    border-style: outset;
-    font-size: 26px;
+    font-family: 'Helvetica Neue', sans-serif; */
+    /* border: solid 4px #b8b8b8; */
+    /* border-style: outset; */
+    /* font-size: 26px;
     width: 150px;
-    height: 50px;
-    border-radius: 4px;
-    text-align: center;
+    height: 50px; */
+    /* border-radius: 4px; */
+    /* text-align: center; */
     transition: 1s box-shadow ease;
     box-shadow: none;
+        width: 120px;
+        border: 2px solid; 
+        padding: 10px; 
+        margin: 6px;
+        font-size: 18px;
+        border-radius: 12px;
+        display: inline-block;
+        font-weight: bold;
+        box-sizing: border-box;
 }
 
 .timer-flash {
     transition: 1s box-shadow ease;
     box-shadow: 0px 0px 40px 10px crimson;
+}
+
+.timer:hover{
+    border-color:  white; 
 }

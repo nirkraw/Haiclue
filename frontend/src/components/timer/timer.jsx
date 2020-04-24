@@ -39,7 +39,7 @@ class Timer extends React.Component {
         let secs = this.state.secs
         let timeClass = this.state.timeClass
         return (
-            <div className={`timer ${timeClass}`} >time left {secs} </div>
+            <div className={`timer  ${timeClass}`} >time left {secs} </div>
         )
     }
 }

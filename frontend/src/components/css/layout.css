@@ -1,9 +1,4 @@
-.butts {
-    width: 100px;
-    height: 50px;
-    font-size: 24px;
-    font-weight: bold;
-}
+
 
 .topContainer { 
     width: 60%;
@@ -14,6 +9,7 @@
 .currentClueContainer {
     display: none;
 }
+
 
 .pointsDiv {
     background-color: white;

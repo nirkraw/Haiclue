@@ -18,3 +18,9 @@ h3 {font-size: 13px; color: red;}
     padding-top: 30px;
 }
 
+.logout-button {
+    position: absolute; 
+    right: 0; 
+    top: 0;
+}
+
