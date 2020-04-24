@@ -98,10 +98,9 @@ export default class CreateRoomForm extends Component {
           {this.state.errors ? <h1>{this.state.errors}</h1> : <h1>{welcome}</h1>}    
           <form>
             <label>
-              Room Name
               <input
                 type="text"
-                placeholder="Enter Room Name"
+                placeholder="Enter a Room Name"
                 value={this.state.roomName}
                 onChange={this.handleInput("roomName")}
               />
@@ -113,7 +112,7 @@ export default class CreateRoomForm extends Component {
               Join
             </button>
           </form>
-          {players}
+            <div className="players-create-container">{players}</div>
         </div>) 
 
 
