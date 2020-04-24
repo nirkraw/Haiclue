@@ -8,6 +8,7 @@ import red from '../images/red-tile.png';
 import blue from '../images/blue-tile.png';
 import green from '../images/green-tile.png';
 import yellow from '../images/yellow-tile.png';
+import tbg from '../images/tbg-logo.png';
 import '../css/splash.css';
 
 class Splash extends React.Component {
@@ -16,7 +17,7 @@ class Splash extends React.Component {
 
     return (
       <div>
-        <h1 className='logo'>Haiclue!</h1>
+        <h1 className='logo'>Haiclue</h1>
       
         <div className='splashContainer'>
           <section className="splashCards">
@@ -34,7 +35,9 @@ class Splash extends React.Component {
             <Route component={Instructions} />
         </div>  
         <footer>
-            <a href="#">Tiger Board Games</a>
+            <a href="https://tigerboardgames.com/">
+            <img className="tbg-link" src={tbg} alt="tiger board games"/>
+            </a>
         </footer>    
       </div>
     );

@@ -97,10 +97,10 @@
 todays goals
 <!-- favicon -->
 <!-- change browser tab name -->
-change header size login
-add thumbnail to video
+<!-- change header size login -->
+<!-- add thumbnail to video -->
 change submit to join function
-add tiger board logo/link
+<!-- add tiger board logo/link -->
 
 
 
