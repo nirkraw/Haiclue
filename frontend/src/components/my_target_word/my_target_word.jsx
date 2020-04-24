@@ -36,7 +36,6 @@ class MyTargetWord extends React.Component {
     ];
 
     if (!this.props.gameState) return null;
-    debugger
     let myWord = this.getWord()
     let picNumber
     for (let i = 0; i < 4; i++) {
