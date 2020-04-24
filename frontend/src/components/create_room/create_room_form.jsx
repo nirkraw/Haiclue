@@ -17,6 +17,7 @@ export default class CreateRoomForm extends Component {
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
     this.handleRoomCreate = this.handleRoomCreate.bind(this);
+    this.handleRandomCreate = this.handleRandomCreate.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
 
@@ -54,6 +55,24 @@ export default class CreateRoomForm extends Component {
     event.preventDefault();
     // debugger
     const { roomName, handle } = this.state;
+    this.props.storeRoomName(roomName);
+    this.socket.emit("create", roomName, handle);
+    this.setState({ roomName: "", handle: "" });
+  }
+
+  randomRoom() {
+    const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+    let room = ""
+    for (let i = 0; i < 4; i++) {
+      room += chars[Math.floor(Math.random()*61)]
+    }
+    return room
+  }
+
+  handleRandomCreate(event) {
+    event.preventDefault();
+    const { handle } = this.state;
+    let roomName = this.randomRoom()
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, handle);
     this.setState({ roomName: "", handle: "" });
@@ -110,6 +129,9 @@ export default class CreateRoomForm extends Component {
             </button>
             <button className="butts" type="submit" onClick={this.handleRoomJoin}>
               Join
+            </button>
+            <button className="butts" type="submit" onClick={this.handleRandomCreate}>
+              Random
             </button>
           </form>
             <div className="players-create-container">{players}</div>

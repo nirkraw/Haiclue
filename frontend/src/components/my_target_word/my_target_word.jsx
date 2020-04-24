@@ -9,9 +9,7 @@ class MyTargetWord extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      img: "#",
-      // maybe this component needs to be passed props from TargetWords instead of its own container
-      // to get the associated card
+  
     };
     this.getWord = this.getWord.bind(this);
   }
@@ -42,7 +40,6 @@ class MyTargetWord extends React.Component {
       if ((this.props.gameState.targetWords[i].black === myWord) || (this.props.gameState.targetWords[i].black === myWord)) 
       { picNumber = i}
     }
-    //come up with logic to switch picture with the right word 
     return (
       <div className="myTargetWordContainer">
         <h3>My Target Word</h3>
