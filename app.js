@@ -34,6 +34,7 @@ io.on("connect", (socket) => {
     } else {
       socket.emit("sendErrors", "this name is already taken");
     }
+    // debugger
   });
 
   socket.on("join", (roomName, handle, targetWords) => {
@@ -97,9 +98,6 @@ mongoose
 
 app.use(passport.initialize());
 require("./config/passport")(passport);
-
-app.use("/api/users", users);
-app.use("/api/tiles", tiles);
 
 app.use("/api/users", users);
 app.use("/api/tiles", tiles);
