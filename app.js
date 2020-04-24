@@ -14,7 +14,6 @@ const server = http.createServer(app);
 const io = socketIo(server);
 // const http = require("http").Server(app);
 // const io = require("socket.io")(http, {});
-
 const port = process.env.PORT || 5000;
 
 
@@ -32,16 +31,22 @@ io.on("connect", (socket) => {
       const newRoom = new Room(roomName);
       newRoom.addPlayer(handle, socket.id);
       rooms[roomName] = newRoom;
+      rooms[roomName].submit(handle);
     } else {
       socket.emit("sendErrors", "this name is already taken");
     }
   });
 
   socket.on("join", (roomName, handle) => {
-    // debugger 
-    if(rooms[roomName].playerCount < 4) { 
+
+    if(rooms[roomName].playerCount < 2) { // change to 4
       socket.join(roomName);
       rooms[roomName].addPlayer(handle, socket.id);
+   
+      if (rooms[roomName].playerCount === 2) { //change to 4 
+        rooms[roomName].startGame();
+      }
+      rooms[roomName].submit(handle);
     } else {
     socket.emit("sendErrors", "sorry, try another room");
     }
@@ -52,10 +57,6 @@ io.on("connect", (socket) => {
     socket.on("disconnect", () => console.log("Client disconnected"));
   });
 
-  socket.on("submit", (roomName, handle) => {
-    // debugger 
-    rooms[roomName].submit(handle);
-  });
 
   setInterval(function () {
     for (let i in rooms) {
@@ -65,6 +66,13 @@ io.on("connect", (socket) => {
       io.to(room.roomName).emit("gameState", gameState);
     }
   }, 2000);
+
+  socket.on("target words", (roomName, targetWords) => {
+    rooms[roomName].createTargetWords(targetWords)
+    // debugger;
+  })
+
+
 });
 
 server.listen(port, () => {

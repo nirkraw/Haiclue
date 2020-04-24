@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
-import SubmitTestContainer from "./submit_test_container";
 import GameContainer from '../game_container';
 import ENV from '../../util/socket_env';
 
@@ -66,9 +65,23 @@ export default class CreateRoomForm extends Component {
   }
 
   render() {
-    // debugger
+    const {gameState} = this.state
     let welcome = "not joined";
     if (this.state.message) welcome = this.state.message;
+    let players;
+
+    if(gameState) {
+    let joinedPlayers = Object.values(gameState.players).filter(player => player.joined) 
+    players = joinedPlayers.map(player => {
+      return (
+              <div key={player.socketId}>
+                {player.handle} joined! 
+              </div>)
+    })
+    } else {
+      players = null;
+    }
+      
     return (
       <div className="">
         {this.state.errors ? <h1>{this.state.errors}</h1> : <h1>{welcome}</h1>}
@@ -89,7 +102,7 @@ export default class CreateRoomForm extends Component {
             Join
           </button>
         </form>
-        <SubmitTestContainer gameState={this.state.gameState} socket={this.socket} />
+         {players}
         <GameContainer gameState={this.state.gameState} socket={this.socket} />
       </div>
     );
