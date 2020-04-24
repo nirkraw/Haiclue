@@ -6,8 +6,9 @@ import red from '../images/red-tile.png';
 import green from '../images/green-tile.png';
 import yellow from '../images/yellow-tile.png';
 
+
 class TargetWords extends React.Component {
-    constructor(props){ // fetchTiles, fetchPlayers, fetchGame, tiles (array)
+    constructor(props){ // fetechTiles, fetchPlayers, fetchGame, tiles (array)
         super(props)
         this.state = {
             targetWords: [{
@@ -39,84 +40,50 @@ class TargetWords extends React.Component {
         }
 
     this.selectTargetWords = this.selectTargetWords.bind(this);
-    this.makeGuess = this.makeGuess.bind(this);
-    this.checkGuessedWord = this.checkGuessedWord.bind(this);
+
   }
 
-    componentDidMount() {
-        // this.props.fetchTiles()
-        // this.props.fetchPlayers() // fetches players slice of state
-        // this.this.props.fetchGame() // fetches game slice of state
-    }
+ componentDidMount() {
+    //  debugger;
+     this.props.fetchTiles();
+ }
+
+
 
   selectTargetWords() {
-    // figure out best place to call this
-    this.setState({ targetWords: this.props.tiles.slice(60) }); // keep an eye for this
+    const {roomName} = this.props
+    let targetWords = this.props.tiles.slice(60);
+    // debugger;
+    this.props.socket.emit("target words", roomName, targetWords); 
   }
-
-  //  playerOne: state.entities.players[0],
-  //     playerTwo: state.entities.players[1],
-  //     playerThree: state.entities.players[2],
-  //     playerFour: state.entities.players[3]
-
-  // user: {
-
-  //                     handle: "",
-  //                     points: 0,
-  //                     target_word: "",
-  //                     clue_array: [],
-  //                     submitted: false
-  //                 }
-  makeGuess() {}
-
-  checkGuessedWord() {}
-
-//   checkSubmittedGuesses() {
-//     ///
-//     // `this.props.player${this.props.sessionId}.submitted`
-    
-//     if(
-//       this.props.playerOne.submitted &&
-//       this.props.PlayerTwo.submitted &&
-//       this.props.playerThree.submitted &&
-//       this.props.PlayerFour.submitted
-//     ) {
-//       startnexround()
-//     }
-//   }
-// if(
-//   this.props.players.forEach(player) => {
-//    if player.submitted === false {
-//      return false 
-//    }
-//   }
-// )
-
-    checkSubmittedGuesses() {
-        return (
-        this.props.playerOne.submitted && 
-        this.props.PlayerTwo.submitted &&
-        this.props.playerThree.submitted && 
-        this.props.PlayerFour.submitted
-    )}
 
     render() {
 
+        if (this.props.gameState && this.props.gameState.gameStarted) {
+            this.selectTargetWords();
+        } 
+        const {gameState} = this.props;
+        let targetWords; 
+        if(gameState) {
+            targetWords = gameState.targetWords 
+        } 
+        if (!targetWords) return null;
+        // debugger; 
+        
         let selectorTri = (<svg width="100%" height="80px" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-
           <path
             d="M -200 100 L 600 100 L 200 300 z"
             fill="white"
             stroke="white"
             stroke-width="3" />
-
         </svg>);
 
 
         let cards = [ {blue: blue}, {red: red}, {green: green}, {yellow: yellow}];
         let currentColor = this.state.currentColor;
-        let targetWords = this.state.targetWords.map((tile, index) => {
-            let tileSide = tile[currentColor]; 
+        // let targetWords = this.state.targetWords.map((tile, index) => {
+        targetWords.map((tile, index) => {
+        let tileSide = tile[currentColor]; 
             return (<div className="targetWordContainer">
                             <img src={Object.values(cards[index])} className="targetImg" alt={Object.keys(cards[index])}/>
                             <div className={`color-${currentColor} tile`}>{tileSide}</div>

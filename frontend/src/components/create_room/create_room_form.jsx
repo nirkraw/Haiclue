@@ -68,7 +68,6 @@ export default class CreateRoomForm extends Component {
     const {gameState} = this.state
     let welcome = "not joined";
     if (this.state.message) welcome = this.state.message;
-    debugger; 
     let players;
 
     if(gameState) {

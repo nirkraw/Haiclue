@@ -10,4 +10,10 @@ const mdp = dispatch => ({
     logout: () => dispatch(logout()),
 });
 
-export default connect(msp, mdp)(Game);
+export default connect(msp, mdp)(Game);   
+                                        
+                                
+                                 
+                                        
+                                
+                                
