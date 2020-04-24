@@ -3,16 +3,15 @@ class Room {
     this.roomName = roomName;
     this.game = {
       roomName: roomName,
-      targetWords: [], 
+      targetWords: [],
       players: {},
-      gameStarted: false
+      gameStarted: false,
     };
 
     this.playerCount = 0;
     this.errors = [];
     this.addPlayer = this.addPLayer.bind(this);
     this.getGameState = this.getGameState.bind(this);
-  
   }
 
   addPLayer(handle, socketId) {
@@ -23,10 +22,10 @@ class Room {
       number: 0, // default value
     };
 
-    if (Object.values(this.game.players).length < 2) { // chnage to 4
+    if (Object.values(this.game.players).length < 2) {// chnage to 4
       player.number = Object.values(this.game.players).length + 1;
       this.game.players[handle] = player;
-      this.playerCount++
+      this.playerCount++;
     } else {
       this.errors.push(
         "This game is full :(, your friends are playing without you."
@@ -45,8 +44,8 @@ class Room {
   }
 
   createTargetWords(targetWords) {
-    this.game.targetWords = targetWords
-    debugger; 
+    this.game.targetWords = targetWords;
+    // debugger;
   }
 
   startGame() {

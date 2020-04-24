@@ -20,6 +20,7 @@ export default class CreateRoomForm extends Component {
   }
 
   componentDidMount() {
+    this.props.fetchTiles(); 
     this.socket = socketIOClient(ENV); 
 
     this.socket.on("gameState", (gameState) => {
@@ -60,9 +61,11 @@ export default class CreateRoomForm extends Component {
     event.preventDefault();
     const { roomName, handle } = this.state;
     this.props.storeRoomName(roomName);
-    this.socket.emit("join", roomName, handle);
+    this.socket.emit("join", roomName, handle, this.props.tiles.slice(60));
     this.setState({ roomName: "", handle: "" });
   }
+
+  
 
   render() {
     const {gameState} = this.state

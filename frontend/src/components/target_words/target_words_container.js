@@ -1,19 +1,14 @@
 import { connect } from "react-redux";
 import TargetWords from "./target_words";
-import {startingTiles} from "../../reducers/selectors";
-import {fetchTiles} from "../../actions/tile_actions";
-
+/// might not need this container
 const mapStateToProps = (state) => {
-    // debugger; 
+
     return({
-        tiles: startingTiles(state),
-        roomName: state.entities.game.roomName 
     })
 }
 
 const mapDispatchToProps = (dispatch) => {
     return({
-        fetchTiles: () => dispatch(fetchTiles()),
     })
 }
 
