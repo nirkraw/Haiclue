@@ -95,8 +95,8 @@
 
 
 todays goals
-favicon
-change browser tab name
+<!-- favicon -->
+<!-- change browser tab name -->
 change header size login
 add thumbnail to video
 change submit to join function
@@ -126,6 +126,6 @@ phase 2 guess
     p4 turn
         scoring
 
-after last round method 3 game over 
+after last round  method 3 game over 
 
 reset
