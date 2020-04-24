@@ -8,7 +8,6 @@ import yellow from "../images/yellow-tile.png";
 
 class TargetWords extends React.Component {
   constructor(props) {
-    // fetechTiles, fetchPlayers, fetchGame, tiles (array)
     super(props);
     this.state = {
       currentColor: "black",

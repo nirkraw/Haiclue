@@ -98,10 +98,10 @@ export default class CreateRoomForm extends Component {
               onChange={this.handleInput("roomName")}
             />
           </label>
-          <button type="submit" onClick={this.handleRoomCreate}>
+          <button className="butts" type="submit" onClick={this.handleRoomCreate}>
             Create
           </button>
-          <button type="submit" onClick={this.handleRoomJoin}>
+          <button className="butts" type="submit" onClick={this.handleRoomJoin}>
             Join
           </button>
         </form>

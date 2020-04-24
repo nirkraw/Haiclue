@@ -1,6 +1,8 @@
+misc
+
 // have users auto sign in on sign up
 // ensure unique handles at some point
-
+// make random room name generator
 
 // COMPONENTS 
 
@@ -107,9 +109,9 @@ add tiger board logo/link
 //
 backend method startGame() - deployed when 4 players join 
     setup
-        sort the tile
+        <!-- sort the tile -->
         send to players
-        choose 4 target words
+        <!-- choose 4 target words -->
         assign players target word
     display game container
 
@@ -129,3 +131,6 @@ phase 2 guess
 after last round  method 3 game over 
 
 reset
+
+
+a player knows how to key into the gameState by comparing its handle to each players handle

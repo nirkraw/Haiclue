@@ -46,6 +46,7 @@ io.on("connect", (socket) => {
         //change to 4
         rooms[roomName].startGame();
         rooms[roomName].createTargetWords(targetWords);
+        rooms[roomName].assignPlayerTargetWord(); 
       }
       rooms[roomName].submit(handle);
     } else {

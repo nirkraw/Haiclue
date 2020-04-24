@@ -20,9 +20,11 @@ class Room {
       socketId: socketId,
       joined: false,
       number: 0, // default value
+      targetWord: "",
     };
 
-    if (Object.values(this.game.players).length < 2) {// chnage to 4
+    if (Object.values(this.game.players).length < 2) {
+      // chnage to 4
       player.number = Object.values(this.game.players).length + 1;
       this.game.players[handle] = player;
       this.playerCount++;
@@ -39,13 +41,21 @@ class Room {
   }
 
   getGameState() {
-    // debugger
     return this.game;
   }
 
   createTargetWords(targetWords) {
     this.game.targetWords = targetWords;
-    // debugger;
+  }
+
+  assignPlayerTargetWord() { // before each round
+    Object.values(this.game.players).forEach(player => {
+      player.targetWord = this.game.targetWords[this.getRandomInt(4)];
+    });
+  }
+
+  getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
   }
 
   startGame() {
