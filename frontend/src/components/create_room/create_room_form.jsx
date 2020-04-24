@@ -125,7 +125,6 @@ export default class CreateRoomForm extends Component {
             : (joinRoom))   
         : (joinRoom)
 
-
     return (<>
         {view}
       </>
