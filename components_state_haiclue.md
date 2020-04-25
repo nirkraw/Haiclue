@@ -133,4 +133,4 @@ after last round  method 3 game over
 reset
 
 
-a player knows how to key into the gameState by comparing its handle to each players handle
+why is a tile being 
