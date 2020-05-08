@@ -12,7 +12,8 @@ export default class CreateRoomForm extends Component {
       roomName: "",
       message: "",
       errors: "",
-      gameState: null 
+      gameState: null, 
+      readOnly: false,
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -45,19 +46,19 @@ export default class CreateRoomForm extends Component {
     console.log("######################################It has mounted again ########################################")
   }
   
-  handleInput(field) {
+  handleInput(field) { 
     return (e) => {
-      this.setState({ [field]: e.target.value });
+      this.setState({ [field]: e.currentTarget.value });
     };
   }
 
   handleRoomCreate(event) {
     event.preventDefault();
-    // debugger
+    debugger;
     const { roomName, handle } = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, handle);
-    this.setState({ roomName: "", handle: "" });
+    this.setState({ roomName: "", handle: "", readOnly: true});
   }
 
   randomRoom() {
@@ -74,8 +75,8 @@ export default class CreateRoomForm extends Component {
     const { handle } = this.state;
     let roomName = this.randomRoom()
     this.props.storeRoomName(roomName);
-    this.socket.emit("create", roomName, handle);
-    this.setState({ roomName: "", handle: "" });
+    this.socket.emit("create", roomName, handle)
+    this.setState({ roomName: roomName, handle: "", readOnly: true });
   }
 
   handleRoomJoin(event) {
@@ -83,7 +84,7 @@ export default class CreateRoomForm extends Component {
     const { roomName, handle } = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit("join", roomName, handle, this.props.tiles.slice(60));
-    this.setState({ roomName: "", handle: "" });
+    this.setState({ roomName: roomName, handle: "" });
   }
 
   
@@ -99,15 +100,16 @@ export default class CreateRoomForm extends Component {
     let joinedPlayers = Object.values(gameState.players).filter(player => player.joined) 
     players = joinedPlayers.map(player => {
       return (
-              <div key={player.socketId}>
+        <div key={player.socketId}>
                 {player.handle} joined! 
               </div>)
     })
     } else {
       players = null;
     }
-
-
+  
+    let placeholder_text = (this.state.roomName.length) ? (this.state.roomName) : "Enter a Room Name" ;
+    // let readOnly = (this.state.readOnly) ? "readOnly" : null; 
     let joinRoom = (<div className="room-container"> 
           
           <div className="logout-button">
@@ -119,9 +121,10 @@ export default class CreateRoomForm extends Component {
             <label>
               <input
                 type="text"
-                placeholder="Enter a Room Name"
+                placeholder={placeholder_text}
                 value={this.state.roomName}
                 onChange={this.handleInput("roomName")}
+                // {...readOnly}
               />
             </label>
             <button className="butts" type="submit" onClick={this.handleRoomCreate}>
