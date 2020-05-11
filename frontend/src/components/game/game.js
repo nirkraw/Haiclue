@@ -1,9 +1,9 @@
 import React from "react";
-import MyTargetWordContainer from "./my_target_word/my_target_word_container";
-import TileBankContainer from "./tile_bank/tile_bank_container";
-import CurrentClue from "./current_clue/current_clue";
-import TargetWordsContainer from "./target_words/target_words_container";
-import './css/index.css';
+import MyTargetWordContainer from "../my_target_word/my_target_word_container";
+import TileBankContainer from "../tile_bank/tile_bank_container";
+import CurrentClue from "../current_clue/current_clue";
+import TargetWordsContainer from "../target_words/target_words_container";
+import '../css/index.css';
 
 const Game = (props) => (
   <div>

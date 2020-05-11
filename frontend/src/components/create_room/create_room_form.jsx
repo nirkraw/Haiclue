@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
-import GameContainer from '../game_container';
+import GameContainer from '../game/game_container';
 import ENV from '../../util/socket_env';
 import '../css/create_room.css';
 
