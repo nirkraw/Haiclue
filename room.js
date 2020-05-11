@@ -97,9 +97,7 @@ class Room {
     player.clueTiles.push(tile);
   }
 
-  // createGame(){}
-
-  // getPlayers(){}
+  
 }
 
 module.exports = Room;
