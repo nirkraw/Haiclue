@@ -7,19 +7,18 @@ import Tile from './tile';
 class ClueContruction extends React.Component {
     constructor(props) {
         super(props)
-        this.submitConstructedClue = this.submitConstructedClue.bind(this);
+        // this.submitConstructedClue = this.submitConstructedClue.bind(this);
     }
 
-    submitConstructedClue() { // submit when timer runs out
-    }
+    // submitConstructedClue() { // submit when timer runs out
+    // }
 
     render() {
         let currentColor = this.props.currentColor;
-        let toggleTile = this.props.toggleTile;
         let clueConstruction = this.props.clueConstructionArray.map(tile => {
             return (<Tile 
                             currentColor={currentColor}
-                            toggleTile={toggleTile}
+                            // toggleTile={toggleTile}
                             tile={tile}
                             display={true}
                             type="clue"

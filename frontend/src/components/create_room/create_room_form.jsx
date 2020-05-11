@@ -83,8 +83,13 @@ export default class CreateRoomForm extends Component {
     event.preventDefault();
     const { roomName, handle } = this.state;
     this.props.storeRoomName(roomName);
+<<<<<<< HEAD
     this.socket.emit("join", roomName, handle, this.props.tiles.slice(60));
     this.setState({ roomName: roomName, handle: "" });
+=======
+    this.socket.emit("join", roomName, handle, this.props.tiles.slice(60), this.props.tiles.slice(0, 60));
+    this.setState({ roomName: "", handle: "" });
+>>>>>>> 42aaf34832d7b1bbc073397a37f3e0e4da34765f
   }
 
   
