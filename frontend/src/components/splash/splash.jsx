@@ -26,12 +26,12 @@ class Splash extends React.Component {
             <img src={red} alt="red"/>
             <img src={yellow} alt="yellow"/>
           </section>
-          <h1>Join a Game</h1>
+          <h1 className="splashLabel">Join a Game</h1>
             <div className='formContainer'>
-              <AuthRoute path="/" component={SignupFormContainer} />
               <AuthRoute path="/" component={LoginFormContainer} />
+              <AuthRoute path="/" component={SignupFormContainer} />
             </div>
-          <h1>How to Play</h1>
+          <h1 className="splashLabel">How to Play</h1>
             <Route component={Instructions} />
         </div>  
         <footer>

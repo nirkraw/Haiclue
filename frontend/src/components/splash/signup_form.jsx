@@ -27,7 +27,7 @@ class SignupForm extends React.Component {
 
     handleSignupSubmit(e) {
         e.preventDefault();
-        this.props.signup(this.state)
+        this.props.signup(this.state).then(() => {this.props.login(this.state)})
     }
 
     render () {

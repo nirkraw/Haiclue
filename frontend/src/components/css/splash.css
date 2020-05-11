@@ -7,17 +7,18 @@
 
 .splashContainer h1 {
     font-size: 48px;
-    width: 500px;
-    margin-top:50px;
-    padding-left: 100px;
+    /* width: 500px; */
+    margin-top:150px;
+    padding-left: 35%;
 }
 
 .formContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     text-align: left;
-    margin-bottom: 100px;
+    /* margin-bottom: 100px; */
 }
 .sessionForm {
     width: 30%;
@@ -33,6 +34,13 @@
     border: none;
     border-bottom: white 2px solid;
     padding:10px;
+}
+
+.splashLabel {
+    width: 30%;
+    display: flex;
+    /* justify-content: center; */
+
 }
 
 input::placeholder {

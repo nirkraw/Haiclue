@@ -26,12 +26,10 @@ export default class CreateRoomForm extends Component {
     this.socket = socketIOClient(ENV); 
 
     this.socket.on("gameState", (gameState) => {
-      // debugger 
       this.setState({gameState: gameState})
     });
 
     this.socket.on("receiveMessage", (data) => {
-      // debugger
       this.setState({ message: data });
     });
     

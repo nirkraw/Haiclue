@@ -24,3 +24,10 @@ h3 {font-size: 13px; color: red;}
     top: 0;
 }
 
+.instruction-link {
+    background: red;
+    display: block;
+    height: 100px; 
+    width: 100px;
+}
+
