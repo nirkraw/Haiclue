@@ -6,10 +6,16 @@
 }
 .room-container { 
     width: 600px; 
-    margin: 80px auto;}
+    margin: 80px auto;
+ }
 
 .room-container form{
     margin: 60px auto;
+}
+
+.cr-button-container {
+    display: flex;
+    justify-content: space-around;
 }
 
 .players-container {
@@ -53,6 +59,7 @@
     border: none;
     border-bottom: white 2px solid;
     padding: 10px;
+    text-align: center;
 }
 
 input::placeholder {

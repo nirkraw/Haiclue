@@ -121,15 +121,17 @@ export default class CreateRoomForm extends Component {
                 readOnly={readOnlyVal}
               />
             </label>
-            <button className="butts" type="submit" onClick={this.handleRoomCreate}>
-              Create
-            </button>
-            <button className="butts" type="submit" onClick={this.handleRoomJoin}>
-              Join
-            </button>
-            <button className="butts" type="submit" onClick={this.handleRandomCreate}>
-              Random
-            </button>
+            <div className="cr-button-container">
+                <button className="butts" type="submit" onClick={this.handleRoomCreate}>
+                  Create
+                </button>
+                <button className="butts" type="submit" onClick={this.handleRoomJoin}>
+                  Join
+                </button>
+                <button className="butts" type="submit" onClick={this.handleRandomCreate}>
+                  Random
+                </button>
+            </div>
           </form>
             <div className="players-create-container">{players}</div>
         </div>) 
