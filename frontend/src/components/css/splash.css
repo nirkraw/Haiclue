@@ -1,16 +1,17 @@
 .splashContainer {
     width: 100%;
-    margin: 100px auto;
+    margin: 30px auto;
     display: flex;
     flex-direction: column;
 }
 
 .splashContainer h1 {
-    font-size: 65px;
+    font-size: 48px;
     width: 500px;
-    margin-top:80px;
+    margin-top:50px;
     padding-left: 100px;
 }
+
 .formContainer {
     display: flex;
     flex-direction: row;
@@ -18,14 +19,12 @@
     text-align: left;
     margin-bottom: 100px;
 }
-
 .sessionForm {
     width: 30%;
-
 }
+
 .sessionForm input {
     width: 100%;
-    /* height: 20px; */
     margin: 10px 0 10px 0 ;
     font-weight: bold;
     font-size: 18px;
@@ -72,6 +71,9 @@ input:focus {
    
 }
 
+.instructionsContainer video:hover {
+    cursor: pointer;
+}
 
 .splashCards {
     display: block;
@@ -82,4 +84,10 @@ input:focus {
     padding: 2%;
     width: 50%;
     box-sizing: border-box;
+}
+
+.tbg-link {
+    width: 180px;
+    height: 98px;
+    margin-left: 20px;
 }

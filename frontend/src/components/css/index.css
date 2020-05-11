@@ -10,9 +10,17 @@ body {
 h3 {font-size: 13px; color: red;}
 
 .logo { 
-    font-size: 36px;
+    /* font-size: 96px; */
+    font-size: 64px;
     text-align: center; 
     width: auto;
     margin:  0 auto;
     padding-top: 30px;
 }
+
+.logout-button {
+    position: absolute; 
+    right: 0; 
+    top: 0;
+}
+

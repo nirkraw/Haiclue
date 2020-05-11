@@ -14,9 +14,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 // const http = require("http").Server(app);
 // const io = require("socket.io")(http, {});
-
 const port = process.env.PORT || 5000;
-
 
 const rooms = {};
 io.on("connect", (socket) => {
@@ -24,48 +22,55 @@ io.on("connect", (socket) => {
 
   socket.on("create", (roomName, handle) => {
     if (!rooms[roomName]) {
-    socket.join(roomName);
-    socket.emit(
-      "receiveMessage",
-      `${handle} created and joined Game: ${roomName}`
-    );
+      socket.join(roomName);
+      socket.emit(
+        "receiveMessage",
+        `${handle} created and joined Game: ${roomName}`
+      );
       const newRoom = new Room(roomName);
       newRoom.addPlayer(handle, socket.id);
       rooms[roomName] = newRoom;
+      rooms[roomName].submit(handle);
     } else {
       socket.emit("sendErrors", "this name is already taken");
     }
+    // debugger
   });
 
-  socket.on("join", (roomName, handle) => {
-    // debugger 
-    if(rooms[roomName].playerCount < 4) { 
+  socket.on("join", (roomName, handle, targetWords) => {
+    if (rooms[roomName].playerCount < 2) {
+      // change to 4
       socket.join(roomName);
       rooms[roomName].addPlayer(handle, socket.id);
+
+      if (rooms[roomName].playerCount === 2) {
+        //change to 4
+        rooms[roomName].startGame();
+        rooms[roomName].createTargetWords(targetWords);
+        rooms[roomName].assignPlayerTargetWord(); 
+      }
+      rooms[roomName].submit(handle);
     } else {
-    socket.emit("sendErrors", "sorry, try another room");
+      socket.emit("sendErrors", "sorry, try another room");
     }
+
     if (rooms[roomName].errors.length > 0) {
       socket.emit("sendErrors", rooms[roomName].errors[0]); // perhaps just send the string directly instead?
     }
+
     socket.emit("receiveMessage", `${handle} joined ${roomName}`);
     socket.on("disconnect", () => console.log("Client disconnected"));
   });
+}); // end of "connect" DONT DELETE
 
-  socket.on("submit", (roomName, handle) => {
-    // debugger 
-    rooms[roomName].submit(handle);
-  });
-
-  setInterval(function () {
-    for (let i in rooms) {
-      let room = rooms[i];
-      let gameState = room.getGameState();
-      // debugger;
-      io.to(room.roomName).emit("gameState", gameState);
-    }
-  }, 2000);
-});
+setInterval(function () {
+  for (let i in rooms) {
+    let room = rooms[i];
+    let gameState = room.getGameState();
+    // debugger;
+    io.to(room.roomName).emit("gameState", gameState);
+  }
+}, 2000);
 
 server.listen(port, () => {
   console.log(`Listening on port ${port}`);
@@ -77,13 +82,6 @@ app.use(
   })
 );
 
-
-
-
-
-
-
-
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === "production") {
@@ -92,7 +90,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   });
 }
-
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -104,4 +101,3 @@ require("./config/passport")(passport);
 
 app.use("/api/users", users);
 app.use("/api/tiles", tiles);
-
