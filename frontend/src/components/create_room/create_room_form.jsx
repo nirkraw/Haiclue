@@ -79,7 +79,7 @@ export default class CreateRoomForm extends Component {
 
   handleRoomJoin(event) {
     event.preventDefault();
-    const { roomName} = this.state;
+    const { roomName } = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit(
       "join",
@@ -113,36 +113,55 @@ export default class CreateRoomForm extends Component {
     }
   
     let placeholder_text = (this.state.roomName.length) ? (this.state.roomName) : "Enter a Room Name" ;
-    // let readOnly = (this.state.readOnly) ? "readOnly" : null; 
-    let joinRoom = (<div className="room-container"> 
-          
-          <div className="logout-button">
-              {this.props.loggedIn ? <div className="tile" onClick={this.props.logout}>Logout</div> : null}
-          </div>
+    
+    let readOnlyVal =
+      this.state.message.length &&
+      this.state.message !== "this name is already taken"
+        ? true
+        : false;
 
-          {this.state.errors ? <h1>{this.state.errors}</h1> : <h1>{welcome}</h1>}    
-          <form>
-            <label>
-              <input
-                type="text"
-                placeholder={placeholder_text}
-                value={this.state.roomName}
-                onChange={this.handleInput("roomName")}
-                // {...readOnly}
-              />
-            </label>
-            <button className="butts" type="submit" onClick={this.handleRoomCreate}>
-              Create
-            </button>
-            <button className="butts" type="submit" onClick={this.handleRoomJoin}>
-              Join
-            </button>
-            <button className="butts" type="submit" onClick={this.handleRandomCreate}>
-              Random
-            </button>
-          </form>
-            <div className="players-create-container">{players}</div>
-        </div>) 
+    let joinRoom = (
+      <div className="room-container">
+        <div className="logout-button">
+          {this.props.loggedIn ? (
+            <div className="tile" onClick={this.props.logout}>
+              Logout
+            </div>
+          ) : null}
+        </div>
+
+        {this.state.errors ? <h1>{this.state.errors}</h1> : <h1>{welcome}</h1>}
+        <form>
+          <label>
+            <input
+              type="text"
+              placeholder={placeholder_text}
+              value={this.state.roomName}
+              onChange={this.handleInput("roomName")}
+              readOnly={readOnlyVal}
+            />
+          </label>
+          <button
+            className="butts"
+            type="submit"
+            onClick={this.handleRoomCreate}
+          >
+            Create
+          </button>
+          <button className="butts" type="submit" onClick={this.handleRoomJoin}>
+            Join
+          </button>
+          <button
+            className="butts"
+            type="submit"
+            onClick={this.handleRandomCreate}
+          >
+            Random
+          </button>
+        </form>
+        <div className="players-create-container">{players}</div>
+      </div>
+    ); 
 
 
     let view = (gameState) ? 
