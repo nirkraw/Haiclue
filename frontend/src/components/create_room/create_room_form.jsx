@@ -11,7 +11,8 @@ export default class CreateRoomForm extends Component {
       roomName: "",
       message: "",
       errors: "",
-      gameState: null
+      gameState: null, 
+      readOnly: false,
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -24,11 +25,13 @@ export default class CreateRoomForm extends Component {
     this.props.fetchTiles(); 
     this.socket = socketIOClient(ENV); 
 
-    this.socket.on("gameState", (gameState) => { 
+    this.socket.on("gameState", (gameState) => {
+      // debugger 
       this.setState({gameState: gameState})
     });
 
     this.socket.on("receiveMessage", (data) => {
+      // debugger
       this.setState({ message: data });
     });
     
@@ -76,7 +79,7 @@ export default class CreateRoomForm extends Component {
 
   handleRoomJoin(event) {
     event.preventDefault();
-    const { roomName } = this.state;
+    const { roomName} = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit(
       "join",
@@ -87,8 +90,11 @@ export default class CreateRoomForm extends Component {
     );
     this.setState({ roomName: ""});
   }
+
   
   render() {
+
+
     const {gameState} = this.state
     let welcome = "Create or Join a Room";
     if (this.state.message) welcome = this.state.message;
@@ -107,13 +113,11 @@ export default class CreateRoomForm extends Component {
     }
   
     let placeholder_text = (this.state.roomName.length) ? (this.state.roomName) : "Enter a Room Name" ;
-    
     let readOnlyVal =
       this.state.message.length &&
       this.state.message !== "this name is already taken"
         ? true
         : false;
-
     let joinRoom = (
       <div className="room-container">
         <div className="logout-button">
