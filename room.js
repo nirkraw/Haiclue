@@ -85,16 +85,23 @@ class Room {
   selectClueTile(handle, tile) {
     const player = this.game.players[handle];
     player.selectedClueTiles.push(tile);
-    const index = player.clueTiles.indexOf(tile);
-    player.clueTiles.splice(index, 1);
-    debugger
+    for (let i = 0; i < player.clueTiles.length; i++) {
+        if (tile._id === player.clueTiles[i]._id) {
+          player.clueTiles.splice(i, 1);
+        }
+    }
   }
 
   unselectClueTile(handle, tile) {
     const player = this.game.players[handle];
-    const index = player.selectedClueTiles.indexOf(tile);
-    player.selectedClueTiles.splice(index, 1);
     player.clueTiles.push(tile);
+    // const index = player.selectedClueTiles.indexOf(tile);
+    for (let i = 0; i < player.selectedClueTiles.length; i++) {
+      if (tile._id === player.selectedClueTiles[i]._id) {
+        player.selectedClueTiles.splice(i, 1);
+      }
+    }
+    // player.selectedClueTiles.splice(i, 1);
   }
 
   

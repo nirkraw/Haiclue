@@ -59,7 +59,6 @@ io.on("connect", (socket) => {
   });
 
   socket.on("select clue tile", (roomName, handle, tile) => {
-    debugger
     rooms[roomName].selectClueTile(handle, tile);
   })
 
@@ -78,7 +77,7 @@ setInterval(function () {
     // debugger;
     io.to(room.roomName).emit("gameState", gameState);
   }
-}, 2000);
+}, 1000);
 
 
 server.listen(port, () => {

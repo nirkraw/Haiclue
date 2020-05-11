@@ -62,10 +62,10 @@ export default class CreateRoomForm extends Component {
   }
 
   randomRoom() {
-    const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+    const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
     let room = ""
     for (let i = 0; i < 4; i++) {
-      room += chars[Math.floor(Math.random()*61)]
+      room += chars[Math.floor(Math.random()*35)]
     }
     return room
   }

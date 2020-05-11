@@ -9,7 +9,7 @@ class TileBank extends React.Component {
     this.state = {
       //   currentTiles: [],
       currentColor: "black", // will be passed down to ClueConstruction
-      selectedTiles: [], // will be passed down to ClueConstruction
+      // selectedTiles: [], // will be passed down to ClueConstruction
     };
   }
 
@@ -45,9 +45,10 @@ class TileBank extends React.Component {
 
     let tiles = player.clueTiles;
 
-    let newTiles = tiles.map((tile) => {
+    let newTiles = tiles.map((tile, index) => {
       return (
         <Tile
+          key={index}
           roomName={gameState.roomName}
           socket={this.props.socket}
           player={player}
@@ -64,8 +65,11 @@ class TileBank extends React.Component {
         <div className="clueConstructionContainer">
           <ClueConstruction
             clueConstructionArray={player.selectedClueTiles}
-            // toggleTile={this.toggleTile}
-            // currentColor={currentColor}
+            roomName={gameState.roomName}
+            socket={this.props.socket}
+            player={player}
+            currentColor={gameState.currentColor}
+            type="bank"
           />
         </div>
 

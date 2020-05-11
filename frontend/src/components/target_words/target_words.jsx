@@ -48,7 +48,7 @@ class TargetWords extends React.Component {
     const newTargetWords = targetWords.map((tile, index) => {
       let tileSide = tile[currentColor]; //string "casino"
       return (
-        <div className="targetWordContainer">
+        <div key={index} className="targetWordContainer">
           <img
             src={Object.values(cards[index])}
             className="targetImg"
