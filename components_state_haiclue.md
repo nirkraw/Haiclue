@@ -1,5 +1,24 @@
 misc
 
+sockets
+create_room_form emits to
+    app.js send info  -> 
+        room.js sends gamestate to app.js ->
+            app.js emits to react ->
+                create_room_form passes props down ->
+                    game
+                        target_words
+                        my_target_word
+                        tile_bank
+                            tile
+                            clue_construction
+                                tile
+
+
+            
+
+
+
 // have users auto sign in on sign up
 // ensure unique handles at some point
 // make random room name generator
