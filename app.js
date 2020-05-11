@@ -22,6 +22,7 @@ io.on("connect", (socket) => {
 
   socket.on("create", (roomName, handle) => {
     if (!rooms[roomName]) {
+      debugger
       socket.join(roomName);
       socket.emit(
         "receiveMessage",
@@ -32,25 +33,25 @@ io.on("connect", (socket) => {
       rooms[roomName] = newRoom;
       rooms[roomName].submit(handle);
     } else {
+      debugger
       socket.emit("sendErrors", "this name is already taken");
     }
-    // debugger
   });
 
-  socket.on("join", (roomName, handle, targetWords) => {
+  socket.on("join", (roomName, handle, targetWords, clueTiles) => {
     if (rooms[roomName].playerCount < 2) {
+      debugger
       // change to 4
       socket.join(roomName);
       rooms[roomName].addPlayer(handle, socket.id);
 
       if (rooms[roomName].playerCount === 2) {
         //change to 4
-        rooms[roomName].startGame();
-        rooms[roomName].createTargetWords(targetWords);
-        rooms[roomName].assignPlayerTargetWord(); 
+        rooms[roomName].startGame(targetWords, clueTiles);
       }
       rooms[roomName].submit(handle);
     } else {
+      debugger
       socket.emit("sendErrors", "sorry, try another room");
     }
 
@@ -59,8 +60,18 @@ io.on("connect", (socket) => {
     }
 
     socket.emit("receiveMessage", `${handle} joined ${roomName}`);
-    socket.on("disconnect", () => console.log("Client disconnected"));
   });
+
+  socket.on("select clue tile", (roomName, handle, tile) => {
+    rooms[roomName].selectClueTile(handle, tile);
+  })
+
+  socket.on("remove clue tile", (roomName, handle, tile) => {
+    rooms[roomName].unselectClueTile(handle, tile);
+  });
+ 
+
+ socket.on("disconnect", () => console.log("Client disconnected"));
 }); // end of "connect" DONT DELETE
 
 setInterval(function () {
@@ -70,7 +81,8 @@ setInterval(function () {
     // debugger;
     io.to(room.roomName).emit("gameState", gameState);
   }
-}, 2000);
+}, 1000);
+
 
 server.listen(port, () => {
   console.log(`Listening on port ${port}`);

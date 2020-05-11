@@ -36,8 +36,8 @@ class ScoreBoard extends React.Component {
     }
 
     render() {
-        let players = Object.values(this.state).map(player => {
-        return (<div>
+        let players = Object.values(this.state).map( (player, index) => {
+        return (<div key={index}>
                     <div className="pointsDiv">{player.points}</div>
                     <div className="handleDiv">{player.handle}</div>
                 </div>)

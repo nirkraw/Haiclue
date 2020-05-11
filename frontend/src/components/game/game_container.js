@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {logout} from '../actions/session_actions';
+import {logout} from '../../actions/session_actions';
 import Game from './game';
 
 const msp = (state) => ({

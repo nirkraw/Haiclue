@@ -6,21 +6,31 @@ class Room {
       targetWords: [],
       players: {},
       gameStarted: false,
-    };
+      currentColor: "black"
 
+    };
+    
     this.playerCount = 0;
     this.errors = [];
-    this.addPlayer = this.addPLayer.bind(this);
+    this.addPlayer = this.addPlayer.bind(this);
     this.getGameState = this.getGameState.bind(this);
+    this.startGame = this.startGame.bind(this);
+    this.createTargetWords = this.createTargetWords.bind(this);
+    this.assignPlayerTargetWord = this.assignPlayerTargetWord.bind(this);
+    this.assignPlayerClueTiles = this.assignPlayerClueTiles.bind(this);
+    this.selectClueTile = this.selectClueTile.bind(this)
+    this.unselectClueTile = this.unselectClueTile.bind(this)
   }
 
-  addPLayer(handle, socketId) {
+  addPlayer(handle, socketId) {
     const player = {
       handle: handle,
       socketId: socketId,
       joined: false,
       number: 0, // default value
       targetWord: "",
+      clueTiles: [],
+      selectedClueTiles: []
     };
 
     if (Object.values(this.game.players).length < 2) {
@@ -48,8 +58,9 @@ class Room {
     this.game.targetWords = targetWords;
   }
 
-  assignPlayerTargetWord() { // before each round
-    Object.values(this.game.players).forEach(player => {
+  assignPlayerTargetWord() {
+    // before each round
+    Object.values(this.game.players).forEach((player) => {
       player.targetWord = this.game.targetWords[this.getRandomInt(4)];
     });
   }
@@ -58,13 +69,42 @@ class Room {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  startGame() {
+  startGame(targetWords, clueTiles) {
     this.game.gameStarted = true;
+    this.createTargetWords(targetWords);
+    this.assignPlayerTargetWord();
+    this.assignPlayerClueTiles(clueTiles);
   }
 
-  // createGame(){}
+  assignPlayerClueTiles(clueTiles) {
+    Object.values(this.game.players).forEach((player) => {
+      player.clueTiles = clueTiles.splice(0, 15);
+    });
+  }
 
-  // getPlayers(){}
+  selectClueTile(handle, tile) {
+    const player = this.game.players[handle];
+    player.selectedClueTiles.push(tile);
+    for (let i = 0; i < player.clueTiles.length; i++) {
+        if (tile._id === player.clueTiles[i]._id) {
+          player.clueTiles.splice(i, 1);
+        }
+    }
+  }
+
+  unselectClueTile(handle, tile) {
+    const player = this.game.players[handle];
+    player.clueTiles.push(tile);
+    // const index = player.selectedClueTiles.indexOf(tile);
+    for (let i = 0; i < player.selectedClueTiles.length; i++) {
+      if (tile._id === player.selectedClueTiles[i]._id) {
+        player.selectedClueTiles.splice(i, 1);
+      }
+    }
+    // player.selectedClueTiles.splice(i, 1);
+  }
+
+  
 }
 
 module.exports = Room;

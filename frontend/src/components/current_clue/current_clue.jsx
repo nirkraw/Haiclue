@@ -36,9 +36,9 @@ class CurrentClue extends React.Component {
 
     render() {
         let currentColor = this.state.currentColor;
-        let clueTiles = this.state.currentClueArray.map(tile => {
+        let clueTiles = this.state.currentClueArray.map((tile, idx) => {
             let tileSide = tile[currentColor]
-            return (<div className={`color-${currentColor} tile`}>
+            return (<div key={idx} className={`color-${currentColor} tile`}>
                             {tileSide}
             </div>
             )
