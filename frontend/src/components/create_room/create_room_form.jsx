@@ -113,11 +113,11 @@ export default class CreateRoomForm extends Component {
     }
   
     let placeholder_text = (this.state.roomName.length) ? (this.state.roomName) : "Enter a Room Name" ;
-    let readOnlyVal =
-      this.state.message.length &&
+    let readOnlyVal = this.state.message.length &&
       this.state.message !== "this name is already taken"
         ? true
         : false;
+
     let joinRoom = (
       <div className="room-container">
         <div className="logout-button">
@@ -139,11 +139,11 @@ export default class CreateRoomForm extends Component {
               readOnly={readOnlyVal}
             />
           </label>
+          <div className="cr-button-container">
           <button
             className="butts"
             type="submit"
-            onClick={this.handleRoomCreate}
-          >
+            onClick={this.handleRoomCreate}>
             Create
           </button>
           <button className="butts" type="submit" onClick={this.handleRoomJoin}>
@@ -152,10 +152,10 @@ export default class CreateRoomForm extends Component {
           <button
             className="butts"
             type="submit"
-            onClick={this.handleRandomCreate}
-          >
+            onClick={this.handleRandomCreate}>
             Random
           </button>
+          </div>
         </form>
         <div className="players-create-container">{players}</div>
       </div>
