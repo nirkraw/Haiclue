@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
-import GameContainer from '../game_container';
+import GameContainer from '../game/game_container';
 import ENV from '../../util/socket_env';
 import '../css/create_room.css';
 
@@ -8,11 +8,11 @@ export default class CreateRoomForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      handle: this.props.user.handle,
       roomName: "",
       message: "",
       errors: "",
-      gameState: null
+      gameState: null, 
+      readOnly: false,
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -25,11 +25,13 @@ export default class CreateRoomForm extends Component {
     this.props.fetchTiles(); 
     this.socket = socketIOClient(ENV); 
 
-    this.socket.on("gameState", (gameState) => { 
+    this.socket.on("gameState", (gameState) => {
+      // debugger 
       this.setState({gameState: gameState})
     });
 
     this.socket.on("receiveMessage", (data) => {
+      // debugger
       this.setState({ message: data });
     });
     
@@ -51,40 +53,48 @@ export default class CreateRoomForm extends Component {
 
   handleRoomCreate(event) {
     event.preventDefault();
-    const { roomName, handle } = this.state;
+    debugger;
+    const { roomName} = this.state;
     this.props.storeRoomName(roomName);
-    this.socket.emit("create", roomName, handle);
-    this.setState({ roomName: roomName, handle: ""});
+    this.socket.emit("create", roomName, this.props.user.handle);
+    this.setState({ roomName: ""});
   }
 
   randomRoom() {
-    const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+    const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
     let room = ""
     for (let i = 0; i < 4; i++) {
-      room += chars[Math.floor(Math.random()*61)]
+      room += chars[Math.floor(Math.random()*35)]
     }
     return room
   }
 
   handleRandomCreate(event) {
     event.preventDefault();
-    const { handle } = this.state;
     let roomName = this.randomRoom()
     this.props.storeRoomName(roomName);
-    this.socket.emit("create", roomName, handle)
-    this.setState({ roomName: roomName, handle: ""});
+    this.socket.emit("create", roomName, this.props.user.handle);
+    this.setState({ roomName: roomName});
   }
 
   handleRoomJoin(event) {
     event.preventDefault();
-    const { roomName, handle } = this.state;
+    const { roomName} = this.state;
     this.props.storeRoomName(roomName);
-    this.socket.emit("join", roomName, handle, this.props.tiles.slice(60));
-    debugger;
-    this.setState({ roomName: roomName, handle: "" });
+    this.socket.emit(
+      "join",
+      roomName,
+      this.props.user.handle,
+      this.props.tiles.slice(60),
+      this.props.tiles.slice(0, 60)
+    );
+    this.setState({ roomName: ""});
   }
+
   
   render() {
+
+
     const {gameState} = this.state
     let welcome = "Create or Join a Room";
     if (this.state.message) welcome = this.state.message;
@@ -103,38 +113,53 @@ export default class CreateRoomForm extends Component {
     }
   
     let placeholder_text = (this.state.roomName.length) ? (this.state.roomName) : "Enter a Room Name" ;
-    let readOnlyVal = (this.state.message.length && this.state.message !== ("this name is already taken")) ? true: false; 
-    let joinRoom = (<div className="room-container"> 
-          
-          <div className="logout-button">
-              {this.props.loggedIn ? <div className="tile" onClick={this.props.logout}>Logout</div> : null}
-          </div>
-
-          {this.state.errors ? <h1>{this.state.errors}</h1> : <h1>{welcome}</h1>}    
-          <form>
-            <label>
-              <input
-                type="text"
-                placeholder={placeholder_text}
-                value={this.state.roomName}
-                onChange={this.handleInput("roomName")}
-                readOnly={readOnlyVal}
-              />
-            </label>
-            <div className="cr-button-container">
-                <button className="butts" type="submit" onClick={this.handleRoomCreate}>
-                  Create
-                </button>
-                <button className="butts" type="submit" onClick={this.handleRoomJoin}>
-                  Join
-                </button>
-                <button className="butts" type="submit" onClick={this.handleRandomCreate}>
-                  Random
-                </button>
+    let readOnlyVal =
+      this.state.message.length &&
+      this.state.message !== "this name is already taken"
+        ? true
+        : false;
+    let joinRoom = (
+      <div className="room-container">
+        <div className="logout-button">
+          {this.props.loggedIn ? (
+            <div className="tile" onClick={this.props.logout}>
+              Logout
             </div>
-          </form>
-            <div className="players-create-container">{players}</div>
-        </div>) 
+          ) : null}
+        </div>
+
+        {this.state.errors ? <h1>{this.state.errors}</h1> : <h1>{welcome}</h1>}
+        <form>
+          <label>
+            <input
+              type="text"
+              placeholder={placeholder_text}
+              value={this.state.roomName}
+              onChange={this.handleInput("roomName")}
+              readOnly={readOnlyVal}
+            />
+          </label>
+          <button
+            className="butts"
+            type="submit"
+            onClick={this.handleRoomCreate}
+          >
+            Create
+          </button>
+          <button className="butts" type="submit" onClick={this.handleRoomJoin}>
+            Join
+          </button>
+          <button
+            className="butts"
+            type="submit"
+            onClick={this.handleRandomCreate}
+          >
+            Random
+          </button>
+        </form>
+        <div className="players-create-container">{players}</div>
+      </div>
+    ); 
 
 
     let view = (gameState) ? 

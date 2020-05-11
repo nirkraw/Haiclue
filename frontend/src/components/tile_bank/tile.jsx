@@ -1,31 +1,41 @@
-import React from 'react'; 
+import React from "react";
 
 class Tile extends React.Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props);
 
-        this.handleClick = this.handleClick.bind(this);
+    this.clueSubmit = this.clueSubmit.bind(this);
+  }
+
+  clueSubmit(event) {
+    const { roomName, player, tile } = this.props;
+    event.preventDefault();
+    if (player.clueTiles.includes(tile)) {
+      this.props.socket.emit("select clue tile",roomName, player.handle, tile);
+    } else {
+      this.props.socket.emit("remove clue tile", roomName, player.handle, tile);
     }
+  }
 
-    handleClick(e) {
-        let type = this.props.type; 
-        this.props.toggleTile(e, type); 
-    }
 
-    render() {
-        let currentColor = this.props.currentColor; 
-        let tileWord = this.props.tile[currentColor];
-        return(
-            <>
-            {(this.props.display) ? (<div className={`color-${currentColor} tile`}
-                    onClick={this.handleClick}>
-                    {tileWord}
-                </div>) : <div className="emptyTileSpace">{null}</div>  }
-            </> 
-        ) 
-    }
-
+  render() {
+    let currentColor = this.props.currentColor;
+    let tileWord = this.props.tile[currentColor];
+    return (
+      <>
+        {this.props.display ? (
+          <div
+            className={`color-${currentColor} tile`}
+            onClick={this.clueSubmit}
+          >
+            {tileWord}
+          </div>
+        ) : (
+          <div className="emptyTileSpace">{null}</div>
+        )}
+      </>
+    );
+  }
 }
 
-export default Tile; 
-
+export default Tile;
