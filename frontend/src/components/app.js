@@ -8,7 +8,7 @@ import './css/index.css';
 
 const App = () => (
   <div className='container'>
-    <Route exact path="/timer" component={Timer} />
+    {/* <Route exact path="/timer" component={Timer} /> */}
     <AuthRoute exact path="/" component={SplashContainer} />
     <ProtectedRoute path="/game" component={CreateRoomContainer} />
   </div>

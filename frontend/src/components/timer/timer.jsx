@@ -5,7 +5,7 @@ class Timer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            secs: 90, 
+            secs: this.props.secs, 
             timeClass: ""
 
         };
@@ -16,6 +16,8 @@ class Timer extends React.Component {
             if (this.state.secs === 0) {
                 clearInterval(this.interval)
                 //your pretty socket code here!
+                debugger
+                 this.props.socket.emit("submit guess", this.props.roomName, this.props.handle, ); 
             } else if ((this.state.secs < 7) && (this.state.secs % 2 === 0)) {
                 this.setState({
                     secs: (this.state.secs - 1),

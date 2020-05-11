@@ -36,7 +36,14 @@ class ClueContruction extends React.Component {
             <h3>Clue Construction</h3>
                 {clueConstruction}
                 <button onClick= {this.submitGuess}>Submit</button>
-            <div><Timer timer='50' /></div>
+            <div>
+                <Timer 
+                secs={20} 
+                socket={this.props.socket}
+                roomName={this.props.roomName}
+                handle={this.props.player.handle}
+                />
+             </div>
         </div>)
     }
 }
