@@ -12,8 +12,7 @@ export default class CreateRoomForm extends Component {
       roomName: "",
       message: "",
       errors: "",
-      gameState: null, 
-      readOnly: false,
+      gameState: null
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -26,13 +25,11 @@ export default class CreateRoomForm extends Component {
     this.props.fetchTiles(); 
     this.socket = socketIOClient(ENV); 
 
-    this.socket.on("gameState", (gameState) => {
-      // debugger 
+    this.socket.on("gameState", (gameState) => { 
       this.setState({gameState: gameState})
     });
 
     this.socket.on("receiveMessage", (data) => {
-      // debugger
       this.setState({ message: data });
     });
     
@@ -54,11 +51,10 @@ export default class CreateRoomForm extends Component {
 
   handleRoomCreate(event) {
     event.preventDefault();
-    debugger;
     const { roomName, handle } = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, handle);
-    this.setState({ roomName: "", handle: "", readOnly: true});
+    this.setState({ roomName: roomName, handle: ""});
   }
 
   randomRoom() {
@@ -76,7 +72,7 @@ export default class CreateRoomForm extends Component {
     let roomName = this.randomRoom()
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, handle)
-    this.setState({ roomName: roomName, handle: "", readOnly: true });
+    this.setState({ roomName: roomName, handle: ""});
   }
 
   handleRoomJoin(event) {
@@ -84,13 +80,11 @@ export default class CreateRoomForm extends Component {
     const { roomName, handle } = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit("join", roomName, handle, this.props.tiles.slice(60));
+    debugger;
     this.setState({ roomName: roomName, handle: "" });
   }
-
   
   render() {
-
-
     const {gameState} = this.state
     let welcome = "Create or Join a Room";
     if (this.state.message) welcome = this.state.message;
@@ -109,7 +103,7 @@ export default class CreateRoomForm extends Component {
     }
   
     let placeholder_text = (this.state.roomName.length) ? (this.state.roomName) : "Enter a Room Name" ;
-    // let readOnly = (this.state.readOnly) ? "readOnly" : null; 
+    let readOnlyVal = (this.state.message.length && this.state.message !== ("this name is already taken")) ? true: false; 
     let joinRoom = (<div className="room-container"> 
           
           <div className="logout-button">
@@ -124,7 +118,7 @@ export default class CreateRoomForm extends Component {
                 placeholder={placeholder_text}
                 value={this.state.roomName}
                 onChange={this.handleInput("roomName")}
-                // {...readOnly}
+                readOnly={readOnlyVal}
               />
             </label>
             <button className="butts" type="submit" onClick={this.handleRoomCreate}>
