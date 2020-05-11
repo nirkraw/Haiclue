@@ -8,7 +8,6 @@ export default class CreateRoomForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      handle: this.props.user.handle,
       roomName: "",
       message: "",
       errors: "",
@@ -55,10 +54,10 @@ export default class CreateRoomForm extends Component {
   handleRoomCreate(event) {
     event.preventDefault();
     debugger;
-    const { roomName, handle } = this.state;
+    const { roomName} = this.state;
     this.props.storeRoomName(roomName);
-    this.socket.emit("create", roomName, handle);
-    this.setState({ roomName: "", handle: "", readOnly: true});
+    this.socket.emit("create", roomName, this.props.user.handle);
+    this.setState({ roomName: "", readOnly: true});
   }
 
   randomRoom() {
@@ -72,19 +71,24 @@ export default class CreateRoomForm extends Component {
 
   handleRandomCreate(event) {
     event.preventDefault();
-    const { handle } = this.state;
     let roomName = this.randomRoom()
     this.props.storeRoomName(roomName);
-    this.socket.emit("create", roomName, handle)
-    this.setState({ roomName: roomName, handle: "", readOnly: true });
+    this.socket.emit("create", roomName, this.props.user.handle);
+    this.setState({ roomName: roomName, readOnly: true });
   }
 
   handleRoomJoin(event) {
     event.preventDefault();
-    const { roomName, handle } = this.state;
+    const { roomName} = this.state;
     this.props.storeRoomName(roomName);
-    this.socket.emit("join", roomName, handle, this.props.tiles.slice(60), this.props.tiles.slice(0, 60));
-    this.setState({ roomName: "", handle: "" });
+    this.socket.emit(
+      "join",
+      roomName,
+      this.props.user.handle,
+      this.props.tiles.slice(60),
+      this.props.tiles.slice(0, 60)
+    );
+    this.setState({ roomName: ""});
   }
 
   

@@ -22,6 +22,7 @@ io.on("connect", (socket) => {
 
   socket.on("create", (roomName, handle) => {
     if (!rooms[roomName]) {
+      debugger
       socket.join(roomName);
       socket.emit(
         "receiveMessage",
@@ -32,12 +33,14 @@ io.on("connect", (socket) => {
       rooms[roomName] = newRoom;
       rooms[roomName].submit(handle);
     } else {
+      debugger
       socket.emit("sendErrors", "this name is already taken");
     }
   });
 
   socket.on("join", (roomName, handle, targetWords, clueTiles) => {
     if (rooms[roomName].playerCount < 2) {
+      debugger
       // change to 4
       socket.join(roomName);
       rooms[roomName].addPlayer(handle, socket.id);
@@ -48,6 +51,7 @@ io.on("connect", (socket) => {
       }
       rooms[roomName].submit(handle);
     } else {
+      debugger
       socket.emit("sendErrors", "sorry, try another room");
     }
 
