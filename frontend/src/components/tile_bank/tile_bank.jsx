@@ -2,6 +2,7 @@ import React from "react";
 import ClueConstruction from "./clue_construction";
 // import ReactCSSTransitionGroup from 'react-transition-group';
 import Tile from "./tile";
+import '../css/tile_bank.css';
 
 // Could be refactored into funcitonal component
 class TileBank extends React.Component {
@@ -37,8 +38,8 @@ class TileBank extends React.Component {
     });
 
     return (
-      <div className="bankAndClueConstructContainer">
-        <div className="clueConstructionContainer">
+      <div className="clue-bank-container">
+        <div className="clue-container">
           <ClueConstruction
             clueConstructionArray={player.selectedClueTiles}
             roomName={gameState.roomName}
@@ -49,7 +50,7 @@ class TileBank extends React.Component {
           />
         </div>
 
-        <div className="tileBankContainer">
+        <div className="bank-container">
           <h3>Tilebank</h3>
           {/* <ReactCSSTransitionGroup
                         transitionName="tiles"

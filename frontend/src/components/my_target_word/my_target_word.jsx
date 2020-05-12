@@ -1,9 +1,10 @@
 import React from "react";
-import "../css/layout.css";
 import blue from "../images/blue-tile.png";
 import red from "../images/red-tile.png";
 import green from "../images/green-tile.png";
 import yellow from "../images/yellow-tile.png";
+import "../css/layout.css";
+import "../css/my_target_word.css";
 
 class MyTargetWord extends React.Component {
   constructor(props) {
@@ -41,10 +42,10 @@ class MyTargetWord extends React.Component {
       { picNumber = i}
     }
     return (
-      <div className="myTargetWordContainer">
+      <div className="my-target-word-container">
         <h3>My Target Word</h3>
-        <img src={cards[picNumber]} className="myTargetWordImg" alt="green" /> 
-        <div className="myTargetWord tile">{myWord}</div>
+        <img src={cards[picNumber]} className="my-target-word-img" alt="green" /> 
+        <div className="my-target-word tile">{myWord}</div>
       </div>
     );
   }

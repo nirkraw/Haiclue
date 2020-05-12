@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/layout.css';
+import '../css/current_clue.css';
 
 class CurrentClue extends React.Component {
     constructor(props) {

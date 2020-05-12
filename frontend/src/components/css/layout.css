@@ -1,19 +1,12 @@
-
-
 .top-container { 
     width: 60%;
     margin: 50px auto;
     text-align: center;
 }
 
-.currentClueContainer {
-    display: none;
-}
-
-
 .pointsDiv {
-    background-color: white;
-    color: rgb(6, 6, 6); 
+    background-color: black;
+    color: white; 
     height: 20px;
     width: 20px;
     line-height: 20px;
@@ -55,32 +48,6 @@
     display: inline-block;
 }
 
-.myTargetWordContainer {
-    width: 200px;
-    height: 150px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    
-}
-
-.myTargetWordImg {
-    margin-left: 40px;
-    width: 100px;
-    float: left;
-
-}
-
-.myTargetWord {
-    float: left;
-    margin-left: 10px;
-    font-weight: bold; 
-    width: 40px;
-    height: fit-content;
-}
-
 .bottom-container {
     padding-top: 30px;
     display: flex;
@@ -91,35 +58,12 @@
     text-align: center;
 } 
 
-.tileBankContainer {
-    width: 90%;
-    max-width: 1100px;
-}
 
-.bankAndClueConstructContainer {
-    box-sizing: border-box;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-.clueConstructionContainer{ 
-    width: 40%;  
-    height: 60px;
-    text-align: center;
-    border-bottom: dashed 3px white;
-    margin-bottom: 50px;
-
-}
 
 .color-black {
     border-color: white;
     color: white; 
 }
-
-h3 {display: none;}
 
 .color-white {
         border-color: black;
@@ -138,7 +82,6 @@ h3 {display: none;}
         font-weight: bold;
         box-sizing: border-box;
 }
-
 
 .emptyTileSpace {
     width: 120px;
