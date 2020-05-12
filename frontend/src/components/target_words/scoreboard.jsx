@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/scoreboard.css';
 
 class ScoreBoard extends React.Component {
     constructor(props) {
@@ -38,11 +39,11 @@ class ScoreBoard extends React.Component {
     render() {
         let players = Object.values(this.state).map( (player, index) => {
         return (<div key={index}>
-                    <div className="pointsDiv">{player.points}</div>
-                    <div className="handleDiv">{player.handle}</div>
+                    <div className="points-div">{player.points}</div>
+                    <div className="handle-div">{player.handle}</div>
                 </div>)
         });
-        return (<div className="scoreboardContainer">
+        return (<div className="scoreboard-container">
             <h3>Score</h3>
                 {players}
         </div>)

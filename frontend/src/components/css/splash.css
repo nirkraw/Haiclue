@@ -1,29 +1,29 @@
-.splashContainer {
+.splash-container {
     width: 100%;
     margin: 30px auto;
     display: flex;
     flex-direction: column;
 }
 
-.splashContainer h1 {
+.splash-container h1 {
     font-size: 40px;
     padding-left: 35%;
 }
 
-.formContainer {
+.form-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     text-align: left;
-    /* margin-bottom: 100px; */
 }
-.sessionForm {
+
+.session-form {
     width: 30%;
     margin-bottom: 150px;
 }
 
-.sessionForm input {
+.session-form input {
     width: 100%;
     margin: 10px 0 10px 0 ;
     font-weight: bold;
@@ -35,7 +35,7 @@
     padding:10px;
 }
 
-.splashLabel {
+.splash-label {
     width: 30%;
     display: flex;
     justify-content: space-between;
@@ -51,7 +51,7 @@ input:focus {
     outline: none;
 }
 
-.sessionForm button {
+.session-form button {
     transition-property: background-color, border-color;
     transition-duration: .3s;
     transition-timing-function: ease;
@@ -67,7 +67,7 @@ input:focus {
     float: right;
 }
 
-.sessionForm button:hover {   
+.session-form button:hover {   
     transition-property: background-color, border-color;
     transition-duration: .3s;
     transition-timing-function: ease;
@@ -84,7 +84,8 @@ input:focus {
     color: black;
     background-color: white;
     border-radius: 22px;
-    width: 50px;
+    width: 45px;
+    height: 45px;
     float: right;
     cursor: pointer;
 }
@@ -102,42 +103,48 @@ input:focus {
 }
 
 
-.sessionForm button:focus{
+.session-form button:focus{
     outline: none;
 }
 
-.instructionsContainer video:focus {
+.instructions-container video:focus {
     outline: none;
    
 }
 
-.instructionsContainer video:hover {
+.instructions-container video:hover {
     cursor: pointer;
 }
 
-.splashCards {
+.splash-cards {
     display: block;
     margin: 0 auto;
     width: 20%;
     margin-bottom: 150px;
 }
-.splashCards img {
+.splash-cards img {
     padding: 2%;
     width: 50%;
     box-sizing: border-box;
 }
 
 .tbg-link {
+    bottom: 10px;
+    left: 0;
     width: 180px;
     height: 98px;
     margin-left: 20px;
+    position: fixed;
 }
 
 .hamburgers {
-    padding: 10px 0px 0px 10px;
-    background-color: rgb(6, 6, 6);
+    padding: 10px 0px 0px 15px;
+    background-color: transparent;
     outline: none;
     border: none;
+    position: fixed;
+    z-index: 4;
+
 }
 
 .hamburgers:hover {
@@ -162,5 +169,69 @@ input:focus {
     transition-duration: .3s;
     transition-timing-function: ease;
     background-color: #00c8a6;
-    /* i cant figure out why the color looks so dark */
+}
+
+.hamburger-menu {
+    position: fixed;
+    width: 180px;
+    height: 300px;
+    border: solid 3px white;
+    z-index: 3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hamburger-menu a {
+    transition-property: color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    position: relative;
+    top: 40px;
+    left: 10px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    padding: 5px, 0, 5px, 10px;
+    width: fit-content;
+}
+
+.hamburger-menu a:hover {
+    transition-property: color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    color: #00c8a6;
+}
+
+
+
+.menu-enter {
+    opacity: 0;
+    transform: translateX(-100%);
+
+}
+
+.menu-enter.menu-enter-active {
+    opacity: 1; 
+    transition: opacity 800ms, transform 800ms;
+    transform: translateX(0);
+    left: 30px;
+}
+
+.menu-leave {
+    opacity: 1;
+
+}
+
+.menu-leave.menu-leave-active {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 800ms, transform 800ms;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding: 150px 0 0 0;
 }

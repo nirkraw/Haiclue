@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import GameContainer from '../game/game_container';
 import ENV from '../../util/socket_env';
+import Logout from '../global/logout-instructions-button'; 
 import '../css/create_room.css';
+
 
 export default class CreateRoomForm extends Component {
   constructor(props) {
@@ -114,13 +116,7 @@ export default class CreateRoomForm extends Component {
         : false;
     let joinRoom = (
       <div className="room-container">
-        <div className="logout-button">
-          {this.props.loggedIn ? (
-            <div className="tile" onClick={this.props.logout}>
-              Logout
-            </div>
-          ) : null}
-        </div>
+        <Logout logout={this.props.logout} loggedIn={this.props.loggedIn} />
 
         {this.state.errors ? <h1>{this.state.errors}</h1> : <h1>{welcome}</h1>}
         <form>

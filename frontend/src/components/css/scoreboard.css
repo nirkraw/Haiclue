@@ -1,0 +1,33 @@
+.points-div {
+    background-color: black;
+    color: white;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: 26px;
+    padding: 10px;
+    margin-right: 35px;
+}
+
+.handle-div {
+    color: white;
+    font-weight: bold;
+    margin-top: 10px;
+    float: left;
+    margin-right: 35px;
+
+}
+
+.scoreboard-container {
+    padding-right: 35px;
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    justify-content: space-around;
+}

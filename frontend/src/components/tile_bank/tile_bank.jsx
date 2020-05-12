@@ -3,27 +3,22 @@ import ClueConstruction from "./clue_construction";
 // import ReactCSSTransitionGroup from 'react-transition-group';
 import Tile from "./tile";
 
-// Could be refactored into funcitonal component
+
 class TileBank extends React.Component {
   constructor(props) {
     super(props);
   }
-
   render() {
     const { gameState } = this.props;
     if (!gameState) return null;
-
     if (gameState.phase === "clue construction") {
-
       const player = Object.values(this.props.gameState.players).filter(
         (player) => {
           return player.handle === this.props.user.handle;
         }
       )[0];
-
       if (!player.submitedClue) {
         let tiles = player.clueTiles;
-
         let newTiles = tiles.map((tile, index) => {
           return (
             <Tile
@@ -38,10 +33,9 @@ class TileBank extends React.Component {
             />
           );
         });
-
         return (
-          <div className="bankAndClueConstructContainer">
-            <div className="clueConstructionContainer">
+          <div className="clue-bank-container">
+            <div className="clue-container">
               <ClueConstruction
                 clueConstructionArray={player.selectedClueTiles}
                 roomName={gameState.roomName}
@@ -51,8 +45,7 @@ class TileBank extends React.Component {
                 type="bank"
               />
             </div>
-
-            <div className="tileBankContainer">
+            <div className="bank-container">
               <h3>Tilebank</h3>
               {/* <ReactCSSTransitionGroup
                           transitionName="tiles"
@@ -63,16 +56,12 @@ class TileBank extends React.Component {
             </div>
           </div>
         );
-
-
       } else {
-          return <h1>Waiting for other players</h1>
+        return <h1>Waiting for other players</h1>
       }
-      
     } else {
-        return null;
+      return null;
     }
   }
 }
-
 export default TileBank;

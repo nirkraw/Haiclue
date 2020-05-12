@@ -1,6 +1,7 @@
 import React from "react";
 import Scoreboard from "./scoreboard";
 import "../css/layout.css";
+import "../css/target_words.css";
 import blue from "../images/blue-tile.png";
 import red from "../images/red-tile.png";
 import green from "../images/green-tile.png";
@@ -100,10 +101,10 @@ class TargetWords extends React.Component {
       newTargetWords = targetWords.map((tile, index) => {
         let tileSide = tile[currentColor]; //string "casino"
         return (
-          <div key={index} className="targetWordContainer">
+          <div key={index} className="target-words-container">
             <img
               src={Object.values(cards[index])}
-              className="targetImg"
+              className="target-img"
               alt={Object.keys(cards[index])}
               onClick={this.handleSubmitGuess}
             />
@@ -115,10 +116,10 @@ class TargetWords extends React.Component {
       newTargetWords = targetWords.map((tile, index) => {
         let tileSide = tile[currentColor]; //string "casino"
         return (
-          <div key={index} className="targetWordContainer">
+          <div key={index} className="target-words-container">
             <img
               src={Object.values(cards[index])}
-              className="targetImg"
+              className="target-img"
               alt={Object.keys(cards[index])}
               
             />
@@ -138,8 +139,8 @@ class TargetWords extends React.Component {
     // add onlick
 
     return (
-      <div className="targetScoreContainer">
-        <div className="targetWordsContainer">
+      <div>
+        <div>
           <h3>Target Words</h3>
           {newTargetWords}
         </div>
