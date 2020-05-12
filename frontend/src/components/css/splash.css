@@ -140,11 +140,27 @@ input:focus {
     border: none;
 }
 
+.hamburgers:hover {
+    cursor: pointer;
+}
+
+
+
 .hamburgers div {
+    transition-property: background-color;
+    transition-duration: .3s;
     background-color: white;
     width: 30px;
     height: 5px;
     margin-top: 4px;
     border-radius: 3px;
     /* border: solid 1px white ; */
+}
+
+.hamburgers:hover div{
+    transition-property: background-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    background-color: #00c8a6;
+    /* i cant figure out why the color looks so dark */
 }

@@ -17,11 +17,13 @@ class Splash extends React.Component {
 
     return (
       <div>
+        {/* hamburger menu */}
         <button className="hamburgers">
           <div></div>
           <div></div>
           <div></div>
         </button>
+        {/* opens a menu with login signup instructions wills/site github  (jumps down screen when clicked or opens new window)*/}
         <h1 className='logo'>Haiclue</h1>
       
         <div className='splashContainer'>
@@ -37,6 +39,7 @@ class Splash extends React.Component {
               <AuthRoute path="/" component={SignupFormContainer} />
             </div>
           <h1 className="splashLabel">How to Play <button className="instruction-hover">?</button></h1>
+          {/* opens model that contains instructions picture? with x up top and can click outside to close it */}
             <Route component={Instructions} />
         </div>  
         <footer>
