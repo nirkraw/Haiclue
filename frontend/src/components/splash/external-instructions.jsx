@@ -7,7 +7,7 @@ const ExtInstructions = () => {
     return (
         <div className="external-instructions-container">
             <h1>How to Play <span className="color-yellow">Haiclue</span></h1>
-            <img src={InstructionsImg} alt="instructions-image"/>
+            <img src={InstructionsImg} alt="instructions"/>
         </div>
     );
 

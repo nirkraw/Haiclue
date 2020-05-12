@@ -4,14 +4,10 @@ import Timer from '../timer/timer';
 import Tile from './tile';
 
 // Could be refactored into funcitonal component
-class ClueContruction extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+const ClueContruction = (props) => {
 
-    render() {
-        const {currentColor, player, roomName, socket} = this.props 
-        let clueConstruction = this.props.clueConstructionArray.map(tile => {
+        const {currentColor, player, roomName, socket} = props 
+        let clueConstruction = props.clueConstructionArray.map(tile => {
             return (
               <Tile
                 key={tile._id}
@@ -31,7 +27,6 @@ class ClueContruction extends React.Component {
                 {clueConstruction}
             <div><Timer timer='50' /></div>
         </div>)
-    }
 }
 
 export default ClueContruction;

@@ -5,18 +5,13 @@ import Tile from "./tile";
 import '../css/tile_bank.css';
 
 // Could be refactored into funcitonal component
-class TileBank extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { gameState } = this.props;
+const TileBank = (props) => {
+    const { gameState } = props;
     if (!gameState) return null;
 
-    const player = Object.values(this.props.gameState.players).filter(
+    const player = Object.values(props.gameState.players).filter(
       (player) => {
-        return player.handle === this.props.user.handle;
+        return player.handle === props.user.handle;
       }
     )[0];
 
@@ -27,7 +22,7 @@ class TileBank extends React.Component {
         <Tile
           key={index}
           roomName={gameState.roomName}
-          socket={this.props.socket}
+          socket={props.socket}
           player={player}
           tile={tile}
           currentColor={gameState.currentColor}
@@ -43,7 +38,7 @@ class TileBank extends React.Component {
           <ClueConstruction
             clueConstructionArray={player.selectedClueTiles}
             roomName={gameState.roomName}
-            socket={this.props.socket}
+            socket={props.socket}
             player={player}
             currentColor={gameState.currentColor}
             type="bank"
@@ -61,7 +56,7 @@ class TileBank extends React.Component {
         </div>
       </div>
     );
-  }
 }
+
 
 export default TileBank;

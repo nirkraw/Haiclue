@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from 'react-router-dom';
 import MyTargetWordContainer from "../my_target_word/my_target_word_container";
 import TileBankContainer from "../tile_bank/tile_bank_container";
 import CurrentClue from "../current_clue/current_clue";

@@ -1,7 +1,6 @@
 import LoginFormContainer from './login_form_container';
 import SignupFormContainer from './signup_form_container';
 import Instructions from './instructions';
-import ExtInstructions from './external-instructions';
 import React from 'react';
 import { AuthRoute } from '../../util/route_util';
 import { Route, NavLink } from 'react-router-dom';
