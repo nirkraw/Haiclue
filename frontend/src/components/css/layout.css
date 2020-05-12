@@ -1,6 +1,6 @@
 
 
-.topContainer { 
+.top-container { 
     width: 60%;
     margin: 50px auto;
     text-align: center;
@@ -81,7 +81,7 @@
     height: fit-content;
 }
 
-.bottomContainer {
+.bottom-container {
     padding-top: 30px;
     display: flex;
     align-items: center;

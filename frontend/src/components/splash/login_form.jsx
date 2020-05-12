@@ -66,7 +66,7 @@ class LoginForm extends React.Component {
 
     render() {
 
-        return (<div className="sessionForm">
+        return (<div className="session-form">
             <form>
                 <h2>Log In</h2>
                 <input type="text" value={this.state.email} onChange={this.handleInput('email')} placeholder="Email" />

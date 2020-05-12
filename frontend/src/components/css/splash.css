@@ -1,29 +1,29 @@
-.splashContainer {
+.splash-container {
     width: 100%;
     margin: 30px auto;
     display: flex;
     flex-direction: column;
 }
 
-.splashContainer h1 {
+.splash-container h1 {
     font-size: 40px;
     padding-left: 35%;
 }
 
-.formContainer {
+.form-container {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     text-align: left;
-    /* margin-bottom: 100px; */
 }
-.sessionForm {
+
+.session-form {
     width: 30%;
     margin-bottom: 150px;
 }
 
-.sessionForm input {
+.session-form input {
     width: 100%;
     margin: 10px 0 10px 0 ;
     font-weight: bold;
@@ -35,7 +35,7 @@
     padding:10px;
 }
 
-.splashLabel {
+.splash-label {
     width: 30%;
     display: flex;
     justify-content: space-between;
@@ -51,7 +51,7 @@ input:focus {
     outline: none;
 }
 
-.sessionForm button {
+.session-form button {
     transition-property: background-color, border-color;
     transition-duration: .3s;
     transition-timing-function: ease;
@@ -67,7 +67,7 @@ input:focus {
     float: right;
 }
 
-.sessionForm button:hover {   
+.session-form button:hover {   
     transition-property: background-color, border-color;
     transition-duration: .3s;
     transition-timing-function: ease;
@@ -84,7 +84,8 @@ input:focus {
     color: black;
     background-color: white;
     border-radius: 22px;
-    width: 50px;
+    width: 45px;
+    height: 45px;
     float: right;
     cursor: pointer;
 }
@@ -102,26 +103,26 @@ input:focus {
 }
 
 
-.sessionForm button:focus{
+.session-form button:focus{
     outline: none;
 }
 
-.instructionsContainer video:focus {
+.instructions-container video:focus {
     outline: none;
    
 }
 
-.instructionsContainer video:hover {
+.instructions-container video:hover {
     cursor: pointer;
 }
 
-.splashCards {
+.splash-cards {
     display: block;
     margin: 0 auto;
     width: 20%;
     margin-bottom: 150px;
 }
-.splashCards img {
+.splash-cards img {
     padding: 2%;
     width: 50%;
     box-sizing: border-box;

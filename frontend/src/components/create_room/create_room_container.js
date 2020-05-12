@@ -6,7 +6,6 @@ import { fetchTiles } from "../../actions/tile_actions";
 import { logout } from "../../actions/session_actions";
 
 const mapStateToProps = (state) => {
-  // debugger
   return {
     user: state.session.user,
     loggedIn: state.session.isAuthenticated, 

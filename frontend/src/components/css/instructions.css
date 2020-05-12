@@ -1,8 +1,23 @@
-.instructionsContainer {
+.instructions-container {
     display: flex;
     justify-content: center;
     margin: 0; 
     font-weight: bold;
     width: 100;
     font-size: 30px;
+}
+
+.external-instructions-container {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.external-instructions-container h1 {
+    font-size: 50px;
+    padding: 25px;
+}
+
+.color-yellow {
+    color: #e3ab00;
 }

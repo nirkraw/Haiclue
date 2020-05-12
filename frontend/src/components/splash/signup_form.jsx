@@ -34,7 +34,7 @@ class SignupForm extends React.Component {
 
     return (
         <>
-            <div className="sessionForm">
+            <div className="session-form">
                 <form>
                     <h2>Sign Up</h2>
                     <input type="text" value={this.state.handle} onChange={this.handleInput('handle')} placeholder="Username"/>
