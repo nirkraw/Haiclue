@@ -29,6 +29,9 @@
 }
 
 .room-container button {
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
     margin: 50px 0 0 25px;
     padding: 10px;
     font-weight: bold;
@@ -41,6 +44,9 @@
 }
 
 .room-container button:hover {
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
     background-color: #00c8a6;
     border-color: #00c8a6;
 }

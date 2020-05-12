@@ -1,7 +1,8 @@
 .instructionsContainer {
     display: flex;
     justify-content: center;
-    margin: 0 auto; 
+    margin: 0; 
     font-weight: bold;
+    width: 100;
     font-size: 30px;
 }

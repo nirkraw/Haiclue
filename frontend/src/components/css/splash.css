@@ -6,9 +6,7 @@
 }
 
 .splashContainer h1 {
-    font-size: 48px;
-    /* width: 500px; */
-    margin-top:150px;
+    font-size: 40px;
     padding-left: 35%;
 }
 
@@ -22,6 +20,7 @@
 }
 .sessionForm {
     width: 30%;
+    margin-bottom: 150px;
 }
 
 .sessionForm input {
@@ -39,8 +38,7 @@
 .splashLabel {
     width: 30%;
     display: flex;
-    /* justify-content: center; */
-
+    justify-content: space-between;
 }
 
 input::placeholder {
@@ -54,6 +52,9 @@ input:focus {
 }
 
 .sessionForm button {
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
     margin-top: 50px;
     padding: 10px;
     font-weight: bold;
@@ -62,13 +63,44 @@ input:focus {
     background-color: white;
     border-radius: 22px;
     width: 150px;
+    cursor: pointer;
     float: right;
 }
 
 .sessionForm button:hover {   
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
     background-color: #00c8a6;
     border-color: #00c8a6;
 }
+
+.instruction-hover {
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    font-weight: bold;
+    font-size: 22px;
+    color: black;
+    background-color: white;
+    border-radius: 22px;
+    width: 50px;
+    float: right;
+    cursor: pointer;
+}
+
+.instruction-hover:hover {
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;  
+    background-color: #00c8a6;
+    border-color: #00c8a6;
+}
+
+.instruction-hover:focus{
+    outline: none;
+}
+
 
 .sessionForm button:focus{
     outline: none;
@@ -87,6 +119,7 @@ input:focus {
     display: block;
     margin: 0 auto;
     width: 20%;
+    margin-bottom: 150px;
 }
 .splashCards img {
     padding: 2%;
@@ -98,4 +131,20 @@ input:focus {
     width: 180px;
     height: 98px;
     margin-left: 20px;
+}
+
+.hamburgers {
+    padding: 10px 0px 0px 10px;
+    background-color: rgb(6, 6, 6);
+    outline: none;
+    border: none;
+}
+
+.hamburgers div {
+    background-color: white;
+    width: 30px;
+    height: 5px;
+    margin-top: 4px;
+    border-radius: 3px;
+    /* border: solid 1px white ; */
 }

@@ -17,6 +17,11 @@ class Splash extends React.Component {
 
     return (
       <div>
+        <button className="hamburgers">
+          <div></div>
+          <div></div>
+          <div></div>
+        </button>
         <h1 className='logo'>Haiclue</h1>
       
         <div className='splashContainer'>
@@ -31,7 +36,7 @@ class Splash extends React.Component {
               <AuthRoute path="/" component={LoginFormContainer} />
               <AuthRoute path="/" component={SignupFormContainer} />
             </div>
-          <h1 className="splashLabel">How to Play</h1>
+          <h1 className="splashLabel">How to Play <button className="instruction-hover">?</button></h1>
             <Route component={Instructions} />
         </div>  
         <footer>

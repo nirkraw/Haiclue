@@ -137,7 +137,8 @@ h3 {display: none;}
         display: inline-block;
         font-weight: bold;
         box-sizing: border-box;
-    }
+}
+
 
 .emptyTileSpace {
     width: 120px;
@@ -153,4 +154,5 @@ h3 {display: none;}
 
 .tile:hover {
     border-color: red;
+    cursor: pointer;
 }
