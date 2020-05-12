@@ -1,6 +1,8 @@
 import React from 'react';
 import '../css/layout.css';
 import '../css/current_clue.css';
+import Tile from '../tile_bank/tile';
+
 
 class CurrentClue extends React.Component {
     constructor(props) {
@@ -11,13 +13,38 @@ class CurrentClue extends React.Component {
     render() {
         const {gameState} = this.props
         if (!gameState) return null;
+        
+        const currentPlayer = Object.values(this.props.gameState.players).filter(
+            (player) => {
+                return player.number === gameState.currentPlayerTurn;
+            }
+        )[0];
+            
+        const tiles = currentPlayer.selectedClueTiles 
+        const currentClue = tiles.map((tile, index) => {
+            return (
+                <Tile
+                    key={index}
+                    roomName={gameState.roomName}
+                    socket={this.props.socket}
+                    player={currentPlayer}
+                    tile={tile}
+                    currentColor={gameState.currentColor}
+                    display={tile.display}
+                    type="bank"
+                />
+            );
+        });
+
 
         if (gameState.phase === "clue guessing") {
             return(
-                <div className="currentClue">Success!</div>
+                <div className="currentClue">
+                    {currentClue}
+                </div>
             )
         } else {
-            return null
+            return null;
         }
     }
 

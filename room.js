@@ -8,7 +8,8 @@ class Room {
       gameStarted: false,
       currentColor: "black",
       clueSubmissionCount: 0,
-      phase: "clue construction" 
+      phase: "clue construction",
+      currentPlayerTurn: 1 
     };
     
     this.playerCount = 0;
@@ -30,7 +31,7 @@ class Room {
       handle: handle,
       socketId: socketId,
       joined: false,
-      number: 0, // default value
+      number: 0, // default value // number of player
       targetWord: "",
       clueTiles: [],
       selectedClueTiles: [],

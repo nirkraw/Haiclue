@@ -79,7 +79,7 @@ setInterval(function () {
     let gameState = room.getGameState();
     io.to(room.roomName).emit("gameState", gameState);
   }
-}, 1000);
+}, 100);
 
 
 server.listen(port, () => {

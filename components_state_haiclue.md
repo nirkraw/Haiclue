@@ -153,3 +153,7 @@ reset
 
 
 change "waiting for other players" line 69 of tile bank
+style submit
+style clue construction so it can be wider aka not overlap
+remove numbers make case insensitive 
+add error for empty room name
