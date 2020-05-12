@@ -10,12 +10,55 @@ class TargetWords extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentColor: "black",
+      currentColor: "black", //change this later 
     };
+
+    this.handleSubmitGuess = this.handleSubmitGuess.bind(this);
+  }
+
+  handleSubmitGuess(e) {
+    e.preventDefault();
+    const { gameState, socket } = this.props;
+
+    const currentPlayer = Object.values(this.props.gameState.players).filter(
+      (player) => {
+        return player.number === gameState.currentPlayerTurn;
+      }
+    )[0];
+
+    const localPlayer = Object.values(gameState.players).filter(
+      (player) => {
+        return player.handle === this.props.user.handle;
+      }
+    )[0];
+
+    const currentPlayerTargetWord = currentPlayer.targetWord[gameState.currentColor];
+    const guessedWord = (e.currentTarget.nextElementSibling) 
+     ?
+     e.currentTarget.nextElementSibling.innerText
+     :
+     e.currentTarget.innerText
+
+     
+    if (guessedWord === currentPlayerTargetWord) {
+      socket.emit("guess clue", gameState.roomName, localPlayer.handle, true, currentPlayer.handle)
+      // tell the backend that a guess was submitted
+      // increment points for localPlayer and currentPlayer
+      // when all guesses are submitted ( total number of players - 1), then reveal currentPlayer targetWord, and the new points totals 
+    } else {
+      socket.emit("guess clue", gameState.roomName, localPlayer.handle, false, currentPlayer.handle)
+      // tell the backend that a guess was submitted
+      
+      // when all guesses are submitted ( total number of players - 1), then reveal currentPlayer targetWord, and the new points totals 
+    }
+  
   }
 
   render() {
     const { gameState } = this.props;
+
+    if(!gameState) return null; 
+
     let targetWords;
     if (gameState) {
       targetWords = gameState.targetWords;
@@ -45,19 +88,54 @@ class TargetWords extends React.Component {
       { yellow: yellow },
     ];
     let currentColor = this.state.currentColor;
-    const newTargetWords = targetWords.map((tile, index) => {
-      let tileSide = tile[currentColor]; //string "casino"
-      return (
-        <div key={index} className="targetWordContainer">
-          <img
-            src={Object.values(cards[index])}
-            className="targetImg"
-            alt={Object.keys(cards[index])}
-          />
-          <div className={`color-${currentColor} tile`}>{tileSide}</div>
-        </div>
-      );
-    });
+
+    const localPlayer = Object.values(gameState.players).filter(
+      (player) => {
+        return player.handle === this.props.user.handle;
+      }
+    )[0];
+
+    let newTargetWords;
+    if (gameState.phase === "clue guessing" && localPlayer.number !== gameState.currentPlayerTurn) {
+      newTargetWords = targetWords.map((tile, index) => {
+        let tileSide = tile[currentColor]; //string "casino"
+        return (
+          <div key={index} className="targetWordContainer">
+            <img
+              src={Object.values(cards[index])}
+              className="targetImg"
+              alt={Object.keys(cards[index])}
+              onClick={this.handleSubmitGuess}
+            />
+            <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile`}>{tileSide}</div>
+          </div>
+        );
+      });
+    } else {
+      newTargetWords = targetWords.map((tile, index) => {
+        let tileSide = tile[currentColor]; //string "casino"
+        return (
+          <div key={index} className="targetWordContainer">
+            <img
+              src={Object.values(cards[index])}
+              className="targetImg"
+              alt={Object.keys(cards[index])}
+              
+            />
+            <div 
+              className={`color-${currentColor} tile`}
+              >{tileSide}
+            </div>
+          </div>
+        );
+      });
+    }
+
+    // if gamephase = to clue phase 
+
+    // map new target words
+
+    // add onlick
 
     return (
       <div className="targetScoreContainer">

@@ -4,6 +4,7 @@ import TargetWords from "./target_words";
 const mapStateToProps = (state) => {
 
     return({
+        user: state.session.user
     })
 }
 

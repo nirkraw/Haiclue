@@ -19,7 +19,7 @@ const Game = (props) => (
     <div className="gameContainer">
 
       <div className="topContainer">
-        <TargetWordsContainer gameState={props.gameState} />
+        <TargetWordsContainer socket={props.socket} gameState={props.gameState} />
       </div>
 
       <div className="bottomContainer">

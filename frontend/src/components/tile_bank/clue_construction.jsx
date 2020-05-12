@@ -7,12 +7,12 @@ import Tile from './tile';
 class ClueContruction extends React.Component {
     constructor(props) {
         super(props)
-        this.submitGuess = this.submitGuess.bind(this);
+        this.submitClue = this.submitClue.bind(this);
     }
 
-    submitGuess(e) {
+    submitClue(e) {
         e.preventDefault();
-        this.props.socket.emit("submit guess", this.props.roomName, this.props.player.handle, ); 
+        this.props.socket.emit("submit clue", this.props.roomName, this.props.player.handle, ); 
     }
 
     render() {
@@ -35,7 +35,7 @@ class ClueContruction extends React.Component {
         return (<div> 
             <h3>Clue Construction</h3>
                 {clueConstruction}
-                <button onClick= {this.submitGuess}>Submit</button>
+                <button onClick= {this.submitClue}>Submit</button>
             <div>
                 <Timer 
                 secs={20} 

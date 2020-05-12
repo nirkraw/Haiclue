@@ -75,8 +75,12 @@ io.on("connect", (socket) => {
     rooms[roomName].unselectClueTile(handle, tile);
   });
  
-  socket.on("submit guess", (roomName, handle) => {
+  socket.on("submit clue", (roomName, handle) => {
     rooms[roomName].submitClue(handle); 
+  });
+
+  socket.on("submit guess", (roomName, localPlayerhandle, matchBoolean, currentPlayerHandle) => {
+    rooms[roomName].submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle);
   });
 
  socket.on("disconnect", () => console.log("Client disconnected"));

@@ -155,7 +155,6 @@ export default class CreateRoomForm extends Component {
       </div>
     ); 
 
-    debugger
     let view = (gameState) ? 
         ((gameState.gameStarted) ? 
             (<div>

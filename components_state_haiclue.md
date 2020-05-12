@@ -157,3 +157,5 @@ style submit
 style clue construction so it can be wider aka not overlap
 remove numbers make case insensitive 
 add error for empty room name
+
+add css highlighting to cards when on guess phase
