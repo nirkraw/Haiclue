@@ -1,0 +1,10 @@
+.target-words-container {
+    width: 130px;
+    padding: 5px;
+    display: inline-block;
+}
+
+.target-img {
+    width: 100%;
+    padding-bottom: 5px;
+}
