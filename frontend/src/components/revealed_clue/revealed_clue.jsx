@@ -13,10 +13,12 @@ export default class RevealedClue extends Component {
         const players = Object.values(gameState.players);
 
         let playerTargetWord;
+        let playerHandle;
 
         for (let index = 0; index < players.length; index++) {
             let player = players[index];
             if(player.revealedClue) {
+                playerHandle = player.handle;
                 playerTargetWord = player.targetWord[gameState.currentColor]
                 setTimeout(() => {
                     socket.emit("unreveal clue", gameState.roomName, player.handle)
@@ -26,7 +28,7 @@ export default class RevealedClue extends Component {
 
         if (playerTargetWord) {
             return(
-            <h1>{playerTargetWord}</h1>
+            <h1>{playerHandle}'s word was {playerTargetWord}!</h1>
             )
         } else {
             return null;
