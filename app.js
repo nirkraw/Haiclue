@@ -37,26 +37,35 @@ io.on("connect", (socket) => {
   });
 
   socket.on("join", (roomName, handle, targetWords, clueTiles) => {
-    if (rooms[roomName].playerCount < 2) {
-      // change to 4
-      socket.join(roomName);
-      rooms[roomName].addPlayer(handle, socket.id);
+    if (!rooms[roomName]) {
+      socket.emit("sendErrors", "couldn't find a room with that name");
 
-      if (rooms[roomName].playerCount === 2) {
-        //change to 4
-        rooms[roomName].startGame(targetWords, clueTiles);
-      }
-      rooms[roomName].submit(handle);
     } else {
-      socket.emit("sendErrors", "sorry, try another room");
-    }
 
-    if (rooms[roomName].errors.length > 0) {
-      socket.emit("sendErrors", rooms[roomName].errors[0]); // perhaps just send the string directly instead?
-    }
+      if (rooms[roomName].playerCount < 2) { // change to 4
 
-    socket.emit("receiveMessage", `${handle} joined ${roomName}`);
-  });
+        socket.join(roomName);
+        rooms[roomName].addPlayer(handle, socket.id);
+        
+        if (rooms[roomName].playerCount === 2) {//change to 4
+            rooms[roomName].startGame(targetWords, clueTiles);
+        }
+
+        rooms[roomName].submit(handle);
+
+      } else {
+
+        socket.emit("sendErrors", "sorry, this room is full");
+      }
+
+        if (rooms[roomName].errors.length > 0) {
+          socket.emit("sendErrors", rooms[roomName].errors[0]); // perhaps just send the string directly instead?
+        }
+
+        socket.emit("receiveMessage", `${handle} joined ${roomName}`);
+      }
+   });
+      
 
   socket.on("select clue tile", (roomName, handle, tile) => {
     rooms[roomName].selectClueTile(handle, tile);

@@ -51,17 +51,17 @@ export default class CreateRoomForm extends Component {
 
   handleRoomCreate(event) {
     event.preventDefault();
-    const { roomName} = this.state;
+    const { roomName } = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, this.props.user.handle);
     this.setState({ roomName: ""});
   }
 
   randomRoom() {
-    const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZ";
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXTZ";
     let room = ""
     for (let i = 0; i < 4; i++) {
-      room += chars[Math.floor(Math.random()*35)]
+      room += chars[Math.floor(Math.random()*25)]
     }
     return room
   }
@@ -76,7 +76,7 @@ export default class CreateRoomForm extends Component {
 
   handleRoomJoin(event) {
     event.preventDefault();
-    const { roomName} = this.state;
+    const { roomName } = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit(
       "join",
@@ -91,12 +91,10 @@ export default class CreateRoomForm extends Component {
   
   render() {
 
-
     const {gameState} = this.state
     let welcome = "Create or Join a Room";
     if (this.state.message) welcome = this.state.message;
     let players;
-
     if(gameState) {
     let joinedPlayers = Object.values(gameState.players).filter(player => player.joined) 
     players = joinedPlayers.map(player => {
@@ -105,7 +103,7 @@ export default class CreateRoomForm extends Component {
                 {player.handle} joined! 
               </div>)
     })
-    } else {
+  } else {
       players = null;
     }
   
@@ -114,7 +112,6 @@ export default class CreateRoomForm extends Component {
       this.state.message !== "this name is already taken"
         ? true
         : false;
-
     let joinRoom = (
       <div className="room-container">
         <div className="logout-button">
@@ -158,7 +155,7 @@ export default class CreateRoomForm extends Component {
       </div>
     ); 
 
-
+    debugger
     let view = (gameState) ? 
         ((gameState.gameStarted) ? 
             (<div>
@@ -166,7 +163,6 @@ export default class CreateRoomForm extends Component {
               <GameContainer gameState={this.state.gameState} socket={this.socket}/> </div>)
             : (joinRoom))   
         : (joinRoom)
-
     return (<>
         {view}
       </>

@@ -21,12 +21,13 @@ class Tile extends React.Component {
   render() {
     let currentColor = this.props.currentColor;
     let tileWord = this.props.tile[currentColor];
-    return (
-      <>
+
+    if(this.props.phase === "clue guessing") {
+      return (
+        <>
         {this.props.display ? (
           <div
-            className={`color-${currentColor} tile`}
-            onClick={this.clueSubmit}
+           className={`color-${currentColor} tile`}
           >
             {tileWord}
           </div>
@@ -34,7 +35,23 @@ class Tile extends React.Component {
           <div className="emptyTileSpace">{null}</div>
         )}
       </>
-    );
+      )
+    } else {
+      return (
+        <>
+          {this.props.display ? (
+            <div
+              className={`color-${currentColor} tile`}
+              onClick={this.clueSubmit}
+            >
+              {tileWord}
+            </div>
+          ) : (
+            <div className="emptyTileSpace">{null}</div>
+          )}
+        </>
+      );
+    }
   }
 }
 

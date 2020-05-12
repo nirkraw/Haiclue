@@ -24,22 +24,24 @@ class CurrentClue extends React.Component {
         const currentClue = tiles.map((tile, index) => {
             return (
                 <Tile
-                    key={index}
-                    roomName={gameState.roomName}
-                    socket={this.props.socket}
-                    player={currentPlayer}
-                    tile={tile}
-                    currentColor={gameState.currentColor}
-                    display={tile.display}
-                    type="bank"
+                key={index}
+                // roomName={gameState.roomName}
+                // socket={this.props.socket}
+                // player={currentPlayer}
+                phase = {gameState.phase}
+                tile={tile}
+                currentColor={gameState.currentColor}
+                display={tile.display}
+                type="bank"
                 />
-            );
-        });
-
-
-        if (gameState.phase === "clue guessing") {
-            return(
-                <div className="currentClue">
+                );
+            });
+            
+            
+            if (gameState.phase === "clue guessing") {
+                return(
+                    <div className="currentClue">
+                     <h1>Guess {currentPlayer.handle}'s Clue!</h1>
                     {currentClue}
                 </div>
             )
