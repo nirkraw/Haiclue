@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/layout.css';
+import '../css/current_clue.css';
 
 class CurrentClue extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class CurrentClue extends React.Component {
 
         if (gameState.phase === "clue guessing") {
             return(
-                <div>Success!</div>
+                <div className="currentClue">Success!</div>
             )
         } else {
             return null

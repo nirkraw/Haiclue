@@ -152,4 +152,4 @@ after last round  method 3 game over
 reset
 
 
-why is a tile being 
+change "waiting for other players" line 69 of tile bank

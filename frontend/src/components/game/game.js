@@ -19,11 +19,11 @@ const Game = (props) => (
     <div className="gameContainer">
 
       <div className="topContainer">
-        <CurrentClue gameState={props.gameState} />
         <TargetWordsContainer gameState={props.gameState} />
       </div>
 
       <div className="bottomContainer">
+        <CurrentClue gameState={props.gameState} />
         <MyTargetWordContainer gameState={props.gameState} />
         <TileBankContainer socket={props.socket} gameState={props.gameState} />
       </div>
