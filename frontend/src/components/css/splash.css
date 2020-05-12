@@ -129,16 +129,22 @@ input:focus {
 }
 
 .tbg-link {
+    bottom: 10px;
+    left: 0;
     width: 180px;
     height: 98px;
     margin-left: 20px;
+    position: fixed;
 }
 
 .hamburgers {
-    padding: 10px 0px 0px 10px;
-    background-color: rgb(6, 6, 6);
+    padding: 10px 0px 0px 15px;
+    background-color: transparent;
     outline: none;
     border: none;
+    position: fixed;
+    z-index: 4;
+
 }
 
 .hamburgers:hover {
@@ -163,5 +169,69 @@ input:focus {
     transition-duration: .3s;
     transition-timing-function: ease;
     background-color: #00c8a6;
-    /* i cant figure out why the color looks so dark */
+}
+
+.hamburger-menu {
+    position: fixed;
+    width: 180px;
+    height: 300px;
+    border: solid 3px white;
+    z-index: 3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.hamburger-menu a {
+    transition-property: color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    position: relative;
+    top: 40px;
+    left: 10px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    padding: 5px, 0, 5px, 10px;
+    width: fit-content;
+}
+
+.hamburger-menu a:hover {
+    transition-property: color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    color: #00c8a6;
+}
+
+
+
+.menu-enter {
+    opacity: 0;
+    transform: translateX(-100%);
+
+}
+
+.menu-enter.menu-enter-active {
+    opacity: 1; 
+    transition: opacity 800ms, transform 800ms;
+    transform: translateX(0);
+    left: 30px;
+}
+
+.menu-leave {
+    opacity: 1;
+
+}
+
+.menu-leave.menu-leave-active {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 800ms, transform 800ms;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding: 150px 0 0 0;
 }

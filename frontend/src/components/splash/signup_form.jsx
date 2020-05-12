@@ -36,7 +36,7 @@ class SignupForm extends React.Component {
         <>
             <div className="session-form">
                 <form>
-                    <h2>Sign Up</h2>
+                    <h2 id="signUp">Sign Up</h2>
                     <input type="text" value={this.state.handle} onChange={this.handleInput('handle')} placeholder="Username"/>
                     <input type="text" value={this.state.email} onChange={this.handleInput('email')} placeholder="Email"/>
                     <input type="password" value={this.state.password} onChange={this.handleInput('password')}  placeholder="Password"/>
