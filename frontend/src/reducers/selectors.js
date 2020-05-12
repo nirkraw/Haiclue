@@ -1,5 +1,4 @@
 export const startingTiles = (state) => {
-  // debugger;
    const allTiles = Object.values(state.entities.tiles);
    const shuffleAndSlice = (arr, currentIndex = arr.length) => {
      while (currentIndex !== 0) {

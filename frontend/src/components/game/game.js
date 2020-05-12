@@ -7,16 +7,19 @@ import '../css/index.css';
 
 const Game = (props) => (
   <div>
-      <div className="logout-button">
-        {props.loggedIn ? <button className="tile" onClick={props.logout}>Logout</button> : null}
-      </div>
+    <div className="logout-button">
+      {props.loggedIn ? (
+        <button className="tile" onClick={props.logout}>
+          Logout
+        </button>
+      ) : null}
+    </div>
 
-      <h1 className="logo">Haiclue</h1>
+    <h1 className="logo">Haiclue</h1>
     <div className="gameContainer">
 
       <div className="topContainer">
-        {/* <div className="instructions-link"> ? </div> */}
-        <CurrentClue />
+        <CurrentClue gameState={props.gameState} />
         <TargetWordsContainer gameState={props.gameState} />
       </div>
 

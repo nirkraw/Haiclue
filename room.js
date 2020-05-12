@@ -6,12 +6,14 @@ class Room {
       targetWords: [],
       players: {},
       gameStarted: false,
-      currentColor: "black"
-
+      currentColor: "black",
+      clueSubmissionCount: 0,
+      phase: "clue construction" 
     };
     
     this.playerCount = 0;
     this.errors = [];
+
     this.addPlayer = this.addPlayer.bind(this);
     this.getGameState = this.getGameState.bind(this);
     this.startGame = this.startGame.bind(this);
@@ -20,6 +22,7 @@ class Room {
     this.assignPlayerClueTiles = this.assignPlayerClueTiles.bind(this);
     this.selectClueTile = this.selectClueTile.bind(this)
     this.unselectClueTile = this.unselectClueTile.bind(this)
+    this.submitClue = this.submitClue.bind(this);
   }
 
   addPlayer(handle, socketId) {
@@ -30,7 +33,8 @@ class Room {
       number: 0, // default value
       targetWord: "",
       clueTiles: [],
-      selectedClueTiles: []
+      selectedClueTiles: [],
+      submitedClue: false 
     };
 
     if (Object.values(this.game.players).length < 2) {
@@ -95,13 +99,25 @@ class Room {
   unselectClueTile(handle, tile) {
     const player = this.game.players[handle];
     player.clueTiles.push(tile);
-    // const index = player.selectedClueTiles.indexOf(tile);
     for (let i = 0; i < player.selectedClueTiles.length; i++) {
       if (tile._id === player.selectedClueTiles[i]._id) {
         player.selectedClueTiles.splice(i, 1);
       }
     }
-    // player.selectedClueTiles.splice(i, 1);
+  }
+
+  submitClue(handle) {
+    const player = this.game.players[handle];
+    if(!player.submitedClue) {
+      player.submitedClue = true;
+      this.game.clueSubmissionCount++;
+    }
+
+    if (this.game.clueSubmissionCount === this.playerCount){
+      console.log("all players submitted")
+      // trigger into the next game phase
+      this.game.phase = "clue guessing";
+    }
   }
 
   

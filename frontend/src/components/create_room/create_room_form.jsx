@@ -51,7 +51,6 @@ export default class CreateRoomForm extends Component {
 
   handleRoomCreate(event) {
     event.preventDefault();
-    debugger;
     const { roomName} = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, this.props.user.handle);
