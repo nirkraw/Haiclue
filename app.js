@@ -83,6 +83,11 @@ io.on("connect", (socket) => {
     rooms[roomName].submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle);
   });
 
+  socket.on("unreveal clue", (roomName, handle) => {
+    rooms[roomName].unrevealClue(handle);
+  });
+
+
  socket.on("disconnect", () => console.log("Client disconnected"));
 }); // end of "connect" DONT DELETE
 

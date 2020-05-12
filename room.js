@@ -26,6 +26,7 @@ class Room {
     this.unselectClueTile = this.unselectClueTile.bind(this)
     this.submitClue = this.submitClue.bind(this);
     this.submitGuess = this.submitGuess.bind(this);
+    this.unrevealClue = this.unrevealClue.bind(this);
   }
 
   addPlayer(handle, socketId) {
@@ -138,10 +139,12 @@ class Room {
       currentPlayer.revealedClue = true;
       this.game.currentPlayerTurn++
     }
-
   }
 
-  
+  unrevealClue(handle) {
+    const player = this.game.players[handle];
+    player.revealedClue = false;
+  }
 }
 
 module.exports = Room;

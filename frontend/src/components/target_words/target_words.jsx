@@ -41,12 +41,12 @@ class TargetWords extends React.Component {
 
      
     if (guessedWord === currentPlayerTargetWord) {
-      socket.emit("guess clue", gameState.roomName, localPlayer.handle, true, currentPlayer.handle)
+      socket.emit("submit guess", gameState.roomName, localPlayer.handle, true, currentPlayer.handle)
       // tell the backend that a guess was submitted
       // increment points for localPlayer and currentPlayer
       // when all guesses are submitted ( total number of players - 1), then reveal currentPlayer targetWord, and the new points totals 
     } else {
-      socket.emit("guess clue", gameState.roomName, localPlayer.handle, false, currentPlayer.handle)
+      socket.emit("submit guess", gameState.roomName, localPlayer.handle, false, currentPlayer.handle)
       // tell the backend that a guess was submitted
       
       // when all guesses are submitted ( total number of players - 1), then reveal currentPlayer targetWord, and the new points totals 
