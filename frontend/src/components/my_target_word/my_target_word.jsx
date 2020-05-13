@@ -42,6 +42,8 @@ class MyTargetWord extends React.Component {
     const {gameState} = this.props 
     if (!gameState) return null;
 
+    if(gameState.over) return (<></>)
+
     let myWord = this.getWord();
     let picNumber;
     for (let i = 0; i < 4; i++) {
@@ -52,7 +54,8 @@ class MyTargetWord extends React.Component {
       <div className="my-target-word-container">
         <h3>My Target Word</h3>
         <img src={cards[picNumber]} className="my-target-word-img" alt="green" /> 
-        <div className="my-target-word tile">{myWord}</div>
+        {/* <div className="my-target-word tile">{myWord}</div> */}
+        <div className={`color-${gameState.currentColor} tile`}>{myWord}</div>
       </div>
     );
   }

@@ -44,6 +44,7 @@ class Room {
       joined: false,
       number: 0, // default value // number of player
       targetWord: "",
+      correctWord: "",
       points: 0,
       clueTiles: [],
       selectedClueTiles: [],
@@ -100,29 +101,31 @@ class Room {
 
 
   startRound() {
+    
     this.resetPlayersSubmitedClue();
     this.game.clueSubmissionCount = 0
     this.game.currentPlayerTurn = 1;
     this.game.phase = "clue construction";
     this.game.round++;
 
+    
+    if (this.game.round === 3) {
+      this.gameOver();
+    }
+    
     if(this.game.round % 2 === 0) {
       this.game.currentColor = "white"
     } else {
       this.game.currentColor = "black"
     }
-
-    if (this.game.round === 3) {
-      this.gameOver();
-    }
-
+    
     const newTiles = this.getRoundTiles(this.game.tiles);
     const targetWords = newTiles.slice(60);
     const clueTiles = newTiles.slice(0, 60);
-
-    this.createTargetWords(targetWords);
-    this.assignPlayersTargetWord();
-    this.assignPlayersClueTiles(clueTiles);
+    
+      this.createTargetWords(targetWords);
+      this.assignPlayersTargetWord();
+      this.assignPlayersClueTiles(clueTiles);
   }
 
   resetPlayersSubmitedClue() {
@@ -198,14 +201,15 @@ class Room {
     }
 
     if (this.game.clueGuessCount === this.playerCount - 1) {
+      currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor]
       currentPlayer.revealedClue = true;
       this.game.currentPlayerTurn++;
       this.game.clueGuessCount = 0;
     }
 
-    if (this.game.currentPlayerTurn === this.playerCount + 1) {
-      this.startRound();
-    }
+      if (this.game.currentPlayerTurn === this.playerCount + 1) {
+        this.startRound();
+      }
   }
 
   unrevealClue(handle) {

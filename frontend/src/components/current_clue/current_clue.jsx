@@ -14,6 +14,15 @@ class CurrentClue extends React.Component {
         const {gameState} = this.props
         if (!gameState) return null;
         
+        if(gameState.over) {
+            return (
+              <div>
+                
+              </div>
+            )
+        }
+
+
         const currentPlayer = Object.values(this.props.gameState.players).filter(
             (player) => {
                 return player.number === gameState.currentPlayerTurn;
@@ -39,7 +48,8 @@ class CurrentClue extends React.Component {
                 />
                 );
             });
-            
+
+
             if (gameState.phase === "clue guessing" && localPlayer.handle !== currentPlayer.handle) {
                 return(
                     <div className="currentClue">

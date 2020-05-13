@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 export default class RevealedClue extends Component {
     constructor(props) {
         super(props)
+        
     }
 
     render() {
@@ -17,9 +18,11 @@ export default class RevealedClue extends Component {
 
         for (let index = 0; index < players.length; index++) {
             let player = players[index];
+
             if(player.revealedClue) {
                 playerHandle = player.handle;
-                playerTargetWord = player.targetWord[gameState.currentColor]
+                playerTargetWord = player.correctWord
+                // debugger
                 setTimeout(() => {
                     socket.emit("unreveal clue", gameState.roomName, player.handle)
                 }, 5000);

@@ -14,6 +14,8 @@ class TileBank extends React.Component {
     const { gameState } = this.props;
     if (!gameState) return null;
 
+    if(gameState.over) return (<></>)
+
     const player = Object.values(this.props.gameState.players).filter(
       (player) => {
         return player.handle === this.props.user.handle;
