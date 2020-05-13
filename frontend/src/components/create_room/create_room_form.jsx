@@ -17,11 +17,12 @@ export default class CreateRoomForm extends Component {
       readOnly: false,
     };
 
-    
+
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
     this.handleRoomCreate = this.handleRoomCreate.bind(this);
     this.handleRandomCreate = this.handleRandomCreate.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    
   }
 
   componentDidMount() {
