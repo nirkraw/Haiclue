@@ -17,6 +17,7 @@ export default class CreateRoomForm extends Component {
       readOnly: false,
     };
 
+    
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
     this.handleRoomCreate = this.handleRoomCreate.bind(this);
     this.handleRandomCreate = this.handleRandomCreate.bind(this);
@@ -79,10 +80,10 @@ export default class CreateRoomForm extends Component {
   handleRoomJoin(event) {
     event.preventDefault();
     const { roomName } = this.state;
-    this.props.storeRoomName(roomName);
+    this.props.storeRoomName(roomName.toUpperCase());
     this.socket.emit(
       "join",
-      roomName,
+      roomName.toUpperCase(),
       this.props.user.handle,
       this.props.tiles.slice(60),
       this.props.tiles.slice(0, 60)
@@ -111,7 +112,7 @@ export default class CreateRoomForm extends Component {
   
     let placeholder_text = (this.state.roomName.length) ? (this.state.roomName) : "Enter a Room Name" ;
     let readOnlyVal = this.state.message.length &&
-      this.state.message !== "this name is already taken"
+      this.state.message !== ("this name is already taken" || "couldn't find a room with that name" || "sorry, this room is full")
         ? true
         : false;
     let joinRoom = (
