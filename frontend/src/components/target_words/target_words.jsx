@@ -1,5 +1,6 @@
 import React from "react";
 import Scoreboard from "./scoreboard";
+import GameOver from "../game_over/game_over";
 import "../css/layout.css";
 import "../css/target_words.css";
 import blue from "../images/blue-tile.png";
@@ -52,7 +53,10 @@ class TargetWords extends React.Component {
     if(gameState.over) {
         return (
           <div>
-            <h1>Game Over!</h1>
+            
+            <GameOver
+              gameState={gameState}
+            />
           </div>
         )
     } 
