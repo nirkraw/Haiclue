@@ -1,7 +1,7 @@
 import React from "react";
 import MyTargetWordContainer from "../my_target_word/my_target_word_container";
 import TileBankContainer from "../tile_bank/tile_bank_container";
-import CurrentClue from "../current_clue/current_clue";
+import CurrentClueContainer from "../current_clue/current_clue_container";
 import RevealedClue from "../revealed_clue/revealed_clue";
 import TargetWordsContainer from "../target_words/target_words_container";
 import Logout from '../global/logout-instructions-button';
@@ -17,7 +17,7 @@ const Game = (props) => (
         <TargetWordsContainer socket={props.socket} gameState={props.gameState} />
       </div>
       <div className="bottom-container">
-        <CurrentClue gameState={props.gameState}/>
+        <CurrentClueContainer gameState={props.gameState}/>
         <MyTargetWordContainer  gameState={props.gameState} />
         <TileBankContainer socket={props.socket} gameState={props.gameState} />
         <RevealedClue socket={props.socket} gameState={props.gameState}/>

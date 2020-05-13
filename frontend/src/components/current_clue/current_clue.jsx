@@ -19,15 +19,18 @@ class CurrentClue extends React.Component {
                 return player.number === gameState.currentPlayerTurn;
             }
         )[0];
+
+        const localPlayer = Object.values(gameState.players).filter(
+            (player) => {
+                return player.handle === this.props.user.handle;
+            }
+        )[0];
             
         const tiles = currentPlayer.selectedClueTiles 
         const currentClue = tiles.map((tile, index) => {
             return (
                 <Tile
                 key={index}
-                // roomName={gameState.roomName}
-                // socket={this.props.socket}
-                // player={currentPlayer}
                 phase = {gameState.phase}
                 tile={tile}
                 currentColor={gameState.currentColor}
@@ -37,17 +40,23 @@ class CurrentClue extends React.Component {
                 );
             });
             
-            
-            if (gameState.phase === "clue guessing") {
+            if (gameState.phase === "clue guessing" && localPlayer.handle !== currentPlayer.handle) {
                 return(
                     <div className="currentClue">
-                     <h1>Guess {currentPlayer.handle}'s Clue!</h1>
-                    {currentClue}
-                </div>
+                        <h1>Guess {currentPlayer.handle}'s Clue!</h1>
+                        {currentClue}
+                    </div>
             )
-        } else {
-            return null;
-        }
+            } else if (gameState.phase === "clue guessing" && localPlayer.handle == currentPlayer.handle){
+                return (
+                    <div className="currentClue">
+                        <h1>Your clue is being guessed!</h1>
+                        {currentClue}
+                    </div>
+                );
+            } else {
+                return null;
+            }
     }
 
 }
