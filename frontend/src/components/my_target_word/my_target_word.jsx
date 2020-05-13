@@ -45,7 +45,7 @@ class MyTargetWord extends React.Component {
     let myWord = this.getWord();
     let picNumber;
     for (let i = 0; i < 4; i++) {
-      if ((gameState.targetWords[i][gameState.currentColor] === myWord)) 
+      if (gameState.targetWords[i][gameState.currentColor] === myWord) 
       { picNumber = i}
     }
     return (
