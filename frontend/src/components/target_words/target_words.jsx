@@ -138,7 +138,6 @@ class TargetWords extends React.Component {
     return (
       <div>
         <div>
-          <h3>Target Words</h3>
           {newTargetWords}
         </div>
         <Scoreboard players= {gameState.players}/>

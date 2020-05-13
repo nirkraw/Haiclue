@@ -20,11 +20,6 @@
     max-width: 1100px;
 }
 
-h3 {
-    display: none;
-}
-
-
 #clue-submit-button {
     transition-property: background-color,
     border-color;

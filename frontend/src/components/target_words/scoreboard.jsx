@@ -14,7 +14,6 @@ class ScoreBoard extends React.Component {
                 </div>)
         });
         return (<div className="scoreboard-container">
-            <h3>Score</h3>
                 {players}
         </div>)
     }

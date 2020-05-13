@@ -135,7 +135,6 @@ export default CurrentClue;
 //         });
 
 //         return (<div className="currentClueContainer">
-//             <h3>Current Clue</h3>
 
 //                 {clueTiles}
 //                 {/* <div><Timer timer='90' /></div> */}

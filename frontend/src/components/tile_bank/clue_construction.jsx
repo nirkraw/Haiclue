@@ -32,7 +32,6 @@ class ClueContruction extends React.Component {
             );
         });
         return (<div>
-            <h3>Clue Construction</h3>
             <button onClick={this.submitClue} id="clue-submit-button">Submit</button>
             <div>
             <ReactCSSTransitionGroup
