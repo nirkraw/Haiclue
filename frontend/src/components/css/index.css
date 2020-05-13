@@ -7,7 +7,8 @@ body {
     font-family: 'Helvetica Neue', sans-serif;
 }
 
-h3 {font-size: 13px; color: red; display:none}
+h3 {font-size: 13px; color: red; 
+    display:none}
 
 .logo { 
     /* font-size: 96px; */
@@ -25,3 +26,14 @@ h3 {font-size: 13px; color: red; display:none}
     width: 100px;
 }
 
+
+/* 
+@media screen and (max-width: 1000px) {
+    #root {
+        background-color: lightblue; 
+    }
+
+    #root { 
+        transform: scale(.9);
+    }
+} */

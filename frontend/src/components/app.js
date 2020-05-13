@@ -9,9 +9,12 @@ import './css/index.css';
 
 const App = () => (
   <div className='container'>
-    <Route exact path="/timer" component={Timer} />            
+    <Route exact path="/timer" component={Timer} />     
+  {// wrap in a Switch statement }
+  }
     <Route exact path="/instructions" component={ExtInstructions} />
     <AuthRoute path="/" component={SplashContainer} />
+
     <ProtectedRoute path="/game" component={CreateRoomContainer} />
   </div>
 );

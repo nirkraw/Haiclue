@@ -2,6 +2,9 @@ import React from 'react';
 import '../css/layout.css';
 import Timer from '../timer/timer';
 import Tile from './tile';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import '../css/transitions.css';
+
 // Could be refactored into funcitonal component
 class ClueContruction extends React.Component {
     constructor(props) {
@@ -25,13 +28,20 @@ class ClueContruction extends React.Component {
                     tile={tile}
                     display={true}
                     type="clue"
-                />
+                /> 
             );
         });
         return (<div>
             <h3>Clue Construction</h3>
-            {clueConstruction}
-            <button onClick={this.submitClue}>Submit</button>
+            <button onClick={this.submitClue} id="clue-submit-button">Submit</button>
+            <div>
+            <ReactCSSTransitionGroup
+            transitionName="tiles"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}>
+                {clueConstruction}
+            </ReactCSSTransitionGroup>
+            </div>
             <div>
                 <Timer
                     secs={20}

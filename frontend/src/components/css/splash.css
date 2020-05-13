@@ -65,6 +65,7 @@ input:focus {
     width: 150px;
     cursor: pointer;
     float: right;
+    border-style: none;
 }
 
 .session-form button:hover {   
@@ -88,6 +89,7 @@ input:focus {
     height: 45px;
     float: right;
     cursor: pointer;
+    border-style: none;
 }
 
 .instruction-hover:hover {

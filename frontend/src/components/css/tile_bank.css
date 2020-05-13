@@ -7,13 +7,13 @@
 }
 
 .clue-container {
-    width: 40%;
-    min-height: 60px;
+    width: 50%;
+    min-height: 130px;
     text-align: center;
-    border-bottom: dashed 3px white;
     margin-bottom: 50px;
-
+    border-bottom: 2px dashed white;
 }
+
 
 .bank-container {
     width: 90%;
@@ -23,3 +23,29 @@
 h3 {
     display: none;
 }
+
+
+#clue-submit-button {
+    transition-property: background-color,
+    border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    background-color: white;
+    border-radius: 22px;
+    width: 150px;
+    cursor: pointer;
+    border-style: none;
+}
+
+#clue-submit-button:hover {
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    background-color: #e3ab00;
+    border-color: #e3ab00;
+} 

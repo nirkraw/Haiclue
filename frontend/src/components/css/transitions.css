@@ -4,7 +4,7 @@
 
 .tiles-enter.tiles-enter-active {
     opacity: 1;
-    transition: opacity 500ms ease-in;
+    transition: opacity 800ms ease-in;
 }
 
 .tiles-leave {
@@ -13,5 +13,5 @@
 
 .tiles-leave.tiles-leave-active {
     opacity: 0.01;
-    transition: opacity 300ms ease-in;
+    transition: opacity 800ms ease-in;
 }

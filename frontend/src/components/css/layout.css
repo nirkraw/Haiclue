@@ -53,3 +53,8 @@
     border-color: red;
     cursor: pointer;
 }
+
+.tile::selection {
+    color: none;
+    background: none;
+}

@@ -41,6 +41,7 @@
     border-radius: 22px;
     width: 150px;
     float: right;
+    border-style: none;
 }
 
 .room-container button:hover {

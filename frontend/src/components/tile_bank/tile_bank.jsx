@@ -1,7 +1,9 @@
 import React from "react";
 import ClueConstruction from "./clue_construction";
-// import ReactCSSTransitionGroup from 'react-transition-group';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Tile from "./tile";
+import '../css/tile_bank.css';
+import '../css/transitions.css';
 
 
 class TileBank extends React.Component {
@@ -36,23 +38,23 @@ class TileBank extends React.Component {
         return (
           <div className="clue-bank-container">
             <div className="clue-container">
-              <ClueConstruction
-                clueConstructionArray={player.selectedClueTiles}
-                roomName={gameState.roomName}
-                socket={this.props.socket}
-                player={player}
-                currentColor={gameState.currentColor}
-                type="bank"
-              />
+                <ClueConstruction
+                  clueConstructionArray={player.selectedClueTiles}
+                  roomName={gameState.roomName}
+                  socket={this.props.socket}
+                  player={player}
+                  currentColor={gameState.currentColor}
+                  type="bank"
+                  />
             </div>
             <div className="bank-container">
               <h3>Tilebank</h3>
-              {/* <ReactCSSTransitionGroup
+              <ReactCSSTransitionGroup
                           transitionName="tiles"
                           transitionEnterTimeout={500}
-                          transitionLeaveTimeout={300}> */}
+                          transitionLeaveTimeout={300}>
               {newTiles}
-              {/* </ReactCSSTransitionGroup>  */}
+              </ReactCSSTransitionGroup> 
             </div>
           </div>
         );
