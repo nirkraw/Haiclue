@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/layout.css';
 import '../css/current_clue.css';
 import Tile from '../tile_bank/tile';
+import Timer from '../timer/timer';
 
 
 class CurrentClue extends React.Component {
@@ -53,6 +54,16 @@ class CurrentClue extends React.Component {
             if (gameState.phase === "clue guessing" && localPlayer.handle !== currentPlayer.handle) {
                 return(
                     <div className="currentClue">
+                        <div>
+                            <Timer
+                                phase={'submit guess'}
+                                secs={10}
+                                socket={this.props.socket}
+                                roomName={gameState.roomName}
+                                localPlayerHandle={localPlayer.handle}
+                                currentPlayerHandle={currentPlayer.handle}
+                            />
+                        </div>
                         <h1>Guess {currentPlayer.handle}'s Clue!</h1>
                         {currentClue}
                     </div>

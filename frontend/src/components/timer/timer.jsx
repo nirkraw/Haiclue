@@ -16,7 +16,19 @@ class Timer extends React.Component {
             if (this.state.secs === 0) {
                 clearInterval(this.interval)
                 //your pretty socket code here!
-                 this.props.socket.emit("submit guess", this.props.roomName, this.props.handle, ); 
+                // debugger
+                if (this.props.phase === 'submit clue') {
+                 this.props.socket.emit(this.props.phase, this.props.roomName, this.props.handle, ); 
+                }
+
+                if (this.props.phase === 'submit guess') {
+                    const { socket, phase, roomName, localPlayerHandle, currentPlayerHandle } = this.props
+
+                //  this.props.socket.emit(this.props.phase, this.props.roomName, this.props.handle, ); 
+                 socket.emit(phase, roomName, localPlayerHandle, false, currentPlayerHandle)
+                }
+
+
             } else if ((this.state.secs < 7) && (this.state.secs % 2 === 0)) {
                 this.setState({
                     secs: (this.state.secs - 1),

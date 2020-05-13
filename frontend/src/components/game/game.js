@@ -17,7 +17,7 @@ const Game = (props) => (
         <TargetWordsContainer socket={props.socket} gameState={props.gameState} />
       </div>
       <div className="bottom-container">
-        <CurrentClueContainer gameState={props.gameState}/>
+        <CurrentClueContainer socket={props.socket} gameState={props.gameState}/>
         <MyTargetWordContainer  gameState={props.gameState} />
         <TileBankContainer socket={props.socket} gameState={props.gameState} />
         <RevealedClue socket={props.socket} gameState={props.gameState}/>
