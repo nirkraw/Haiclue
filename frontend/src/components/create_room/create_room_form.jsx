@@ -81,13 +81,7 @@ export default class CreateRoomForm extends Component {
     event.preventDefault();
     const { roomName } = this.state;
     this.props.storeRoomName(roomName);
-    this.socket.emit(
-      "join",
-      roomName,
-      this.props.user.handle,
-      this.props.tiles.slice(60),
-      this.props.tiles.slice(0, 60)
-    );
+    this.socket.emit("join", roomName, this.props.user.handle, this.props.tiles);
     this.setState({ roomName: ""});
   }
 
@@ -95,13 +89,6 @@ export default class CreateRoomForm extends Component {
   render() {
     const {gameState} = this.state
 
-    // if(gameState.round > this.state.round) {
-    //   this.fetchTiles()
-    //   let targetWords = this.props.tiles.slice(60);
-    //   let tiles = this.props.tiles.slice(0, 60)
-    //   this.socket.emit("new round", tiles, targetWords)
-    //   this.setState({round: gameState.round})
-    // }
 
     let welcome = "Create or Join a Room";
     if (this.state.message) welcome = this.state.message;

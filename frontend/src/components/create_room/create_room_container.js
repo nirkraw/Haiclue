@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.session.user,
     loggedIn: state.session.isAuthenticated, 
-    tiles: startingTiles(state)
+    // tiles: startingTiles(state)
+    tiles: state.entities.tiles
   };
 };
 

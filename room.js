@@ -3,6 +3,7 @@ class Room {
     this.roomName = roomName;
     this.game = {
       roomName: roomName,
+      tiles: [],
       targetWords: [],
       players: {},
       gameStarted: false,
@@ -11,10 +12,10 @@ class Room {
       clueGuessCount: 0,
       phase: "clue construction",
       currentPlayerTurn: 1,
-      round: 1,
+      round: 0,
       over: false,
     };
-    
+
     this.playerCount = 0;
     this.errors = [];
 
@@ -22,15 +23,18 @@ class Room {
     this.getGameState = this.getGameState.bind(this);
     this.startGame = this.startGame.bind(this);
     this.createTargetWords = this.createTargetWords.bind(this);
-    this.assignPlayerTargetWord = this.assignPlayerTargetWord.bind(this);
-    this.assignPlayerClueTiles = this.assignPlayerClueTiles.bind(this);
-    this.selectClueTile = this.selectClueTile.bind(this)
-    this.unselectClueTile = this.unselectClueTile.bind(this)
+    this.assignPlayersTargetWord = this.assignPlayersTargetWord.bind(this);
+    this.assignPlayersClueTiles = this.assignPlayersClueTiles.bind(this);
+    this.selectClueTile = this.selectClueTile.bind(this);
+    this.unselectClueTile = this.unselectClueTile.bind(this);
     this.submitClue = this.submitClue.bind(this);
     this.submitGuess = this.submitGuess.bind(this);
     this.unrevealClue = this.unrevealClue.bind(this);
-    this.nextRound = this.nextRound.bind(this);
     this.gameOver = this.gameOver.bind(this);
+    this.storeTiles = this.storeTiles.bind(this);
+    this.getRoundTiles = this.getRoundTiles.bind(this);
+    this.startRound = this.startRound.bind(this);
+    this.resetPlayersSubmitedClue = this.resetPlayersSubmitedClue.bind(this);
   }
 
   addPlayer(handle, socketId) {
@@ -43,9 +47,9 @@ class Room {
       points: 0,
       clueTiles: [],
       selectedClueTiles: [],
-      submitedClue: false, 
-      submitedGuess: false, // the guess 
-      revealedClue: false
+      submitedClue: false,
+      submitedGuess: false, // the guess
+      revealedClue: false,
     };
 
     if (Object.values(this.game.players).length < 2) {
@@ -73,7 +77,7 @@ class Room {
     this.game.targetWords = targetWords;
   }
 
-  assignPlayerTargetWord() {
+  assignPlayersTargetWord() {
     // before each round
     Object.values(this.game.players).forEach((player) => {
       player.targetWord = this.game.targetWords[this.getRandomInt(4)];
@@ -84,14 +88,58 @@ class Room {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  startGame(targetWords, clueTiles) {
-    this.game.gameStarted = true;
-    this.createTargetWords(targetWords);
-    this.assignPlayerTargetWord();
-    this.assignPlayerClueTiles(clueTiles);
+  storeTiles(tiles) {
+    this.game.tiles = tiles;
   }
 
-  assignPlayerClueTiles(clueTiles) {
+  startGame() {
+    // keep all tiles in gamestate, call method that randomizes and returns 64 tiles (from selector reducer), then assign target words and clue tiles
+    this.game.gameStarted = true;
+    this.startRound();
+  }
+
+  startRound() {
+    this.resetPlayersSubmitedClue();
+    this.game.clueSubmissionCount = 0
+    this.game.currentPlayerTurn = 1;
+    this.game.phase = "clue construction";
+    this.game.round++;
+
+    if (this.game.round === 3) {
+      this.gameOver();
+    }
+
+    const newTiles = this.getRoundTiles(this.game.tiles);
+    const targetWords = newTiles.slice(60);
+    const clueTiles = newTiles.slice(0, 60);
+
+    this.createTargetWords(targetWords);
+    this.assignPlayersTargetWord();
+    this.assignPlayersClueTiles(clueTiles);
+  }
+
+  resetPlayersSubmitedClue() {
+    Object.values(this.game.players).forEach((player) => {
+      player.submitedClue = false;
+      player.selectedClueTiles = [];
+    });
+  }
+
+  getRoundTiles(arr, currentIndex = arr.length) {
+    while (currentIndex !== 0) {
+      //Get a random index
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      //Swap the values
+      let temporaryValue = arr[currentIndex];
+      arr[currentIndex] = arr[randomIndex];
+      arr[randomIndex] = temporaryValue;
+    }
+    return arr.slice(0, 64); // returns the first 64 tiles
+  }
+
+  assignPlayersClueTiles(clueTiles) {
     Object.values(this.game.players).forEach((player) => {
       player.clueTiles = clueTiles.splice(0, 15);
     });
@@ -101,9 +149,9 @@ class Room {
     const player = this.game.players[handle];
     player.selectedClueTiles.push(tile);
     for (let i = 0; i < player.clueTiles.length; i++) {
-        if (tile._id === player.clueTiles[i]._id) {
-          player.clueTiles.splice(i, 1);
-        }
+      if (tile._id === player.clueTiles[i]._id) {
+        player.clueTiles.splice(i, 1);
+      }
     }
   }
 
@@ -119,13 +167,14 @@ class Room {
 
   submitClue(handle) {
     const player = this.game.players[handle];
-    if(!player.submitedClue) {
+    if (!player.submitedClue) {
       player.submitedClue = true;
       this.game.clueSubmissionCount++;
     }
-
-    if (this.game.clueSubmissionCount === this.playerCount){
+    // debugger
+    if (this.game.clueSubmissionCount === this.playerCount) {
       // trigger into the next game phase
+      // debugger
       this.game.phase = "clue guessing";
     }
   }
@@ -134,25 +183,22 @@ class Room {
     const localPlayer = this.game.players[localPlayerhandle];
     const currentPlayer = this.game.players[currentPlayerHandle];
 
-    this.game.clueGuessCount++
- 
-    if(matchBoolean) {
-      localPlayer.points++
-      currentPlayer.points++
+    this.game.clueGuessCount++;
+
+    if (matchBoolean) {
+      localPlayer.points++;
+      currentPlayer.points++;
     }
 
-    if(this.game.clueGuessCount === this.playerCount - 1) {
+    if (this.game.clueGuessCount === this.playerCount - 1) {
       currentPlayer.revealedClue = true;
-      this.game.currentPlayerTurn++
-      this.game.clueGuessCount = 0
+      this.game.currentPlayerTurn++;
+      this.game.clueGuessCount = 0;
     }
 
     if (this.game.currentPlayerTurn === this.playerCount + 1) {
-        debugger
-        // this.nextRound();
-        this.game.round++
+      this.startRound();
     }
-    
   }
 
   unrevealClue(handle) {
@@ -160,26 +206,9 @@ class Room {
     player.revealedClue = false;
   }
 
-  nextRound(targetWord, clueTiles) {
-    this.game.currentPlayerTurn = 1
-    if (this.game.round === 3) {
-      this.gameOver();
-    }
-
-
-    // this.createTargetWords(targetWords);
-    // this.assignPlayerTargetWord();
-    // this.assignPlayerClueTiles(clueTiles);
-
-    startGame(targetWords, clueTiles)
-    this.game.phase = "clue construction"
-    this.game.round++ 
-  }
-
   gameOver() {
-    this.game.over = true 
+    this.game.over = true;
   }
-
 }
 
 module.exports = Room;
