@@ -20,7 +20,7 @@ class GameOver extends React.Component {
         const scores = playersArray.map((player, idx) => {
             return (<li key={idx}> {player.handle} : {player.points} </li>)
         })
-
+        /// needs more logic to handle ties
         return (
             <div>
                 <h1>GAME OVER</h1>

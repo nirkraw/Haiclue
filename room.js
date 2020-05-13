@@ -53,7 +53,7 @@ class Room {
       revealedClue: false,
     };
 
-    if (Object.values(this.game.players).length < 3) {
+    if (Object.values(this.game.players).length < 2) {
       // chnage to 4
       player.number = Object.values(this.game.players).length + 1;
       this.game.players[handle] = player;
