@@ -16,18 +16,20 @@ class GameOver extends React.Component {
 
     render() {
         const playersArray = Object.values(this.props.gameState.players).sort(this.sortByPoints);
-
+        
         const scores = playersArray.map((player, idx) => {
             return (<li key={idx}> {player.handle} : {player.points} </li>)
         })
-
-        return (
-            <div>
-                <h1>GAME OVER</h1>
-                <h2>{playersArray[0].handle} wins!</h2>
-                <ul>{scores}</ul>
-            </div>
-        )
+        
+            return (
+                <div>
+                    <h1>GAME OVER</h1>
+                    <h2>{playersArray[0].handle} wins!</h2>
+                    <ul>{scores}</ul>
+                </div>
+            ) 
+     
+      
     }
 }
 export default GameOver;

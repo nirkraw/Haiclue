@@ -7,7 +7,7 @@ export default class RevealedClue extends Component {
     }
 
     render() {
-        const {gameState, socket} = this.props
+        const {gameState} = this.props
 
         if(!gameState) return null;
 
@@ -22,10 +22,6 @@ export default class RevealedClue extends Component {
             if(player.revealedClue) {
                 playerHandle = player.handle;
                 playerTargetWord = player.correctWord
-                // debugger
-                setTimeout(() => {
-                    socket.emit("unreveal clue", gameState.roomName, player.handle)
-                }, 5000);
             }
         }
 

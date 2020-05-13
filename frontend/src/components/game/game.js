@@ -7,23 +7,61 @@ import TargetWordsContainer from "../target_words/target_words_container";
 import Logout from '../global/logout-instructions-button';
 
 
-const Game = (props) => (
+class Game extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+ 
+  render() {
+
+    const {gameState, socket} = this.props
+
+    if(!gameState) return null;
+
+    const players = Object.values(gameState.players);
+
+    let playerTargetWord;
+    let playerHandle;
+    let revealed = false
+
+     for (let index = 0; index < players.length; index++) {
+            let player = players[index];
+
+            if(player.revealedClue) {
+                revealed = true 
+                playerHandle = player.handle;
+                playerTargetWord = player.correctWord
+                // debugger
+                setTimeout(() => {
+                    socket.emit("unreveal clue", gameState.roomName, player.handle)
+                    revealed = false
+                }, 3000);
+            }
+      }
+  return (
   <div>
-      <Logout logout={props.logout} loggedIn={props.loggedIn} />
+      <Logout logout={this.props.logout} loggedIn={this.props.loggedIn} />
 
       <h1 className="logo">Haiclue</h1>
       <div className="game-container">
       <div className="top-container">
-        <TargetWordsContainer socket={props.socket} gameState={props.gameState} />
+        <TargetWordsContainer socket={this.props.socket} gameState={this.props.gameState} />
       </div>
+      {(revealed) ? 
       <div className="bottom-container">
-        <CurrentClueContainer socket={props.socket} gameState={props.gameState}/>
-        <MyTargetWordContainer  gameState={props.gameState} />
-        <TileBankContainer socket={props.socket} gameState={props.gameState} />
-        <RevealedClue socket={props.socket} gameState={props.gameState}/>
+        <RevealedClue socket={this.props.socket} gameState={this.props.gameState} />
+      </div> :
+      <div className="bottom-container">
+        <CurrentClueContainer socket={this.props.socket} gameState={this.props.gameState}/>
+        <MyTargetWordContainer  gameState={this.props.gameState} />
+        <TileBankContainer socket={this.props.socket} gameState={this.props.gameState} />
+        <RevealedClue socket={this.props.socket} gameState={this.props.gameState}/>
       </div>
+      }
     </div>
   </div>
-);
+  )
+  }
+}
 
 export default Game;
