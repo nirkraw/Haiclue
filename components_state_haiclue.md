@@ -159,3 +159,6 @@ remove numbers make case insensitive
 add error for empty room name
 
 add css highlighting to cards when on guess phase
+
+handle room join send all tiles room js
+backend app.js

@@ -40,25 +40,25 @@ class TargetWords extends React.Component {
      :
      e.currentTarget.innerText
 
-     
-    if (guessedWord === currentPlayerTargetWord) {
-      socket.emit("submit guess", gameState.roomName, localPlayer.handle, true, currentPlayer.handle)
-      // tell the backend that a guess was submitted
-      // increment points for localPlayer and currentPlayer
-      // when all guesses are submitted ( total number of players - 1), then reveal currentPlayer targetWord, and the new points totals 
-    } else {
-      socket.emit("submit guess", gameState.roomName, localPlayer.handle, false, currentPlayer.handle)
-      // tell the backend that a guess was submitted
-      
-      // when all guesses are submitted ( total number of players - 1), then reveal currentPlayer targetWord, and the new points totals 
-    }
-  
+    let matchBoolean = false
+    if (guessedWord === currentPlayerTargetWord) matchBoolean= true;
+    
+    socket.emit("submit guess", gameState.roomName, localPlayer.handle, matchBoolean, currentPlayer.handle)
   }
 
   render() {
     const { gameState } = this.props;
 
+    
     if(!gameState) return null; 
+
+    if(gameState.over) {
+        return (
+          <div>
+            <h1>Game Over!</h1>
+          </div>
+        )
+    } 
 
     let targetWords;
     if (gameState) {
@@ -132,11 +132,7 @@ class TargetWords extends React.Component {
       });
     }
 
-    // if gamephase = to clue phase 
 
-    // map new target words
-
-    // add onlick
 
     return (
       <div>
@@ -144,13 +140,7 @@ class TargetWords extends React.Component {
           <h3>Target Words</h3>
           {newTargetWords}
         </div>
-        <Scoreboard
-        // playerOne={this.props.playerOne}
-        // playerTwo={this.props.playerTwo}
-        // playerThree={this.props.playerThree}
-        // playerFour={this.props.playerFour}
-        // takes in as props, the guess from target words
-        />
+        <Scoreboard players= {gameState.players}/>
       </div>
     );
   }

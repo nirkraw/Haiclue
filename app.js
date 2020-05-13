@@ -37,7 +37,7 @@ io.on("connect", (socket) => {
     }
   });
 
-  socket.on("join", (roomName, handle, targetWords, clueTiles) => {
+  socket.on("join", (roomName, handle, tiles) => {
     if (!rooms[roomName]) {
       socket.emit("sendErrors", "couldn't find a room with that name");
 
@@ -49,7 +49,8 @@ io.on("connect", (socket) => {
         rooms[roomName].addPlayer(handle, socket.id);
         
         if (rooms[roomName].playerCount === 2) {//change to 4
-            rooms[roomName].startGame(targetWords, clueTiles);
+            rooms[roomName].storeTiles(Object.values(tiles));
+            rooms[roomName].startGame(); 
         }
 
         rooms[roomName].submit(handle);

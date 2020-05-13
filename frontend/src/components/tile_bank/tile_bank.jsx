@@ -13,28 +13,32 @@ class TileBank extends React.Component {
   render() {
     const { gameState } = this.props;
     if (!gameState) return null;
-    if (gameState.phase === "clue construction") {
-      const player = Object.values(this.props.gameState.players).filter(
-        (player) => {
-          return player.handle === this.props.user.handle;
-        }
-      )[0];
+
+    const player = Object.values(this.props.gameState.players).filter(
+      (player) => {
+        return player.handle === this.props.user.handle;
+      }
+    )[0];
+
+    const tiles = player.clueTiles;
+    
+    let newTiles = tiles.map((tile, index) => {
+      return (
+        <Tile
+          key={index}
+          roomName={gameState.roomName}
+          socket={this.props.socket}
+          player={player}
+          tile={tile}
+          currentColor={gameState.currentColor}
+          display={tile.display}
+          type="bank"
+        />
+      );
+    });
+
+    if (gameState.phase === "clue construction") {      
       if (!player.submitedClue) {
-        let tiles = player.clueTiles;
-        let newTiles = tiles.map((tile, index) => {
-          return (
-            <Tile
-              key={index}
-              roomName={gameState.roomName}
-              socket={this.props.socket}
-              player={player}
-              tile={tile}
-              currentColor={gameState.currentColor}
-              display={tile.display}
-              type="bank"
-            />
-          );
-        });
         return (
           <div className="clue-bank-container">
             <div className="clue-container">
@@ -59,10 +63,10 @@ class TileBank extends React.Component {
           </div>
         );
       } else {
-        return <h1>Waiting for other players</h1>
+          return <h1>Waiting for other players</h1>
       }
     } else {
-      return null;
+        return null;
     }
   }
 }
