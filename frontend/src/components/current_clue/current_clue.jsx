@@ -47,7 +47,7 @@ class CurrentClue extends React.Component {
                         {currentClue}
                     </div>
             )
-            } else if (gameState.phase === "clue guessing" && localPlayer.handle == currentPlayer.handle){
+            } else if (gameState.phase === "clue guessing" && localPlayer.handle === currentPlayer.handle){
                 return (
                     <div className="currentClue">
                         <h1>Your clue is being guessed!</h1>

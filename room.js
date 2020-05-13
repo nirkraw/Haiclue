@@ -10,7 +10,9 @@ class Room {
       clueSubmissionCount: 0,
       clueGuessCount: 0,
       phase: "clue construction",
-      currentPlayerTurn: 1 
+      currentPlayerTurn: 1,
+      round: 1,
+      over: false,
     };
     
     this.playerCount = 0;
@@ -27,6 +29,8 @@ class Room {
     this.submitClue = this.submitClue.bind(this);
     this.submitGuess = this.submitGuess.bind(this);
     this.unrevealClue = this.unrevealClue.bind(this);
+    this.nextRound = this.nextRound.bind(this);
+    this.gameOver = this.gameOver.bind(this);
   }
 
   addPlayer(handle, socketId) {
@@ -129,7 +133,9 @@ class Room {
   submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle) {
     const localPlayer = this.game.players[localPlayerhandle];
     const currentPlayer = this.game.players[currentPlayerHandle];
+
     this.game.clueGuessCount++
+ 
     if(matchBoolean) {
       localPlayer.points++
       currentPlayer.points++
@@ -138,13 +144,42 @@ class Room {
     if(this.game.clueGuessCount === this.playerCount - 1) {
       currentPlayer.revealedClue = true;
       this.game.currentPlayerTurn++
+      this.game.clueGuessCount = 0
     }
+
+    if (this.game.currentPlayerTurn === this.playerCount + 1) {
+        debugger
+        // this.nextRound();
+        this.game.round++
+    }
+    
   }
 
   unrevealClue(handle) {
     const player = this.game.players[handle];
     player.revealedClue = false;
   }
+
+  nextRound(targetWord, clueTiles) {
+    this.game.currentPlayerTurn = 1
+    if (this.game.round === 3) {
+      this.gameOver();
+    }
+
+
+    // this.createTargetWords(targetWords);
+    // this.assignPlayerTargetWord();
+    // this.assignPlayerClueTiles(clueTiles);
+
+    startGame(targetWords, clueTiles)
+    this.game.phase = "clue construction"
+    this.game.round++ 
+  }
+
+  gameOver() {
+    this.game.over = true 
+  }
+
 }
 
 module.exports = Room;

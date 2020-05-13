@@ -49,7 +49,16 @@ class TargetWords extends React.Component {
   render() {
     const { gameState } = this.props;
 
+    
     if(!gameState) return null; 
+
+    if(gameState.over) {
+        return (
+          <div>
+            <h1>Game Over!</h1>
+          </div>
+        )
+    } 
 
     let targetWords;
     if (gameState) {

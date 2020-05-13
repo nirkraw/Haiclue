@@ -15,6 +15,7 @@ export default class CreateRoomForm extends Component {
       errors: "",
       gameState: null, 
       readOnly: false,
+      //round: 1
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -92,8 +93,16 @@ export default class CreateRoomForm extends Component {
 
   
   render() {
-
     const {gameState} = this.state
+
+    // if(gameState.round > this.state.round) {
+    //   this.fetchTiles()
+    //   let targetWords = this.props.tiles.slice(60);
+    //   let tiles = this.props.tiles.slice(0, 60)
+    //   this.socket.emit("new round", tiles, targetWords)
+    //   this.setState({round: gameState.round})
+    // }
+
     let welcome = "Create or Join a Room";
     if (this.state.message) welcome = this.state.message;
     let players;
