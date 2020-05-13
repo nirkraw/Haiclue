@@ -10,9 +10,6 @@ import yellow from "../images/yellow-tile.png";
 class TargetWords extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentColor: "black", //change this later 
-    };
 
     this.handleSubmitGuess = this.handleSubmitGuess.bind(this);
   }
@@ -88,7 +85,7 @@ class TargetWords extends React.Component {
       { green: green },
       { yellow: yellow },
     ];
-    let currentColor = this.state.currentColor;
+    let currentColor = gameState.currentColor;
 
     const localPlayer = Object.values(gameState.players).filter(
       (player) => {

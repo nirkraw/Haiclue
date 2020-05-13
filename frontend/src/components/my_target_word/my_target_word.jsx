@@ -9,36 +9,43 @@ import "../css/my_target_word.css";
 class MyTargetWord extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
   
-    };
     this.getWord = this.getWord.bind(this);
   }
 
   getWord() {
-    const player = Object.values(this.props.gameState.players).filter(
+    const {gameState, user} = this.props 
+    const player = Object.values(gameState.players).filter(
       (player) => {
-        return player.handle === this.props.user.handle;
+        return player.handle === user.handle;
       }
-    );
+    )[0];
 
-       return player[0].targetWord.black // probably has to change on flipped tile
+       const currentColor = gameState.currentColor;
+       if(player.targetWord) {
+         const targetWord = player.targetWord;
+         return targetWord[currentColor];
+       } else {
+         return " ";
+       }
   }
 
   
   render() {
-    let cards = [
+    const cards = [
       blue,
       red,
       green,
       yellow,
     ];
 
-    if (!this.props.gameState) return null;
-    let myWord = this.getWord()
-    let picNumber
+    const {gameState} = this.props 
+    if (!gameState) return null;
+
+    let myWord = this.getWord();
+    let picNumber;
     for (let i = 0; i < 4; i++) {
-      if ((this.props.gameState.targetWords[i].black === myWord) || (this.props.gameState.targetWords[i].black === myWord)) 
+      if ((gameState.targetWords[i][gameState.currentColor] === myWord)) 
       { picNumber = i}
     }
     return (

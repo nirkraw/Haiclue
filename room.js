@@ -98,12 +98,19 @@ class Room {
     this.startRound();
   }
 
+
   startRound() {
     this.resetPlayersSubmitedClue();
     this.game.clueSubmissionCount = 0
     this.game.currentPlayerTurn = 1;
     this.game.phase = "clue construction";
     this.game.round++;
+
+    if(this.game.round % 2 === 0) {
+      this.game.currentColor = "white"
+    } else {
+      this.game.currentColor = "black"
+    }
 
     if (this.game.round === 3) {
       this.gameOver();
