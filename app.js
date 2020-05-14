@@ -88,6 +88,10 @@ io.on("connect", (socket) => {
     rooms[roomName].unrevealClue(handle);
   });
 
+  socket.on("play again", (roomName) => {
+    rooms[roomName].restartGame();
+  });
+
 
  socket.on("disconnect", () => console.log("Client disconnected"));
 }); // end of "connect" DONT DELETE

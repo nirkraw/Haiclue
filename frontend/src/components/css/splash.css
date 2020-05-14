@@ -6,6 +6,14 @@
     height: auto;
 }
 
+.splash-container-2 {
+    width: 2000px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
 #join-a-game {
     margin-top: 150px;
 }

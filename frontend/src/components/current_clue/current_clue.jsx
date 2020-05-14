@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/layout.scss';
+import '../css/layout.css';
 import '../css/current_clue.css';
 import Tile from '../tile_bank/tile';
 import Timer from '../timer/timer';

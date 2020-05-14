@@ -35,6 +35,7 @@ class Room {
     this.getRoundTiles = this.getRoundTiles.bind(this);
     this.startRound = this.startRound.bind(this);
     this.resetPlayersSubmitedClue = this.resetPlayersSubmitedClue.bind(this);
+    this.restartGame = this.restartGame.bind(this);
   }
 
   addPlayer(handle, socketId) {
@@ -101,7 +102,6 @@ class Room {
 
 
   startRound() {
-    
     this.resetPlayersSubmitedClue();
     this.game.clueSubmissionCount = 0
     this.game.currentPlayerTurn = 1;
@@ -109,7 +109,7 @@ class Room {
     this.game.round++;
 
     
-    if (this.game.round === 4) {
+    if (this.game.round === 2) {
       this.gameOver();
     }
     
@@ -219,6 +219,15 @@ class Room {
 
   gameOver() {
     this.game.over = true;
+  }
+
+  restartGame() {
+    this.game.round = 0;
+    this.game.over = false; 
+    Object.values(this.game.players).forEach((player) => {
+      player.points = 0; 
+    });
+    this.startRound();
   }
 }
 

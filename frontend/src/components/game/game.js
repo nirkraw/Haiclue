@@ -56,7 +56,7 @@ class Game extends React.Component {
         <MyTargetWordContainer  gameState={this.props.gameState} />
         <TileBankContainer socket={this.props.socket} gameState={this.props.gameState} />
         {(this.props.gameState.over) 
-        ? <GameOver gameState={this.props.gameState}/>
+        ? <GameOver socket ={this.props.socket} gameState={this.props.gameState}/>
         : <></>
         }
       </div>

@@ -1,4 +1,5 @@
 .game-over-container {
+    margin: -60px auto;
     }
 
 .game-over-container ul {
@@ -9,6 +10,7 @@
     list-style: none;
     font-size: 20px;
     text-align: left;
+    padding: 0; 
 }
 
 .game-over-container ul li {
@@ -26,3 +28,41 @@
     }
 
 .points { float: right;}
+
+
+
+input:focus {
+    outline: none;
+}
+.game-over-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.game-over-button {
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    margin-top: 50px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 22px;
+    color: black;
+    background-color: white;
+    border-radius: 32px;
+    width: 175px;
+    height: 60px;
+    cursor: pointer;
+    float: right;
+    border-style: none;
+}
+
+.game-over-button:hover {   
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    background-color: #00c8a6;
+    border-color: #00c8a6; 
+}
