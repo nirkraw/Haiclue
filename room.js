@@ -50,11 +50,11 @@ class Room {
       clueTiles: [],
       selectedClueTiles: [],
       submitedClue: false,
-      submitedGuess: false, // the guess
+      submitedGuess: false, 
       revealedClue: false,
     };
 
-    if (Object.values(this.game.players).length < 2) {
+    if (Object.values(this.game.players).length < 3) {
       // chnage to 4
       player.number = Object.values(this.game.players).length + 1;
       this.game.players[handle] = player;
@@ -192,6 +192,7 @@ class Room {
   submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle) {
     const localPlayer = this.game.players[localPlayerhandle];
     const currentPlayer = this.game.players[currentPlayerHandle];
+    currentPlayer.submitedGuess = true;
 
     this.game.clueGuessCount++;
 
@@ -201,6 +202,9 @@ class Room {
     }
 
     if (this.game.clueGuessCount === this.playerCount - 1) {
+      Object.values(this.game.players).forEach((player) => {
+        player.submitedGuess = false;
+      });
       currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor]
       currentPlayer.revealedClue = true;
       this.game.currentPlayerTurn++;
