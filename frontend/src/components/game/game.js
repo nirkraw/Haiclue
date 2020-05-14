@@ -5,7 +5,7 @@ import CurrentClueContainer from "../current_clue/current_clue_container";
 import RevealedClue from "../revealed_clue/revealed_clue";
 import TargetWordsContainer from "../target_words/target_words_container";
 import Logout from '../global/logout-instructions-button';
-
+import GameOver from "../game_over/game_over";
 
 class Game extends React.Component {
   constructor(props) {
@@ -55,7 +55,10 @@ class Game extends React.Component {
         <CurrentClueContainer socket={this.props.socket} gameState={this.props.gameState}/>
         <MyTargetWordContainer  gameState={this.props.gameState} />
         <TileBankContainer socket={this.props.socket} gameState={this.props.gameState} />
-        <RevealedClue socket={this.props.socket} gameState={this.props.gameState}/>
+        {(this.props.gameState.over) 
+        ? <GameOver gameState={this.props.gameState}/>
+        : <></>
+        }
       </div>
       }
     </div>

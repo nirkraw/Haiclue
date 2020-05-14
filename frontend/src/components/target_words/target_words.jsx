@@ -63,10 +63,9 @@ class TargetWords extends React.Component {
     if(gameState.over) {
         return (
           <div>
-            
-            <GameOver
-              gameState={gameState}
-            />
+            {/* <GameOver
+              gameState={gameState} */}
+            {/* /> */}
           </div>
         )
     } 
