@@ -35,6 +35,9 @@ class Room {
     this.getRoundTiles = this.getRoundTiles.bind(this);
     this.startRound = this.startRound.bind(this);
     this.resetPlayersSubmitedClue = this.resetPlayersSubmitedClue.bind(this);
+    this.insertLine = this.insertLine.bind(this);
+    this.insertLine = this.insertLine.bind(this);
+    this.removeLine = this.removeLine.bind(this);
   }
 
   addPlayer(handle, socketId) {
@@ -173,6 +176,29 @@ class Room {
         player.selectedClueTiles.splice(i, 1);
       }
     }
+  }
+
+  insertLine(handle) {
+    const player = this.game.players[handle];
+    
+    player.selectedClueTiles.push(`${player.selectedClueTiles.length}`);
+    // for (let i = 0; i < player.clueTiles.length; i++) {
+    //   if (tile._id === player.clueTiles[i]._id) {
+    //     player.clueTiles.splice(i, 1);
+    //   }
+    // }
+  }
+// word, word, word ||   
+// word, word, 
+  removeLine(handle, lineIndex) {
+    const player = this.game.players[handle];
+    // player.clueTiles.push("1234");
+    // for (let i = 0; i < player.selectedClueTiles.length; i++) {
+      // if ("1234" === player.selectedClueTiles[i]._id) {
+      // if (lineIndex === i) {
+        player.selectedClueTiles.splice(lineIndex, 1);
+      // }
+    // }
   }
 
   submitClue(handle) {

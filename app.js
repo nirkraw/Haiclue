@@ -88,6 +88,14 @@ io.on("connect", (socket) => {
     rooms[roomName].unrevealClue(handle);
   });
 
+  socket.on("insert line", (roomName, handle) => {
+    rooms[roomName].insertLine(handle);
+  });
+
+  socket.on("remove line", (roomName, handle, lineIndex) => {
+    rooms[roomName].removeLine(handle, lineIndex);
+  });
+
 
  socket.on("disconnect", () => console.log("Client disconnected"));
 }); // end of "connect" DONT DELETE

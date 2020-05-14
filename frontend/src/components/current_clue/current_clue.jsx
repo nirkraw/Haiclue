@@ -38,6 +38,11 @@ class CurrentClue extends React.Component {
             
         const tiles = currentPlayer.selectedClueTiles 
         const currentClue = tiles.map((tile, index) => {
+            if (typeof tile === 'string') {
+                return (
+                    <br/>
+                )
+              }
             return (
                 <Tile
                 key={index}
