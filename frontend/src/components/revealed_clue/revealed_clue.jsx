@@ -28,6 +28,7 @@ export default class RevealedClue extends Component {
         if (playerTargetWord) {
             return(
             <h1>{playerHandle}'s word was {playerTargetWord}!</h1>
+            // correct image
             )
         } else {
             return null;

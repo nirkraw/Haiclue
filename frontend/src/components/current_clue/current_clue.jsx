@@ -40,7 +40,7 @@ class CurrentClue extends React.Component {
         const currentClue = tiles.map((tile, index) => {
             if (typeof tile === 'string') {
                 return (
-                    <br/>
+                    <br key={index*1000}/>
                 )
               }
             return (

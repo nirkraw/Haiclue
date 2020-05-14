@@ -139,14 +139,14 @@ export default class CreateRoomForm extends Component {
             />
           </label>
           <div className="cr-button-container">
+          <button className="butts" type="submit" onClick={this.handleRoomJoin}>
+            Join
+          </button>
           <button
             className="butts"
             type="submit"
             onClick={this.handleRoomCreate}>
             Create
-          </button>
-          <button className="butts" type="submit" onClick={this.handleRoomJoin}>
-            Join
           </button>
           <button
             className="butts"

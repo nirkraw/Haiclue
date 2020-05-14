@@ -25,7 +25,6 @@ class ClueContruction extends React.Component {
 
     removeLine(e) {
         e.preventDefault();
-        debugger
         this.props.socket.emit("remove line", this.props.roomName, this.props.player.handle, e.currentTarget.id);
     }
 
@@ -34,10 +33,10 @@ class ClueContruction extends React.Component {
         let clueConstruction = this.props.clueConstructionArray.map((tile, index) => {
             if (typeof tile === 'string') {
                 return (
-                  <>
-                    <div id={index} onClick={this.removeLine} className={`color-${currentColor} tile add-line`}>|| </div>
+                  <span key={index*1000}>
+                    <div id={index} key={index} onClick={this.removeLine} className={`color-${currentColor} tile add-line`}>|| </div>
                     <br/>
-                  </>
+                  </span>
                 )
               }
             return (
