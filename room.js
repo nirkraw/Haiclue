@@ -48,6 +48,8 @@ class Room {
       number: 0, // default value // number of player
       targetWord: "",
       correctWord: "",
+      targetIndex: null,
+      correctIndex: null,
       points: 0,
       clueTiles: [],
       selectedClueTiles: [],
@@ -84,7 +86,9 @@ class Room {
   assignPlayersTargetWord() {
     // before each round
     Object.values(this.game.players).forEach((player) => {
-      player.targetWord = this.game.targetWords[this.getRandomInt(4)];
+      let index = this.getRandomInt(4);
+      player.targetWord = this.game.targetWords[index];
+      player.targetIndex = index;
     });
   }
 
@@ -180,25 +184,12 @@ class Room {
 
   insertLine(handle) {
     const player = this.game.players[handle];
-    
     player.selectedClueTiles.push(`${player.selectedClueTiles.length}`);
-    // for (let i = 0; i < player.clueTiles.length; i++) {
-    //   if (tile._id === player.clueTiles[i]._id) {
-    //     player.clueTiles.splice(i, 1);
-    //   }
-    // }
   }
-// word, word, word ||   
-// word, word, 
+
   removeLine(handle, lineIndex) {
     const player = this.game.players[handle];
-    // player.clueTiles.push("1234");
-    // for (let i = 0; i < player.selectedClueTiles.length; i++) {
-      // if ("1234" === player.selectedClueTiles[i]._id) {
-      // if (lineIndex === i) {
-        player.selectedClueTiles.splice(lineIndex, 1);
-      // }
-    // }
+    player.selectedClueTiles.splice(lineIndex, 1);
   }
 
   submitClue(handle) {
@@ -207,10 +198,8 @@ class Room {
       player.submitedClue = true;
       this.game.clueSubmissionCount++;
     }
-    // debugger
     if (this.game.clueSubmissionCount === this.playerCount) {
       // trigger into the next game phase
-      // debugger
       this.game.phase = "clue guessing";
     }
   }
@@ -226,8 +215,22 @@ class Room {
       currentPlayer.points++;
     }
 
+    // let { correctWord, targetWord, targetIndex, correctIndex } = currentPlayer
+    let { targetWord, targetIndex } = currentPlayer
+
     if (this.game.clueGuessCount === this.playerCount - 1) {
-      currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor]
+      debugger
+      currentPlayer.correctWord = targetWord[this.game.currentColor];
+      currentPlayer.correctIndex = targetIndex;
+      // targetIndex = this.game.targetWords.indexOf(correctWord) 
+      // for (let i = 0; i < this.game.targetWords.length; i++ ) {
+      //   if (this.game.targetWords[i][this.game.currentColor] === correctWord) {
+      //     targetIndex = i;
+      //   }
+      // }
+      // debugger
+      
+
       currentPlayer.revealedClue = true;
       this.game.currentPlayerTurn++;
       this.game.clueGuessCount = 0;

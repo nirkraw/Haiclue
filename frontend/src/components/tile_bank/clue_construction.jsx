@@ -54,7 +54,8 @@ class ClueContruction extends React.Component {
         });
         return (<div>
             <button onClick={this.submitClue} id="clue-submit-button">Submit</button>
-            <button onClick={this.insertLine} id="clue-submit-button">Add Line</button>
+            
+            <button onClick={this.insertLine} id="clue-add-line-button">Add Line</button>
             <div>
             <ReactCSSTransitionGroup
             transitionName="tiles"
