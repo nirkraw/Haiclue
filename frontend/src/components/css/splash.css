@@ -3,6 +3,11 @@
     margin: 30px auto;
     display: flex;
     flex-direction: column;
+    height: auto;
+}
+
+#join-a-game {
+    margin-top: 150px;
 }
 
 .splash-container h1 {
@@ -122,7 +127,6 @@ input:focus {
     display: block;
     margin: 0 auto;
     width: 20%;
-    margin-bottom: 150px;
 }
 .splash-cards img {
     padding: 2%;

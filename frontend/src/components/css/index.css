@@ -4,10 +4,8 @@ body {
     color: white; 
     background-color: rgb(6, 6, 6);
     font-family: 'Helvetica Neue', sans-serif;
+    font-weight: bold;
 }
-
-h3 {font-size: 13px; color: red; 
-    display:none}
 
 .logo { 
     font-size: 64px;

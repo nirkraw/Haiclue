@@ -15,19 +15,47 @@
 } 
 
 .color-black {
+    transform: rotateX(0);
     border-color: white;
     color: white; 
+    background-color: rgb(6, 6, 6);
 }
 
 .color-white {
-        border-color: black;
+        transform: rotateX(0);
         color: black;
         background-color:white;
 }
 
+.flip {
+    animation: flip 1s;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+@-webkit-keyframes flip {
+    from {
+        transform: rotateX(90deg)
+    }
+
+    to {
+        transform: rotateX(0deg)
+    }
+}
+
+@keyframes flip {
+    from {
+        transform: rotateX(90deg)
+    }
+
+    to {
+        transform: rotateX(0deg)
+    }
+}
+
 .tile { 
         width: 120px;
-        border: 2px solid; 
+        border: 3px solid; 
         padding: 10px; 
         margin: 6px;
         font-size: 18px;
@@ -35,6 +63,9 @@
         display: inline-block;
         font-weight: bold;
         box-sizing: border-box;
+        border-style: outset;
+        /* box-shadow: 10px 10px 8px 1px grey */
+    
 }
 
 .emptyTileSpace {
@@ -49,8 +80,15 @@
     box-sizing: border-box;
 }
 
-.tile:hover {
-    border-color: red;
+.tile.color-black.hoverable:hover {
+    background-color:rgba(7, 192, 161, 0.287);
+    border-color:rgb(7, 192, 161);
+    cursor: pointer;
+}
+
+.tile.color-white.hoverable:hover {
+    background-color: #00c8a6;
+    border-color: #059c83;
     cursor: pointer;
 }
 

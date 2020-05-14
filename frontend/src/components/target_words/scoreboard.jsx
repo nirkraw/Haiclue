@@ -8,13 +8,12 @@ class ScoreBoard extends React.Component {
 
     render() {
         let players = Object.values(this.props.players).map( (player, index) => {
-        return (<div key={index}>
+        return (<div key={index} className='wrapper'>
                     <div className="points-div">{player.points}</div>
                     <div className="handle-div">{player.handle}</div>
                 </div>)
         });
         return (<div className="scoreboard-container">
-            <h3>Score</h3>
                 {players}
         </div>)
     }

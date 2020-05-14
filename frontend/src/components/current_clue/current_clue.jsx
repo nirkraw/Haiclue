@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/layout.css';
+import '../css/layout.scss';
 import '../css/current_clue.css';
 import Tile from '../tile_bank/tile';
 import Timer from '../timer/timer';
@@ -50,6 +50,24 @@ class CurrentClue extends React.Component {
                 );
             });
 
+            let selectorTri = (
+                <svg
+                    width="100%"
+                    height="80px"
+                    viewBox="0 0 400 400"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className='selector-tri'
+                >
+                    <path
+                        d="M -200 100 L 600 100 L 200 300 z"
+                        fill="white"
+                        stroke="rgb(70, 70, 70)"
+                        stroke-width="20"
+                        stroke-linejoin="bevel"
+                    />
+                </svg>
+            );
+
 
             if (gameState.phase === "clue guessing" && localPlayer.handle !== currentPlayer.handle) {
                 return(
@@ -64,6 +82,7 @@ class CurrentClue extends React.Component {
                                 currentPlayerHandle={currentPlayer.handle}
                             />
                         </div>
+                        {selectorTri}
                         <h1>Guess {currentPlayer.handle}'s Clue!</h1>
                         {currentClue}
                     </div>
@@ -135,7 +154,6 @@ export default CurrentClue;
 //         });
 
 //         return (<div className="currentClueContainer">
-//             <h3>Current Clue</h3>
 
 //                 {clueTiles}
 //                 {/* <div><Timer timer='90' /></div> */}

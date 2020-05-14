@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/layout.css';
+import '../css/layout.scss';
 import Timer from '../timer/timer';
 import Tile from './tile';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -32,7 +32,6 @@ class ClueContruction extends React.Component {
             );
         });
         return (<div>
-            <h3>Clue Construction</h3>
             <button onClick={this.submitClue} id="clue-submit-button">Submit</button>
             <div>
             <ReactCSSTransitionGroup
@@ -45,7 +44,7 @@ class ClueContruction extends React.Component {
             <div>
                 <Timer
                     phase={'submit clue'}
-                    secs={90}
+                    secs={30}
                     socket={this.props.socket}
                     roomName={this.props.roomName}
                     handle={this.props.player.handle}

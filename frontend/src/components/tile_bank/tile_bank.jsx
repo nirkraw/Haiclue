@@ -54,7 +54,6 @@ class TileBank extends React.Component {
                   />
             </div>
             <div className="bank-container">
-              <h3>Tilebank</h3>
               <ReactCSSTransitionGroup
                           transitionName="tiles"
                           transitionEnterTimeout={500}

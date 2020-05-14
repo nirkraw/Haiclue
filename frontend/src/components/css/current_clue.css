@@ -1,3 +1,19 @@
 .currentClue {
-    border: 2px solid white;
+
 }
+
+.selector-tri {
+        
+       -moz-transform: scale(-1, -1);
+       -o-transform: scale(-1, -1);
+       -webkit-transform: scale(-1, -1);
+       transform: scale(-1, -1);
+
+
+}
+
+/* .selector-tri path {
+       border: 5px solid grey;
+       border-style: outset;
+} */
+

@@ -66,7 +66,7 @@ class Splash extends React.Component {
             <img src={red} alt="red"/>
             <img src={yellow} alt="yellow"/>
           </section>
-          <h1 className="splash-label">Join a Game</h1>
+          <h1 className="splash-label" id="join-a-game">Join a Game</h1>
             <div className='form-container'>
               <AuthRoute path="/" component={LoginFormContainer} />
               <AuthRoute path="/" component={SignupFormContainer} />

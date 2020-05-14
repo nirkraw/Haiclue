@@ -1,16 +1,21 @@
 import React from "react";
 import Scoreboard from "./scoreboard";
 import GameOver from "../game_over/game_over";
-import "../css/layout.css";
+import "../css/layout.scss";
 import "../css/target_words.css";
 import blue from "../images/blue-tile.png";
 import red from "../images/red-tile.png";
 import green from "../images/green-tile.png";
 import yellow from "../images/yellow-tile.png";
 
+
 class TargetWords extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      currentColor: "white"
+    }
 
     this.handleSubmitGuess = this.handleSubmitGuess.bind(this);
   }
@@ -50,6 +55,11 @@ class TargetWords extends React.Component {
     
     if(!gameState) return null; 
 
+    let flip;
+    if (gameState.currentColor !== this.state.currentColor) {
+        flip = true;
+    }
+
     if(gameState.over) {
         return (
           <div>
@@ -66,22 +76,6 @@ class TargetWords extends React.Component {
       targetWords = gameState.targetWords;
     }
     if (!targetWords) return null;
-
-    let selectorTri = (
-      <svg
-        width="100%"
-        height="80px"
-        viewBox="0 0 400 400"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M -200 100 L 600 100 L 200 300 z"
-          fill="white"
-          stroke="white"
-          stroke-width="3"
-        />
-      </svg>
-    );
 
     let cards = [
       { blue: blue },
@@ -109,7 +103,10 @@ class TargetWords extends React.Component {
               alt={Object.keys(cards[index])}
               onClick={this.handleSubmitGuess}
             />
-            <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile`}>{tileSide}</div>
+            {(flip) 
+            ? <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile hoverable flip`} >{tileSide}</div>
+            : <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile hoverable`} >{tileSide}</div>
+            }
           </div>
         );
       });
@@ -124,26 +121,32 @@ class TargetWords extends React.Component {
               alt={Object.keys(cards[index])}
               
             />
-            <div 
-              className={`color-${currentColor} tile`}
-              >{tileSide}
-            </div>
+            {(flip) 
+            ? <div className={`color-${currentColor} tile flip`}>{tileSide}</div>
+            : <div className={`color-${currentColor} tile`}>{tileSide}</div>
+            }
           </div>
         );
       });
     }
 
-
+    setTimeout(() => {
+      this.setState({ currentColor: gameState.currentColor })
+      flip = false; 
+    }, 1300);
+    
 
     return (
       <div>
         <div>
-          <h3>Target Words</h3>
-          {newTargetWords}
+              {newTargetWords}
         </div>
         <Scoreboard players= {gameState.players}/>
       </div>
     );
+
+
+
   }
 }
 
