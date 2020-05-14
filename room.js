@@ -109,7 +109,7 @@ class Room {
     this.game.round++;
 
     
-    if (this.game.round === 3) {
+    if (this.game.round === 4) {
       this.gameOver();
     }
     

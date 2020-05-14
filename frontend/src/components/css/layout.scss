@@ -19,21 +19,18 @@
     border-color: white;
     color: white; 
     background-color: rgb(6, 6, 6);
-    -webkit-animation: flip 1s;
-    animation: flip 1s;
-    perspective: 1000px;
-    transform-style: preserve-3d;
-
 }
 
 .color-white {
         transform: rotateX(0);
         color: black;
         background-color:white;
-        -webkit-animation: flip 1s;
-        animation: flip 1s;
-        perspective: 1000px;
-        transform-style: preserve-3d;
+}
+
+.flip {
+    animation: flip 1s;
+    perspective: 1000px;
+    transform-style: preserve-3d;
 }
 
 @-webkit-keyframes flip {
@@ -58,7 +55,7 @@
 
 .tile { 
         width: 120px;
-        border: 2px solid; 
+        border: 3px solid; 
         padding: 10px; 
         margin: 6px;
         font-size: 18px;
@@ -66,7 +63,8 @@
         display: inline-block;
         font-weight: bold;
         box-sizing: border-box;
-        /* box-shadow: 10px 10px 8px 10px black; */
+        border-style: outset;
+        /* box-shadow: 10px 10px 8px 1px grey */
     
 }
 
@@ -82,8 +80,15 @@
     box-sizing: border-box;
 }
 
-.tile.hoverable:hover {
-    background-color:#007cc2;
+.tile.color-black.hoverable:hover {
+    background-color:rgba(7, 192, 161, 0.287);
+    border-color:rgb(7, 192, 161);
+    cursor: pointer;
+}
+
+.tile.color-white.hoverable:hover {
+    background-color: #00c8a6;
+    border-color: #059c83;
     cursor: pointer;
 }
 

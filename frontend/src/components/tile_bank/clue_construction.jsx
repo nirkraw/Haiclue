@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/layout.css';
+import '../css/layout.scss';
 import Timer from '../timer/timer';
 import Tile from './tile';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
