@@ -1,13 +1,13 @@
 import React from "react";
-import Scoreboard from "./scoreboard";
+import Scoreboard from "../scoreboard/scoreboard";
 import GameOver from "../game_over/game_over";
-import "../css/layout.scss";
+import "../css/layout.css";
 import "../css/target_words.css";
 import blue from "../images/blue-tile.png";
 import red from "../images/red-tile.png";
 import green from "../images/green-tile.png";
 import yellow from "../images/yellow-tile.png";
-
+import '../css/splash.css'
 
 class TargetWords extends React.Component {
   constructor(props) {
@@ -60,15 +60,6 @@ class TargetWords extends React.Component {
         flip = true;
     }
 
-    if(gameState.over) {
-        return (
-          <div>
-            {/* <GameOver
-              gameState={gameState} */}
-            {/* /> */}
-          </div>
-        )
-    } 
 
     let targetWords;
     if (gameState) {
@@ -91,9 +82,30 @@ class TargetWords extends React.Component {
     )[0];
 
     let newTargetWords;
+
+    if (gameState.over) {
+      return newTargetWords = targetWords.map((tile, index) => {
+        return (
+          <div key={index} className="target-words-container">
+            <img
+              src={Object.values(cards[index])}
+              className="target-img"
+              alt={Object.keys(cards[index])}
+              onClick={this.handleSubmitGuess}
+            />
+          </div>
+        );
+      });
+    } 
+
+    setTimeout(() => {
+      this.setState({ currentColor: gameState.currentColor });
+      flip = false;
+    }, 1300);
+
     if (gameState.phase === "clue guessing" && localPlayer.number !== gameState.currentPlayerTurn) {
-      newTargetWords = targetWords.map((tile, index) => {
-        let tileSide = tile[currentColor]; //string "casino"
+      return newTargetWords = targetWords.map((tile, index) => {
+        let tileSide = tile[currentColor]; 
         return (
           <div key={index} className="target-words-container">
             <img
@@ -110,42 +122,24 @@ class TargetWords extends React.Component {
         );
       });
     } else {
-      newTargetWords = targetWords.map((tile, index) => {
-        let tileSide = tile[currentColor]; //string "casino"
-        return (
-          <div key={index} className="target-words-container">
-            <img
-              src={Object.values(cards[index])}
-              className="target-img"
-              alt={Object.keys(cards[index])}
-              
-            />
-            {(flip) 
-            ? <div className={`color-${currentColor} tile flip`}>{tileSide}</div>
-            : <div className={`color-${currentColor} tile`}>{tileSide}</div>
-            }
-          </div>
-        );
-      });
+        return newTargetWords = targetWords.map((tile, index) => {
+          let tileSide = tile[currentColor]; //string "casino"
+          return (
+            <div key={index} className="target-words-container">
+              <img
+                src={Object.values(cards[index])}
+                className="target-img"
+                alt={Object.keys(cards[index])}
+                
+              />
+              {(flip) 
+              ? <div className={`color-${currentColor} tile flip`}>{tileSide}</div>
+              : <div className={`color-${currentColor} tile`}>{tileSide}</div>
+              }
+            </div>
+          );
+        });
     }
-
-    setTimeout(() => {
-      this.setState({ currentColor: gameState.currentColor })
-      flip = false; 
-    }, 1300);
-    
-
-    return (
-      <div>
-        <div>
-              {newTargetWords}
-        </div>
-        <Scoreboard players= {gameState.players}/>
-      </div>
-    );
-
-
-
   }
 }
 

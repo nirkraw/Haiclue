@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/layout.scss';
+import '../css/layout.css';
 import '../css/current_clue.css';
 import Tile from '../tile_bank/tile';
 import Timer from '../timer/timer';
@@ -67,8 +67,6 @@ class CurrentClue extends React.Component {
                         d="M -200 100 L 600 100 L 200 300 z"
                         fill="white"
                         stroke="rgb(70, 70, 70)"
-                        stroke-width="20"
-                        stroke-linejoin="bevel"
                     />
                 </svg>
             );

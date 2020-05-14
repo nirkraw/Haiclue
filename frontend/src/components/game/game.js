@@ -6,6 +6,7 @@ import RevealedClue from "../revealed_clue/revealed_clue";
 import TargetWordsContainer from "../target_words/target_words_container";
 import Logout from '../global/logout-instructions-button';
 import GameOver from "../game_over/game_over";
+import Scoreboard from "../scoreboard/scoreboard"; 
 
 class Game extends React.Component {
   constructor(props) {
@@ -41,27 +42,29 @@ class Game extends React.Component {
   return (
   <div>
       <Logout logout={this.props.logout} loggedIn={this.props.loggedIn} />
-
       <h1 className="logo">Haiclue</h1>
       <div className="game-container">
-      <div className="top-container">
-        <TargetWordsContainer socket={this.props.socket} gameState={this.props.gameState} />
+          <div className="top-container">
+            <TargetWordsContainer socket={this.props.socket} gameState={this.props.gameState} />
+          </div>
+          {(revealed) 
+          ? <div className="middle-container">
+            <RevealedClue socket={this.props.socket} gameState={this.props.gameState} />
+          </div> 
+          : <div className="middle-container">
+            <CurrentClueContainer socket={this.props.socket} gameState={this.props.gameState}/>
+            <TileBankContainer socket={this.props.socket} gameState={this.props.gameState} />
+            {(this.props.gameState.over) 
+            ? <GameOver socket ={this.props.socket} gameState={this.props.gameState}/>
+            : <></>
+          }
+          </div> 
+           }
+          <div className="bottom-container">
+            <MyTargetWordContainer  gameState={this.props.gameState} />
+            <Scoreboard players= {this.props.gameState.players}/>  
+          </div> 
       </div>
-      {(revealed) ? 
-      <div className="bottom-container">
-        <RevealedClue socket={this.props.socket} gameState={this.props.gameState} />
-      </div> :
-      <div className="bottom-container">
-        <CurrentClueContainer socket={this.props.socket} gameState={this.props.gameState}/>
-        <MyTargetWordContainer  gameState={this.props.gameState} />
-        <TileBankContainer socket={this.props.socket} gameState={this.props.gameState} />
-        {(this.props.gameState.over) 
-        ? <GameOver gameState={this.props.gameState}/>
-        : <></>
-        }
-      </div>
-      }
-    </div>
   </div>
   )
   }

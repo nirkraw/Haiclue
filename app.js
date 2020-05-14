@@ -43,12 +43,12 @@ io.on("connect", (socket) => {
 
     } else {
 
-      if (rooms[roomName].playerCount < 2) { // change to 4
+      if (rooms[roomName].playerCount < 3) { // change to 4
 
         socket.join(roomName);
         rooms[roomName].addPlayer(handle, socket.id);
         
-        if (rooms[roomName].playerCount === 2) {//change to 4
+        if (rooms[roomName].playerCount === 3) {//change to 4
             rooms[roomName].storeTiles(Object.values(tiles));
             rooms[roomName].startGame(); 
         }
@@ -94,6 +94,9 @@ io.on("connect", (socket) => {
 
   socket.on("remove line", (roomName, handle, lineIndex) => {
     rooms[roomName].removeLine(handle, lineIndex);
+  });
+  socket.on("play again", (roomName) => {
+    rooms[roomName].restartGame();
   });
 
 

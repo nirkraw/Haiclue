@@ -1,7 +1,6 @@
 .my-target-word-container {
     width: 200px;
     height: 150px;
-    position: absolute;
     left: 0;
     bottom: 0;
     display: flex;
