@@ -7,8 +7,8 @@ class ScoreBoard extends React.Component {
     }
 
     render() {
+        if(this.props.over) return (<></>)    
         let players = Object.values(this.props.players).map( (player, index) => {
-            debugger
         return (<div key={index} className='wrapper'>
                     { (player.submitedGuess) 
                     ? <div className="check">&#10004;</div>

@@ -62,7 +62,7 @@ class Game extends React.Component {
            }
           <div className="bottom-container">
             <MyTargetWordContainer  gameState={this.props.gameState} />
-            <Scoreboard players= {this.props.gameState.players}/>  
+            <Scoreboard over={this.props.gameState.over} players= {this.props.gameState.players}/>  
           </div> 
       </div>
   </div>
