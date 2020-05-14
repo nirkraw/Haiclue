@@ -58,7 +58,7 @@ class Room {
       revealedClue: false,
     };
 
-    if (Object.values(this.game.players).length < 3) {
+    if (Object.values(this.game.players).length < 2) {
       // chnage to 4
       player.number = Object.values(this.game.players).length + 1;
       this.game.players[handle] = player;
@@ -115,7 +115,7 @@ class Room {
     this.game.round++;
 
     
-    if (this.game.round === 2) {
+    if (this.game.round === 3) { // change number of rounds 
       this.gameOver();
     }
     
