@@ -53,7 +53,6 @@ class MyTargetWord extends React.Component {
     return (
       <div className="my-target-word-container">
         <img src={cards[picNumber]} className="my-target-word-img" alt="green" /> 
-        {/* <div className="my-target-word tile">{myWord}</div> */}
         <div className={`color-${gameState.currentColor} tile`}>{myWord}</div>
       </div>
     );
