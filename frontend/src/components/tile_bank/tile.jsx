@@ -41,7 +41,7 @@ class Tile extends React.Component {
         <>
           {this.props.display ? (
             <div
-              className={`color-${currentColor} tile`}
+              className={`color-${currentColor} tile hoverable`}
               onClick={this.clueSubmit}
             >
               {tileWord}

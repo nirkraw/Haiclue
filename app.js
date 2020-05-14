@@ -56,7 +56,6 @@ io.on("connect", (socket) => {
         rooms[roomName].submit(handle);
 
       } else {
-
         socket.emit("sendErrors", "sorry, this room is full");
       }
 

@@ -8,6 +8,7 @@ import red from "../images/red-tile.png";
 import green from "../images/green-tile.png";
 import yellow from "../images/yellow-tile.png";
 
+
 class TargetWords extends React.Component {
   constructor(props) {
     super(props);
@@ -67,22 +68,6 @@ class TargetWords extends React.Component {
     }
     if (!targetWords) return null;
 
-    let selectorTri = (
-      <svg
-        width="100%"
-        height="80px"
-        viewBox="0 0 400 400"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M -200 100 L 600 100 L 200 300 z"
-          fill="white"
-          stroke="white"
-          stroke-width="3"
-        />
-      </svg>
-    );
-
     let cards = [
       { blue: blue },
       { red: red },
@@ -109,7 +94,7 @@ class TargetWords extends React.Component {
               alt={Object.keys(cards[index])}
               onClick={this.handleSubmitGuess}
             />
-            <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile`}>{tileSide}</div>
+            <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile hoverable`}>{tileSide}</div>
           </div>
         );
       });
@@ -138,7 +123,7 @@ class TargetWords extends React.Component {
     return (
       <div>
         <div>
-          {newTargetWords}
+              {newTargetWords}
         </div>
         <Scoreboard players= {gameState.players}/>
       </div>

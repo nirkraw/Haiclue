@@ -50,6 +50,23 @@ class CurrentClue extends React.Component {
                 );
             });
 
+            let selectorTri = (
+                <svg
+                    width="100%"
+                    height="80px"
+                    viewBox="0 0 400 400"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className='selector-tri'
+                >
+                    <path
+                        d="M -200 100 L 600 100 L 200 300 z"
+                        fill="white"
+                        stroke="white"
+                        stroke-width="3"
+                    />
+                </svg>
+            );
+
 
             if (gameState.phase === "clue guessing" && localPlayer.handle !== currentPlayer.handle) {
                 return(
@@ -64,6 +81,7 @@ class CurrentClue extends React.Component {
                                 currentPlayerHandle={currentPlayer.handle}
                             />
                         </div>
+                        {selectorTri}
                         <h1>Guess {currentPlayer.handle}'s Clue!</h1>
                         {currentClue}
                     </div>

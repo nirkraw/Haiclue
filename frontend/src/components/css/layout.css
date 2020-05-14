@@ -15,14 +15,45 @@
 } 
 
 .color-black {
+    transform: rotateX(0);
     border-color: white;
     color: white; 
+    background-color: rgb(6, 6, 6);
+    -webkit-animation: flip 1s;
+    animation: flip 1s;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+
 }
 
 .color-white {
-        border-color: black;
+        transform: rotateX(0);
         color: black;
         background-color:white;
+        -webkit-animation: flip 1s;
+        animation: flip 1s;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+}
+
+@-webkit-keyframes flip {
+    from {
+        transform: rotateX(90deg)
+    }
+
+    to {
+        transform: rotateX(0deg)
+    }
+}
+
+@keyframes flip {
+    from {
+        transform: rotateX(90deg)
+    }
+
+    to {
+        transform: rotateX(0deg)
+    }
 }
 
 .tile { 
@@ -35,6 +66,8 @@
         display: inline-block;
         font-weight: bold;
         box-sizing: border-box;
+        /* box-shadow: 10px 10px 8px 10px black; */
+    
 }
 
 .emptyTileSpace {
@@ -49,8 +82,8 @@
     box-sizing: border-box;
 }
 
-.tile:hover {
-    border-color: red;
+.tile.hoverable:hover {
+    background-color:#007cc2;
     cursor: pointer;
 }
 

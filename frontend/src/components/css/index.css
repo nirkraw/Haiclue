@@ -4,6 +4,7 @@ body {
     color: white; 
     background-color: rgb(6, 6, 6);
     font-family: 'Helvetica Neue', sans-serif;
+    font-weight: bold;
 }
 
 .logo { 

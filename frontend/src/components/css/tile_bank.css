@@ -30,7 +30,8 @@
     font-weight: bold;
     font-size: 18px;
     color: black;
-    background-color: white;
+    background-color: #e3ab00;
+    border-color: #e3ab00;
     border-radius: 22px;
     width: 150px;
     cursor: pointer;
@@ -41,6 +42,11 @@
     transition-property: background-color, border-color;
     transition-duration: .3s;
     transition-timing-function: ease;
-    background-color: #e3ab00;
-    border-color: #e3ab00;
+    background-color: #00c8a6;
+    border-color: #00c8a6;
+    ;
 } 
+
+#clue-submit-button:focus {
+    outline: none;
+}

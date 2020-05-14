@@ -4,7 +4,10 @@ import GameContainer from '../game/game_container';
 import ENV from '../../util/socket_env';
 import Logout from '../global/logout-instructions-button'; 
 import '../css/create_room.css';
-
+import red from '../images/red-tile.png';
+import blue from '../images/blue-tile.png';
+import green from '../images/green-tile.png';
+import yellow from '../images/yellow-tile.png';
 
 export default class CreateRoomForm extends Component {
   constructor(props) {
@@ -16,7 +19,6 @@ export default class CreateRoomForm extends Component {
       gameState: null, 
       readOnly: false,
     };
-
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
     this.handleRoomCreate = this.handleRoomCreate.bind(this);
@@ -112,7 +114,16 @@ export default class CreateRoomForm extends Component {
       this.state.message !== ("this name is already taken" || "couldn't find a room with that name" || "sorry, this room is full")
         ? true
         : false;
-    let joinRoom = (
+    let joinRoom = (<>
+      <h1 className='logo'>Haiclue</h1>
+      <div className='splash-container'>
+        <section className="splash-cards">
+          <img src={blue} alt="blue" />
+          <img src={green} alt="green" />
+          <img src={red} alt="red" />
+          <img src={yellow} alt="yellow" />
+        </section>
+      </div>
       <div className="room-container">
         <Logout logout={this.props.logout} loggedIn={this.props.loggedIn} />
 
@@ -147,15 +158,18 @@ export default class CreateRoomForm extends Component {
         </form>
         <div className="players-create-container">{players}</div>
       </div>
+      </>
     ); 
 
     let view = (gameState) ? 
         ((gameState.gameStarted) ? 
             (<div>
-              <div className="players-container">{players}</div>
+              {/* <div className="players-container">{players}</div> */}
               <GameContainer gameState={this.state.gameState} socket={this.socket}/> </div>)
             : (joinRoom))   
         : (joinRoom)
+
+        
     return (<>
         {view}
       </>

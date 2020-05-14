@@ -1,0 +1,28 @@
+.game-over-container {
+    }
+
+.game-over-container ul {
+    margin: 0 auto;
+    font-weight: bold;
+    line-height: 40px;
+    width: 500px;
+    list-style: none;
+    font-size: 20px;
+    text-align: left;
+}
+
+.game-over-container ul li {
+    border-bottom: 2px solid white;
+}
+
+.color-yellow {
+    color: #e3ab00;
+}
+
+.game-over {font-size: 60px;}
+
+.color-blue {
+    color: #007cc2;
+    }
+
+.points { float: right;}
