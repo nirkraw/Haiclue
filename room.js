@@ -103,7 +103,7 @@ class Room {
   }
 
   startGame(rounds, timer) {
-    this.game.endRound = (rounds ++);
+    this.game.endRound = (rounds + 1);
     this.game.gameStarted = true;
     if(timer) this.game.timer = true; 
     this.startRound();
