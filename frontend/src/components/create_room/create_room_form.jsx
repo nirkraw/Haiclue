@@ -182,47 +182,49 @@ export default class CreateRoomForm extends Component {
           </label>
           {this.state.options
           ? <> 
-            <button className="button-stylez" onClick={this.mainMenu}>Main Menu</button>
-            <div className="round-container">
-                Rounds 
-                <button className="rounds" onClick={this.changeRounds}>-</button>
-                  {this.state.rounds} 
-                <button className="rounds" onClick={this.changeRounds}>+</button>
-            </div> 
-              {(this.state.timer) 
-                ? <div className="timer-on-off-container">
-                  Timer
-                <button className="timer-on-active" >On/</button>
-                  <button className="timer-off" onClick={this.changeTimer}>Off</button>
-                </div> 
-                : <div className="timer-on-off-container">
-                  Timer
-                <button className="timer-on" onClick={this.changeTimer}>On/</button>
-                  <button className="timer-off-active" >Off</button>
+            <div className="create-button-container">
+              <button className="button-stylez" onClick={this.mainMenu}>Main Menu</button>
+              <div className="round-container">
+                  Rounds 
+                  <button className="rounds" onClick={this.changeRounds}>-</button>
+                    {this.state.rounds} 
+                  <button className="rounds" onClick={this.changeRounds}>+</button>
+              </div> 
+                {(this.state.timer) 
+                  ? <div className="timer-on-off-container">
+                    Timer
+                  <button className="timer-on-active" >On/</button>
+                    <button className="timer-off" onClick={this.changeTimer}>Off</button>
+                  </div> 
+                  : <div className="timer-on-off-container">
+                    Timer
+                  <button className="timer-on" onClick={this.changeTimer}>On/</button>
+                    <button className="timer-off-active" >Off</button>
                 </div> 
                 }        
             <button className="button-stylez" onClick={this.startGame}>Start Game</button>
             {/* <button className="button-stylez">Timer Off</button> */}
             {/* <button className="button-stylez">Join Link</button> */}
             {/* <button>Timer On</button>  */}
+              </div>
           </>
           : <>
-            <div className="cr-button-container">
-            <button className="button-stylez butts" type="submit" onClick={this.handleRoomJoin}>
-              Join
-            </button>
-            <button
-              className="button-stylez butts"
-              type="submit"
-              onClick={this.handleRoomCreate}>
-              Create
-            </button>
-            <button
-              className="button-stylez butts"
-              type="submit"
-              onClick={this.handleRandomCreate}>
-              Random
-            </button>
+            <div className="create-button-container">
+                <button className="button-stylez butts" type="submit" onClick={this.handleRoomJoin}>
+                  Join
+                </button>
+                <button
+                  className="button-stylez butts"
+                  type="submit"
+                  onClick={this.handleRoomCreate}>
+                  Create
+                </button>
+                <button
+                  className="button-stylez butts"
+                  type="submit"
+                  onClick={this.handleRandomCreate}>
+                  Random
+                </button>
             </div>
           </>}
         </form>

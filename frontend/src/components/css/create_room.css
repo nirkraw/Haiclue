@@ -10,7 +10,7 @@
 }
 
 .room-container { 
-    width: 600px; 
+    width: 800px; 
     margin: 0 auto;
  }
 
@@ -18,7 +18,9 @@
     margin: 60px auto;
 }
 
-.cr-button-container {
+.create-button-container {
+    width: fit-content;
+    margin: 0 auto;
     display: flex;
     justify-content: space-around;
 }
@@ -158,12 +160,14 @@
     border: none;
     font-weight: bold;
     width: 20px;
+    height: 20px;
+    line-height: 20px;
     font-size: 18px;
-    margin: 0 4px;
     color: black;
     background-color: transparent;
     border-radius: 15px;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .timer-on:hover {
@@ -217,9 +221,11 @@ input:focus {
     align-items: center;
     font-size: 28px;
     font-weight: bold;
-    width: 100%; 
-    margin-top: 200px;
+    width: fit-content;
+    margin: 0 auto; 
+    margin-top: 100px;
     text-align: center;
+    color: #e3ab00;
 }
 
 input:-webkit-autofill,

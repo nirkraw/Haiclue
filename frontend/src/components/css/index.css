@@ -23,13 +23,17 @@ body {
 }
 
 
-/* 
+
 @media screen and (max-width: 1000px) {
-    #root {
-        background-color: lightblue; 
+    * {
+        zoom: .96;
     }
 
-    #root { 
-        transform: scale(.9);
+}
+
+@media screen and (max-width: 675px) {
+    .top-container {
+        width: 400px;
     }
-} */
+
+}
