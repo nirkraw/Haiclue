@@ -163,6 +163,9 @@
     height: 20px;
     line-height: 20px;
     font-size: 18px;
+    padding: 0 0 2px 1px;
+    margin: 0 4px 0 4px;
+    border-style: none;
     color: black;
     background-color: transparent;
     border-radius: 15px;

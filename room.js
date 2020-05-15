@@ -170,20 +170,25 @@ class Room {
 
   selectClueTile(handle, tile) {
     const player = this.game.players[handle];
-    player.selectedClueTiles.push(tile);
-    for (let i = 0; i < player.clueTiles.length; i++) {
-      if (tile._id === player.clueTiles[i]._id) {
-        player.clueTiles.splice(i, 1);
+    if (!player.selectedClueTiles.includes(tile)) {
+      player.selectedClueTiles.push(tile);
+      for (let i = 0; i < player.clueTiles.length; i++) {
+        if (tile._id === player.clueTiles[i]._id) {
+          player.clueTiles.splice(i, 1);
+        }
       }
-    }
+    }  
+  
   }
 
   unselectClueTile(handle, tile) {
     const player = this.game.players[handle];
-    player.clueTiles.push(tile);
-    for (let i = 0; i < player.selectedClueTiles.length; i++) {
-      if (tile._id === player.selectedClueTiles[i]._id) {
-        player.selectedClueTiles.splice(i, 1);
+      if (!player.clueTiles.includes(tile)) {
+      player.clueTiles.push(tile);
+      for (let i = 0; i < player.selectedClueTiles.length; i++) {
+        if (tile._id === player.selectedClueTiles[i]._id) {
+          player.selectedClueTiles.splice(i, 1);
+        }
       }
     }
   }
