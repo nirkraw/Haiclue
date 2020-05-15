@@ -45,12 +45,17 @@ export default class RevealedClue extends Component {
         // console.log(otherPlayers);
 
         const otherPlayersGuesses = players.map((player, idx) => {
-
-            if (player.number !== gameState.currentPlayerTurn - 1) {
+            let x = gameState.currentPlayerTurn - 1
+            if (x === 0) {
+                x = players.length
+            }
+            if (player.number !== x) {
+                debugger
                 return (
                 <li key={idx} >{player.handle}'s guess was {player.guessedWord}</li>
                 )
             }
+            // setTimeout( , 3000)
         })
 
         // if (gameState.currentPlayerTurn === players.length) {
@@ -60,9 +65,9 @@ export default class RevealedClue extends Component {
         if (playerTargetWord) {
             return(
             <>
-                <h1>{playerHandle}'s word was {playerTargetWord}!</h1>
-                <img src={cards[playerTargetIndex]} className="<class name here>" alt="green" /> 
-                <ul>{otherPlayersGuesses}</ul>
+                <h1 className='revealed-clue-text'>{playerHandle}'s word was {playerTargetWord}!</h1>
+                <img src={cards[playerTargetIndex]} className="revealed-clue-img " alt="green" /> 
+                <ul className='player-guesses'>{otherPlayersGuesses}</ul>
             </>
             )
         } else {

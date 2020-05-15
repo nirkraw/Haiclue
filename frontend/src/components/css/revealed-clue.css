@@ -4,5 +4,10 @@
 }
 
 .revealed-clue-text {
- color: #e3ab00;
+    color: #e3ab00;
+}
+
+.player-guesses {
+    list-style: none;
+    padding: 0;
 }
