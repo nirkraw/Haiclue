@@ -222,7 +222,6 @@ class Room {
     let { targetWord, targetIndex } = currentPlayer
 
     if (this.game.clueGuessCount === this.playerCount - 1) {
-      debugger
       currentPlayer.correctWord = targetWord[this.game.currentColor];
       currentPlayer.correctIndex = targetIndex;
       Object.values(this.game.players).forEach((player) => {
