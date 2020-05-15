@@ -3,7 +3,7 @@ import ClueConstruction from "./clue_construction";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Tile from "./tile";
 import '../css/tile_bank.css';
-import '../css/transitions.css';
+// import '../css/transitions.css';
 
 
 class TileBank extends React.Component {
@@ -58,8 +58,8 @@ class TileBank extends React.Component {
             <div className="bank-container">
               <ReactCSSTransitionGroup
                           transitionName="tiles"
-                          transitionEnterTimeout={500}
-                          transitionLeaveTimeout={300}>
+                          transitionEnterTimeout={100}
+                          transitionLeaveTimeout={100}>
               {newTiles}
               </ReactCSSTransitionGroup> 
             </div>

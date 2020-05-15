@@ -59,8 +59,8 @@ class ClueContruction extends React.Component {
             <div>
             <ReactCSSTransitionGroup
             transitionName="tiles"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}>
+            transitionEnterTimeout={200}
+            transitionLeaveTimeout={200}>
                 {clueConstruction}
             </ReactCSSTransitionGroup>
             </div>

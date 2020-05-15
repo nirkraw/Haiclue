@@ -27,7 +27,7 @@ class Tile extends React.Component {
         <>
         {this.props.display ? (
           <div
-           className={`color-${currentColor} tile flip`}
+           className={`color-${currentColor} tile`}
           >
             {tileWord}
           </div>
