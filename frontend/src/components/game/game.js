@@ -36,7 +36,7 @@ class Game extends React.Component {
                 setTimeout(() => {
                     socket.emit("unreveal clue", gameState.roomName, player.handle)
                     revealed = false
-                }, 3000);
+                }, 5000);
             }
       }
   return (
@@ -49,7 +49,7 @@ class Game extends React.Component {
           </div>
           {(revealed) 
           ? <div className="middle-container">
-            <RevealedClue socket={this.props.socket} gameState={this.props.gameState} />
+            <RevealedClue revealed={revealed} socket={this.props.socket} gameState={this.props.gameState} />
           </div> 
           : <div className="middle-container">
             <CurrentClueContainer socket={this.props.socket} gameState={this.props.gameState}/>

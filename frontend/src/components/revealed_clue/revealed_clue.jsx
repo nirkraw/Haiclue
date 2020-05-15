@@ -58,9 +58,7 @@ export default class RevealedClue extends Component {
             // setTimeout( , 3000)
         })
 
-        // if (gameState.currentPlayerTurn === players.length) {
-        //  otherPlayersGuesses.splice(otherPlayersGuesses.length - 1, 1)
-        // }
+    
 
         if (playerTargetWord) {
             return(
