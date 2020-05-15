@@ -40,7 +40,7 @@ io.on("connect", (socket) => {
   socket.on("startGame", (roomName, tiles, rounds) => {
     if (rooms[roomName].playerCount > 1) {//change to 4
       rooms[roomName].storeTiles(Object.values(tiles));
-      rooms[roomName].startGame(rounds); 
+      rooms[roomName].startGame(rounds, timer); 
     }
   })
 

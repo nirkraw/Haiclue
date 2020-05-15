@@ -20,6 +20,7 @@ export default class CreateRoomForm extends Component {
       readOnly: false,
       options: false,
       rounds: 3,
+      timer: "off"
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -29,6 +30,7 @@ export default class CreateRoomForm extends Component {
     this.mainMenu = this.mainMenu.bind(this);
     this.startGame = this.startGame.bind(this);
     this.changeRounds = this.changeRounds.bind(this);
+    this.changeTimer = this.changeTimer.bind(this);
   }
 
   componentDidMount() {
@@ -114,9 +116,21 @@ export default class CreateRoomForm extends Component {
 
   changeRounds(event) {
     event.preventDefault();
-    event.currentTarget.innerText === "+" 
-    ? this.setState({rounds: (this.state.rounds + 1)}) 
-    : this.setState({rounds: (this.state.rounds - 1)}) 
+    if(event.currentTarget.innerText === "+") {
+      this.setState({rounds: (this.state.rounds + 1)}) 
+    } else {
+       if(this.state.rounds === 1) return;
+       this.setState({rounds: (this.state.rounds - 1)}) 
+    }
+  }
+
+  changeTimer(event) {
+    event.preventDefault();
+    if (this.state.timer === "off") {
+      this.setState({timer: "on"})
+    } else {
+      this.setState({timer:"off"})
+    }
   }
   
   render() {
@@ -175,6 +189,18 @@ export default class CreateRoomForm extends Component {
                   {this.state.rounds} 
                 <button className="rounds" onClick={this.changeRounds}>+</button>
             </div> 
+              {(this.state.timer === "off") 
+                ? <div className="timer-on-off-container">
+                  Timer
+                <button className="timer-on" onClick={this.changeTimer}>On/</button>
+                  <button className="timer-off-active">Off</button>
+                </div> 
+                : <div className="timer-on-off-container">
+                  Timer
+                <button className="timer-on-active">On/</button>
+                  <button className="timer-off" onClick={this.changeTimer}>Off</button>
+                </div> 
+                }        
             <button className="button-stylez" onClick={this.startGame}>Start Game</button>
             {/* <button className="button-stylez">Timer Off</button> */}
             {/* <button className="button-stylez">Join Link</button> */}

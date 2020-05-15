@@ -13,8 +13,9 @@ class Room {
       phase: "clue construction",
       currentPlayerTurn: 1,
       round: 0,
-      endRound: null,
+      endRound: null, //change variable name to numberOfRounds ?? 
       over: false,
+      timer: false 
     };
 
     this.playerCount = 0;
@@ -101,10 +102,10 @@ class Room {
     this.game.tiles = tiles;
   }
 
-  startGame(rounds) {
-    // keep all tiles in gamestate, call method that randomizes and returns 64 tiles (from selector reducer), then assign target words and clue tiles
-    this.game.endRound = (rounds += 1);
+  startGame(rounds, timer) {
+    this.game.endRound = (rounds ++);
     this.game.gameStarted = true;
+    if(timer) this.game.timer = true; 
     this.startRound();
   }
   
