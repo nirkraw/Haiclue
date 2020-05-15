@@ -61,9 +61,10 @@ class Room {
     };
 
     if (Object.values(this.game.players).length < 10) {
-      // chnage to 4
-      player.number = Object.values(this.game.players).length + 1;
+      // change to 4
       this.game.players[handle] = player;
+      player.number = Object.values(this.game.players).length;
+      ///
       this.playerCount++;
     } else {
       this.errors.push(
@@ -210,7 +211,7 @@ class Room {
   submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle) {
     const localPlayer = this.game.players[localPlayerhandle];
     const currentPlayer = this.game.players[currentPlayerHandle];
-    currentPlayer.submitedGuess = true;
+    localPlayer.submitedGuess = true;
 
     this.game.clueGuessCount++;
 
@@ -219,7 +220,6 @@ class Room {
       currentPlayer.points++;
     }
 
-    // let { correctWord, targetWord, targetIndex, correctIndex } = currentPlayer
     let { targetWord, targetIndex } = currentPlayer
 
     if (this.game.clueGuessCount === this.playerCount - 1) {

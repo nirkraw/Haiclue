@@ -35,6 +35,8 @@ class TargetWords extends React.Component {
         return player.handle === this.props.user.handle;
       }
     )[0];
+      
+    if (localPlayer.submitedGuess) return; 
 
     const currentPlayerTargetWord = currentPlayer.targetWord[gameState.currentColor];
     const guessedWord = (e.currentTarget.nextElementSibling) 

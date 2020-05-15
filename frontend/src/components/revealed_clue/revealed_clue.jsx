@@ -18,7 +18,7 @@ export default class RevealedClue extends Component {
             3: yellow
         }
 
-        const {gameState} = this.props
+        const {gameState} = this.props;
 
         if(!gameState) return null;
 
