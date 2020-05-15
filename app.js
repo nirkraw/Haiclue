@@ -86,7 +86,7 @@ io.on("connect", (socket) => {
   });
  
   socket.on("submit clue", (roomName, handle) => {
-    rooms[roomName].submitClue(handle); 
+    rooms[roomName].submitClue(handle);
   });
 
   socket.on("submit guess", (roomName, localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord) => {
