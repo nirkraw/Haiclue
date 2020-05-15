@@ -1,5 +1,8 @@
 import React from 'react';
 import '../css/scoreboard.css';
+import thinking from "../images/thinking.png";
+import glasses from "../images/glasses.png";
+
 
 class ScoreBoard extends React.Component {
     constructor(props) {
@@ -11,9 +14,11 @@ class ScoreBoard extends React.Component {
         let players = Object.values(this.props.players).map( (player, index) => {
         return (<div key={index} className='wrapper'>
                     { (player.submitedClue) 
-                    ? < div className="check">&#129299;</div>
+                    // ? < div className="check">&#129299;</div>
+                    // ? < div className="check">&#x1f914;</div>
+                    ? <img className="emoji" src={glasses} alt="glasses"/>
+                    : <img className="emoji" src={thinking} alt="thinking"/>
                     // : <div className="check">&#10004;</div>
-                    : < div className="check">&#x1f914;</div>
               
                     }   
                     <div className="points-div">{player.points}</div>

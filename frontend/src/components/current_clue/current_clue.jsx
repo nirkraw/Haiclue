@@ -102,6 +102,7 @@ class CurrentClue extends React.Component {
                 return (
                     <div className="currentClue">
                         <h1>Waiting for other players to guess!</h1>
+                        {/* <h1>^^^^^^^^^^^^</h1> */}
                         {/* should show your own guess*/}
                     </div>)
             } else {
