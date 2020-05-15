@@ -33,7 +33,7 @@
     text-align: center;
 }
 
-.room-container button {
+.room-container .button-stylez {
     transition-property: background-color, border-color;
     transition-duration: .3s;
     transition-timing-function: ease;
@@ -49,7 +49,7 @@
     border-style: none;
 }
 
-.room-container button:hover {
+.room-container .button-stylez:hover {
     transition-property: background-color, border-color;
     transition-duration: .3s;
     transition-timing-function: ease;
@@ -57,7 +57,46 @@
     border-color: #00c8a6;
 }
 
-.room-container button:focus {
+.room-container .button-stylez:focus {
+    outline: none;
+}
+
+.round-container{
+    margin: 50px 0 0 25px;
+    padding: 10px 0 10px 6px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    background-color: white;
+    border-radius: 22px;
+    width: 150px;
+    float: right;
+    border-style: none;
+}
+
+.rounds{
+    border: none;
+    font-weight: bold;
+    width: 20px;
+    font-size: 18px;
+    margin: 0 4px;
+    color: black;
+    background-color: transparent;
+    border-radius: 15px;
+    text-align: center;
+}
+
+
+.rounds:hover{
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    background-color: #00c8a6;
+    cursor: pointer;
+}
+
+.rounds:focus {
     outline: none;
 }
 

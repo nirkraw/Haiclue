@@ -19,6 +19,7 @@ export default class CreateRoomForm extends Component {
       gameState: null, 
       readOnly: false,
       options: false,
+      rounds: 3,
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -27,6 +28,7 @@ export default class CreateRoomForm extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.mainMenu = this.mainMenu.bind(this);
     this.startGame = this.startGame.bind(this);
+    this.changeRounds = this.changeRounds.bind(this);
   }
 
   componentDidMount() {
@@ -107,7 +109,14 @@ export default class CreateRoomForm extends Component {
 
   startGame(event) {
     event.preventDefault();
-    this.socket.emit("startGame", this.state.roomName, this.props.tiles, 3)
+    this.socket.emit("startGame", this.state.roomName, this.props.tiles, this.state.rounds)
+  }
+
+  changeRounds(event) {
+    event.preventDefault();
+    event.currentTarget.innerText === "+" 
+    ? this.setState({rounds: (this.state.rounds + 1)}) 
+    : this.setState({rounds: (this.state.rounds - 1)}) 
   }
   
   render() {
@@ -158,34 +167,38 @@ export default class CreateRoomForm extends Component {
             />
           </label>
           {this.state.options
-        ? <> 
-          <button onClick={this.mainMenu}>Main Menu</button>
-          <button onClick={this.startGame}>Start Game</button>
-          <button>Join Link</button>
-          <button>Rounds {2}</button> 
-          <button>Timer Off</button>
-          {/* <button>Timer On</button>  */}
-        </>
-        : <>
-        
-          <div className="cr-button-container">
-          <button className="butts" type="submit" onClick={this.handleRoomJoin}>
-            Join
-          </button>
-          <button
-            className="butts"
-            type="submit"
-            onClick={this.handleRoomCreate}>
-            Create
-          </button>
-          <button
-            className="butts"
-            type="submit"
-            onClick={this.handleRandomCreate}>
-            Random
-          </button>
-          </div>
-        </>}
+          ? <> 
+            <button className="button-stylez" onClick={this.mainMenu}>Main Menu</button>
+            <div className="round-container">
+                Rounds 
+                <button className="rounds" onClick={this.changeRounds}>-</button>
+                  {this.state.rounds} 
+                <button className="rounds" onClick={this.changeRounds}>+</button>
+            </div> 
+            <button className="button-stylez" onClick={this.startGame}>Start Game</button>
+            {/* <button className="button-stylez">Timer Off</button> */}
+            {/* <button className="button-stylez">Join Link</button> */}
+            {/* <button>Timer On</button>  */}
+          </>
+          : <>
+            <div className="cr-button-container">
+            <button className="button-stylez butts" type="submit" onClick={this.handleRoomJoin}>
+              Join
+            </button>
+            <button
+              className="button-stylez butts"
+              type="submit"
+              onClick={this.handleRoomCreate}>
+              Create
+            </button>
+            <button
+              className="button-stylez butts"
+              type="submit"
+              onClick={this.handleRandomCreate}>
+              Random
+            </button>
+            </div>
+          </>}
         </form>
         <div className="players-create-container">{players}</div>
       </div>

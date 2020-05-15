@@ -13,6 +13,7 @@ class Room {
       phase: "clue construction",
       currentPlayerTurn: 1,
       round: 0,
+      endRound: null,
       over: false,
     };
 
@@ -102,12 +103,14 @@ class Room {
 
   startGame(rounds) {
     // keep all tiles in gamestate, call method that randomizes and returns 64 tiles (from selector reducer), then assign target words and clue tiles
+    this.game.endRound = (rounds += 1);
     this.game.gameStarted = true;
-    this.startRound(rounds);
+    this.startRound();
   }
-
-
-  startRound(rounds) {
+  
+  
+  startRound() {
+    // debugger
     this.resetPlayersSubmitedClue();
     this.game.clueSubmissionCount = 0
     this.game.currentPlayerTurn = 1;
@@ -115,7 +118,7 @@ class Room {
     this.game.round++;
 
     
-    if (this.game.round === rounds) { // change number of rounds 
+    if (this.game.round === this.game.endRound) { // change number of rounds 
       this.gameOver();
     }
     
