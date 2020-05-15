@@ -35,6 +35,8 @@ class TargetWords extends React.Component {
         return player.handle === this.props.user.handle;
       }
     )[0];
+      
+    if (localPlayer.submitedGuess) return; 
 
     const currentPlayerTargetWord = currentPlayer.targetWord[gameState.currentColor];
     const guessedWord = (e.currentTarget.nextElementSibling) 
@@ -46,7 +48,7 @@ class TargetWords extends React.Component {
     let matchBoolean = false
     if (guessedWord === currentPlayerTargetWord) matchBoolean= true;
     
-    socket.emit("submit guess", gameState.roomName, localPlayer.handle, matchBoolean, currentPlayer.handle)
+    socket.emit("submit guess", gameState.roomName, localPlayer.handle, matchBoolean, currentPlayer.handle, guessedWord)
   }
 
   render() {

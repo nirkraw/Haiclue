@@ -4,7 +4,6 @@ import '../css/current_clue.css';
 import Tile from '../tile_bank/tile';
 import Timer from '../timer/timer';
 
-
 class CurrentClue extends React.Component {
     constructor(props) {
         super(props)
@@ -71,20 +70,21 @@ class CurrentClue extends React.Component {
                 </svg>
             );
 
-
-            if (gameState.phase === "clue guessing" && localPlayer.handle !== currentPlayer.handle) {
+            if (gameState.phase === "clue guessing" && localPlayer.handle !== currentPlayer.handle && !localPlayer.submitedGuess) {
                 return(
                     <div className="currentClue">
                         <div>
-                            <Timer
-                                timer = {gameState.timer}
-                                phase={'submit guess'}
-                                secs={30}
-                                socket={this.props.socket}
-                                roomName={gameState.roomName}
-                                localPlayerHandle={localPlayer.handle}
-                                currentPlayerHandle={currentPlayer.handle}
-                            />
+                            {(gameState.timer)
+                                ? <Timer
+                                    phase={'submit guess'}
+                                    secs={5}
+                                    socket={this.props.socket}
+                                    roomName={gameState.roomName}
+                                    localPlayerHandle={localPlayer.handle}
+                                    currentPlayerHandle={currentPlayer.handle}
+                                />
+                                : <div></div>
+                            }
                         </div>
                         {selectorTri}
                         <h1>Guess {currentPlayer.handle}'s Clue!</h1>
@@ -98,6 +98,15 @@ class CurrentClue extends React.Component {
                         {currentClue}
                     </div>
                 );
+            } else if (gameState.phase === "clue guessing" 
+                       && localPlayer.handle !== currentPlayer.handle
+                       && localPlayer.submitedGuess) {
+                return (
+                    <div className="currentClue">
+                        <h1>Waiting for other players to guess!</h1>
+                        {/* <h1>^^^^^^^^^^^^</h1> */}
+                        {/* should show your own guess*/}
+                    </div>)
             } else {
                 return null;
             }
@@ -106,64 +115,3 @@ class CurrentClue extends React.Component {
 }
 
 export default CurrentClue; 
-
-
-
-
-
-// import React from 'react';
-// import '../css/layout.css';
-
-// class CurrentClue extends React.Component {
-//     constructor(props) {
-//         super(props)
-//         this.state = {
-//             currentClueArray: [{
-//                 "_id": "5e9dece5146f803a3a1bad05",
-//                 "black": "monkey",
-//                 "white": "modern",
-//                 "__v": 0
-//             },
-//             {
-//                 "_id": "5e9dece5146f803a3a1bad06",
-//                 "black": "western",
-//                 "white": "dope",
-//                 "__v": 0
-//             },
-//             {
-//                 "_id": "5e9dece5146f803a3a1bad07",
-//                 "black": "inch",
-//                 "white": "lawn",
-//                 "__v": 0
-//             },
-//             ],
-//             currentColor: "black",
-//         }
-//     }
-
-//     // componentDidMount() {
-//     //     this.props.fillCurrentClue
-//     // } 
-//     // eventually will get the clue array for the current player & sets state
-
-
-//     render() {
-//         let currentColor = this.state.currentColor;
-//         let clueTiles = this.state.currentClueArray.map((tile, idx) => {
-//             let tileSide = tile[currentColor]
-//             return (<div key={idx} className={`color-${currentColor} tile`}>
-//                             {tileSide}
-//             </div>
-//             )
-//         });
-
-//         return (<div className="currentClueContainer">
-
-//                 {clueTiles}
-//                 {/* <div><Timer timer='90' /></div> */}
-//         </div>)
-//     }
-
-// }
-
-// export default CurrentClue; 

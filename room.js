@@ -57,13 +57,15 @@ class Room {
       selectedClueTiles: [],
       submitedClue: false,
       submitedGuess: false, 
+      guessedWord: "",
       revealedClue: false,
     };
 
     if (Object.values(this.game.players).length < 10) {
-      // chnage to 4
-      player.number = Object.values(this.game.players).length + 1;
+      // change to 4
       this.game.players[handle] = player;
+      player.number = Object.values(this.game.players).length;
+      ///
       this.playerCount++;
     } else {
       this.errors.push(
@@ -141,7 +143,8 @@ class Room {
   resetPlayersSubmitedClue() {
     Object.values(this.game.players).forEach((player) => {
       player.submitedClue = false;
-      player.selectedClueTiles = [];
+      player.selectedClueTiles = []
+      // player.guessedWord = "";
     });
   }
 
@@ -207,10 +210,12 @@ class Room {
     }
   }
 
-  submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle) {
+  submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord) {
     const localPlayer = this.game.players[localPlayerhandle];
     const currentPlayer = this.game.players[currentPlayerHandle];
-    currentPlayer.submitedGuess = true;
+
+    localPlayer.submitedGuess = true;
+    localPlayer.guessedWord = guessedWord;
 
     this.game.clueGuessCount++;
 
@@ -219,28 +224,31 @@ class Room {
       currentPlayer.points++;
     }
 
-    // let { correctWord, targetWord, targetIndex, correctIndex } = currentPlayer
     let { targetWord, targetIndex } = currentPlayer
 
     if (this.game.clueGuessCount === this.playerCount - 1) {
-      currentPlayer.correctWord = targetWord[this.game.currentColor];
+      currentPlayer.correctWord = targetWord[this.game.currentColor]; 
       currentPlayer.correctIndex = targetIndex;
       Object.values(this.game.players).forEach((player) => {
-        player.submitedGuess = false;
+        player.submitedGuess = false; 
       });
       
-      currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor]
+      currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor];
       currentPlayer.revealedClue = true;
       this.game.currentPlayerTurn++;
       this.game.clueGuessCount = 0;
     }
 
-      if (this.game.currentPlayerTurn === this.playerCount + 1) {
-        this.startRound();
-      }
+      // if (this.game.currentPlayerTurn === this.playerCount + 1) {
+      //   this.startRound();
+      // }
   }
 
   unrevealClue(handle) {
+    if (this.game.currentPlayerTurn === this.playerCount + 1) {
+      // this may solve other issues with reveal clue component, that were previously solved by adding correctIndex and correctWord keys into player object.
+      this.startRound();
+    }
     const player = this.game.players[handle];
     player.revealedClue = false;
   }

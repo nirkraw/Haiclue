@@ -45,11 +45,10 @@
     border: 2px solid red; 
 }
 
-.check {
+.emoji {
     position: absolute;
-    height: 50px;
-    font-size: 30px;
+    height: 35px;
     color: #00c8a6;
-    bottom: 125px;
-    left: 40px; 
+    bottom: 60px;
+    left: 60px; 
 }

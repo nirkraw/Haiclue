@@ -65,14 +65,17 @@ class ClueContruction extends React.Component {
             </ReactCSSTransitionGroup>
             </div>
             <div>
-                <Timer
+                {(this.props.timer) 
+               ? <Timer
                     timer = {this.props.timer}
                     phase={'submit clue'}
-                    secs={90}
+                    secs={5}
                     socket={this.props.socket}
                     roomName={this.props.roomName}
                     handle={this.props.player.handle}
                 />
+                : <div></div>
+                }
             </div>
         </div>)
     }

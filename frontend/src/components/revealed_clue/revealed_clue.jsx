@@ -18,7 +18,7 @@ export default class RevealedClue extends Component {
             3: yellow
         }
 
-        const {gameState} = this.props
+        const {gameState} = this.props;
 
         if(!gameState) return null;
 
@@ -27,6 +27,7 @@ export default class RevealedClue extends Component {
         let playerHandle;
         let playerTargetWord;
         let playerTargetIndex;
+        // let otherPlayers = [];
 
         for (let index = 0; index < players.length; index++) {
             let player = players[index];
@@ -36,12 +37,32 @@ export default class RevealedClue extends Component {
                 playerTargetWord = player.correctWord;
                 playerTargetIndex = player.correctIndex;
             }
+            // if (player.number === gameState.currentPlayerTurn) {
+            //     debugger 
+            //     otherPlayers.push(player);
+            // }
         }
+        // console.log(otherPlayers);
+
+        const otherPlayersGuesses = players.map((player, idx) => {
+
+            if (player.number !== gameState.currentPlayerTurn - 1) {
+                return (
+                <li key={idx} >{player.handle}'s guess was {player.guessedWord}</li>
+                )
+            }
+        })
+
+        // if (gameState.currentPlayerTurn === players.length) {
+        //  otherPlayersGuesses.splice(otherPlayersGuesses.length - 1, 1)
+        // }
+
         if (playerTargetWord) {
             return(
             <>
                 <h1>{playerHandle}'s word was {playerTargetWord}!</h1>
                 <img src={cards[playerTargetIndex]} className="<class name here>" alt="green" /> 
+                <ul>{otherPlayersGuesses}</ul>
             </>
             )
         } else {
