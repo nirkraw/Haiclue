@@ -48,7 +48,7 @@ class TargetWords extends React.Component {
     let matchBoolean = false
     if (guessedWord === currentPlayerTargetWord) matchBoolean= true;
     
-    socket.emit("submit guess", gameState.roomName, localPlayer.handle, matchBoolean, currentPlayer.handle)
+    socket.emit("submit guess", gameState.roomName, localPlayer.handle, matchBoolean, currentPlayer.handle, guessedWord)
   }
 
   render() {
