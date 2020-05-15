@@ -15,7 +15,7 @@ class Room {
       round: 0,
       endRound: null, //change variable name to numberOfRounds ?? 
       over: false,
-      timer: false 
+      timer: false
     };
 
     this.playerCount = 0;
@@ -56,8 +56,9 @@ class Room {
       clueTiles: [],
       selectedClueTiles: [],
       submitedClue: false,
-      submitedGuess: false, 
+      submitedGuess: false,
       guessedWord: "",
+      oldGuessedWord: "",
       revealedClue: false,
     };
 
@@ -107,37 +108,39 @@ class Room {
   startGame(rounds, timer) {
     this.game.endRound = (rounds + 1);
     this.game.gameStarted = true;
-    if(timer) this.game.timer = true; 
+    if (timer) this.game.timer = true;
     this.startRound();
   }
-  
-  
+
+
   startRound() {
     // debugger
     this.resetPlayersSubmitedClue();
     this.game.clueSubmissionCount = 0
+    
     this.game.currentPlayerTurn = 1;
+
     this.game.phase = "clue construction";
     this.game.round++;
 
-    
+
     if (this.game.round === this.game.endRound) { // change number of rounds 
       this.gameOver();
     }
-    
-    if(this.game.round % 2 === 0) {
+
+    if (this.game.round % 2 === 0) {
       this.game.currentColor = "white"
     } else {
       this.game.currentColor = "black"
     }
-    
+
     const newTiles = this.getRoundTiles(this.game.tiles);
     const targetWords = newTiles.slice(60);
     const clueTiles = newTiles.slice(0, 60);
-    
-      this.createTargetWords(targetWords);
-      this.assignPlayersTargetWord();
-      this.assignPlayersClueTiles(clueTiles);
+
+    this.createTargetWords(targetWords);
+    this.assignPlayersTargetWord();
+    this.assignPlayersClueTiles(clueTiles);
   }
 
   resetPlayersSubmitedClue() {
@@ -177,13 +180,13 @@ class Room {
           player.clueTiles.splice(i, 1);
         }
       }
-    }  
-  
+    }
+
   }
 
   unselectClueTile(handle, tile) {
     const player = this.game.players[handle];
-      if (!player.clueTiles.includes(tile)) {
+    if (!player.clueTiles.includes(tile)) {
       player.clueTiles.push(tile);
       for (let i = 0; i < player.selectedClueTiles.length; i++) {
         if (tile._id === player.selectedClueTiles[i]._id) {
@@ -232,30 +235,33 @@ class Room {
     let { targetWord, targetIndex } = currentPlayer
 
     if (this.game.clueGuessCount === this.playerCount - 1) {
-      currentPlayer.correctWord = targetWord[this.game.currentColor]; 
+      currentPlayer.correctWord = targetWord[this.game.currentColor];
       currentPlayer.correctIndex = targetIndex;
+      currentPlayer.oldGuessedWord = guessedWord;
       Object.values(this.game.players).forEach((player) => {
-        player.submitedGuess = false; 
+        player.submitedGuess = false;
       });
-      
+
       currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor];
       currentPlayer.revealedClue = true;
       this.game.currentPlayerTurn++;
       this.game.clueGuessCount = 0;
     }
 
-      // if (this.game.currentPlayerTurn === this.playerCount + 1) {
-      //   this.startRound();
-      // }
+    // if (this.game.currentPlayerTurn === this.playerCount + 1 && currentPlayer.revealedClue === false) {
+    if (this.game.currentPlayerTurn === this.playerCount + 1) {
+      this.startRound();
+    }
   }
 
   unrevealClue(handle) {
-    if (this.game.currentPlayerTurn === this.playerCount + 1) {
-      // this may solve other issues with reveal clue component, that were previously solved by adding correctIndex and correctWord keys into player object.
-      this.startRound();
-    }
     const player = this.game.players[handle];
     player.revealedClue = false;
+
+    // if (this.game.currentPlayerTurn === this.playerCount + 1) {
+    //   // this may solve other issues with reveal clue component, that were previously solved by adding correctIndex and correctWord keys into player object.
+    //     this.startRound();
+    // }
   }
 
   gameOver() {
@@ -264,9 +270,9 @@ class Room {
 
   restartGame() {
     this.game.round = 0;
-    this.game.over = false; 
+    this.game.over = false;
     Object.values(this.game.players).forEach((player) => {
-      player.points = 0; 
+      player.points = 0;
     });
     this.startRound();
   }
