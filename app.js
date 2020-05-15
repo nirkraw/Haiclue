@@ -37,21 +37,30 @@ io.on("connect", (socket) => {
     }
   });
 
+  socket.on("startGame", (roomName, tiles, rounds, timer) => { //change to "start game" for consistancy? 
+    if (rooms[roomName].playerCount > 1) {
+      rooms[roomName].storeTiles(Object.values(tiles));
+      rooms[roomName].startGame(rounds, timer); 
+    }
+  })
+
+
   socket.on("join", (roomName, handle, tiles) => {
     if (!rooms[roomName]) {
       socket.emit("sendErrors", "couldn't find a room with that name");
 
     } else {
 
-      if (rooms[roomName].playerCount < 2) { // change to 4
+      if (rooms[roomName].playerCount < 10) { // change to 4
 
         socket.join(roomName);
         rooms[roomName].addPlayer(handle, socket.id);
         
-        if (rooms[roomName].playerCount === 2) {//change to 4
-            rooms[roomName].storeTiles(Object.values(tiles));
-            rooms[roomName].startGame(); 
-        }
+        
+        // if (rooms[roomName].playerCount === 2) {//change to 4
+        //     rooms[roomName].storeTiles(Object.values(tiles));
+        //     rooms[roomName].startGame(); 
+        // }
 
         rooms[roomName].submit(handle);
 
@@ -86,6 +95,17 @@ io.on("connect", (socket) => {
 
   socket.on("unreveal clue", (roomName, handle) => {
     rooms[roomName].unrevealClue(handle);
+  });
+
+  socket.on("insert line", (roomName, handle) => {
+    rooms[roomName].insertLine(handle);
+  });
+
+  socket.on("remove line", (roomName, handle, lineIndex) => {
+    rooms[roomName].removeLine(handle, lineIndex);
+  });
+  socket.on("play again", (roomName) => {
+    rooms[roomName].restartGame();
   });
 
 

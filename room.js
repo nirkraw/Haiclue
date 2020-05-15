@@ -13,7 +13,9 @@ class Room {
       phase: "clue construction",
       currentPlayerTurn: 1,
       round: 0,
+      endRound: null, //change variable name to numberOfRounds ?? 
       over: false,
+      timer: false 
     };
 
     this.playerCount = 0;
@@ -35,6 +37,9 @@ class Room {
     this.getRoundTiles = this.getRoundTiles.bind(this);
     this.startRound = this.startRound.bind(this);
     this.resetPlayersSubmitedClue = this.resetPlayersSubmitedClue.bind(this);
+    this.insertLine = this.insertLine.bind(this);
+    this.removeLine = this.removeLine.bind(this);
+    this.restartGame = this.restartGame.bind(this);
   }
 
   addPlayer(handle, socketId) {
@@ -45,15 +50,17 @@ class Room {
       number: 0, // default value // number of player
       targetWord: "",
       correctWord: "",
+      targetIndex: null,
+      correctIndex: null,
       points: 0,
       clueTiles: [],
       selectedClueTiles: [],
       submitedClue: false,
-      submitedGuess: false, // the guess
+      submitedGuess: false, 
       revealedClue: false,
     };
 
-    if (Object.values(this.game.players).length < 2) {
+    if (Object.values(this.game.players).length < 10) {
       // chnage to 4
       player.number = Object.values(this.game.players).length + 1;
       this.game.players[handle] = player;
@@ -81,7 +88,9 @@ class Room {
   assignPlayersTargetWord() {
     // before each round
     Object.values(this.game.players).forEach((player) => {
-      player.targetWord = this.game.targetWords[this.getRandomInt(4)];
+      let index = this.getRandomInt(4);
+      player.targetWord = this.game.targetWords[index];
+      player.targetIndex = index;
     });
   }
 
@@ -93,15 +102,16 @@ class Room {
     this.game.tiles = tiles;
   }
 
-  startGame() {
-    // keep all tiles in gamestate, call method that randomizes and returns 64 tiles (from selector reducer), then assign target words and clue tiles
+  startGame(rounds, timer) {
+    this.game.endRound = (rounds + 1);
     this.game.gameStarted = true;
+    if(timer) this.game.timer = true; 
     this.startRound();
   }
-
-
+  
+  
   startRound() {
-    
+    // debugger
     this.resetPlayersSubmitedClue();
     this.game.clueSubmissionCount = 0
     this.game.currentPlayerTurn = 1;
@@ -109,7 +119,7 @@ class Room {
     this.game.round++;
 
     
-    if (this.game.round === 4) {
+    if (this.game.round === this.game.endRound) { // change number of rounds 
       this.gameOver();
     }
     
@@ -175,16 +185,24 @@ class Room {
     }
   }
 
+  insertLine(handle) {
+    const player = this.game.players[handle];
+    player.selectedClueTiles.push(`${player.selectedClueTiles.length}`);
+  }
+
+  removeLine(handle, lineIndex) {
+    const player = this.game.players[handle];
+    player.selectedClueTiles.splice(lineIndex, 1);
+  }
+
   submitClue(handle) {
     const player = this.game.players[handle];
     if (!player.submitedClue) {
       player.submitedClue = true;
       this.game.clueSubmissionCount++;
     }
-    // debugger
     if (this.game.clueSubmissionCount === this.playerCount) {
       // trigger into the next game phase
-      // debugger
       this.game.phase = "clue guessing";
     }
   }
@@ -192,6 +210,7 @@ class Room {
   submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle) {
     const localPlayer = this.game.players[localPlayerhandle];
     const currentPlayer = this.game.players[currentPlayerHandle];
+    currentPlayer.submitedGuess = true;
 
     this.game.clueGuessCount++;
 
@@ -200,7 +219,16 @@ class Room {
       currentPlayer.points++;
     }
 
+    // let { correctWord, targetWord, targetIndex, correctIndex } = currentPlayer
+    let { targetWord, targetIndex } = currentPlayer
+
     if (this.game.clueGuessCount === this.playerCount - 1) {
+      currentPlayer.correctWord = targetWord[this.game.currentColor];
+      currentPlayer.correctIndex = targetIndex;
+      Object.values(this.game.players).forEach((player) => {
+        player.submitedGuess = false;
+      });
+      
       currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor]
       currentPlayer.revealedClue = true;
       this.game.currentPlayerTurn++;
@@ -219,6 +247,15 @@ class Room {
 
   gameOver() {
     this.game.over = true;
+  }
+
+  restartGame() {
+    this.game.round = 0;
+    this.game.over = false; 
+    Object.values(this.game.players).forEach((player) => {
+      player.points = 0; 
+    });
+    this.startRound();
   }
 }
 

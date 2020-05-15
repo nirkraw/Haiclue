@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/layout.scss';
+import '../css/layout.css';
 import Timer from '../timer/timer';
 import Tile from './tile';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -10,14 +10,35 @@ class ClueContruction extends React.Component {
     constructor(props) {
         super(props)
         this.submitClue = this.submitClue.bind(this);
+        this.insertLine = this.insertLine.bind(this);
+        this.removeLine = this.removeLine.bind(this);
     }
     submitClue(e) {
         e.preventDefault();
         this.props.socket.emit("submit clue", this.props.roomName, this.props.player.handle);
     }
+    
+    insertLine(e) {
+        e.preventDefault();
+        this.props.socket.emit("insert line", this.props.roomName, this.props.player.handle);
+    }
+
+    removeLine(e) {
+        e.preventDefault();
+        this.props.socket.emit("remove line", this.props.roomName, this.props.player.handle, e.currentTarget.id);
+    }
+
     render() {
         const { currentColor, player, roomName, socket } = this.props
-        let clueConstruction = this.props.clueConstructionArray.map(tile => {
+        let clueConstruction = this.props.clueConstructionArray.map((tile, index) => {
+            if (typeof tile === 'string') {
+                return (
+                  <span key={index*1000}>
+                    <div id={index} key={index} onClick={this.removeLine} className={`color-${currentColor} tile add-line`}>|| </div>
+                    <br/>
+                  </span>
+                )
+              }
             return (
                 <Tile
                     key={tile._id}
@@ -33,6 +54,8 @@ class ClueContruction extends React.Component {
         });
         return (<div>
             <button onClick={this.submitClue} id="clue-submit-button">Submit</button>
+            
+            <button onClick={this.insertLine} id="clue-add-line-button">Add Line</button>
             <div>
             <ReactCSSTransitionGroup
             transitionName="tiles"
@@ -43,8 +66,9 @@ class ClueContruction extends React.Component {
             </div>
             <div>
                 <Timer
+                    timer = {this.props.timer}
                     phase={'submit clue'}
-                    secs={30}
+                    secs={90}
                     socket={this.props.socket}
                     roomName={this.props.roomName}
                     handle={this.props.player.handle}

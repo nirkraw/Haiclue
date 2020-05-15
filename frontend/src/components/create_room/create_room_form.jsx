@@ -18,34 +18,47 @@ export default class CreateRoomForm extends Component {
       errors: "",
       gameState: null, 
       readOnly: false,
+      options: false,
+      rounds: 3,
+      timer: false
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
     this.handleRoomCreate = this.handleRoomCreate.bind(this);
     this.handleRandomCreate = this.handleRandomCreate.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    
+    this.mainMenu = this.mainMenu.bind(this);
+    this.startGame = this.startGame.bind(this);
+    this.changeRounds = this.changeRounds.bind(this);
+    this.changeTimer = this.changeTimer.bind(this);
   }
 
   componentDidMount() {
+
     this.props.fetchTiles(); 
     this.socket = socketIOClient(ENV); 
-
+    
     this.socket.on("gameState", (gameState) => {
       this.setState({gameState: gameState})
     });
-
+    
     this.socket.on("receiveMessage", (data) => {
       this.setState({ message: data });
     });
     
     this.socket.on("sendErrors", (data) => {
       this.setState({ errors: data });
+      {if (data === "this name is already taken") {
+        this.setState({options: false})
+      }}
     });
     
     this.socket.on("connect", (socket) => {
       console.log("Frontend Connected! Socket Id: " + this.socket.id);
     });
+
+          
+
     console.log("######################################It has mounted again ########################################")
   }
   
@@ -60,7 +73,7 @@ export default class CreateRoomForm extends Component {
     const { roomName } = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, this.props.user.handle);
-    this.setState({ roomName: ""});
+    this.setState({ roomName: "", options: true});
   }
 
   randomRoom() {
@@ -77,7 +90,7 @@ export default class CreateRoomForm extends Component {
     let roomName = this.randomRoom()
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, this.props.user.handle);
-    this.setState({ roomName: roomName});
+    this.setState({ roomName: roomName, options: true});
   }
 
 
@@ -89,7 +102,36 @@ export default class CreateRoomForm extends Component {
     this.setState({ roomName: "" });
   }
 
+  mainMenu(event) {
+   if (event !== undefined) {
+     event.preventDefault();
+   }
+    window.location.reload();
+  }
 
+  startGame(event) {
+    event.preventDefault();
+    this.socket.emit("startGame", this.state.roomName, this.props.tiles, this.state.rounds, this.state.timer)
+  }
+
+  changeRounds(event) {
+    event.preventDefault();
+    if(event.currentTarget.innerText === "+") {
+      this.setState({rounds: (this.state.rounds + 1)}) 
+    } else {
+       if(this.state.rounds === 1) return;
+       this.setState({rounds: (this.state.rounds - 1)}) 
+    }
+  }
+
+  changeTimer(event) {
+    event.preventDefault();
+    if (this.state.timer) {
+      this.setState({timer: false})
+    } else {
+      this.setState({timer: true})
+    }
+  }
   
   render() {
 
@@ -138,23 +180,51 @@ export default class CreateRoomForm extends Component {
               readOnly={readOnlyVal}
             />
           </label>
-          <div className="cr-button-container">
-          <button
-            className="butts"
-            type="submit"
-            onClick={this.handleRoomCreate}>
-            Create
-          </button>
-          <button className="butts" type="submit" onClick={this.handleRoomJoin}>
-            Join
-          </button>
-          <button
-            className="butts"
-            type="submit"
-            onClick={this.handleRandomCreate}>
-            Random
-          </button>
-          </div>
+          {this.state.options
+          ? <> 
+            <button className="button-stylez" onClick={this.mainMenu}>Main Menu</button>
+            <div className="round-container">
+                Rounds 
+                <button className="rounds" onClick={this.changeRounds}>-</button>
+                  {this.state.rounds} 
+                <button className="rounds" onClick={this.changeRounds}>+</button>
+            </div> 
+              {(this.state.timer) 
+                ? <div className="timer-on-off-container">
+                  Timer
+                <button className="timer-on-active" >On/</button>
+                  <button className="timer-off" onClick={this.changeTimer}>Off</button>
+                </div> 
+                : <div className="timer-on-off-container">
+                  Timer
+                <button className="timer-on" onClick={this.changeTimer}>On/</button>
+                  <button className="timer-off-active" >Off</button>
+                </div> 
+                }        
+            <button className="button-stylez" onClick={this.startGame}>Start Game</button>
+            {/* <button className="button-stylez">Timer Off</button> */}
+            {/* <button className="button-stylez">Join Link</button> */}
+            {/* <button>Timer On</button>  */}
+          </>
+          : <>
+            <div className="cr-button-container">
+            <button className="button-stylez butts" type="submit" onClick={this.handleRoomJoin}>
+              Join
+            </button>
+            <button
+              className="button-stylez butts"
+              type="submit"
+              onClick={this.handleRoomCreate}>
+              Create
+            </button>
+            <button
+              className="button-stylez butts"
+              type="submit"
+              onClick={this.handleRandomCreate}>
+              Random
+            </button>
+            </div>
+          </>}
         </form>
         <div className="players-create-container">{players}</div>
       </div>
@@ -170,7 +240,8 @@ export default class CreateRoomForm extends Component {
         : (joinRoom)
 
         
-    return (<>
+    return (
+      <>
         {view}
       </>
     );

@@ -25,6 +25,7 @@ class TileBank extends React.Component {
     const tiles = player.clueTiles;
     
     let newTiles = tiles.map((tile, index) => {
+      
       return (
         <Tile
           key={index}
@@ -45,6 +46,7 @@ class TileBank extends React.Component {
           <div className="clue-bank-container">
             <div className="clue-container">
                 <ClueConstruction
+                  timer = {gameState.timer}
                   clueConstructionArray={player.selectedClueTiles}
                   roomName={gameState.roomName}
                   socket={this.props.socket}

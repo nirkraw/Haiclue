@@ -17,3 +17,20 @@
        border-style: outset;
 } */
 
+.add-line {
+       width: 50px;
+       padding-left: 10px;
+       padding-right: 10px;
+}
+
+.add-line.color-black:hover {
+       background-color:rgba(7, 192, 161, 0.287);
+       border-color:rgb(7, 192, 161);
+       cursor: pointer;
+   }
+   
+   .add-line.color-white:hover {
+       background-color: #00c8a6;
+       border-color: #059c83;
+       cursor: pointer;
+   }
