@@ -11,12 +11,6 @@ export default class RevealedClue extends Component {
     }
 
     render() {
-        // const cards = [
-        //     blue,
-        //     red,
-        //     green,
-        //     yellow,
-        //   ];
         const cards = {
             0: blue,
             1: red,
@@ -41,7 +35,6 @@ export default class RevealedClue extends Component {
                 playerHandle = player.handle;
                 playerTargetWord = player.correctWord;
                 playerTargetIndex = player.correctIndex;
-                debugger
             }
         }
         if (playerTargetWord) {

@@ -4,6 +4,11 @@
     font-size: 24px;
     font-weight: bold;
 }
+
+.butts:hover {
+ cursor: pointer;
+}
+
 .room-container { 
     width: 600px; 
     margin: 0 auto;

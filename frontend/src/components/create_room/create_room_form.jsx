@@ -18,34 +18,43 @@ export default class CreateRoomForm extends Component {
       errors: "",
       gameState: null, 
       readOnly: false,
+      options: false,
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
     this.handleRoomCreate = this.handleRoomCreate.bind(this);
     this.handleRandomCreate = this.handleRandomCreate.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    
+    this.mainMenu = this.mainMenu.bind(this);
+    this.startGame = this.startGame.bind(this);
   }
 
   componentDidMount() {
+
     this.props.fetchTiles(); 
     this.socket = socketIOClient(ENV); 
-
+    
     this.socket.on("gameState", (gameState) => {
       this.setState({gameState: gameState})
     });
-
+    
     this.socket.on("receiveMessage", (data) => {
       this.setState({ message: data });
     });
     
     this.socket.on("sendErrors", (data) => {
       this.setState({ errors: data });
+      {if (data === "this name is already taken") {
+        this.setState({options: false})
+      }}
     });
     
     this.socket.on("connect", (socket) => {
       console.log("Frontend Connected! Socket Id: " + this.socket.id);
     });
+
+          
+
     console.log("######################################It has mounted again ########################################")
   }
   
@@ -60,7 +69,7 @@ export default class CreateRoomForm extends Component {
     const { roomName } = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, this.props.user.handle);
-    this.setState({ roomName: ""});
+    this.setState({ roomName: "", options: true});
   }
 
   randomRoom() {
@@ -77,7 +86,7 @@ export default class CreateRoomForm extends Component {
     let roomName = this.randomRoom()
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, this.props.user.handle);
-    this.setState({ roomName: roomName});
+    this.setState({ roomName: roomName, options: true});
   }
 
 
@@ -89,7 +98,17 @@ export default class CreateRoomForm extends Component {
     this.setState({ roomName: "" });
   }
 
+  mainMenu(event) {
+   if (event !== undefined) {
+     event.preventDefault();
+   }
+    window.location.reload();
+  }
 
+  startGame(event) {
+    event.preventDefault();
+    this.socket.emit("startGame", this.state.roomName, this.props.tiles, 3)
+  }
   
   render() {
 
@@ -138,6 +157,17 @@ export default class CreateRoomForm extends Component {
               readOnly={readOnlyVal}
             />
           </label>
+          {this.state.options
+        ? <> 
+          <button onClick={this.mainMenu}>Main Menu</button>
+          <button onClick={this.startGame}>Start Game</button>
+          <button>Join Link</button>
+          <button>Rounds {2}</button> 
+          <button>Timer Off</button>
+          {/* <button>Timer On</button>  */}
+        </>
+        : <>
+        
           <div className="cr-button-container">
           <button className="butts" type="submit" onClick={this.handleRoomJoin}>
             Join
@@ -155,6 +185,7 @@ export default class CreateRoomForm extends Component {
             Random
           </button>
           </div>
+        </>}
         </form>
         <div className="players-create-container">{players}</div>
       </div>

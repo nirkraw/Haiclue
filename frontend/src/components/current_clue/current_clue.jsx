@@ -2,7 +2,7 @@ import React from 'react';
 import '../css/layout.css';
 import '../css/current_clue.css';
 import Tile from '../tile_bank/tile';
-import Timer from '../timer/timer';
+// import Timer from '../timer/timer';
 
 
 class CurrentClue extends React.Component {
@@ -76,14 +76,14 @@ class CurrentClue extends React.Component {
                 return(
                     <div className="currentClue">
                         <div>
-                            <Timer
+                            {/* <Timer
                                 phase={'submit guess'}
                                 secs={30}
                                 socket={this.props.socket}
                                 roomName={gameState.roomName}
                                 localPlayerHandle={localPlayer.handle}
                                 currentPlayerHandle={currentPlayer.handle}
-                            />
+                            /> */}
                         </div>
                         {selectorTri}
                         <h1>Guess {currentPlayer.handle}'s Clue!</h1>

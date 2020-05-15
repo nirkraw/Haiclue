@@ -58,7 +58,7 @@ class Room {
       revealedClue: false,
     };
 
-    if (Object.values(this.game.players).length < 2) {
+    if (Object.values(this.game.players).length < 10) {
       // chnage to 4
       player.number = Object.values(this.game.players).length + 1;
       this.game.players[handle] = player;
@@ -100,14 +100,14 @@ class Room {
     this.game.tiles = tiles;
   }
 
-  startGame() {
+  startGame(rounds) {
     // keep all tiles in gamestate, call method that randomizes and returns 64 tiles (from selector reducer), then assign target words and clue tiles
     this.game.gameStarted = true;
-    this.startRound();
+    this.startRound(rounds);
   }
 
 
-  startRound() {
+  startRound(rounds) {
     this.resetPlayersSubmitedClue();
     this.game.clueSubmissionCount = 0
     this.game.currentPlayerTurn = 1;
@@ -115,7 +115,7 @@ class Room {
     this.game.round++;
 
     
-    if (this.game.round === 3) { // change number of rounds 
+    if (this.game.round === rounds) { // change number of rounds 
       this.gameOver();
     }
     

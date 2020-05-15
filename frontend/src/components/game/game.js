@@ -36,7 +36,7 @@ class Game extends React.Component {
                 setTimeout(() => {
                     socket.emit("unreveal clue", gameState.roomName, player.handle)
                     revealed = false
-                }, 3000);
+                }, 4000);
             }
       }
   return (
