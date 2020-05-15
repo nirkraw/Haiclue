@@ -89,8 +89,8 @@ io.on("connect", (socket) => {
     rooms[roomName].submitClue(handle); 
   });
 
-  socket.on("submit guess", (roomName, localPlayerhandle, matchBoolean, currentPlayerHandle) => {
-    rooms[roomName].submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle);
+  socket.on("submit guess", (roomName, localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord) => {
+    rooms[roomName].submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord);
   });
 
   socket.on("unreveal clue", (roomName, handle) => {

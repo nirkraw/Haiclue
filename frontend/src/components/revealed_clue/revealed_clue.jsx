@@ -49,6 +49,7 @@ export default class RevealedClue extends Component {
             if (x === 0) {
                 x = players.length
             }
+
             if (player.number !== x) {
                 debugger
                 return (
