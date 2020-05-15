@@ -86,11 +86,11 @@ io.on("connect", (socket) => {
   });
  
   socket.on("submit clue", (roomName, handle) => {
-    rooms[roomName].submitClue(handle);
+    rooms[roomName].submitClue(handle); 
   });
 
-  socket.on("submit guess", (roomName, localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord) => {
-    rooms[roomName].submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord);
+  socket.on("submit guess", (roomName, localPlayerhandle, matchBoolean, currentPlayerHandle) => {
+    rooms[roomName].submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle);
   });
 
   socket.on("unreveal clue", (roomName, handle) => {
