@@ -2,8 +2,6 @@ import React from 'react';
 import '../css/layout.css';
 import Timer from '../timer/timer';
 import Tile from './tile';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import '../css/transitions.css';
 
 // Could be refactored into funcitonal component
 class ClueContruction extends React.Component {
@@ -57,12 +55,8 @@ class ClueContruction extends React.Component {
             
             <button onClick={this.insertLine} id="clue-add-line-button">Add Line</button>
             <div>
-            <ReactCSSTransitionGroup
-            transitionName="tiles"
-            transitionEnterTimeout={200}
-            transitionLeaveTimeout={200}>
-                {clueConstruction}
-            </ReactCSSTransitionGroup>
+
+            {clueConstruction}
             </div>
             <div>
                 <Timer
