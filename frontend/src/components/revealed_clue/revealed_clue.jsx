@@ -40,7 +40,7 @@ export default class RevealedClue extends Component {
             if(player.revealedClue) {
                 playerHandle = player.handle;
                 playerTargetWord = player.correctWord;
-                playerTargetIndex = player.targetIndex;
+                playerTargetIndex = player.correctIndex;
                 debugger
             }
         }
