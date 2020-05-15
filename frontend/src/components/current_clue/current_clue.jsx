@@ -74,15 +74,17 @@ class CurrentClue extends React.Component {
                 return(
                     <div className="currentClue">
                         <div>
-                            <Timer
-                                timer = {gameState.timer}
-                                phase={'submit guess'}
-                                secs={30}
-                                socket={this.props.socket}
-                                roomName={gameState.roomName}
-                                localPlayerHandle={localPlayer.handle}
-                                currentPlayerHandle={currentPlayer.handle}
-                            />
+                            {(gameState.timer)
+                                ? <Timer
+                                    phase={'submit guess'}
+                                    secs={5}
+                                    socket={this.props.socket}
+                                    roomName={gameState.roomName}
+                                    localPlayerHandle={localPlayer.handle}
+                                    currentPlayerHandle={currentPlayer.handle}
+                                />
+                                : <div></div>
+                            }
                         </div>
                         {selectorTri}
                         <h1>Guess {currentPlayer.handle}'s Clue!</h1>

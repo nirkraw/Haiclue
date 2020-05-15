@@ -233,7 +233,7 @@ class Room {
         player.submitedGuess = false; 
       });
       
-      currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor]
+      currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor];
       currentPlayer.revealedClue = true;
       this.game.currentPlayerTurn++;
       this.game.clueGuessCount = 0;
