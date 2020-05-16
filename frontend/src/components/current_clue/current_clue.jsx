@@ -77,7 +77,7 @@ class CurrentClue extends React.Component {
                             {(gameState.timer)
                                 ? <Timer
                                     phase={'submit guess'}
-                                    secs={5}
+                                    secs={30}
                                     socket={this.props.socket}
                                     roomName={gameState.roomName}
                                     localPlayerHandle={localPlayer.handle}
