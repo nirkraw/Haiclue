@@ -5,6 +5,7 @@ class Tile extends React.Component {
     super(props);
 
     this.clueSubmit = this.clueSubmit.bind(this);
+    this.playSound = this.playSound.bind(this);
   }
 
   clueSubmit(event) {
@@ -15,7 +16,20 @@ class Tile extends React.Component {
     } else {
       this.props.socket.emit("remove clue tile", roomName, player.handle, tile);
     }
+
+    const sound = document.getElementById("tile-sound");
+    sound.currentTime = 0;
+    sound.volume = .5;
+    sound.play();
   }
+
+  playSound() {
+    const sound = document.getElementById("tile-sound");
+    sound.currentTime = 0;
+    sound.volume = .5;
+    sound.play();
+  }
+
 
 
   render() {
@@ -28,6 +42,7 @@ class Tile extends React.Component {
         {this.props.display ? (
           <div
            className={`color-${currentColor} tile`}
+           onClick={this.playSound}
           >
             {tileWord}
           </div>

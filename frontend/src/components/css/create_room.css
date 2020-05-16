@@ -231,6 +231,12 @@ input:focus {
     color: #e3ab00;
 }
 
+.mute {
+    height: 50px;
+    width: 50px;
+}
+
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

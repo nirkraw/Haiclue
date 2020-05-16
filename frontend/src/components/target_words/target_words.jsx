@@ -49,6 +49,10 @@ class TargetWords extends React.Component {
     if (guessedWord === currentPlayerTargetWord) matchBoolean= true;
     
     socket.emit("submit guess", gameState.roomName, localPlayer.handle, matchBoolean, currentPlayer.handle, guessedWord)
+
+    const sound = document.getElementById("submit-guess-sound");
+    sound.volume = .4;
+    sound.play();
   }
 
   render() {

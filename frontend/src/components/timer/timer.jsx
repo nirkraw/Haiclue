@@ -28,8 +28,16 @@ class Timer extends React.Component {
                  socket.emit(phase, roomName, localPlayerHandle, false, currentPlayerHandle)
                 }
 
+                const timesUpSound = document.getElementById("time-up-sound");
+                timesUpSound.volume = .4;
+                timesUpSound.play();
+
 
             } else if ((this.state.secs < 7) && (this.state.secs % 2 === 0)) {
+                const countDown = document.getElementById("countdown");
+                countDown.volume = .4;
+                countDown.currentTime = 0;
+                countDown.play()
                 this.setState({
                     secs: (this.state.secs - 1),
                     timeClass: "timer-flash",

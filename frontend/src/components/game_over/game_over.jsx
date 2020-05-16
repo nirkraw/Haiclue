@@ -13,6 +13,12 @@ class GameOver extends React.Component {
         this.newRoom = this.newRoom.bind(this);
     }
 
+    componentDidMount() {
+        const sound = document.getElementById("game-over-sound");
+        sound.volume = .4;
+        sound.play();
+    }
+
     sortByPoints(player1, player2) {
         return Math.sign(player2.points - player1.points)
     }

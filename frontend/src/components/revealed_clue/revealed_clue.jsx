@@ -51,7 +51,6 @@ export default class RevealedClue extends Component {
             }
 
             if (player.number !== x) {
-                debugger
                 return (
                 <li key={idx} >{player.handle}'s guess was {player.guessedWord}</li>
                 )

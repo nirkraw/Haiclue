@@ -8,6 +8,15 @@ import red from '../images/red-tile.png';
 import blue from '../images/blue-tile.png';
 import green from '../images/green-tile.png';
 import yellow from '../images/yellow-tile.png';
+import song from "../../music/FunkJam.mp3";
+import mute from "../images/mute.png";
+import unmute from "../images/unmute.png";
+import tileSound from "../../music/tile.wav";
+import submitSound from "../../music/submit.wav";
+import gameOverSound from "../../music/gameOver.wav";
+import submitGuessSound from "../../music/submitWord.wav";
+import timeUp from "../../music/time-up.wav";
+import countdown from "../../music/countdown.wav";
 
 export default class CreateRoomForm extends Component {
   constructor(props) {
@@ -20,7 +29,8 @@ export default class CreateRoomForm extends Component {
       readOnly: false,
       options: false,
       rounds: 3,
-      timer: false
+      timer: false,
+      playing: true
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -31,9 +41,15 @@ export default class CreateRoomForm extends Component {
     this.startGame = this.startGame.bind(this);
     this.changeRounds = this.changeRounds.bind(this);
     this.changeTimer = this.changeTimer.bind(this);
+    this.muteAndUnmute = this.muteAndUnmute.bind(this);
   }
 
   componentDidMount() {
+
+    const audio = document.getElementById("theme");
+    audio.volume = .4;
+    audio.loop = true;
+    // audio.play();
 
     this.props.fetchTiles(); 
     this.socket = socketIOClient(ENV); 
@@ -132,9 +148,19 @@ export default class CreateRoomForm extends Component {
       this.setState({timer: true})
     }
   }
+
+  muteAndUnmute() {
+    const audio = document.getElementById("theme");
+    if (!this.state.playing) {
+      audio.volume = .4;
+      this.setState({playing: true})
+    } else {
+      audio.volume = 0;
+      this.setState({ playing: false })
+    }
+  }
   
   render() {
-
     const {gameState} = this.state
     let welcome = "Create or Join a Room";
     if (this.state.message) welcome = this.state.message;
@@ -244,6 +270,17 @@ export default class CreateRoomForm extends Component {
         
     return (
       <>
+      {(this.state.playing)
+          ? <img onClick={this.muteAndUnmute} class="mute" src={unmute} alt="unmute" />
+          : <img onClick={this.muteAndUnmute} class="mute" src={mute} alt="mute"/>
+      }
+        <audio id="theme" src={song}></audio>
+        <audio id="tile-sound" src={tileSound}></audio>
+        <audio id="submit-sound" src={submitSound}></audio>
+        <audio id="game-over-sound" src={gameOverSound}></audio>
+        <audio id="submit-guess-sound" src={submitGuessSound}></audio>
+        <audio id="time-up-sound" src={timeUp}></audio>
+        <audio id="countdown" src={countdown}></audio>
         {view}
       </>
     );

@@ -14,17 +14,30 @@ class ClueContruction extends React.Component {
     submitClue(e) {
         e.preventDefault();
         this.props.socket.emit("submit clue", this.props.roomName, this.props.player.handle);
+
+        const sound = document.getElementById("submit-sound");
+        sound.volume = .4;
+        sound.play();
     }
     
     insertLine(e) {
         e.preventDefault();
         this.props.socket.emit("insert line", this.props.roomName, this.props.player.handle);
+
+        const sound = document.getElementById("submit-sound");
+        sound.volume = .4;
+        sound.play();
     }
 
     removeLine(e) {
         e.preventDefault();
         this.props.socket.emit("remove line", this.props.roomName, this.props.player.handle, e.currentTarget.id);
+
+        const sound = document.getElementById("submit-sound");
+        sound.volume = .4;
+        sound.play();
     }
+
 
     render() {
         const { currentColor, player, roomName, socket } = this.props
@@ -63,10 +76,11 @@ class ClueContruction extends React.Component {
                ? <Timer
                     timer = {this.props.timer}
                     phase={'submit clue'}
-                    secs={90}
+                    secs={8}
                     socket={this.props.socket}
                     roomName={this.props.roomName}
                     handle={this.props.player.handle}
+                    onClick={this.playSound}
                 />
                 : <div></div>
                 }

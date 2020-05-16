@@ -8,6 +8,8 @@ class TileBank extends React.Component {
   constructor(props) {
     super(props);
   }
+
+
   render() {
     const { gameState } = this.props;
     if (!gameState) return null;
