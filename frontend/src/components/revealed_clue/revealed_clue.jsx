@@ -37,12 +37,11 @@ export default class RevealedClue extends Component {
                 playerTargetWord = player.correctWord;
                 playerTargetIndex = player.correctIndex;
             }
-            // if (player.number === gameState.currentPlayerTurn) {
-            //     debugger 
+            // if (player.number === gameState.currentPlayerTurn) { 
             //     otherPlayers.push(player);
             // }
         }
-        // console.log(otherPlayers);
+
 
         const otherPlayersGuesses = players.map((player, idx) => {
             let x = gameState.currentPlayerTurn - 1
@@ -55,7 +54,7 @@ export default class RevealedClue extends Component {
                 <li key={idx} >{player.handle}'s guess was {player.guessedWord}</li>
                 )
             }
-            // setTimeout( , 3000)
+        
         })
 
     

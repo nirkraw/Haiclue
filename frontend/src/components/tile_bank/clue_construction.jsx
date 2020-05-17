@@ -76,7 +76,7 @@ class ClueContruction extends React.Component {
                ? <Timer
                     timer = {this.props.timer}
                     phase={'submit clue'}
-                    secs={8}
+                    secs={90}
                     socket={this.props.socket}
                     roomName={this.props.roomName}
                     handle={this.props.player.handle}

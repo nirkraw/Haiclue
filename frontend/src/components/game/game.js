@@ -32,7 +32,7 @@ class Game extends React.Component {
                 revealed = true 
                 playerHandle = player.handle;
                 playerTargetWord = player.correctWord
-                // debugger
+
                 setTimeout(() => {
                     socket.emit("unreveal clue", gameState.roomName, player.handle)
                     revealed = false

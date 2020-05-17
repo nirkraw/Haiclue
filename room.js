@@ -230,14 +230,11 @@ class Room {
       currentPlayer.points++;
     }
 
-    // let { correctWord, targetWord, targetIndex, correctIndex } = currentPlayer
     let { targetWord, targetIndex } = currentPlayer
 
     if (this.game.clueGuessCount === this.playerCount - 1) {
       currentPlayer.correctWord = targetWord[this.game.currentColor];
       currentPlayer.correctIndex = targetIndex;
-      // currentPlayer.oldGuessedWord = guessedWord;
-      // currentPlayer.guessedWord = guessedWord;
       Object.values(this.game.players).forEach((player) => {
         player.submitedGuess = false;
       });
@@ -248,7 +245,7 @@ class Room {
       this.game.clueGuessCount = 0;
     }
 
-    // if (this.game.currentPlayerTurn === this.playerCount + 1 && currentPlayer.revealedClue === false) {
+   
     if (this.game.currentPlayerTurn === this.playerCount + 1) {
       this.startRound();
     }
@@ -257,11 +254,6 @@ class Room {
   unrevealClue(handle) {
     const player = this.game.players[handle];
     player.revealedClue = false;
-
-    // if (this.game.currentPlayerTurn === this.playerCount + 1) {
-    //   // this may solve other issues with reveal clue component, that were previously solved by adding correctIndex and correctWord keys into player object.
-    //     this.startRound();
-    // }
   }
 
   gameOver() {
