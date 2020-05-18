@@ -41,7 +41,7 @@ class TileBank extends React.Component {
     });
 
     if (gameState.phase === "clue construction") {      
-      if (!player.submitedClue) {
+      if (!player.submittedClue) {
         return (
           <div className="clue-bank-container">
             <div className="clue-container">

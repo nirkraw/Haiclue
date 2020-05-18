@@ -13,7 +13,7 @@ class ScoreBoard extends React.Component {
         if(this.props.over) return (<></>)    
         let players = Object.values(this.props.players).map( (player, index) => {
         return (<div key={index} className='wrapper'>
-                    { (player.submitedClue) 
+                    { (player.submittedClue) 
                     // ? < div className="check">&#129299;</div>
                     // ? < div className="check">&#x1f914;</div>
                     ? <img className="emoji" src={glasses} alt="glasses"/>

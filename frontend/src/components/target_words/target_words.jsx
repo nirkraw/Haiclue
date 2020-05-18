@@ -14,7 +14,8 @@ class TargetWords extends React.Component {
     super(props);
 
     this.state = {
-      currentColor: "white"
+      currentColor: "white",
+      // sent: false
     }
 
     this.handleSubmitGuess = this.handleSubmitGuess.bind(this);
@@ -22,6 +23,7 @@ class TargetWords extends React.Component {
 
   handleSubmitGuess(e) {
     e.preventDefault();
+    // this.setState({sent: true})
     const { gameState, socket } = this.props;
 
     const currentPlayer = Object.values(this.props.gameState.players).filter(
@@ -35,9 +37,8 @@ class TargetWords extends React.Component {
         return player.handle === this.props.user.handle;
       }
     )[0];
-      
-    if (localPlayer.submitedGuess) return; 
-
+    
+    if (localPlayer.submittedGuess) return null; 
     const currentPlayerTargetWord = currentPlayer.targetWord[gameState.currentColor];
     const guessedWord = (e.currentTarget.nextElementSibling) 
      ?
