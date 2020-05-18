@@ -1,3 +1,38 @@
+hamburger default open
+5:37
+go by socket id instead of handle
+5:37
+working tutorial
+5:40
+demo user button instean of 4 apostles
+
+
+
+
+
+5:41
+(make tutorial the demo button. have it login as a user (maybe seed  a user named demo) then start the game all with one press.)
+5:42
+make the four logins (paul bart etc) into one button that math.randomes 1-4
+5:42
+then let the game function by looking for unique socket id's instead of handles
+5:43
+open hamburger menu on main page load
+5:43
+switch will to sara
+5:44
+seed more fake users
+
+add color card pictures to user guesses
+
+
+
+
+
+
+
+
+
 player2 r1 clue => [tiles.slice(index of word we want) ]  - buck tip, add line, sample shoe 
 player3 r1 clue => picnic, add line, chair, add line, vehicle hatch
 
