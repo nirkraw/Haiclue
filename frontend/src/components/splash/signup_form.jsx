@@ -10,8 +10,6 @@ class SignupForm extends React.Component {
             password: '',
             password2: '',
             email: '',
-            // errors: {}
-            errors: this.props.errors,
         };
 
         this.handleInput = this.handleInput.bind(this);
@@ -31,6 +29,14 @@ class SignupForm extends React.Component {
     }
 
     render () {
+        debugger; 
+
+        let signupErrors; 
+        if (this.props.errors.signupErrors) {
+        signupErrors = Object.values(this.props.errors.signupErrors).map( error => {
+            return (<li>{error}</li>)
+        });
+        }   
 
     return (
         <>
@@ -43,7 +49,7 @@ class SignupForm extends React.Component {
                     <input type="password" value={this.state.password2} onChange={this.handleInput('password2')}  placeholder="Confirm Password"/>
                     <br/>
                     <button onClick={this.handleSignupSubmit}>Signup</button>
-                    <div>{this.state.errors}</div>
+                    <ul>{signupErrors}</ul>
                 </form>
             </div>
         </>)

@@ -6,7 +6,6 @@ class LoginForm extends React.Component {
         this.state = {
             email: '',
             password: '',
-            errors: this.props.errors,
         };
         this.handleInput = this.handleInput.bind(this);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -27,7 +26,6 @@ class LoginForm extends React.Component {
         this.props.login({
             email: 'john@john.com',
             password: 'password',
-            errors: this.props.errors,
         })
     }
 
@@ -36,7 +34,6 @@ class LoginForm extends React.Component {
         this.props.login({
             email: 'bart@bart.com',
             password: 'password',
-            errors: this.props.errors,
         })
     }
 
@@ -45,7 +42,6 @@ class LoginForm extends React.Component {
         this.props.login({
             email: 'paul@paul.com',
             password: 'password',
-            errors: this.props.errors,
         })
     }
 
@@ -66,6 +62,16 @@ class LoginForm extends React.Component {
 
     render() {
 
+        let loginErrors; 
+        if (this.props.errors.loginErrors) {
+            debugger; 
+            loginErrors = Object.values(this.props.errors.loginErrors).map( error => {
+                return (<li>{error}</li>)
+            });
+        }
+
+        debugger; 
+
         return (<div className="session-form">
             <form>
                 <h2 id="logIn">Log In</h2>
@@ -73,7 +79,7 @@ class LoginForm extends React.Component {
                 <input type="password" value={this.state.password} onChange={this.handleInput('password')} placeholder="Password" />
                 <br />
                 <button onClick={this.handleLoginSubmit}>Login</button>
-                <div>{this.state.errors}</div>
+                <ul>{loginErrors}</ul>
             </form>
             <button onClick={this.handleDemoSubmit} >John Login</button>
             <button onClick={this.handleDemoSubmit2} >Bart Login</button>
