@@ -119,8 +119,8 @@ io.on("connect", (socket) => {
     rooms[roomName].addPlayer("Will");
     rooms[roomName].storeTiles(Object.values(tiles));
     rooms[roomName].startGame();
-    rooms[roomName].submitClue("Khaleel");
-    rooms[roomName].submitClue("Will");
+  
+    
 
     if(rooms[roomName].phase === "clue guessing") {
       rooms[roomName].guessingPhase(handle); 
