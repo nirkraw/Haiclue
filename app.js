@@ -112,10 +112,10 @@ io.on("connect", (socket) => {
  ///////////////////////////////
   socket.on("demo", (handle, roomName) => { // roomName will be demo -will this be an issue with two instances of demos goign on concurenetly
     const demoRoom = new DemoRoom(roomName); // it can be demo because no one can create a lowercase room name
+    rooms[roomName] = demoRoom;
     demoRoom.addPlayer(handle);
     demoRoom.addPlayer("Khaleel");
     demoRoom.addPlayer("Will");
-    rooms[roomName] = demoRoom;
     rooms[roomName].storeTiles(tiles);
     rooms[roomName].startGame();
   });
