@@ -3,6 +3,7 @@ class Room {
     this.roomName = roomName;
     this.game = {
       roomName: roomName,
+      joined: false,
       tiles: [],
       targetWords: [],
       players: {},
@@ -13,7 +14,7 @@ class Room {
       phase: "clue construction",
       currentPlayerTurn: 1,
       round: 0,
-      endRound: null, //change variable name to numberOfRounds ?? 
+      endRound: null, 
       over: false,
       timer: false
     };
@@ -63,7 +64,6 @@ class Room {
     };
 
     if (Object.values(this.game.players).length < 10) {
-      // chnage to 4
       player.number = Object.values(this.game.players).length + 1;
       this.game.players[handle] = player;
       this.playerCount++;
@@ -74,7 +74,7 @@ class Room {
     }
   }
 
-  submit(handle) {
+  submit(handle) { 
     const player = this.game.players[handle];
     player.joined = true;
   }
@@ -88,9 +88,8 @@ class Room {
   }
 
   assignPlayersTargetWord() {
-    // before each round
     Object.values(this.game.players).forEach((player) => {
-      let index = this.getRandomInt(4);
+      let index = this.getRandomInt(4); // should we combine this
       player.targetWord = this.game.targetWords[index];
       player.targetIndex = index;
     });
@@ -105,7 +104,7 @@ class Room {
   }
 
   startGame(rounds, timer) {
-    this.game.endRound = (rounds + 1);
+    this.game.endRound = (rounds + 1); 
     this.game.gameStarted = true;
     if (timer) this.game.timer = true;
     this.startRound();
@@ -113,7 +112,6 @@ class Room {
 
 
   startRound() {
-    // debugger
     this.resetPlayersSubmittedClue();
     this.game.clueSubmissionCount = 0
     
@@ -123,7 +121,7 @@ class Room {
     this.game.round++;
 
 
-    if (this.game.round === this.game.endRound) { // change number of rounds 
+    if (this.game.round === this.game.endRound) {
       this.gameOver();
     }
 
