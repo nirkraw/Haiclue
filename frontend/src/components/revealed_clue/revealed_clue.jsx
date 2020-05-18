@@ -3,7 +3,7 @@ import blue from "../images/blue-tile.png";
 import red from "../images/red-tile.png";
 import green from "../images/green-tile.png";
 import yellow from "../images/yellow-tile.png";
-
+import '../css/revealed-clue.css';
 export default class RevealedClue extends Component {
     constructor(props) {
         super(props)
