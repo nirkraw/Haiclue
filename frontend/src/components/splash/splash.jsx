@@ -34,9 +34,9 @@ class Splash extends React.Component {
 
     let menu = (
       <div className="hamburger-menu">
+        <a href="#howToPlay">How to Play</a>
         <a href="#logIn">Play</a>
         <a href="#signUp">Sign Up</a>
-        <a href="#howToPlay">How to Play</a>
         <a target="blank" href="https://tigerboardgames.com/">Website</a>
         <a target="blank" href="https://github.com/nirkraw/Haiclue">Github</a>
       </div>)

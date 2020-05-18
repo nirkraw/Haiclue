@@ -5,14 +5,14 @@ import SignupForm from './signup_form';
 
 
 const msp = (state) => ({
-    errors: state.errors.session,
+    errors: state.errors.session.signUpErrors,
     
 });
 
 
 const mdp = dispatch => ({
     signup: formUser => dispatch(signup(formUser)),
-    login: formUser => dispatch(login(formUser))
+    // login: formUser => dispatch(login(formUser))
 });
 
 export default connect(msp, mdp)(SignupForm);

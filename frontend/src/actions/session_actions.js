@@ -3,7 +3,8 @@ import jwt_decode from 'jwt-decode';
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
-export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
+export const RECEIVE_LOGIN_ERRORS = "RECEIVE_LOGIN_ERRORS";
+export const RECEIVE_SIGNUP_ERRORS = "RECEIVE_SIGNUP_ERRORS";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 
 export const receiveCurrentUser = currentUser => ({
@@ -17,14 +18,14 @@ export const logoutUser = () => ({
 
 export const receiveLoginErrors = errors => {
     return {
-    type: RECEIVE_SESSION_ERRORS,
+    type: RECEIVE_LOGIN_ERRORS,
     loginErrors: errors}
 };
 
-export const receiveSignupErrors = errors => {
+export const receiveSignUpErrors = errors => {
     return {
-    type: RECEIVE_SESSION_ERRORS,
-    signupErrors: errors}
+    type: RECEIVE_SIGNUP_ERRORS,
+    signUpErrors: errors}
 };
 
 export const receiveUserSignIn = () => {
@@ -45,7 +46,7 @@ export const login = user => dispatch => (
         localStorage.setItem('jwtToken', token);
         APIUtil.setAuthToken(token);
         const decoded = jwt_decode(token);
-        dispatch(receiveCurrentUser(decoded))
+        dispatch(receiveCurrentUser(decoded));
     })
     .catch(err => {
         dispatch(receiveLoginErrors(err.response.data));
@@ -57,6 +58,14 @@ export const signup = user => dispatch => (
     APIUtil.signup(user).then(() => (
         dispatch(receiveUserSignIn())
     ), err => (
-        dispatch(receiveSignupErrors(err.response.data))
-    ))
+        dispatch(receiveSignUpErrors(err.response.data))
+    )).then(APIUtil.login(user).then(res => {
+        const {
+            token
+        } = res.data;
+        localStorage.setItem('jwtToken', token);
+        APIUtil.setAuthToken(token);
+        const decoded = jwt_decode(token);
+        dispatch(receiveCurrentUser(decoded));
+    }))
 );

@@ -25,14 +25,16 @@ class SignupForm extends React.Component {
 
     handleSignupSubmit(e) {
         e.preventDefault();
-        this.props.signup(this.state).then(() => {this.props.login(this.state)})
+        this.props.signup(this.state)
+        // .then(() => {this.props.login(this.state)})
     }
 
     render () {
 
-        let signupErrors; 
-        if (this.props.errors.signupErrors) {
-        signupErrors = Object.values(this.props.errors.signupErrors).map( error => {
+        let signUpErrors; 
+        if (this.props.errors) {
+            // debugger
+        signUpErrors = Object.values(this.props.errors).map( error => {
             return (<li>{error}</li>)
         });
         }   
@@ -48,7 +50,7 @@ class SignupForm extends React.Component {
                     <input type="password" value={this.state.password2} onChange={this.handleInput('password2')}  placeholder="Confirm Password"/>
                     <br/>
                     <button onClick={this.handleSignupSubmit}>Signup</button>
-                    <ul>{signupErrors}</ul>
+                    <ul>{signUpErrors}</ul>
                 </form>
             </div>
         </>)

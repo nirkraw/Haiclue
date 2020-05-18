@@ -12,6 +12,7 @@ const instructions = () => {
                 Your browser does not support the video tag.
                 </video>
                 {/* <img className="video-arrow" src={arrow} alt="play arrow"/> */}
+                <button className="tutorial-button">Tutorial</button>
             </div>
     );
 }
