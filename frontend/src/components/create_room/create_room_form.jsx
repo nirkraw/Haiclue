@@ -47,7 +47,7 @@ export default class CreateRoomForm extends Component {
   componentDidMount() {
 
     const audio = document.getElementById("theme");
-    audio.volume = .4;
+    audio.volume = .05;
     audio.loop = true;
     // audio.play();
 
@@ -152,7 +152,7 @@ export default class CreateRoomForm extends Component {
   muteAndUnmute() {
     const audio = document.getElementById("theme");
     if (!this.state.playing) {
-      audio.volume = .4;
+      audio.volume = .05;
       this.setState({playing: true})
     } else {
       audio.volume = 0;

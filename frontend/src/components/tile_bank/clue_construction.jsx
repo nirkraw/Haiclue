@@ -16,7 +16,8 @@ class ClueContruction extends React.Component {
         this.props.socket.emit("submit clue", this.props.roomName, this.props.player.handle);
 
         const sound = document.getElementById("submit-sound");
-        sound.volume = .4;
+        sound.currentTime = .1;
+        sound.volume = .3;
         sound.play();
     }
     
@@ -25,7 +26,8 @@ class ClueContruction extends React.Component {
         this.props.socket.emit("insert line", this.props.roomName, this.props.player.handle);
 
         const sound = document.getElementById("submit-sound");
-        sound.volume = .4;
+        sound.currentTime = 0.1;
+        sound.volume = .3;
         sound.play();
     }
 
@@ -34,7 +36,7 @@ class ClueContruction extends React.Component {
         this.props.socket.emit("remove line", this.props.roomName, this.props.player.handle, e.currentTarget.id);
 
         const sound = document.getElementById("submit-sound");
-        sound.volume = .4;
+        sound.volume = .3;
         sound.play();
     }
 
