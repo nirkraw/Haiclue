@@ -34,7 +34,7 @@ class DemoRoom {
         this.unrevealClue = this.unrevealClue.bind(this);
         this.gameOver = this.gameOver.bind(this);
         this.storeTiles = this.storeTiles.bind(this);
-        this.getRoundTiles = this.getRoundTiles.bind(this);
+        // this.getRoundTiles = this.getRoundTiles.bind(this);
         this.startRound = this.startRound.bind(this);
         this.resetPlayersSubmitedClue = this.resetPlayersSubmitedClue.bind(this);
         this.insertLine = this.insertLine.bind(this);
@@ -61,14 +61,20 @@ class DemoRoom {
             revealedClue: false,
         };
 
+        player.number = Object.values(this.game.players).length + 1;
         this.game.players[handle] = player;
         this.playerCount++;
+
         
     }
 
+    storeTiles(tiles) {
+        this.game.tiles = tiles;
+    }
+
+
     startGame() {
         this.game.gameStarted = true;
-        // if (timer) this.game.timer = true; // yay or nay 
         this.startRound();
     }
 
@@ -81,21 +87,23 @@ class DemoRoom {
         this.game.phase = "clue construction";
         this.game.round++;
 
-
         if (this.game.round === this.game.endRound) {
             this.gameOver();
         }
-
+        
         if (this.game.round % 2 === 0) {
             this.game.currentColor = "white"
         } else {
             this.game.currentColor = "black"
         }
-
-
-        this.createTargetWords();
+        
+        const tiles = Object.values(this.game.tiles).slice(0, 49);
+        const targetWords = tiles.slice(0,4); //flat - spy , horn -badge , hurting - smart , oil - brains
+        const allClueTiles = tiles.slice(4, 49);
+        
+        this.createTargetWords(targetWords);
         this.assignPlayersTargetWord();
-        this.assignPlayersClueTiles();
+        this.assignPlayersClueTiles(allClueTiles);
     }
 
     resetPlayersSubmitedClue() {
@@ -105,34 +113,37 @@ class DemoRoom {
         });
     }
 
-    createTargetWords() {
-        this.game.targetWords = []; /**********Add Words Manually*************/
+    createTargetWords(targetWords) {
+        this.game.targetWords = targetWords; 
     }
 
     assignPlayersTargetWord() {
         Object.values(this.game.players).forEach((player) => {
             if (player.number === 1) {
-                player.targetWord = []; /**********Add Words Manually*************/
+                player.targetWord = this.game.targetWords[2];
+                player.targetIndex = 2;
             }
             if (player.number === 2) {
-                player.targetWord = []; /**********Add Words Manually*************/
+                player.targetWord = this.game.targetWords[1]; 
+                player.targetIndex = 1;
             }
             if (player.number === 3) {
-                player.targetWord = []; /**********Add Words Manually*************/
+                player.targetWord = this.game.targetWords[0]; 
+                player.targetIndex = 0;
             }
         });
     }
 
-    assignPlayersClueTiles() {
+    assignPlayersClueTiles(allClueTiles) {
         Object.values(this.game.players).forEach((player) => {
             if (player.number === 1) {
-                player.clueTiles = []; /**********Add Words Manually*************/
+                player.clueTiles = allClueTiles.slice(4, 19); 
             }
             if (player.number === 2) {
-                player.clueTiles = []; /**********Add Words Manually*************/
+                player.clueTiles = allClueTiles.slice(19, 34); 
             }
             if (player.number === 3) {
-                player.clueTiles = []; /**********Add Words Manually*************/
+                player.clueTiles = allClueTiles.slice(34, 49); 
             }
         });
     }

@@ -19,14 +19,14 @@ class Tile extends React.Component {
 
     const sound = document.getElementById("tile-sound");
     sound.currentTime = 0;
-    sound.volume = .5;
+    sound.volume = .35;
     sound.play();
   }
 
   playSound() {
     const sound = document.getElementById("tile-sound");
     sound.currentTime = 0;
-    sound.volume = .5;
+    sound.volume = .35;
     sound.play();
   }
 

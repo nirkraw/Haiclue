@@ -37,7 +37,7 @@ class Room {
     this.storeTiles = this.storeTiles.bind(this);
     this.getRoundTiles = this.getRoundTiles.bind(this);
     this.startRound = this.startRound.bind(this);
-    this.resetPlayersSubmitedClue = this.resetPlayersSubmitedClue.bind(this);
+    this.resetPlayersSubmittedClue = this.resetPlayersSubmittedClue.bind(this);
     this.insertLine = this.insertLine.bind(this);
     this.removeLine = this.removeLine.bind(this);
     this.restartGame = this.restartGame.bind(this);
@@ -56,8 +56,8 @@ class Room {
       points: 0,
       clueTiles: [],
       selectedClueTiles: [],
-      submitedClue: false,
-      submitedGuess: false,
+      submittedClue: false,
+      submittedGuess: false,
       guessedWord: "",
       oldGuessedWord: "",
       revealedClue: false,
@@ -112,7 +112,7 @@ class Room {
 
 
   startRound() {
-    this.resetPlayersSubmitedClue();
+    this.resetPlayersSubmittedClue();
     this.game.clueSubmissionCount = 0
     
     this.game.currentPlayerTurn = 1;
@@ -140,9 +140,9 @@ class Room {
     this.assignPlayersClueTiles(clueTiles);
   }
 
-  resetPlayersSubmitedClue() {
+  resetPlayersSubmittedClue() {
     Object.values(this.game.players).forEach((player) => {
-      player.submitedClue = false;
+      player.submittedClue = false;
       player.selectedClueTiles = [];
     });
   }
@@ -204,8 +204,8 @@ class Room {
 
   submitClue(handle) {
     const player = this.game.players[handle];
-    if (!player.submitedClue) {
-      player.submitedClue = true;
+    if (!player.submittedClue) {
+      player.submittedClue = true;
       this.game.clueSubmissionCount++;
     }
     if (this.game.clueSubmissionCount === this.playerCount) {
@@ -217,7 +217,7 @@ class Room {
   submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord) {
     const localPlayer = this.game.players[localPlayerhandle];
     const currentPlayer = this.game.players[currentPlayerHandle];
-    currentPlayer.submitedGuess = true;
+    localPlayer.submittedGuess = true;
     localPlayer.guessedWord = guessedWord;
     // localPlayer.fish = "fish";
 
@@ -234,7 +234,7 @@ class Room {
       currentPlayer.correctWord = targetWord[this.game.currentColor];
       currentPlayer.correctIndex = targetIndex;
       Object.values(this.game.players).forEach((player) => {
-        player.submitedGuess = false;
+        player.submittedGuess = false;
       });
 
       currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor];

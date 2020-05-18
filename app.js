@@ -116,8 +116,8 @@ io.on("connect", (socket) => {
     demoRoom.addPlayer("Khaleel");
     demoRoom.addPlayer("Will");
     rooms[roomName] = demoRoom;
+    rooms[roomName].storeTiles(tiles);
     rooms[roomName].startGame();
-
   });
  //////////////////////////////
 
