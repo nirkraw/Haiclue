@@ -8,6 +8,8 @@ class TileBank extends React.Component {
   constructor(props) {
     super(props);
   }
+
+
   render() {
     const { gameState } = this.props;
     if (!gameState) return null;
@@ -39,7 +41,7 @@ class TileBank extends React.Component {
     });
 
     if (gameState.phase === "clue construction") {      
-      if (!player.submitedClue) {
+      if (!player.submittedClue) {
         return (
           <div className="clue-bank-container">
             <div className="clue-container">

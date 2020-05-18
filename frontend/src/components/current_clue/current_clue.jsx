@@ -70,14 +70,14 @@ class CurrentClue extends React.Component {
                 </svg>
             );
 
-            if (gameState.phase === "clue guessing" && localPlayer.handle !== currentPlayer.handle && !localPlayer.submitedGuess) {
+            if (gameState.phase === "clue guessing" && localPlayer.handle !== currentPlayer.handle && !localPlayer.submittedGuess) {
                 return(
                     <div className="currentClue">
                         <div>
                             {(gameState.timer)
                                 ? <Timer
                                     phase={'submit guess'}
-                                    secs={5}
+                                    secs={30}
                                     socket={this.props.socket}
                                     roomName={gameState.roomName}
                                     localPlayerHandle={localPlayer.handle}
@@ -100,7 +100,7 @@ class CurrentClue extends React.Component {
                 );
             } else if (gameState.phase === "clue guessing" 
                        && localPlayer.handle !== currentPlayer.handle
-                       && localPlayer.submitedGuess) {
+                       && localPlayer.submittedGuess) {
                 return (
                     <div className="currentClue">
                         <h1>Waiting for other players to guess!</h1>

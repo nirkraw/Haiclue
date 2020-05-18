@@ -36,7 +36,7 @@ class Room {
     this.storeTiles = this.storeTiles.bind(this);
     this.getRoundTiles = this.getRoundTiles.bind(this);
     this.startRound = this.startRound.bind(this);
-    this.resetPlayersSubmitedClue = this.resetPlayersSubmitedClue.bind(this);
+    this.resetPlayersSubmittedClue = this.resetPlayersSubmittedClue.bind(this);
     this.insertLine = this.insertLine.bind(this);
     this.removeLine = this.removeLine.bind(this);
     this.restartGame = this.restartGame.bind(this);
@@ -55,8 +55,8 @@ class Room {
       points: 0,
       clueTiles: [],
       selectedClueTiles: [],
-      submitedClue: false,
-      submitedGuess: false,
+      submittedClue: false,
+      submittedGuess: false,
       guessedWord: "",
       oldGuessedWord: "",
       revealedClue: false,
@@ -114,7 +114,7 @@ class Room {
 
   startRound() {
     // debugger
-    this.resetPlayersSubmitedClue();
+    this.resetPlayersSubmittedClue();
     this.game.clueSubmissionCount = 0
     
     this.game.currentPlayerTurn = 1;
@@ -142,9 +142,9 @@ class Room {
     this.assignPlayersClueTiles(clueTiles);
   }
 
-  resetPlayersSubmitedClue() {
+  resetPlayersSubmittedClue() {
     Object.values(this.game.players).forEach((player) => {
-      player.submitedClue = false;
+      player.submittedClue = false;
       player.selectedClueTiles = [];
     });
   }
@@ -206,8 +206,8 @@ class Room {
 
   submitClue(handle) {
     const player = this.game.players[handle];
-    if (!player.submitedClue) {
-      player.submitedClue = true;
+    if (!player.submittedClue) {
+      player.submittedClue = true;
       this.game.clueSubmissionCount++;
     }
     if (this.game.clueSubmissionCount === this.playerCount) {
@@ -219,7 +219,7 @@ class Room {
   submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord) {
     const localPlayer = this.game.players[localPlayerhandle];
     const currentPlayer = this.game.players[currentPlayerHandle];
-    currentPlayer.submitedGuess = true;
+    localPlayer.submittedGuess = true;
     localPlayer.guessedWord = guessedWord;
     // localPlayer.fish = "fish";
 
@@ -230,16 +230,13 @@ class Room {
       currentPlayer.points++;
     }
 
-    // let { correctWord, targetWord, targetIndex, correctIndex } = currentPlayer
     let { targetWord, targetIndex } = currentPlayer
 
     if (this.game.clueGuessCount === this.playerCount - 1) {
       currentPlayer.correctWord = targetWord[this.game.currentColor];
       currentPlayer.correctIndex = targetIndex;
-      // currentPlayer.oldGuessedWord = guessedWord;
-      // currentPlayer.guessedWord = guessedWord;
       Object.values(this.game.players).forEach((player) => {
-        player.submitedGuess = false;
+        player.submittedGuess = false;
       });
 
       currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor];
@@ -248,7 +245,7 @@ class Room {
       this.game.clueGuessCount = 0;
     }
 
-    // if (this.game.currentPlayerTurn === this.playerCount + 1 && currentPlayer.revealedClue === false) {
+   
     if (this.game.currentPlayerTurn === this.playerCount + 1) {
       this.startRound();
     }
@@ -257,11 +254,6 @@ class Room {
   unrevealClue(handle) {
     const player = this.game.players[handle];
     player.revealedClue = false;
-
-    // if (this.game.currentPlayerTurn === this.playerCount + 1) {
-    //   // this may solve other issues with reveal clue component, that were previously solved by adding correctIndex and correctWord keys into player object.
-    //     this.startRound();
-    // }
   }
 
   gameOver() {
