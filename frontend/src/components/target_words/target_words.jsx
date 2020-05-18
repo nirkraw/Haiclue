@@ -117,9 +117,10 @@ class TargetWords extends React.Component {
           <div key={index} className="target-words-container">
             <img
               src={Object.values(cards[index])}
-              className="target-img"
+              className="target-img hoverable"
               alt={Object.keys(cards[index])}
               onClick={this.handleSubmitGuess}
+              
             />
             {(flip) 
             ? <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile hoverable flip`} >{tileSide}</div>

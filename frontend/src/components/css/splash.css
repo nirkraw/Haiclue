@@ -14,8 +14,9 @@
     height: auto;
 }
 
-#join-a-game {
+.how-to-play {
     margin-top: 150px;
+    width: 30%;
 }
 
 .splash-container h1 {

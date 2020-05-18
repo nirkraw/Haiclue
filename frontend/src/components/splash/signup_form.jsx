@@ -29,7 +29,6 @@ class SignupForm extends React.Component {
     }
 
     render () {
-        debugger; 
 
         let signupErrors; 
         if (this.props.errors.signupErrors) {

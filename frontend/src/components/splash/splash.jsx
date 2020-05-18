@@ -34,7 +34,7 @@ class Splash extends React.Component {
 
     let menu = (
       <div className="hamburger-menu">
-        <a href="#logIn">Log In</a>
+        <a href="#logIn">Play</a>
         <a href="#signUp">Sign Up</a>
         <a href="#howToPlay">How to Play</a>
         <a target="blank" href="https://tigerboardgames.com/">Website</a>
@@ -66,16 +66,18 @@ class Splash extends React.Component {
             <img src={red} alt="red"/>
             <img src={yellow} alt="yellow"/>
           </section>
-          <h1 className="splash-label" id="join-a-game">Join a Game</h1>
-            <div className='form-container'>
-              <AuthRoute path="/" component={LoginFormContainer} />
-              <AuthRoute path="/" component={SignupFormContainer} />
-            </div>
-          <h1 className="splash-label" id="howToPlay">How to Play 
+
+          <h1 className="splash-label" className='how-to-play' id="howToPlay">How to Play 
             <NavLink to='instructions' target="blank"><button className="instruction-hover">?</button></NavLink>
           </h1>
           {/* opens model that contains instructions picture? with x up top and can click outside to close it */}
             <Route component={Instructions} />
+            
+          <h1 className="splash-label">Join a Game</h1>
+            <div className='form-container'>
+              <AuthRoute path="/" component={LoginFormContainer} />
+              <AuthRoute path="/" component={SignupFormContainer} />
+            </div>
         </div>  
         <footer>
             <a target="blank" href="https://tigerboardgames.com/">

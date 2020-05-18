@@ -64,13 +64,11 @@ class LoginForm extends React.Component {
 
         let loginErrors; 
         if (this.props.errors.loginErrors) {
-            debugger; 
             loginErrors = Object.values(this.props.errors.loginErrors).map( error => {
                 return (<li>{error}</li>)
             });
         }
 
-        debugger; 
 
         return (<div className="session-form">
             <form>

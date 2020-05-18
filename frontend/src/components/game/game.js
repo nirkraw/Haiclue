@@ -11,8 +11,16 @@ import Scoreboard from "../scoreboard/scoreboard";
 class Game extends React.Component {
   constructor(props) {
     super(props)
+    this.mainMenu = this.mainMenu.bind(this);
   }
- 
+
+  mainMenu(event) {
+    if (event !== undefined) {
+      event.preventDefault();
+    }
+     window.location.reload();
+   }
+
   render() {
 
     const {gameState, socket} = this.props
@@ -39,9 +47,10 @@ class Game extends React.Component {
                 }, 5000);
             }
       }
+// debugger
   return (
   <div>
-      <Logout logout={this.props.logout} loggedIn={this.props.loggedIn} />
+      <Logout quit={this.mainMenu} start={this.props.gameState.gameStarted} logout={this.props.logout} loggedIn={this.props.loggedIn} /> 
       <h1 className="logo">Haiclue</h1>
       <div className="game-container">
           <div className="top-container">
