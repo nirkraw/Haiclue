@@ -42,10 +42,11 @@ export default class CreateRoomForm extends Component {
     this.changeRounds = this.changeRounds.bind(this);
     this.changeTimer = this.changeTimer.bind(this);
     this.muteAndUnmute = this.muteAndUnmute.bind(this);
+    this.demoGame = this.demoGame.bind(this);
   }
 
   componentDidMount() {
-
+    
     const audio = document.getElementById("theme");
     audio.volume = .05;
     audio.loop = true;
@@ -160,12 +161,19 @@ export default class CreateRoomForm extends Component {
     }
   }
   
+  demoGame(e) {
+    e.preventDefault();
+    this.socket.emit("demo", this.props.user.handle, "demo", this.props.tiles);
+  }
+
   render() {
+    
     const {gameState} = this.state
     let welcome = "Create or Join a Room";
     if (this.state.message) welcome = this.state.message;
     let players;
     if(gameState) {
+      debugger
     let joinedPlayers = Object.values(gameState.players).filter(player => player.joined) 
     players = joinedPlayers.map(player => {
       return (
@@ -250,6 +258,12 @@ export default class CreateRoomForm extends Component {
                   type="submit"
                   onClick={this.handleRandomCreate}>
                   Random
+                </button>
+                <button
+                  className="button-stylez butts"
+                  type="submit"
+                  onClick={this.demoGame}>
+                  Demo Game
                 </button>
             </div>
           </>}
