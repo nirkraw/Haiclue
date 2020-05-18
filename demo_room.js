@@ -108,33 +108,45 @@ class DemoRoom {
         const khaleel = this.game.players["Khaleel"];
         const will = this.game.players["Will"];
 
-        this.submitClue("Khaleel");
-        this.submitClue("Will");
+        
+        
     
         if (this.game.round === 1) {
-            khaleel.selectedClueTiles = 
-            [
-                khaleel.clueTiles[5], khaleel.clueTiles[6], "1", 
-                khaleel.clueTiles[11], khaleel.clueTiles[12]
-            ];
-            will.selectedClueTiles = 
-            [
-                will.clueTiles[7], "1", 
-                will.clueTiles[6], "2",
-                will.clueTiles[11], will.clueTiles[14]
-            ];
+            setTimeout(() => {
+                this.submitClue("Khaleel");
+                khaleel.selectedClueTiles = 
+                [
+                    khaleel.clueTiles[5], khaleel.clueTiles[6], "1", 
+                    khaleel.clueTiles[11], khaleel.clueTiles[12]
+                ];
+            }, 5000);
+            setTimeout(() => { 
+                this.submitClue("Will");
+                will.selectedClueTiles = 
+                [
+                    will.clueTiles[7], "1", 
+                    will.clueTiles[6], "2",
+                    will.clueTiles[11], will.clueTiles[14]
+                ];
+            }, 7000);
         } else {
-            khaleel.selectedClueTiles =
-                [
-                    khaleel.clueTiles[6], khaleel.clueTiles[9], "1",
-                    khaleel.clueTiles[1]
-                ];
-            will.selectedClueTiles =
-                [
-                    will.clueTiles[10], will.clueTiles[6], "1",
-                    will.clueTiles[12], will.clueTiles[5], "2",
-                    will.clueTiles[2]
-                ];
+            setTimeout(() => {
+                this.submitClue("Khaleel");
+                khaleel.selectedClueTiles =
+                    [
+                        khaleel.clueTiles[6], khaleel.clueTiles[9], "1",
+                        khaleel.clueTiles[1]
+                    ];
+            }, 7000);
+            setTimeout(() => {
+                this.submitClue("Will");
+                will.selectedClueTiles =
+                    [
+                        will.clueTiles[10], will.clueTiles[6], "1",
+                        will.clueTiles[12], will.clueTiles[5], "2",
+                        will.clueTiles[2]
+                    ];
+             }, 9000);
         }
 
     }
