@@ -110,13 +110,15 @@ io.on("connect", (socket) => {
   });
 
  ///////////////////////////////
-  socket.on("demo", (handle, roomName) => { // roomName will be demo -will this be an issue with two instances of demos goign on concurenetly
+  socket.on("demo", (handle, roomName, tiles) => { // roomName will be demo -will this be an issue with two instances of demos goign on concurenetly
+    socket.join(roomName);
     const demoRoom = new DemoRoom(roomName); // it can be demo because no one can create a lowercase room name
     rooms[roomName] = demoRoom;
-    demoRoom.addPlayer(handle);
-    demoRoom.addPlayer("Khaleel");
-    demoRoom.addPlayer("Will");
-    rooms[roomName].storeTiles(tiles);
+    debugger
+    rooms[roomName].addPlayer(handle);
+    rooms[roomName].addPlayer("Khaleel");
+    rooms[roomName].addPlayer("Will");
+    rooms[roomName].storeTiles(Object.values(tiles));
     rooms[roomName].startGame();
   });
  //////////////////////////////

@@ -97,13 +97,15 @@ class DemoRoom {
             this.game.currentColor = "black"
         }
         
-        const tiles = Object.values(this.game.tiles).slice(0, 49);
+        const tiles = this.game.tiles.slice(0, 49);
         const targetWords = tiles.slice(0,4); //flat - spy , horn -badge , hurting - smart , oil - brains
         const allClueTiles = tiles.slice(4, 49);
         
         this.createTargetWords(targetWords);
         this.assignPlayersTargetWord();
         this.assignPlayersClueTiles(allClueTiles);
+
+        debugger
     }
 
     resetPlayersSubmitedClue() {
