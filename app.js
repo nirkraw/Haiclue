@@ -15,6 +15,7 @@ const io = socketIo(server);
 // const http = require("http").Server(app);
 // const io = require("socket.io")(http, {});
 const port = process.env.PORT || 5000;
+const DemoRoom = require("./demo_room");
 
 
 const rooms = {};
@@ -108,6 +109,24 @@ io.on("connect", (socket) => {
     rooms[roomName].restartGame();
   });
 
+ ///////////////////////////////
+  socket.on("demo", (handle, roomName, tiles) => { // roomName will be demo -will this be an issue with two instances of demos goign on concurenetly
+    socket.join(roomName);
+    const demoRoom = new DemoRoom(roomName); // it can be demo because no one can create a lowercase room name
+    rooms[roomName] = demoRoom;
+    rooms[roomName].addPlayer(handle);
+    rooms[roomName].addPlayer("Khaleel");
+    rooms[roomName].addPlayer("Will");
+    rooms[roomName].storeTiles(Object.values(tiles));
+    rooms[roomName].startGame();
+  
+    
+
+    if(rooms[roomName].phase === "clue guessing") {
+      rooms[roomName].guessingPhase(handle); 
+    }
+  });
+ //////////////////////////////
 
  socket.on("disconnect", () => console.log("Client disconnected"));
 }); // end of "connect" DONT DELETE

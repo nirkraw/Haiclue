@@ -42,10 +42,11 @@ export default class CreateRoomForm extends Component {
     this.changeRounds = this.changeRounds.bind(this);
     this.changeTimer = this.changeTimer.bind(this);
     this.muteAndUnmute = this.muteAndUnmute.bind(this);
+    this.demoGame = this.demoGame.bind(this);
   }
 
   componentDidMount() {
-
+    
     const audio = document.getElementById("theme");
     audio.volume = .05;
     audio.loop = true;
@@ -160,7 +161,13 @@ export default class CreateRoomForm extends Component {
     }
   }
   
+  demoGame(e) {
+    e.preventDefault();
+    this.socket.emit("demo", this.props.user.handle, "demo", this.props.tiles);
+  }
+
   render() {
+    
     const {gameState} = this.state
     let welcome = "Create or Join a Room";
     if (this.state.message) welcome = this.state.message;
@@ -251,6 +258,12 @@ export default class CreateRoomForm extends Component {
                   onClick={this.handleRandomCreate}>
                   Random
                 </button>
+                <button
+                  className="button-stylez butts"
+                  type="submit"
+                  onClick={this.demoGame}>
+                  Demo Game
+                </button>
             </div>
           </>}
         </form>
@@ -271,8 +284,8 @@ export default class CreateRoomForm extends Component {
     return (
       <>
       {(this.state.playing)
-          ? <img onClick={this.muteAndUnmute} class="mute" src={unmute} alt="unmute" />
-          : <img onClick={this.muteAndUnmute} class="mute" src={mute} alt="mute"/>
+          ? <img onClick={this.muteAndUnmute} className="mute" src={unmute} alt="unmute" />
+          : <img onClick={this.muteAndUnmute} className="mute" src={mute} alt="mute"/>
       }
         <audio id="theme" src={song}></audio>
         <audio id="tile-sound" src={tileSound}></audio>

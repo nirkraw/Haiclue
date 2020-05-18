@@ -1,3 +1,11 @@
+player2 r1 clue => [tiles.slice(index of word we want) ]  - buck tip, add line, sample shoe 
+player3 r1 clue => picnic, add line, chair, add line, vehicle hatch
+
+player2 r2 clue => hostage issue, add line, hooked (6, 9 add line, 1)
+player3 r2 clue => loyalty foul, add line, operate sneak, add line, trick (10, 6, add line, 12, 5, add line, 2)
+
+
+
 misc
 
 sockets
