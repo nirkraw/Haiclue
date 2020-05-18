@@ -34,9 +34,9 @@ class DemoRoom {
         this.unrevealClue = this.unrevealClue.bind(this);
         this.gameOver = this.gameOver.bind(this);
         this.storeTiles = this.storeTiles.bind(this);
-        // this.getRoundTiles = this.getRoundTiles.bind(this);
+        this.guessingPhase = this.guessingPhase.bind(this);
         this.startRound = this.startRound.bind(this);
-        this.resetPlayersSubmitedClue = this.resetPlayersSubmitedClue.bind(this);
+        this.resetPlayersSubmittedClue = this.resetPlayersSubmittedClue.bind(this);
         this.insertLine = this.insertLine.bind(this);
         this.removeLine = this.removeLine.bind(this);
         this.restartGame = this.restartGame.bind(this);
@@ -54,8 +54,8 @@ class DemoRoom {
             points: 0,
             clueTiles: [],
             selectedClueTiles: [],
-            submitedClue: false,
-            submitedGuess: false,
+            submittedClue: false,
+            submittedGuess: false,
             guessedWord: "",
             oldGuessedWord: "",
             revealedClue: false,
@@ -79,7 +79,7 @@ class DemoRoom {
     }
 
     startRound() {
-        this.resetPlayersSubmitedClue();
+        this.resetPlayersSubmittedClue();
         this.game.clueSubmissionCount = 0
 
         this.game.currentPlayerTurn = 1;
@@ -98,19 +98,36 @@ class DemoRoom {
         }
         
         const tiles = this.game.tiles.slice(0, 49);
-        const targetWords = tiles.slice(0,4); //flat - spy , horn -badge , hurting - smart , oil - brains
+        const targetWords = tiles.slice(0, 4); //flat - spy , horn -badge , hurting - smart , oil - brains
         const allClueTiles = tiles.slice(4, 49);
         
         this.createTargetWords(targetWords);
         this.assignPlayersTargetWord();
         this.assignPlayersClueTiles(allClueTiles);
 
-        debugger
+        const khaleel = this.game.players["Khaleel"];
+        const will = this.game.players["Will"];
+
+        debugger 
+        if (this.game.round === 1) {
+            khaleel.selectedClueTiles = 
+            [
+                khaleel.clueTiles[5], khaleel.clueTiles[6], "1", 
+                khaleel.clueTiles[11], khaleel.clueTiles[12]
+            ];
+            will.selectedClueTiles = 
+            [
+                will.clueTiles[7], "1", 
+                will.clueTiles[6], "2",
+                will.clueTiles[11], will.clueTiles[14]
+            ];
+        }
+
     }
 
-    resetPlayersSubmitedClue() {
+    resetPlayersSubmittedClue() {
         Object.values(this.game.players).forEach((player) => {
-            player.submitedClue = false;
+            player.submittedClue = false;
             player.selectedClueTiles = [];
         });
     }
@@ -139,13 +156,13 @@ class DemoRoom {
     assignPlayersClueTiles(allClueTiles) {
         Object.values(this.game.players).forEach((player) => {
             if (player.number === 1) {
-                player.clueTiles = allClueTiles.slice(4, 19); 
+                player.clueTiles = allClueTiles.slice(0, 15); 
             }
             if (player.number === 2) {
-                player.clueTiles = allClueTiles.slice(19, 34); 
+                player.clueTiles = allClueTiles.slice(15, 30); 
             }
             if (player.number === 3) {
-                player.clueTiles = allClueTiles.slice(34, 49); 
+                player.clueTiles = allClueTiles.slice(30, 45); 
             }
         });
     }
@@ -192,21 +209,44 @@ class DemoRoom {
 
     submitClue(handle) {
         const player = this.game.players[handle];
-        if (!player.submitedClue) {
-            player.submitedClue = true;
+        if (!player.submittedClue) {
+            player.submittedClue = true;
             this.game.clueSubmissionCount++;
         }
         if (this.game.clueSubmissionCount === this.playerCount) {
             // trigger into the next game phase
             this.game.phase = "clue guessing";
+            this.guessingPhase();
         }
         
+    }
+
+    getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    guessingPhase() {
+        const humanHandle = Object.values(this.game.players)[0].handle;
+        if (this.game.currentPlayerTurn === 1) {
+            setTimeout(() => {
+                this.submitGuess("Khaleel", true, humanHandle, "oil");
+                this.submitGuess("Will", false, humanHandle, "flat");
+            }, 5000);
+        } else if (this.game.currentPlayerTurn === 2){
+            setTimeout(() => {
+                this.submitGuess("Will", false, "Khaleel", "oil");
+            }, 5000);
+        } else {
+            setTimeout(() => {
+                this.submitGuess("Khaleel", true, "Will", "flat");
+            }, 5000);
+        }
     }
 
     submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord) {
         const localPlayer = this.game.players[localPlayerhandle];
         const currentPlayer = this.game.players[currentPlayerHandle];
-        currentPlayer.submitedGuess = true;
+        localPlayer.submittedGuess = true;
         localPlayer.guessedWord = guessedWord;
         // localPlayer.fish = "fish";
 
@@ -223,13 +263,14 @@ class DemoRoom {
             currentPlayer.correctWord = targetWord[this.game.currentColor];
             currentPlayer.correctIndex = targetIndex;
             Object.values(this.game.players).forEach((player) => {
-                player.submitedGuess = false;
+                player.submittedGuess = false;
             });
 
             currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor];
             currentPlayer.revealedClue = true;
             this.game.currentPlayerTurn++;
             this.game.clueGuessCount = 0;
+            this.guessingPhase();
         }
 
 

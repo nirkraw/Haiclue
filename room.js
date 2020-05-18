@@ -132,8 +132,8 @@ class Room {
     }
 
     const newTiles = this.getRoundTiles(this.game.tiles);
-    const targetWords = newTiles.slice(60);
-    const clueTiles = newTiles.slice(0, 60);
+    const targetWords = newTiles.slice(150);
+    const clueTiles = newTiles.slice(0, 150);
 
     this.createTargetWords(targetWords);
     this.assignPlayersTargetWord();
@@ -158,7 +158,7 @@ class Room {
       arr[currentIndex] = arr[randomIndex];
       arr[randomIndex] = temporaryValue;
     }
-    return arr.slice(0, 64); // returns the first 64 tiles
+    return arr.slice(0, 154); // returns the first 64 tiles
   }
 
   assignPlayersClueTiles(clueTiles) {

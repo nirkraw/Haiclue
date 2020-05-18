@@ -42,7 +42,7 @@ class Tile extends React.Component {
         {this.props.display ? (
           <div
            className={`color-${currentColor} tile`}
-           onClick={this.playSound}
+          //  onClick={this.playSound}
           >
             {tileWord}
           </div>

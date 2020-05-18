@@ -56,7 +56,6 @@ export default class CreateRoomForm extends Component {
     this.socket = socketIOClient(ENV); 
     
     this.socket.on("gameState", (gameState) => {
-      debugger
       this.setState({gameState: gameState})
     });
     
@@ -164,7 +163,6 @@ export default class CreateRoomForm extends Component {
   
   demoGame(e) {
     e.preventDefault();
-    debugger
     this.socket.emit("demo", this.props.user.handle, "demo", this.props.tiles);
   }
 
@@ -175,7 +173,6 @@ export default class CreateRoomForm extends Component {
     if (this.state.message) welcome = this.state.message;
     let players;
     if(gameState) {
-      debugger
     let joinedPlayers = Object.values(gameState.players).filter(player => player.joined) 
     players = joinedPlayers.map(player => {
       return (

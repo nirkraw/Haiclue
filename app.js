@@ -114,12 +114,17 @@ io.on("connect", (socket) => {
     socket.join(roomName);
     const demoRoom = new DemoRoom(roomName); // it can be demo because no one can create a lowercase room name
     rooms[roomName] = demoRoom;
-    debugger
     rooms[roomName].addPlayer(handle);
     rooms[roomName].addPlayer("Khaleel");
     rooms[roomName].addPlayer("Will");
     rooms[roomName].storeTiles(Object.values(tiles));
     rooms[roomName].startGame();
+    rooms[roomName].submitClue("Khaleel");
+    rooms[roomName].submitClue("Will");
+
+    if(rooms[roomName].phase === "clue guessing") {
+      rooms[roomName].guessingPhase(handle); 
+    }
   });
  //////////////////////////////
 
