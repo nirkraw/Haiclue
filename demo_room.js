@@ -106,7 +106,7 @@ class DemoRoom {
         this.assignPlayersClueTiles(allClueTiles);
 
         const khaleel = this.game.players["Khaleel"];
-        const will = this.game.players["Will"];
+        const sara = this.game.players["Sara"];
 
         
         
@@ -121,12 +121,12 @@ class DemoRoom {
                 ];
             }, 5000);
             setTimeout(() => { 
-                this.submitClue("Will");
-                will.selectedClueTiles = 
+                this.submitClue("Sara");
+                sara.selectedClueTiles = 
                 [
-                    will.clueTiles[7], "1", 
-                    will.clueTiles[6], "2",
-                    will.clueTiles[11], will.clueTiles[14]
+                    sara.clueTiles[7], "1", 
+                    sara.clueTiles[6], "2",
+                    sara.clueTiles[11], sara.clueTiles[14]
                 ];
             }, 7000);
         } else {
@@ -139,12 +139,12 @@ class DemoRoom {
                     ];
             }, 7000);
             setTimeout(() => {
-                this.submitClue("Will");
-                will.selectedClueTiles =
+                this.submitClue("Sara");
+                sara.selectedClueTiles =
                     [
-                        will.clueTiles[10], will.clueTiles[6], "1",
-                        will.clueTiles[12], will.clueTiles[5], "2",
-                        will.clueTiles[2]
+                        sara.clueTiles[10], sara.clueTiles[6], "1",
+                        sara.clueTiles[12], sara.clueTiles[5], "2",
+                        sara.clueTiles[2]
                     ];
              }, 9000);
         }
@@ -257,30 +257,30 @@ class DemoRoom {
             if (this.game.currentPlayerTurn === 1) {
                 setTimeout(() => {
                     this.submitGuess("Khaleel", true, humanHandle, "oil");
-                    this.submitGuess("Will", false, humanHandle, "flat");
+                    this.submitGuess("Sara", false, humanHandle, "flat");
                 }, 5000);
             } else if (this.game.currentPlayerTurn === 2){
                 setTimeout(() => {
-                    this.submitGuess("Will", false, "Khaleel", "oil");
+                    this.submitGuess("Sara", false, "Khaleel", "oil");
                 }, 5000);
             } else {
                 setTimeout(() => {
-                    this.submitGuess("Khaleel", true, "Will", "flat");
+                    this.submitGuess("Khaleel", true, "Sara", "flat");
                 }, 5000);
             }
         } else {
             if (this.game.currentPlayerTurn === 1) {
                 setTimeout(() => {
                     this.submitGuess("Khaleel", false, humanHandle, "smart");
-                    this.submitGuess("Will", false, humanHandle, "spy");
+                    this.submitGuess("Sara", false, humanHandle, "spy");
                 }, 5000);
             } else if (this.game.currentPlayerTurn === 2) {
                 setTimeout(() => {
-                    this.submitGuess("Will", true, "Khaleel", "badge");
+                    this.submitGuess("Sara", true, "Khaleel", "badge");
                 }, 5000);
             } else {
                 setTimeout(() => {
-                    this.submitGuess("Khaleel", false, "Will", "brains");
+                    this.submitGuess("Khaleel", false, "Sara", "brains");
                 }, 5000);
             }
         }
