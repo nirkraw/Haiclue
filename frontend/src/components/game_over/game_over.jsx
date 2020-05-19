@@ -40,7 +40,7 @@ class GameOver extends React.Component {
         })
         let tie = [playersArray[0].handle]
         for (let i = 1; i < playersArray.length; i++) {
-             if (playersArray[i].points === playersArray[i-1].points) {
+             if (playersArray[i].points === playersArray[0].points) {
                  tie.push(playersArray[i].handle)
              }
         }
