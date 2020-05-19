@@ -15,8 +15,9 @@ const user2 = new User({handle: "Paul", email: "paul@paul.com", password: "$2a$1
 const user3 = new User({handle: "Simon", email: "simon@simon.com", password: "$2a$10$4v6bNFWW1HS57e1baMLyi.UFDnTk8WvmdwKE.xVPgPNIAJXV4zwSa" })
 const user4 = new User({handle: "James", email: "james@james.com", password: "$2a$10$4v6bNFWW1HS57e1baMLyi.UFDnTk8WvmdwKE.xVPgPNIAJXV4zwSa" })
 const user5 = new User({handle: "Bartholomew", email: "bart@bart.com", password: "$2a$10$4v6bNFWW1HS57e1baMLyi.UFDnTk8WvmdwKE.xVPgPNIAJXV4zwSa" })
-
-const users = [user1, user2, user3, user4, user5];
+const user6 = new User({handle: "Demo_user", email: "demo@demo.com", password: "$2a$10$4v6bNFWW1HS57e1baMLyi.UFDnTk8WvmdwKE.xVPgPNIAJXV4zwSa" })
+// demobranch
+const users = [user1, user2, user3, user4, user5, user6];
 
 let done = 0
  for (let i = 0; i < users.length; i++) {

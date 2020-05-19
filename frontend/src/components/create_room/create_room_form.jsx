@@ -51,10 +51,15 @@ export default class CreateRoomForm extends Component {
     audio.volume = .05;
     audio.loop = true;
     audio.play();
-
+    
     this.props.fetchTiles(); 
     this.socket = socketIOClient(ENV); 
     
+    if (this.props.user.handle === "Bartholomew") {
+      debugger
+      this.socket.emit("demo", this.props.user.handle, "demo", this.props.tiles);
+    }
+
     this.socket.on("gameState", (gameState) => {
       this.setState({gameState: gameState})
     });
@@ -73,7 +78,7 @@ export default class CreateRoomForm extends Component {
     this.socket.on("connect", (socket) => {
       console.log("Frontend Connected! Socket Id: " + this.socket.id);
     });
-
+    
           
 
     console.log("######################################It has mounted again ########################################")
@@ -162,7 +167,9 @@ export default class CreateRoomForm extends Component {
   }
   
   demoGame(e) {
-    e.preventDefault();
+    if (e !== undefined) {
+      e.preventDefault();
+    }
     this.socket.emit("demo", this.props.user.handle, "demo", this.props.tiles);
   }
 

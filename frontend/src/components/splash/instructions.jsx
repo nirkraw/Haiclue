@@ -3,7 +3,7 @@ import instruct from '../images/instructions.mp4';
 import arrow from '../images/arrow.png'
 import '../css/instructions.css';
 
-const instructions = () => {
+const instructions = (props) => {
     return (
             <div className="instructions-container">
                 <video width="30%" controls>
@@ -12,7 +12,7 @@ const instructions = () => {
                 Your browser does not support the video tag.
                 </video>
                 {/* <img className="video-arrow" src={arrow} alt="play arrow"/> */}
-                <button className="tutorial-button">Tutorial</button>
+                <button onClick={props.demo} className="tutorial-button">Demo Game</button>
             </div>
     );
 }

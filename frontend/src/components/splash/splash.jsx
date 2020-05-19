@@ -9,17 +9,25 @@ import blue from '../images/blue-tile.png';
 import green from '../images/green-tile.png';
 import yellow from '../images/yellow-tile.png';
 import tbg from '../images/tbg-logo.png';
+import socketIOClient from "socket.io-client";
+import ENV from '../../util/socket_env';
 import '../css/splash.css';
+
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Splash extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      menu: true
+      menu: true,
     }
     this.toggleMenu = this.toggleMenu.bind(this);
+    this.demoGame = this.demoGame.bind(this);
   }
+  componentDidMount() {
+    this.socket = socketIOClient(ENV); 
+  }
+  
 
   toggleMenu(e) {
     e.preventDefault(); 
@@ -28,6 +36,19 @@ class Splash extends React.Component {
     } else {
       this.setState({menu: true})
     }
+  }
+
+  //demobranch
+  demoGame (e) {
+    e.preventDefault();
+    this.props.login({
+      email: 'bart@bart.com',
+      password: 'password',
+  })
+  // .then(() => {
+    
+  //  this.socket.emit("demo", this.props.user.handle, "demo", this.props.tiles)
+  // }) 
   }
 
   render() {
@@ -71,7 +92,8 @@ class Splash extends React.Component {
             <NavLink to='instructions' target="blank"><button className="instruction-hover">?</button></NavLink>
           </h1>
           {/* opens model that contains instructions picture? with x up top and can click outside to close it */}
-            <Route component={Instructions} />
+            {/* <Route component={Instructions} /> */}
+            <Instructions demo={this.demoGame}/>
             
           <h1 className="splash-label">Join a Game</h1>
             <div className='form-container'>
