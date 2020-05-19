@@ -32,7 +32,7 @@ io.on("connect", (socket) => {
       const newRoom = new Room(roomName);
       newRoom.addPlayer(handle, socket.id);
       rooms[roomName] = newRoom;
-      rooms[roomName].submit(handle);
+      rooms[roomName].submit(socket.id);
     } else {
       socket.emit("sendErrors", "this name is already taken");
     }
@@ -63,7 +63,7 @@ io.on("connect", (socket) => {
         //     rooms[roomName].startGame(); 
         // }
 
-        rooms[roomName].submit(handle);
+        rooms[roomName].submit(socket.id);
 
       } else {
         socket.emit("sendErrors", "sorry, this room is full");
@@ -78,32 +78,32 @@ io.on("connect", (socket) => {
    });
       
 
-  socket.on("select clue tile", (roomName, handle, tile) => {
-    rooms[roomName].selectClueTile(handle, tile);
+  socket.on("select clue tile", (roomName, tile) => {
+    rooms[roomName].selectClueTile(socket.id, tile);
   })
 
-  socket.on("remove clue tile", (roomName, handle, tile) => {
-    rooms[roomName].unselectClueTile(handle, tile);
+  socket.on("remove clue tile", (roomName, tile) => {
+    rooms[roomName].unselectClueTile(socket.id, tile);
   });
  
-  socket.on("submit clue", (roomName, handle) => {
-    rooms[roomName].submitClue(handle); 
+  socket.on("submit clue", (roomName) => {
+    rooms[roomName].submitClue(socket.id); 
   });
 
-  socket.on("submit guess", (roomName, localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord) => {
-    rooms[roomName].submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord);
+  socket.on("submit guess", (roomName, localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord) => {
+    rooms[roomName].submitGuess(localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord);
   });
 
-  socket.on("unreveal clue", (roomName, handle) => {
-    rooms[roomName].unrevealClue(handle);
+  socket.on("unreveal clue", (roomName) => {
+    rooms[roomName].unrevealClue(socket.id);
   });
 
-  socket.on("insert line", (roomName, handle) => {
-    rooms[roomName].insertLine(handle);
+  socket.on("insert line", (roomName) => {
+    rooms[roomName].insertLine(socket.id);
   });
 
-  socket.on("remove line", (roomName, handle, lineIndex) => {
-    rooms[roomName].removeLine(handle, lineIndex);
+  socket.on("remove line", (roomName, lineIndex) => {
+    rooms[roomName].removeLine(socket.id, lineIndex);
   });
   socket.on("play again", (roomName) => {
     rooms[roomName].restartGame();

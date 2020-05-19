@@ -65,7 +65,7 @@ class Room {
 
     if (Object.values(this.game.players).length < 10) {
       player.number = Object.values(this.game.players).length + 1;
-      this.game.players[handle] = player;
+      this.game.players[socketId] = player;
       this.playerCount++;
     } else {
       this.errors.push(
@@ -74,9 +74,10 @@ class Room {
     }
   }
 
-  submit(handle) { 
-    const player = this.game.players[handle];
+  submit(socketId) { 
+    const player = this.game.players[socketId];
     player.joined = true;
+    // debugger
   }
 
   getGameState() {
@@ -167,8 +168,8 @@ class Room {
     });
   }
 
-  selectClueTile(handle, tile) {
-    const player = this.game.players[handle];
+  selectClueTile(socketId, tile) {
+    const player = this.game.players[socketId];
     if (!player.selectedClueTiles.includes(tile)) {
       player.selectedClueTiles.push(tile);
       for (let i = 0; i < player.clueTiles.length; i++) {
@@ -180,8 +181,8 @@ class Room {
 
   }
 
-  unselectClueTile(handle, tile) {
-    const player = this.game.players[handle];
+  unselectClueTile(socketId, tile) {
+    const player = this.game.players[socketId];
     if (!player.clueTiles.includes(tile)) {
       player.clueTiles.push(tile);
       for (let i = 0; i < player.selectedClueTiles.length; i++) {
@@ -192,18 +193,18 @@ class Room {
     }
   }
 
-  insertLine(handle) {
-    const player = this.game.players[handle];
+  insertLine(socketId) {
+    const player = this.game.players[socketId];
     player.selectedClueTiles.push(`${player.selectedClueTiles.length}`);
   }
 
-  removeLine(handle, lineIndex) {
-    const player = this.game.players[handle];
+  removeLine(socketId, lineIndex) {
+    const player = this.game.players[socketId];
     player.selectedClueTiles.splice(lineIndex, 1);
   }
 
-  submitClue(handle) {
-    const player = this.game.players[handle];
+  submitClue(socketId) {
+    const player = this.game.players[socketId];
     if (!player.submittedClue) {
       player.submittedClue = true;
       this.game.clueSubmissionCount++;
@@ -214,9 +215,9 @@ class Room {
     }
   }
 
-  submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord) {
-    const localPlayer = this.game.players[localPlayerhandle];
-    const currentPlayer = this.game.players[currentPlayerHandle];
+  submitGuess(localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord) {
+    const localPlayer = this.game.players[localPlayerSocketId];
+    const currentPlayer = this.game.players[currentPlayerSocketId];
     localPlayer.submittedGuess = true;
     localPlayer.guessedWord = guessedWord;
     // localPlayer.fish = "fish";
@@ -249,8 +250,8 @@ class Room {
     }
   }
 
-  unrevealClue(handle) {
-    const player = this.game.players[handle];
+  unrevealClue(socketId) {
+    const player = this.game.players[socketId];
     player.revealedClue = false;
   }
 

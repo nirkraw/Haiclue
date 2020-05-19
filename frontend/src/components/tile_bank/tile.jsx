@@ -12,9 +12,9 @@ class Tile extends React.Component {
     const { roomName, player, tile } = this.props;
     event.preventDefault();
     if (player.clueTiles.includes(tile)) {
-      this.props.socket.emit("select clue tile",roomName, player.handle, tile);
+      this.props.socket.emit("select clue tile",roomName, tile);
     } else {
-      this.props.socket.emit("remove clue tile", roomName, player.handle, tile);
+      this.props.socket.emit("remove clue tile", roomName, tile);
     }
 
     const sound = document.getElementById("tile-sound");

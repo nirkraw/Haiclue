@@ -42,7 +42,7 @@ class Game extends React.Component {
                 playerTargetWord = player.correctWord
 
                 setTimeout(() => {
-                    socket.emit("unreveal clue", gameState.roomName, player.handle)
+                    socket.emit("unreveal clue", gameState.roomName)
                     revealed = false
                 }, 5000);
             }
