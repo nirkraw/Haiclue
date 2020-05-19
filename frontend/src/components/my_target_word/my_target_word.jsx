@@ -15,6 +15,8 @@ class MyTargetWord extends React.Component {
 
   getWord() {
     const {gameState, user} = this.props 
+    if(!gameState) return null;
+    
     const player = Object.values(gameState.players).filter(
       (player) => {
         return player.handle === user.handle;

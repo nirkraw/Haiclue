@@ -244,15 +244,18 @@ class Room {
       this.game.clueGuessCount = 0;
     }
 
-   
-    if (this.game.currentPlayerTurn === this.playerCount + 1) {
-      this.startRound();
-    }
+    
+    // if (this.game.currentPlayerTurn === this.playerCount + 1) {
+    //     this.startRound();
+    // }
   }
 
   unrevealClue(socketId) {
     const player = this.game.players[socketId];
     player.revealedClue = false;
+    if (this.game.currentPlayerTurn > this.playerCount) {
+        this.startRound();
+    }
   }
 
   gameOver() {

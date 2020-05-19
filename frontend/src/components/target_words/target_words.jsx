@@ -71,7 +71,8 @@ class TargetWords extends React.Component {
     let targetWords;
     if (gameState) {
       targetWords = gameState.targetWords;
-    }
+    } 
+    
     if (!targetWords) return null;
 
     let cards = [

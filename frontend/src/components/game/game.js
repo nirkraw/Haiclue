@@ -42,12 +42,12 @@ class Game extends React.Component {
                 playerTargetWord = player.correctWord
 
                 setTimeout(() => {
-                    socket.emit("unreveal clue", gameState.roomName)
-                    revealed = false
+                    socket.emit("unreveal clue", gameState.roomName);
+                    revealed = false;
                 }, 5000);
             }
       }
-// debugger
+
   return (
   <div>
       <Logout quit={this.mainMenu} start={this.props.gameState.gameStarted} logout={this.props.logout} loggedIn={this.props.loggedIn} /> 
