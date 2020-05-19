@@ -50,7 +50,7 @@ export default class CreateRoomForm extends Component {
     const audio = document.getElementById("theme");
     audio.volume = .05;
     audio.loop = true;
-    // audio.play();
+    audio.play();
 
     this.props.fetchTiles(); 
     this.socket = socketIOClient(ENV); 
