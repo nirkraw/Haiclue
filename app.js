@@ -90,8 +90,8 @@ io.on("connect", (socket) => {
     rooms[roomName].submitClue(socket.id); 
   });
 
-  socket.on("submit guess", (roomName, localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord) => {
-    rooms[roomName].submitGuess(localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord);
+  socket.on("submit guess", (roomName, localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord, guessIndex) => {
+    rooms[roomName].submitGuess(localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord, guessIndex);
   });
 
   socket.on("unreveal clue", (roomName) => {

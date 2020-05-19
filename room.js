@@ -61,6 +61,7 @@ class Room {
       guessedWord: "",
       oldGuessedWord: "",
       revealedClue: false,
+      guessIndex: null
     };
 
     if (Object.values(this.game.players).length < 10) {
@@ -215,25 +216,26 @@ class Room {
     }
   }
 
-  submitGuess(localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord) {
+  submitGuess(localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord, guessedIndex) {
     const localPlayer = this.game.players[localPlayerSocketId];
     const currentPlayer = this.game.players[currentPlayerSocketId];
     localPlayer.submittedGuess = true;
     localPlayer.guessedWord = guessedWord;
+    localPlayer.guessIndex = guessedIndex;
+
     // localPlayer.fish = "fish";
 
     this.game.clueGuessCount++;
-
     if (matchBoolean) {
       localPlayer.points++;
       currentPlayer.points++;
     }
-
-    let { targetWord, targetIndex } = currentPlayer
+    let { targetWord, targetIndex, guessIndex } = currentPlayer
 
     if (this.game.clueGuessCount === this.playerCount - 1) {
       currentPlayer.correctWord = targetWord[this.game.currentColor];
       currentPlayer.correctIndex = targetIndex;
+
       Object.values(this.game.players).forEach((player) => {
         player.submittedGuess = false;
       });

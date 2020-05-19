@@ -4,6 +4,7 @@ import red from "../images/red-tile.png";
 import green from "../images/green-tile.png";
 import yellow from "../images/yellow-tile.png";
 import '../css/revealed-clue.css';
+import '../css/layout.css'
 export default class RevealedClue extends Component {
     constructor(props) {
         super(props)
@@ -51,10 +52,12 @@ export default class RevealedClue extends Component {
 
             if (player.number !== x) {
                 return (
-                <li key={idx} >{player.handle}'s guess was {player.guessedWord}</li>
+                <li key={idx} className="guess-li">
+                    <span>{player.handle}'s guess was <span className='color-yellow'>{player.guessedWord}</span></span>
+                    <img src={cards[player.guessIndex]} className="guess-img"></img> 
+                </li>
                 )
             }
-        
         })
 
     
@@ -62,7 +65,7 @@ export default class RevealedClue extends Component {
         if (playerTargetWord) {
             return(
             <>
-                <h1 className='revealed-clue-text'>{playerHandle}'s word was {playerTargetWord}!</h1>
+                <h1 className='revealed-clue-text'>{playerHandle}'s word was  <span className='color-yellow'>{playerTargetWord}!</span></h1>
                 <img src={cards[playerTargetIndex]} className="revealed-clue-img " alt="green" /> 
                 <ul className='player-guesses'>{otherPlayersGuesses}</ul>
             </>

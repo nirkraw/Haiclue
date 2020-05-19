@@ -23,8 +23,8 @@ class TargetWords extends React.Component {
 
   handleSubmitGuess(e) {
     e.preventDefault();
-    // this.setState({sent: true})
     const { gameState, socket } = this.props;
+    // debugger
 
     const currentPlayer = Object.values(this.props.gameState.players).filter(
       (player) => {
@@ -37,19 +37,28 @@ class TargetWords extends React.Component {
         return player.handle === this.props.user.handle;
       }
     )[0];
+
     
     if (localPlayer.submittedGuess) return null; 
     const currentPlayerTargetWord = currentPlayer.targetWord[gameState.currentColor];
     const guessedWord = (e.currentTarget.nextElementSibling) 
-     ?
-     e.currentTarget.nextElementSibling.innerText
-     :
-     e.currentTarget.innerText
+    ?
+    e.currentTarget.nextElementSibling.innerText
+    :
+    e.currentTarget.innerText
+    
+    let guessTargetIndex;
+
+    for (let i = 0; i < gameState.targetWords.length; i++) {
+      if (guessedWord === gameState.targetWords[i][gameState.currentColor]) {
+        guessTargetIndex = i;
+      }
+    }
 
     let matchBoolean = false
     if (guessedWord === currentPlayerTargetWord) matchBoolean= true;
     
-    socket.emit("submit guess", gameState.roomName, localPlayer.socketId, matchBoolean, currentPlayer.socketId, guessedWord)
+    socket.emit("submit guess", gameState.roomName, localPlayer.socketId, matchBoolean, currentPlayer.socketId, guessedWord, guessTargetIndex)
 
     const sound = document.getElementById("submit-guess-sound");
     sound.volume = .4;
