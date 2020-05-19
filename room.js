@@ -32,7 +32,7 @@ class Room {
     this.unselectClueTile = this.unselectClueTile.bind(this);
     this.submitClue = this.submitClue.bind(this);
     this.submitGuess = this.submitGuess.bind(this);
-    this.unrevealClue = this.unrevealClue.bind(this);
+    // this.unrevealClue = this.unrevealClue.bind(this);
     this.gameOver = this.gameOver.bind(this);
     this.storeTiles = this.storeTiles.bind(this);
     this.getRoundTiles = this.getRoundTiles.bind(this);
@@ -233,6 +233,7 @@ class Room {
     let { targetWord, targetIndex, guessIndex } = currentPlayer
 
     if (this.game.clueGuessCount === this.playerCount - 1) {
+    
       currentPlayer.correctWord = targetWord[this.game.currentColor];
       currentPlayer.correctIndex = targetIndex;
 
@@ -242,23 +243,29 @@ class Room {
 
       currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor];
       currentPlayer.revealedClue = true;
+      setTimeout(() => {
+        currentPlayer.revealedClue = false
+        console.log(currentPlayer.handle)
+      }, 5000);
       this.game.currentPlayerTurn++;
       this.game.clueGuessCount = 0;
     }
 
     
-    // if (this.game.currentPlayerTurn === this.playerCount + 1) {
-    //     this.startRound();
-    // }
-  }
-
-  unrevealClue(socketId) {
-    const player = this.game.players[socketId];
-    player.revealedClue = false;
-    if (this.game.currentPlayerTurn > this.playerCount) {
+    if (this.game.currentPlayerTurn === this.playerCount + 1) {
+      setTimeout(() => {
         this.startRound();
+      }, 5000);
     }
   }
+
+  // unrevealClue(socketId) {
+  //   const player = this.game.players[socketId];
+  //   player.revealedClue = false;
+  //   if (this.game.currentPlayerTurn > this.playerCount) {
+  //       this.startRound();
+  //   }
+  // }
 
   gameOver() {
     this.game.over = true;

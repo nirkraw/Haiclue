@@ -114,16 +114,16 @@ io.on("connect", (socket) => {
     socket.join(roomName);
     const demoRoom = new DemoRoom(roomName); // it can be demo because no one can create a lowercase room name
     rooms[roomName] = demoRoom;
-    rooms[roomName].addPlayer(handle);
-    rooms[roomName].addPlayer("Khaleel");
-    rooms[roomName].addPlayer("Sara");
+    rooms[roomName].addPlayer(handle, socket.id);
+    rooms[roomName].addPlayer("Khaleel", "2");
+    rooms[roomName].addPlayer("Sara", "3");
     rooms[roomName].storeTiles(Object.values(tiles));
     rooms[roomName].startGame();
   
     
 
     if(rooms[roomName].phase === "clue guessing") {
-      rooms[roomName].guessingPhase(handle); 
+      rooms[roomName].guessingPhase(); 
     }
   });
  //////////////////////////////

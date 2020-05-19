@@ -30,7 +30,7 @@ class Game extends React.Component {
     const players = Object.values(gameState.players);
 
     let playerTargetWord;
-    let playerHandle;
+    // let playerHandle;
     let revealed = false
 
      for (let index = 0; index < players.length; index++) {
@@ -38,14 +38,17 @@ class Game extends React.Component {
 
             if(player.revealedClue) {
                 revealed = true 
-                playerHandle = player.handle;
+                // console.log("#################")
+                // console.log(player.handle);
+                // console.log("#################")
+                // playerHandle = player.handle;
                 playerTargetWord = player.correctWord
 
-                setTimeout(() => {
-                    socket.emit("unreveal clue", gameState.roomName);
-                    revealed = false;
-                    console.log(playerHandle);
-                }, 5000);
+            //     setTimeout(() => {
+            //         socket.emit("unreveal clue", gameState.roomName);
+            //         revealed = false;
+            //         // console.log(playerHandle);
+            //     }, 5000);
             }
       }
 

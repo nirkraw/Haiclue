@@ -31,7 +31,7 @@ class DemoRoom {
         this.unselectClueTile = this.unselectClueTile.bind(this);
         this.submitClue = this.submitClue.bind(this);
         this.submitGuess = this.submitGuess.bind(this);
-        this.unrevealClue = this.unrevealClue.bind(this);
+        // this.unrevealClue = this.unrevealClue.bind(this);
         this.gameOver = this.gameOver.bind(this);
         this.storeTiles = this.storeTiles.bind(this);
         this.guessingPhase = this.guessingPhase.bind(this);
@@ -45,7 +45,7 @@ class DemoRoom {
     addPlayer(handle, socketId) {
         const player = {
             handle: handle,
-            sockedId: socketId,
+            socketId: socketId,
             joined: false,
             number: 0, 
             targetWord: "",
@@ -60,10 +60,11 @@ class DemoRoom {
             guessedWord: "",
             oldGuessedWord: "",
             revealedClue: false,
+            guessIndex: null
         };
 
         player.number = Object.values(this.game.players).length + 1;
-        this.game.players[sockedId] = player;
+        this.game.players[socketId] = player;
         this.playerCount++;
 
         
@@ -80,6 +81,8 @@ class DemoRoom {
     }
 
     startRound() {
+
+        console.log("START ROUND")
         this.resetPlayersSubmittedClue();
         this.game.clueSubmissionCount = 0
 
@@ -106,15 +109,15 @@ class DemoRoom {
         this.assignPlayersTargetWord();
         this.assignPlayersClueTiles(allClueTiles);
 
-        const khaleel = this.game.players["Khaleel"];
-        const sara = this.game.players["Sara"];
+        const khaleel = this.game.players["2"];
+        const sara = this.game.players["3"];
 
         
         
     
         if (this.game.round === 1) {
             setTimeout(() => {
-                this.submitClue("Khaleel");
+                this.submitClue("2");
                 khaleel.selectedClueTiles = 
                 [
                     khaleel.clueTiles[5], khaleel.clueTiles[6], "1", 
@@ -122,7 +125,7 @@ class DemoRoom {
                 ];
             }, 5000);
             setTimeout(() => { 
-                this.submitClue("Sara");
+                this.submitClue("3");
                 sara.selectedClueTiles = 
                 [
                     sara.clueTiles[7], "1", 
@@ -132,7 +135,7 @@ class DemoRoom {
             }, 7000);
         } else {
             setTimeout(() => {
-                this.submitClue("Khaleel");
+                this.submitClue("2");
                 khaleel.selectedClueTiles =
                     [
                         khaleel.clueTiles[6], khaleel.clueTiles[9], "1",
@@ -140,7 +143,7 @@ class DemoRoom {
                     ];
             }, 7000);
             setTimeout(() => {
-                this.submitClue("Sara");
+                this.submitClue("3");
                 sara.selectedClueTiles =
                     [
                         sara.clueTiles[10], sara.clueTiles[6], "1",
@@ -149,7 +152,7 @@ class DemoRoom {
                     ];
              }, 9000);
         }
-
+        // this.guessingPhase();
     }
 
     resetPlayersSubmittedClue() {
@@ -199,8 +202,8 @@ class DemoRoom {
     }
 
 
-    selectClueTile(handle, tile) {
-        const player = this.game.players[handle];
+    selectClueTile(socketId, tile) {
+        const player = this.game.players[socketId];
         if (!player.selectedClueTiles.includes(tile)) {
             player.selectedClueTiles.push(tile);
             for (let i = 0; i < player.clueTiles.length; i++) {
@@ -212,8 +215,8 @@ class DemoRoom {
 
     }
 
-    unselectClueTile(handle, tile) {
-        const player = this.game.players[handle];
+    unselectClueTile(socketId, tile) {
+        const player = this.game.players[socketId];
         if (!player.clueTiles.includes(tile)) {
             player.clueTiles.push(tile);
             for (let i = 0; i < player.selectedClueTiles.length; i++) {
@@ -224,18 +227,18 @@ class DemoRoom {
         }
     }
 
-    insertLine(handle) {
-        const player = this.game.players[handle];
+    insertLine(socketId) {
+        const player = this.game.players[socketId];
         player.selectedClueTiles.push(`${player.selectedClueTiles.length}`);
     }
 
-    removeLine(handle, lineIndex) {
-        const player = this.game.players[handle];
+    removeLine(socketId, lineIndex) {
+        const player = this.game.players[socketId];
         player.selectedClueTiles.splice(lineIndex, 1);
     }
 
-    submitClue(handle) {
-        const player = this.game.players[handle];
+    submitClue(socketId) {
+        const player = this.game.players[socketId];
         if (!player.submittedClue) {
             player.submittedClue = true;
             this.game.clueSubmissionCount++;
@@ -253,81 +256,103 @@ class DemoRoom {
     }
 
     guessingPhase() {
-        const humanHandle = Object.values(this.game.players)[0].handle;
+        console.log("GUESSING PHASE")
+        const humanPlayer = Object.values(this.game.players).filter((player) => {
+           return player.number === 1;
+        })[0];
+        const humanSocket = humanPlayer.socketId
+
+        // const humanSocket = Object.values(this.game.players)[0].socketId;
         if ((this.game.round === 1)) {
             if (this.game.currentPlayerTurn === 1) {
                 setTimeout(() => {
-                    this.submitGuess("Khaleel", true, humanHandle, "oil");
-                    this.submitGuess("Sara", false, humanHandle, "flat");
+                    this.submitGuess("2", true, humanSocket, "oil", 2);
+                    this.submitGuess("3", false, humanSocket, "flat", 0);
                 }, 5000);
             } else if (this.game.currentPlayerTurn === 2){
                 setTimeout(() => {
-                    this.submitGuess("Sara", false, "Khaleel", "oil");
+                    this.submitGuess("3", false, "2", "oil", 2);
                 }, 5000);
             } else {
                 setTimeout(() => {
-                    this.submitGuess("Khaleel", true, "Sara", "flat");
+                    this.submitGuess("2", true, "3", "flat", 0);
                 }, 5000);
             }
         } else {
+            console.log("ROUND2");
             if (this.game.currentPlayerTurn === 1) {
+                // spy badge brains smart 
                 setTimeout(() => {
-                    this.submitGuess("Khaleel", false, humanHandle, "smart");
-                    this.submitGuess("Sara", false, humanHandle, "spy");
+                    this.submitGuess("2", false, humanSocket, "smart", 3);
+                    this.submitGuess("3", false, humanSocket, "spy", 0);
                 }, 5000);
             } else if (this.game.currentPlayerTurn === 2) {
                 setTimeout(() => {
-                    this.submitGuess("Sara", true, "Khaleel", "badge");
+                    this.submitGuess("3", true, "2", "badge", 1);
                 }, 5000);
             } else {
                 setTimeout(() => {
-                    this.submitGuess("Khaleel", false, "Sara", "brains");
+                    this.submitGuess("2", false, "3", "brains", 2);
                 }, 5000);
             }
         }
 
     }
 
-    submitGuess(localPlayerhandle, matchBoolean, currentPlayerHandle, guessedWord) {
-        const localPlayer = this.game.players[localPlayerhandle];
-        const currentPlayer = this.game.players[currentPlayerHandle];
+    submitGuess(localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord, guessedIndex) {
+        console.log("SUBMIT GUESS")
+        const localPlayer = this.game.players[localPlayerSocketId];
+        const currentPlayer = this.game.players[currentPlayerSocketId];
+
         localPlayer.submittedGuess = true;
         localPlayer.guessedWord = guessedWord;
-        // localPlayer.fish = "fish";
+        localPlayer.guessIndex = guessedIndex;
 
         this.game.clueGuessCount++;
-
         if (matchBoolean) {
             localPlayer.points++;
             currentPlayer.points++;
         }
-
         let { targetWord, targetIndex } = currentPlayer
 
         if (this.game.clueGuessCount === this.playerCount - 1) {
+
             currentPlayer.correctWord = targetWord[this.game.currentColor];
             currentPlayer.correctIndex = targetIndex;
+
             Object.values(this.game.players).forEach((player) => {
                 player.submittedGuess = false;
             });
 
             currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor];
             currentPlayer.revealedClue = true;
+            setTimeout(() => {
+                currentPlayer.revealedClue = false
+            }, 5000);
             this.game.currentPlayerTurn++;
             this.game.clueGuessCount = 0;
-            this.guessingPhase();
+             if (this.game.currentPlayerTurn === this.playerCount + 1) {
+            setTimeout(() => {
+                this.startRound();
+            }, 5000);
+            } else {
+                this.guessingPhase();
+            }
         }
 
 
-        if (this.game.currentPlayerTurn === this.playerCount + 1) {
-            this.startRound();
-        }
+        // if (this.game.currentPlayerTurn === this.playerCount + 1) {
+
+        //     // setTimeout(() => {
+        //         this.startRound();
+        //     // }, 5000);
+        // }
     }
 
-    unrevealClue(handle) {
-        const player = this.game.players[handle];
-        player.revealedClue = false;
-    }
+    // unrevealClue(socketId) {
+    //     const player = this.game.players[socketId];
+    //     player.revealedClue = false;
+    // }
 
     gameOver() {
         this.game.over = true;
