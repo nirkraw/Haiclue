@@ -42,9 +42,10 @@ class DemoRoom {
         this.restartGame = this.restartGame.bind(this);
     }
 
-    addPlayer(handle) {
+    addPlayer(handle, socketId) {
         const player = {
             handle: handle,
+            sockedId: socketId,
             joined: false,
             number: 0, 
             targetWord: "",
@@ -62,7 +63,7 @@ class DemoRoom {
         };
 
         player.number = Object.values(this.game.players).length + 1;
-        this.game.players[handle] = player;
+        this.game.players[sockedId] = player;
         this.playerCount++;
 
         
