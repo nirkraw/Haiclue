@@ -1,5 +1,4 @@
 import React from 'react';
-
 import blue from '../images/blue-tile.png';
 import red from '../images/red-tile.png';
 import green from '../images/green-tile.png';
