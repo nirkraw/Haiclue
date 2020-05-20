@@ -31,7 +31,8 @@ class CurrentClue extends React.Component {
 
         const localPlayer = Object.values(gameState.players).filter(
             (player) => {
-                return player.handle === this.props.user.handle;
+                // return player.handle === this.props.user.handle;
+                return player.socketId === this.props.socket.id;
             }
         )[0];
             
@@ -70,7 +71,8 @@ class CurrentClue extends React.Component {
                 </svg>
             );
 
-            if (gameState.phase === "clue guessing" && localPlayer.handle !== currentPlayer.handle && !localPlayer.submittedGuess) {
+            // if (gameState.phase === "clue guessing" && localPlayer.handle !== currentPlayer.handle && !localPlayer.submittedGuess) {
+            if (gameState.phase === "clue guessing" && localPlayer.socketId !== currentPlayer.socketId && !localPlayer.submittedGuess) {
                 return(
                     <div className="currentClue">
                         <div>
@@ -91,7 +93,8 @@ class CurrentClue extends React.Component {
                         {currentClue}
                     </div>
             )
-            } else if (gameState.phase === "clue guessing" && localPlayer.handle === currentPlayer.handle){
+            // } else if (gameState.phase === "clue guessing" && localPlayer.handle === currentPlayer.handle){
+            } else if (gameState.phase === "clue guessing" && localPlayer.socketId === currentPlayer.socketId){
                 return (
                     <div className="currentClue">
                         <h1>Your clue is being guessed!</h1>
@@ -99,7 +102,8 @@ class CurrentClue extends React.Component {
                     </div>
                 );
             } else if (gameState.phase === "clue guessing" 
-                       && localPlayer.handle !== currentPlayer.handle
+                    //    && localPlayer.handle !== currentPlayer.handle
+                       && localPlayer.socketId !== currentPlayer.socketId
                        && localPlayer.submittedGuess) {
                 return (
                     <div className="currentClue">

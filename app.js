@@ -33,6 +33,8 @@ io.on("connect", (socket) => {
       newRoom.addPlayer(handle, socket.id);
       rooms[roomName] = newRoom;
       rooms[roomName].submit(socket.id);
+      
+      // console.log(`backend ${socket.id} : frontend ${frontEndSocket} : ${handle}`)
     } else {
       socket.emit("sendErrors", "this name is already taken");
     }

@@ -67,6 +67,7 @@ class Room {
     if (Object.values(this.game.players).length < 10) {
       player.number = Object.values(this.game.players).length + 1;
       this.game.players[socketId] = player;
+      // console.log(`${socketId} : ${handle}`)
       this.playerCount++;
     } else {
       this.errors.push(
@@ -116,12 +117,9 @@ class Room {
   startRound() {
     this.resetPlayersSubmittedClue();
     this.game.clueSubmissionCount = 0
-    
     this.game.currentPlayerTurn = 1;
-
     this.game.phase = "clue construction";
     this.game.round++;
-
 
     if (this.game.round === this.game.endRound) {
       this.gameOver();
