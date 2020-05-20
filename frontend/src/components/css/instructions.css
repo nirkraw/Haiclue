@@ -22,6 +22,8 @@
 .external-instructions-container h1 {
     font-size: 50px;
     padding: 25px;
+    margin: 0 auto;
+    width: fit-content;
 }
 
 .color-yellow {
@@ -62,6 +64,7 @@ li .right {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .target-word-imgs div {
@@ -75,6 +78,7 @@ img.card {
 
 figure img {
     height: 60px;
+    cursor: pointer;
 }
 
 .emoji-container {
@@ -112,14 +116,15 @@ figure img {
 }
 
 .instructions-bank {
-    width: 700px;
+    max-width: 700px; 
+    width: 100%;
 }
 
 .instructions-clue {
     width: 500px;
 }
 
-.instructions-guess h2 {
+.instructions-guess h3 {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -130,7 +135,8 @@ figure img {
 .instructions-guess {
     display: flex;
     flex-direction: column;
-    width: 525px;
+    max-width: 400px;
+    width: 100%;
     align-items: center;
 }
 
@@ -158,4 +164,21 @@ figure img {
 
 .instructions-guess img {
     width: 70px;
+}
+
+@media screen and (max-width: 1000px) {
+    li {
+        flex-direction: column;
+        padding: 0;
+    }
+    li .left, li .right {
+        width: 100%;
+        padding: 0;
+    }
+
+    li .left {
+        padding-bottom: 50px;
+        text-align: center;
+    }
+
 }

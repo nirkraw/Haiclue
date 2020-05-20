@@ -1,7 +1,8 @@
 import React from 'react';
 import '../css/instructions.css';
 import '../css/layout.css'; 
-import '../css/scoreboard.css'
+import '../css/scoreboard.css';
+import '../css/tile_bank.css';
 import centerTiles from '../images/instructions-center-tiles.png';
 import blue from '../images/blue-tile.png';
 import red from '../images/red-tile.png';
@@ -17,11 +18,11 @@ const ExtInstructions = () => {
 
     return (
         <div className="external-instructions-container">
-            <h1>How to Play <span className="color-yellow">Haiclue</span></h1>
+            <h1>How to Play <span className="color-yellow">Haiclue!</span></h1>
             <ul className='instructions-ul'>
 
                 <li>
-                    <div className='left'>Every player will be assigned a card.</div>
+                    <div className='left'>Every player will be assigned a card from the center of the board.</div>
                     <div className='right'>
                         <div className='instructions-center-tiles'>
                             <figure>
@@ -30,15 +31,15 @@ const ExtInstructions = () => {
                             </figure>
                             <figure>
                                 <img src={red}></img>
-                                <figcaption><div className="tile color-white">wallet</div></figcaption>
+                                <figcaption><div className="tile color-white">trailer</div></figcaption>
                             </figure>
                             <figure>
                                 <img src={green}></img>
-                                <figcaption><div className="tile color-white">wallet</div></figcaption>
+                                <figcaption><div className="tile color-white">electric</div></figcaption>
                             </figure>
                             <figure>
                                 <img src={yellow}></img>
-                                <figcaption><div className="tile color-white">wallet</div></figcaption>
+                                <figcaption><div className="tile color-white">jam</div></figcaption>
                             </figure>
                         </div>
                     </div>
@@ -59,11 +60,11 @@ const ExtInstructions = () => {
                     <div className='right'> 
                         <div className='emoji-container'>
                             <figure><img src={thinking}></img>
-                                <figcaption><span className='color-red'>Not submitted &#10006;</span></figcaption> 
+                                <figcaption><span className='color-red'>not submitted  &#10006;</span></figcaption> 
                             </figure>
                             
                             <figure><img src={glasses}></img>
-                                <figcaption><span className='color-green'>Submitted &#10003;</span></figcaption>  </figure>    
+                                <figcaption><span className='color-green'>submitted  &#10003;</span></figcaption>  </figure>    
                         </div>
                     </div>    
                 </li>
@@ -91,7 +92,7 @@ const ExtInstructions = () => {
 
                 </li>
 
-                <li><div className='left'>Use the add line button to separate clues into multiple lines.</div>
+                <li><div className='left'>Click <button id='clue-submit-button'>Add Line</button> to separate clues into multiple lines. Click <button id='clue-submit-button'>Submit</button> to submit your clue. </div>
                     <div className='right'> 
                         <div className='instructions-clue'>
                             <div className="tile color-white">budget</div>
@@ -105,17 +106,17 @@ const ExtInstructions = () => {
 
                 </li>  
 
-                <li><div className='left'>The other players guess your word.</div>
+                <li><div className='left'>Once all the players have submitted their clues, the players take turn guessing each other's word.</div>
                     <div className='right'>
                         <div className='instructions-guess'>
-                            <h2><span className='color-green'>&#10003;</span>  <span>Paul's guess was <span className='color-yellow'>wallet</span></span><img src={blue}></img>  </h2>
-                            <h2><span className='color-red'>&#10006;</span>  <span>Sara's guess was <span className='color-yellow'>electric</span></span><img src={green}></img>   </h2>
-                            <h2><span className='color-red'>&#10006;</span>  <span>Khaleel's guess was <span className='color-yellow'>jam</span></span><img src={yellow}></img>   </h2>
+                            <h3><span className='color-green'>&#10003;</span>  <span>Paul's guess was <span className='color-yellow'>wallet</span></span><img src={blue}></img>  </h3>
+                            <h3><span className='color-red'>&#10006;</span>  <span>Sara's guess was <span className='color-yellow'>electric</span></span><img src={green}></img>   </h3>
+                            <h3><span className='color-red'>&#10006;</span>  <span>Khaleel's guess was <span className='color-yellow'>jam</span></span><img src={yellow}></img>   </h3>
                         </div>
                     </div>
                 </li>  
 
-                <li><div className='left'>If they are correct, both of you will score a point.</div>
+                <li><div className='left'>If a players guess is correct, both that player and the player who constructed the clue score a point.</div>
                     <div className='right'>
                         <div className='scoreboard-container'>
                             <div className='wrapper'>
@@ -135,6 +136,14 @@ const ExtInstructions = () => {
                                 <div className="handle-div">Khaleel</div>
                             </div>
                         </div>
+                    </div>
+                </li>  
+
+                <li><div className='left'>
+                        And thats a full round of Haiclue! 
+                    </div>
+                    <div className='right'>
+                     
                     </div>
                 </li>  
             </ul>
