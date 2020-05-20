@@ -6,7 +6,6 @@ import green from '../images/green-tile.png';
 import yellow from '../images/yellow-tile.png';
 import glasses from '../images/glasses.png';
 import thinking from '../images/thinking.png';
-import createRoom from '../images/instructions-create-room.png';
 import '../css/instructions.css';
 import '../css/layout.css'; 
 import '../css/scoreboard.css';
@@ -21,7 +20,7 @@ const ExtInstructions = () => {
             <ul className='instructions-ul'>
                 <li>
                     <div className='left'>
-                        1.  <br></br>After a player creates a room, they can set number of 
+                        1.  <br></br>After a player creates a room, they can set
                             <div className="instructions-round-container">
                                  Rounds 
                                 <button className="rounds">-</button>
@@ -34,7 +33,7 @@ const ExtInstructions = () => {
                             <button className="instructions-timer-on-active" >On/</button>
                             <button className="instructions-timer-off">Off</button>
                         </div>. 
-                        Once everyone playing has joined a room, the room creator can click <button className='button-stylez'>Start Game</button>. 
+                        Once everyone playing has joined, the room creator can click <button className='button-stylez'>Start Game</button>. 
                     </div>
                     <div className='right'>
                         <h2>Bartholomew created and joined a Game: <span className='color-yellow'>HOW2HAICLUE</span></h2>
