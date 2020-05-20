@@ -218,10 +218,12 @@ class Room {
     const localPlayer = this.game.players[localPlayerSocketId];
     const currentPlayer = this.game.players[currentPlayerSocketId];
     localPlayer.submittedGuess = true;
+ 
+    
     localPlayer.guessedWord = guessedWord;
     localPlayer.guessIndex = guessedIndex;
 
-    // localPlayer.fish = "fish";
+   
 
     this.game.clueGuessCount++;
     if (matchBoolean) {
