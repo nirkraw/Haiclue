@@ -4,7 +4,7 @@
     margin: 0; 
     font-weight: bold;
     width: 100;
-    font-size: 30px;
+    font-size: 22px;
     margin-bottom: 200px;
 }
 
@@ -41,7 +41,7 @@
     justify-content: space-between;
     text-align: left;
     font-size: 20px;
-    line-height: 2.5;
+    line-height: 2.25;
     padding-top: 115px;
 }
 
