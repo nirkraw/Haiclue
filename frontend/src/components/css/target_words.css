@@ -12,6 +12,7 @@
 .target-img:hover + .tile.color-white.hoverable {
         background-color: #00c8a6;
         border-color: #059c83;
+        cursor: pointer;
 }
 
 .target-img.hoverable:hover {
@@ -21,6 +22,7 @@
 .target-img:hover + .tile.color-black.hoverable {
     background-color: rgba(7, 192, 161, 0.287);
     border-color: rgb(7, 192, 161);
+    cursor: pointer;
 }
 
 .target-img::selection {

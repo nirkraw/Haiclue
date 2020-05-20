@@ -14,6 +14,11 @@
     text-align: center;
 }
 
+.external-instructions-container *::selection {
+     color: none;
+     background: none;
+}
+
 .external-instructions-container h1 {
     font-size: 50px;
     padding: 25px;
@@ -21,4 +26,136 @@
 
 .color-yellow {
     color: #e3ab00;
+}
+
+.instructions-ul {
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 200px;
+}
+
+.instructions-ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    font-size: 20px;
+    line-height: 2.25;
+    padding-top: 115px;
+}
+
+li .left {
+    width: 40%;
+    padding-right: 10%;
+}
+
+li .right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.target-word-imgs {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.target-word-imgs div {
+    padding: 0;
+}
+
+img.card {
+    padding-right: 10px;
+    width: 130px;
+}
+
+figure img {
+    height: 60px;
+}
+
+.emoji-container {
+    width: fit-content;
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.external-instructions-container figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.color-green {
+    color: #00c8a6;
+}
+
+.color-red {
+     color: #DA3832;
+}
+
+.instructions-bank div, .instructions-clue div, .instructions-center-tiles div{
+    min-width: 120px;
+    padding: 0;
+}
+
+.instructions-bank, .instructions-clue {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.instructions-bank {
+    width: 700px;
+}
+
+.instructions-clue {
+    width: 500px;
+}
+
+.instructions-guess h2 {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.instructions-guess {
+    display: flex;
+    flex-direction: column;
+    width: 525px;
+    align-items: center;
+}
+
+.instructions-center-tiles {
+        display: flex;
+        flex-direction: row;
+        width: 50%px;
+        align-items: center;
+}
+
+.instructions-center-tiles figure {
+    padding: 0;
+    margin: 0;
+    width: 150px;
+}
+
+.instructions-center-tiles figcaption {
+    padding-top: 6px;
+}
+
+.instructions-center-tiles img {
+    width: 140px;
+    height: auto;
+}
+
+.instructions-guess img {
+    width: 70px;
 }
