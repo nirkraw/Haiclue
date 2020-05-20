@@ -18,7 +18,7 @@ const ExtInstructions = () => {
 
     return (
         <div className="external-instructions-container">
-            <h1>How to Play <span className="color-yellow">Haiclue!</span></h1>
+            <h1>How to Play <span className="color-yellow">Haiclue</span></h1>
             <ul className='instructions-ul'>
 
                 <li>
@@ -138,16 +138,9 @@ const ExtInstructions = () => {
                         </div>
                     </div>
                 </li>  
-
-                <li><div className='left'>
-                        And thats a full round of Haiclue! 
-                    </div>
-                    <div className='right'>
-                     
-                    </div>
-                </li>  
             </ul>
 
+            <h3 className='instructions-footer'>Thats a full round of Haiclue!</h3>
 
         </div>
     );

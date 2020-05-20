@@ -21,7 +21,7 @@
 
 .external-instructions-container h1 {
     font-size: 50px;
-    padding: 25px;
+    padding: 75px 25px 0 25px;
     margin: 0 auto;
     width: fit-content;
 }
@@ -33,7 +33,6 @@
 .instructions-ul {
     width: 90%;
     margin: 0 auto;
-    padding-bottom: 200px;
 }
 
 .instructions-ul li {
@@ -181,4 +180,10 @@ figure img {
         text-align: center;
     }
 
+}
+
+.instructions-footer {
+    padding: 100px 0 100px 0; 
+    color: #e3ab00;
+    font-size: 22px;
 }
