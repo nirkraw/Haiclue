@@ -231,22 +231,23 @@ class Room {
     let { targetWord, targetIndex, guessIndex } = currentPlayer
 
     if (this.game.clueGuessCount === this.playerCount - 1) {
+      currentPlayer.revealedClue = true;
     
       currentPlayer.correctWord = targetWord[this.game.currentColor];
       currentPlayer.correctIndex = targetIndex;
 
-      Object.values(this.game.players).forEach((player) => {
-        player.submittedGuess = false;
-      });
+     
 
       currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor];
-      currentPlayer.revealedClue = true;
-      setTimeout(() => {
-        currentPlayer.revealedClue = false
-        console.log(currentPlayer.handle)
-      }, 5000);
       this.game.currentPlayerTurn++;
       this.game.clueGuessCount = 0;
+      
+      setTimeout(() => {
+        Object.values(this.game.players).forEach((player) => {
+          player.submittedGuess = false;
+        });
+        currentPlayer.revealedClue = false
+      }, 5000);
     }
 
     
