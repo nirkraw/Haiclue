@@ -58,7 +58,7 @@ class Game extends React.Component {
       <h1 className="logo">Haiclue</h1>
       <div className="game-container">
           <div className="top-container">
-            <TargetWordsContainer socket={this.props.socket} gameState={this.props.gameState} />
+            <TargetWordsContainer revealed={revealed} socket={this.props.socket} gameState={this.props.gameState} />
           </div>
           {(revealed) 
           ? <div className="middle-container">

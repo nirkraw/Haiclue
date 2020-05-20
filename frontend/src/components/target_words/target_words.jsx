@@ -19,6 +19,7 @@ class TargetWords extends React.Component {
     }
 
     this.handleSubmitGuess = this.handleSubmitGuess.bind(this);
+    this.scratch = this.scratch.bind(this);
   }
 
   handleSubmitGuess(e) {
@@ -39,13 +40,12 @@ class TargetWords extends React.Component {
       }
     )[0];
 
-    debugger
-    if (localPlayer.submittedGuess) return null; 
+    
     const currentPlayerTargetWord = currentPlayer.targetWord[gameState.currentColor];
     const guessedWord = (e.currentTarget.nextElementSibling) 
     ?
     e.currentTarget.nextElementSibling.innerText
-    :
+    : 
     e.currentTarget.innerText
     
     let guessTargetIndex;
@@ -64,6 +64,10 @@ class TargetWords extends React.Component {
     const sound = document.getElementById("submit-guess-sound");
     sound.volume = .4;
     sound.play();
+  }
+
+  scratch() {
+    console.log("YOU FUCKED UP");
   }
 
   render() {
@@ -100,30 +104,35 @@ class TargetWords extends React.Component {
       }
     )[0];
 
-    let newTargetWords;
 
     if (gameState.over) {
-      return newTargetWords = targetWords.map((tile, index) => {
+      return targetWords.map((tile, index) => {
         return (
           <div key={index} className="target-words-container">
             <img
               src={Object.values(cards[index])}
               className="target-img"
               alt={Object.keys(cards[index])}
-              onClick={this.handleSubmitGuess}
             />
           </div>
         );
       });
     } 
 
-    setTimeout(() => {
-      this.setState({ currentColor: gameState.currentColor });
-      flip = false;
-    }, 1300);
+    // setTimeout(() => {
+    //   this.setState({ currentColor: gameState.currentColor });
+    //   flip = false;
+    // }, 1300);
+
+    let myFunction;
+    if(!localPlayer.submittedGuess && !this.props.revealed) {
+      myFunction = this.handleSubmitGuess;
+    } else {
+      myFunction = this.scratch
+    }
 
     if (gameState.phase === "clue guessing" && localPlayer.number !== gameState.currentPlayerTurn) {
-      return newTargetWords = targetWords.map((tile, index) => {
+      return targetWords.map((tile, index) => {
         let tileSide = tile[currentColor]; 
         return (
           <div key={index} className="target-words-container">
@@ -131,18 +140,17 @@ class TargetWords extends React.Component {
               src={Object.values(cards[index])}
               className="target-img hoverable"
               alt={Object.keys(cards[index])}
-              onClick={this.handleSubmitGuess}
-              
+              onClick={myFunction}
             />
             {(flip) 
-            ? <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile hoverable flip`} >{tileSide}</div>
-            : <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile hoverable`} >{tileSide}</div>
+            ? <div onClick={myFunction} className={`color-${currentColor} tile hoverable flip`} >{tileSide}</div>
+            : <div onClick={myFunction} className={`color-${currentColor} tile hoverable`} >{tileSide}</div>
             }
           </div>
         );
       });
     } else {
-        return newTargetWords = targetWords.map((tile, index) => {
+        return targetWords.map((tile, index) => {
           let tileSide = tile[currentColor]; //string "casino"
           return (
             <div key={index} className="target-words-container">
@@ -150,7 +158,6 @@ class TargetWords extends React.Component {
                 src={Object.values(cards[index])}
                 className="target-img"
                 alt={Object.keys(cards[index])}
-                
               />
               {(flip) 
               ? <div className={`color-${currentColor} tile flip`}>{tileSide}</div>
