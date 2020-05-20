@@ -10,9 +10,6 @@ class LoginForm extends React.Component {
         this.handleInput = this.handleInput.bind(this);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
         this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
-        this.handleDemoSubmit2 = this.handleDemoSubmit2.bind(this);
-        this.handleDemoSubmit3 = this.handleDemoSubmit3.bind(this);
-        this.handleDemoSubmit4 = this.handleDemoSubmit4.bind(this);
     }
 
     handleInput(field) {
@@ -23,42 +20,13 @@ class LoginForm extends React.Component {
 
     handleDemoSubmit(e) {
         e.preventDefault();
-        debugger
-        let select = document.getElementById("EZ")
-        let user = select.options[select.selectedIndex].value;
-        debugger
-        
+        const select = document.getElementById("EZ")
+        const user = select.options[select.selectedIndex].value;
         this.props.login({
             email: user,
             password: 'password',
         })
     }
-
-    handleDemoSubmit2(e) {
-        e.preventDefault();
-        this.props.login({
-            email: 'bart@bart.com',
-            password: 'password',
-        })
-    }
-
-    handleDemoSubmit3(e) {
-        e.preventDefault();
-        this.props.login({
-            email: 'paul@paul.com',
-            password: 'password',
-        })
-    }
-
-    handleDemoSubmit4(e) {
-        e.preventDefault();
-        this.props.login({
-            email: 'james@james.com',
-            password: 'password',
-            errors: this.props.errors,
-        })
-    }
-
 
     handleLoginSubmit(e) {
         e.preventDefault();
@@ -85,18 +53,24 @@ class LoginForm extends React.Component {
                 <button onClick={this.handleLoginSubmit}>Login</button>
                 <ul>{loginErrors}</ul>
             </form>
-            {/* <button onClick={this.handleDemoSubmit} >John Login</button>
-            <button onClick={this.handleDemoSubmit2} >Bart Login</button>
-            <button onClick={this.handleDemoSubmit3} >Paul Login</button>
-            <button onClick={this.handleDemoSubmit4} >James Login</button> */}
             <button>
 
             <select name="EZ Login" id="EZ" onChange={this.handleDemoSubmit} placeholder="EZ Login" >
                 <option value="">EZ Login</option>
                 <option value="john@john.com">John</option>
-                <option value="">Bart</option>
-                <option value="">Paul</option>
-                <option value="">James</option>
+                <option value="nancy@nancy.com">Nancy</option>
+                <option value="sophia@sophia.com">Sophia</option>
+                <option value="andre@andre.com">Andre</option>
+                <option value="nicole@nicole.com">Nicole</option>
+                <option value="simon@simon.com">Simon</option>
+                <option value="james@james.com">James</option>
+                <option value="bart@bart.com">Bartholomew</option>
+                <option value="eduardo@eduardo.com">Eduardo</option>
+                <option value="angela@angela.com">Angela</option>
+                <option value="alex@alex.com">Alex</option>
+                <option value="jasmine@jasmine.com">Jasmine</option>
+                <option value="paul@paul.com">Paul</option>
+                <option value="samantha@samantha.com">Samantha</option>
             </select>
             </button>
 
