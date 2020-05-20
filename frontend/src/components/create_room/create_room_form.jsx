@@ -81,7 +81,8 @@ export default class CreateRoomForm extends Component {
   
   handleInput(field) { 
     return (e) => {
-      this.setState({ [field]: e.currentTarget.value });
+      let upcase_room_name = e.currentTarget.value.toUpperCase()
+      this.setState({ [field]: upcase_room_name });
     };
   }
 
