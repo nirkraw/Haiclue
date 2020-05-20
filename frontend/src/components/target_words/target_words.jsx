@@ -34,7 +34,8 @@ class TargetWords extends React.Component {
 
     const localPlayer = Object.values(gameState.players).filter(
       (player) => {
-        return player.handle === this.props.user.handle;
+        // return player.handle === this.props.user.handle;
+        return player.socketId === this.props.socket.id;
       }
     )[0];
 
@@ -94,7 +95,8 @@ class TargetWords extends React.Component {
 
     const localPlayer = Object.values(gameState.players).filter(
       (player) => {
-        return player.handle === this.props.user.handle;
+        // return player.handle === this.props.user.handle;
+        return player.socketId === this.props.socket.id;
       }
     )[0];
 

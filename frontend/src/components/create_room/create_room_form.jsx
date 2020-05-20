@@ -85,14 +85,6 @@ export default class CreateRoomForm extends Component {
     };
   }
 
-  handleRoomCreate(event) {
-    event.preventDefault();
-    const { roomName } = this.state;
-    this.props.storeRoomName(roomName);
-    this.socket.emit("create", roomName, this.props.user.handle);
-    this.setState({ roomName: "", options: true});
-  }
-
   randomRoom() {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXTZ";
     let room = ""
@@ -101,6 +93,15 @@ export default class CreateRoomForm extends Component {
     }
     return room
   }
+
+  handleRoomCreate(event) {
+    event.preventDefault();
+    const { roomName } = this.state;
+    this.props.storeRoomName(roomName);
+    this.socket.emit("create", roomName, this.props.user.handle);
+    this.setState({ roomName: "", options: true});
+  }
+
 
   handleRandomCreate(event) {
     event.preventDefault();
@@ -119,6 +120,11 @@ export default class CreateRoomForm extends Component {
     this.setState({ roomName: "" });
   }
 
+  startGame(event) {
+    event.preventDefault();
+    this.socket.emit("startGame", this.state.roomName, this.props.tiles, this.state.rounds, this.state.timer)
+  }
+
   mainMenu(event) {
    if (event !== undefined) {
      event.preventDefault();
@@ -126,10 +132,6 @@ export default class CreateRoomForm extends Component {
     window.location.reload();
   }
 
-  startGame(event) {
-    event.preventDefault();
-    this.socket.emit("startGame", this.state.roomName, this.props.tiles, this.state.rounds, this.state.timer)
-  }
 
   changeRounds(event) {
     event.preventDefault();
