@@ -23,6 +23,7 @@ io.on("connect", (socket) => {
   console.log(socket.id + "has been connected");
 
   socket.on("create", (roomName, handle) => {
+    // console.log(`create : ${roomName}`)
     if (!rooms[roomName]) {
       socket.join(roomName);
       socket.emit(
@@ -30,6 +31,8 @@ io.on("connect", (socket) => {
         `${handle} created and joined Game: ${roomName}`
       );
       const newRoom = new Room(roomName);
+      // console.log(newRoom.roomName);
+      // console.log(roomName);
       newRoom.addPlayer(handle, socket.id);
       rooms[roomName] = newRoom;
       rooms[roomName].submit(socket.id);
@@ -43,12 +46,13 @@ io.on("connect", (socket) => {
   socket.on("startGame", (roomName, tiles, rounds, timer) => { //change to "start game" for consistancy? 
     if (rooms[roomName].playerCount > 1) {
       rooms[roomName].storeTiles(Object.values(tiles));
-      rooms[roomName].startGame(rounds, timer); 
+      rooms[roomName].startGame(rounds, timer);
     }
   })
 
 
   socket.on("join", (roomName, handle, tiles) => {
+    // console.log(`join : ${roomName}`)
     if (!rooms[roomName]) {
       socket.emit("sendErrors", "couldn't find a room with that name");
 

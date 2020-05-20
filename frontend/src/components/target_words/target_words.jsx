@@ -67,7 +67,7 @@ class TargetWords extends React.Component {
   }
 
   scratch() {
-    console.log("YOU FUCKED UP");
+    console.log("YOU MESSED UP");
   }
 
   render() {
