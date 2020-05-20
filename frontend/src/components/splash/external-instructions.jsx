@@ -1,18 +1,17 @@
 import React from 'react';
-import '../css/instructions.css';
-import '../css/layout.css'; 
-import '../css/scoreboard.css';
-import '../css/tile_bank.css';
-import centerTiles from '../images/instructions-center-tiles.png';
+
 import blue from '../images/blue-tile.png';
 import red from '../images/red-tile.png';
 import green from '../images/green-tile.png';
 import yellow from '../images/yellow-tile.png';
-import walletTile from '../images/instructions-wallet.png';
 import glasses from '../images/glasses.png';
 import thinking from '../images/thinking.png';
-import tileBank from '../images/instructions-tile-bank.png';
-import clue from '../images/instructions-clue.png';
+import createRoom from '../images/instructions-create-room.png';
+import '../css/instructions.css';
+import '../css/layout.css'; 
+import '../css/scoreboard.css';
+import '../css/tile_bank.css';
+
 
 const ExtInstructions = () => {
 
@@ -20,9 +19,29 @@ const ExtInstructions = () => {
         <div className="external-instructions-container">
             <h1>How to Play <span className="color-yellow">Haiclue</span></h1>
             <ul className='instructions-ul'>
-
                 <li>
-                    <div className='left'>Every player will be assigned a card from the center of the board.</div>
+                    <div className='left'>
+                        1.  <br></br>After a player creates a room, they can set number of 
+                            <div className="instructions-round-container">
+                                 Rounds 
+                                <button className="rounds">-</button>
+                                 1 
+                                <button className="rounds">+</button>
+                            </div>
+                         and 
+                          <div className="instructions-timer-on-off-container">
+                            Timer
+                            <button className="instructions-timer-on-active" >On/</button>
+                            <button className="instructions-timer-off">Off</button>
+                        </div>. 
+                        Once everyone playing has joined a room, the room creator can click <button className='button-stylez'>Start Game</button>. 
+                    </div>
+                    <div className='right'>
+                        <h2>Bartholomew created and joined a Game: <span className='color-yellow'>HOW2HAICLUE</span></h2>
+                    </div>
+                </li>
+                <li>
+                    <div className='left'>2.  <br></br>Every player will be assigned a card from the center of the board.</div>
                     <div className='right'>
                         <div className='instructions-center-tiles'>
                             <figure>
@@ -46,7 +65,7 @@ const ExtInstructions = () => {
                 </li>
                 
                 <li>
-                    <div className='left'>A player's assigned card will appear in the lower left corner next to it's associated tile.</div>
+                    <div className='left'>3.  <br></br>A player's assigned card will appear in the lower left corner next to it's associated tile.</div>
                     <div className='right'>
                         <div className='target-word-imgs'>
                             <img className='card' src={blue}></img>
@@ -56,7 +75,7 @@ const ExtInstructions = () => {
                 </li>  
 
                 <li>
-                    <div className='left'>Wait for all of the other players to submit their clues. You can tell if a player has submitted by their emojis on the scoreboard.</div> 
+                    <div className='left'>4.  <br></br>Wait for all of the other players to submit their clues. You can tell if a player has submitted by their emojis on the scoreboard.</div> 
                     <div className='right'> 
                         <div className='emoji-container'>
                             <figure><img src={thinking}></img>
@@ -69,7 +88,7 @@ const ExtInstructions = () => {
                     </div>    
                 </li>
 
-                <li><div className='left'>Next, use up to 15 random tiles to construct a clue for your word.</div>
+                <li><div className='left'>5.  <br></br>Next, use up to 15 of the random tiles in your tile bank to construct a clue for your word.</div>
                     <div className='right'> 
                         <div className='instructions-bank'>
                             <div className="tile color-white">lived</div>
@@ -92,7 +111,7 @@ const ExtInstructions = () => {
 
                 </li>
 
-                <li><div className='left'>Click <button id='clue-submit-button'>Add Line</button> to separate clues into multiple lines. Click <button id='clue-submit-button'>Submit</button> to submit your clue. </div>
+                <li><div className='left'>6.  <br></br>Click <button id='clue-submit-button'>Add Line</button> to separate clues into multiple lines. Then click <button id='clue-submit-button'>Submit</button> to submit your clue. </div>
                     <div className='right'> 
                         <div className='instructions-clue'>
                             <div className="tile color-white">budget</div>
@@ -106,7 +125,7 @@ const ExtInstructions = () => {
 
                 </li>  
 
-                <li><div className='left'>Once all the players have submitted their clues, the players take turn guessing each other's word.</div>
+                <li><div className='left'>7.  <br></br>Once all the players have submitted their clues, the players take turn guessing each other's word.</div>
                     <div className='right'>
                         <div className='instructions-guess'>
                             <h3><span className='color-green'>&#10003;</span>  <span>Paul's guess was <span className='color-yellow'>wallet</span></span><img src={blue}></img>  </h3>
@@ -116,7 +135,7 @@ const ExtInstructions = () => {
                     </div>
                 </li>  
 
-                <li><div className='left'>If a players guess is correct, both that player and the player who constructed the clue score a point.</div>
+                <li><div className='left'>8.  <br></br>If a players guess is correct, both that player and the player who constructed the clue score a point.</div>
                     <div className='right'>
                         <div className='scoreboard-container'>
                             <div className='wrapper'>
