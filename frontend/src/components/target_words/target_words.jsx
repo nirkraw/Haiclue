@@ -124,14 +124,14 @@ class TargetWords extends React.Component {
     //   flip = false;
     // }, 1300);
 
-    let myFunction;
-    if(!localPlayer.submittedGuess && !this.props.revealed) {
-      myFunction = this.handleSubmitGuess;
-    } else {
-      myFunction = this.scratch
-    }
+    // let myFunction;
+    // if(!localPlayer.submittedGuess && !this.props.revealed) {
+    //   myFunction = this.handleSubmitGuess;
+    // } else {
+    //   myFunction = this.scratch
+    // }
 
-    if (gameState.phase === "clue guessing" && localPlayer.number !== gameState.currentPlayerTurn) {
+    if (gameState.phase === "clue guessing" && localPlayer.number !== gameState.currentPlayerTurn && !localPlayer.submittedGuess && !this.props.revealed) {
       return targetWords.map((tile, index) => {
         let tileSide = tile[currentColor]; 
         return (
@@ -140,11 +140,11 @@ class TargetWords extends React.Component {
               src={Object.values(cards[index])}
               className="target-img hoverable"
               alt={Object.keys(cards[index])}
-              onClick={myFunction}
+              onClick={this.handleSubmitGuess}
             />
             {(flip) 
-            ? <div onClick={myFunction} className={`color-${currentColor} tile hoverable flip`} >{tileSide}</div>
-            : <div onClick={myFunction} className={`color-${currentColor} tile hoverable`} >{tileSide}</div>
+            ? <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile hoverable flip`} >{tileSide}</div>
+            : <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile hoverable`} >{tileSide}</div>
             }
           </div>
         );
