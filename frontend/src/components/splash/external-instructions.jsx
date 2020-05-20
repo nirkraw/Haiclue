@@ -123,7 +123,7 @@ const ExtInstructions = () => {
 
                 </li>  
 
-                <li><div className='left'>7.  <br></br>Once all the players have submitted their clues, the players take turn guessing each other's word.</div>
+                <li><div className='left'>7.  <br></br>Once everyone has submitted their clues, players take turn guessing each other's word.</div>
                     <div className='right'>
                         <div className='instructions-guess'>
                             <h3><span className='color-green'>&#10003;</span>  <span>Paul's guess was <span className='color-yellow'>wallet</span></span><img src={blue}></img>  </h3>
@@ -133,7 +133,9 @@ const ExtInstructions = () => {
                     </div>
                 </li>  
 
-                <li><div className='left'>8.  <br></br>If a players guess is correct, both that player and the player who constructed the clue score a point.</div>
+                <li><div className='left'>8.  <br></br>
+                    The other players guess your word and score a point if they are correct. You will also score a point for each correct guess. 
+                    </div>
                     <div className='right'>
                         <div className='scoreboard-container'>
                             <div className='wrapper'>
@@ -157,7 +159,7 @@ const ExtInstructions = () => {
                 </li>  
             </ul>
 
-            <h3 className='instructions-footer'>Thats a full round of Haiclue!</h3>
+            <h3 className='instructions-footer'>That's all it takes to play a round of Haiclue!</h3>
 
         </div>
     );
