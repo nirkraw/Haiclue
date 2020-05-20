@@ -47,7 +47,7 @@ class ClueContruction extends React.Component {
             if (typeof tile === 'string') {
                 return (
                   <span key={index*1000}>
-                    <div id={index} key={index} onClick={this.removeLine} className={`color-${currentColor} tile add-line`}>|| </div>
+                        <div id={index} key={index} onClick={this.removeLine} className={`color-${currentColor} tile add-line`}>&#8629;</div>
                     <br/>
                   </span>
                 )

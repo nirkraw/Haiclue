@@ -24,7 +24,6 @@ class TileBank extends React.Component {
     )[0];
 
     const tiles = player.clueTiles;
-    
     let newTiles = tiles.map((tile, index) => {
       
       return (

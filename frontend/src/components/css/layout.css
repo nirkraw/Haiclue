@@ -24,6 +24,8 @@
 }
 
 .color-black {
+    width: 120px;
+
     transform: rotateX(0);
     border-color: white;
     color: white; 
@@ -65,7 +67,7 @@
 }
 
 .tile { 
-        width: 120px;
+        min-width: 120px;
         border: 3px solid; 
         padding: 10px; 
         margin: 6px;
@@ -75,7 +77,8 @@
         font-weight: bold;
         box-sizing: border-box;
         border-style: outset;
-        /* box-shadow: 10px 10px 8px 1px grey */
+        text-align: center; 
+        cursor: pointer;
     
 }
 
