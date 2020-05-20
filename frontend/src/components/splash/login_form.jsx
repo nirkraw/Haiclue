@@ -23,8 +23,13 @@ class LoginForm extends React.Component {
 
     handleDemoSubmit(e) {
         e.preventDefault();
+        debugger
+        let select = document.getElementById("EZ")
+        let user = select.options[select.selectedIndex].value;
+        debugger
+        
         this.props.login({
-            email: 'john@john.com',
+            email: user,
             password: 'password',
         })
     }
@@ -80,10 +85,20 @@ class LoginForm extends React.Component {
                 <button onClick={this.handleLoginSubmit}>Login</button>
                 <ul>{loginErrors}</ul>
             </form>
-            <button onClick={this.handleDemoSubmit} >John Login</button>
+            {/* <button onClick={this.handleDemoSubmit} >John Login</button>
             <button onClick={this.handleDemoSubmit2} >Bart Login</button>
             <button onClick={this.handleDemoSubmit3} >Paul Login</button>
-            <button onClick={this.handleDemoSubmit4} >James Login</button>
+            <button onClick={this.handleDemoSubmit4} >James Login</button> */}
+            <button>
+
+            <select name="EZ Login" id="EZ" onChange={this.handleDemoSubmit} placeholder="EZ Login" >
+                <option value="">EZ Login</option>
+                <option value="john@john.com">John</option>
+                <option value="">Bart</option>
+                <option value="">Paul</option>
+                <option value="">James</option>
+            </select>
+            </button>
 
         </div> )
 
