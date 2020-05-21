@@ -1,7 +1,7 @@
 import React from "react";
 import MyTargetWordContainer from "../my_target_word/my_target_word_container";
 import TileBankContainer from "../tile_bank/tile_bank_container";
-import CurrentClueContainer from "../current_clue/current_clue_container";
+import CurrentClue from "../current_clue/current_clue";
 import RevealedClue from "../revealed_clue/revealed_clue";
 import TargetWordsContainer from "../target_words/target_words_container";
 import GameOver from "../game_over/game_over";
@@ -60,7 +60,7 @@ class Game extends React.Component {
             </div>
           ) : (
             <div className="middle-container">
-              <CurrentClueContainer
+              <CurrentClue
                 socket={socket}
                 gameState={gameState}
               />

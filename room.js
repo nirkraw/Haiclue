@@ -62,7 +62,7 @@ class Room {
       guessIndex: null,
     };
 
-    if (Object.values(this.game.players).length < 2) {
+    if (Object.values(this.game.players).length < 10) {
       player.number = Object.values(this.game.players).length + 1;
       this.game.players[socketId] = player;
       console.log(`${socketId} : ${handle}`);
