@@ -7,88 +7,62 @@ import TargetWordsContainer from "../target_words/target_words_container";
 import GameOver from "../game_over/game_over";
 import Scoreboard from "../scoreboard/scoreboard";
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props);
-    this.mainMenu = this.mainMenu.bind(this);
+const Game = (props) => {
+  const { gameState, socket } = props;
+
+  if (!gameState) return null;
+
+  const players = Object.values(gameState.players);
+
+  let playerTargetWord;
+  let revealed = false;
+
+  for (let index = 0; index < players.length; index++) {
+    let player = players[index];
+
+    if (player.revealedClue) {
+      revealed = true;
+      playerTargetWord = player.correctWord;
+    }
   }
 
-  mainMenu(event) {
-    if (event !== undefined) {
-      event.preventDefault();
-    }
-    window.location.reload();
-  }
-
-  render() {
-    const { gameState, socket } = this.props;
-
-    if (!gameState) return null;
-
-    const players = Object.values(gameState.players);
-
-    let playerTargetWord;
-    let revealed = false;
-
-    for (let index = 0; index < players.length; index++) {
-      let player = players[index];
-
-      if (player.revealedClue) {
-        revealed = true;
-        playerTargetWord = player.correctWord;
-      }
-    }
-
-    return (
-      <div>
-        <h1 className="logo">Haiclue</h1>
-        <div className="game-container">
-          <div className="top-container">
-            <TargetWordsContainer
+  return (
+    <div>
+      <h1 className="logo">Haiclue</h1>
+      <div className="game-container">
+        <div className="top-container">
+          <TargetWordsContainer
+            revealed={revealed}
+            socket={socket}
+            gameState={gameState}
+          />
+        </div>
+        {revealed ? (
+          <div className="middle-container">
+            <RevealedClue
               revealed={revealed}
               socket={socket}
               gameState={gameState}
             />
           </div>
-          {revealed ? (
-            <div className="middle-container">
-              <RevealedClue
-                revealed={revealed}
-                socket={socket}
-                gameState={gameState}
-              />
-            </div>
-          ) : (
-            <div className="middle-container">
-              <CurrentClue
-                socket={socket}
-                gameState={gameState}
-              />
-              <TileBankContainer
-                socket={socket}
-                gameState={gameState}
-              />
-              {gameState.over ? (
-                <GameOver
-                  socket={socket}
-                  gameState={gameState}
-                />
-              ) : (
-                <></>
-              )}
-            </div>
-          )}
-          <div className="bottom-container">
-            <MyTargetWordContainer gameState={gameState} />
-            <Scoreboard
-              over={gameState.over}
-              players={gameState.players}
-            />
+        ) : (
+          <div className="middle-container">
+            <CurrentClue socket={socket} gameState={gameState} />
+            <TileBankContainer socket={socket} gameState={gameState} />
+            {gameState.over ? (
+              <GameOver socket={socket} gameState={gameState} />
+            ) : (
+              <></>
+            )}
           </div>
+        )}
+        <div className="bottom-container">
+          <MyTargetWordContainer gameState={gameState} />
+          <Scoreboard over={gameState.over} players={gameState.players} />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Game;

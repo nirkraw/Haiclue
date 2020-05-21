@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
-import GameContainer from "../game/game_container";
+import Game from "../game/game";
 import ENV from "../../util/socket_env";
 import Logout from "../global/logout-instructions-button";
 import "../css/create_room.css";
@@ -332,7 +332,7 @@ export default class CreateRoomForm extends Component {
     let view =
       gameState && gameState.gameStarted ? (
         <div>
-          <GameContainer
+          <Game
             handle={this.props.user.handle}
             gameState={this.state.gameState}
             socket={this.socket}
