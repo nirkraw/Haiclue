@@ -165,11 +165,17 @@ export default class CreateRoomForm extends Component {
   }
   
   demoGame(e) {
-    e.preventDefault();
+    if (e !== undefined) {
+      e.preventDefault();
+    }
     this.socket.emit("demo", this.props.user.handle, "demo", this.props.tiles);
   }
 
   render() {
+ 
+      if(this.props.user.handle === "Demo" && this.socket) {
+            this.demoGame();
+      }
     
     const {gameState} = this.state
     let welcome = "Create or Join a Room";
@@ -192,86 +198,116 @@ export default class CreateRoomForm extends Component {
       this.state.message !== ("this name is already taken" || "couldn't find a room with that name" || "sorry, this room is full")
         ? true
         : false;
-    let joinRoom = (<>
-      <h1 className='logo'>Haiclue</h1>
-      <div className='splash-container'>
-        <section className="splash-cards">
-          <img src={blue} alt="blue" />
-          <img src={green} alt="green" />
-          <img src={red} alt="red" />
-          <img src={yellow} alt="yellow" />
-        </section>
-      </div>
-      <div className="room-container">
-        <Logout logout={this.props.logout} loggedIn={this.props.loggedIn} />
-
-        {this.state.errors ? <h1>{this.state.errors}</h1> : <h1>{welcome}</h1>}
-        <form>
-          <label>
-            <input
-              type="text"
-              placeholder={placeholder_text}
-              value={this.state.roomName}
-              onChange={this.handleInput("roomName")}
-              readOnly={readOnlyVal}
-            />
-          </label>
-          {this.state.options
-          ? <> 
-            <div className="create-button-container">
-              <button className="button-stylez" onClick={this.mainMenu}>Main Menu</button>
-              <div className="round-container">
-                  Rounds 
-                  <button className="rounds" onClick={this.changeRounds}>-</button>
-                    {this.state.rounds} 
-                  <button className="rounds" onClick={this.changeRounds}>+</button>
-              </div> 
-                {(this.state.timer) 
-                  ? <div className="timer-on-off-container">
-                    Timer
-                  <button className="timer-on-active" >On/</button>
-                    <button className="timer-off" onClick={this.changeTimer}>Off</button>
-                  </div> 
-                  : <div className="timer-on-off-container">
-                    Timer
-                  <button className="timer-on" onClick={this.changeTimer}>On/</button>
-                    <button className="timer-off-active" >Off</button>
-                </div> 
-                }        
-            <button className="button-stylez" onClick={this.startGame}>Start Game</button>
-            {/* <button className="button-stylez">Timer Off</button> */}
-            {/* <button className="button-stylez">Join Link</button> */}
-            {/* <button>Timer On</button>  */}
-              </div>
-          </>
-          : <>
-            <div className="create-button-container">
-                <button className="button-stylez butts" type="submit" onClick={this.handleRoomJoin}>
-                  Join
-                </button>
-                <button
-                  className="button-stylez butts"
-                  type="submit"
-                  onClick={this.handleRoomCreate}>
-                  Create
-                </button>
-                <button
-                  className="button-stylez butts"
-                  type="submit"
-                  onClick={this.handleRandomCreate}>
-                  Random
-                </button>
-                <button
-                  className="button-stylez butts"
-                  type="submit"
-                  onClick={this.demoGame}>
-                  Demo Game
-                </button>
-            </div>
-          </>}
-        </form>
-        <div className="players-create-container">{players}</div>
-      </div>
+    let joinRoom = (
+      <>
+        <h1 className="logo">Haiclue</h1>
+        <div className="splash-container">
+          <section className="splash-cards">
+            <img src={blue} alt="blue" />
+            <img src={green} alt="green" />
+            <img src={red} alt="red" />
+            <img src={yellow} alt="yellow" />
+          </section>
+        </div>
+        <div className="room-container">
+          <Logout
+            // handle={this.props.user.handle}
+            logout={this.props.logout}
+            loggedIn={this.props.loggedIn}
+          />
+          {this.state.errors ? (
+            <h1>{this.state.errors}</h1>
+          ) : (
+            <h1>{welcome}</h1>
+          )}
+          <form>
+            <label>
+              <input
+                type="text"
+                placeholder={placeholder_text}
+                value={this.state.roomName}
+                onChange={this.handleInput("roomName")}
+                readOnly={readOnlyVal}
+              />
+            </label>
+            {this.state.options ? (
+              <>
+                <div className="create-button-container">
+                  <button className="button-stylez" onClick={this.mainMenu}>
+                    Main Menu
+                  </button>
+                  <div className="round-container">
+                    Rounds
+                    <button className="rounds" onClick={this.changeRounds}>
+                      -
+                    </button>
+                    {this.state.rounds}
+                    <button className="rounds" onClick={this.changeRounds}>
+                      +
+                    </button>
+                  </div>
+                  {this.state.timer ? (
+                    <div className="timer-on-off-container">
+                      Timer
+                      <button className="timer-on-active">On/</button>
+                      <button className="timer-off" onClick={this.changeTimer}>
+                        Off
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="timer-on-off-container">
+                      Timer
+                      <button className="timer-on" onClick={this.changeTimer}>
+                        On/
+                      </button>
+                      <button className="timer-off-active">Off</button>
+                    </div>
+                  )}
+                  <button className="button-stylez" onClick={this.startGame}>
+                    Start Game
+                  </button>
+                  {/* <button className="button-stylez">Timer Off</button> */}
+                  {/* <button className="button-stylez">Join Link</button> */}
+                  {/* <button>Timer On</button>  */}
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="create-button-container">
+                  <button
+                    className="button-stylez butts"
+                    type="submit"
+                    onClick={this.handleRoomJoin}
+                  >
+                    Join
+                  </button>
+                  <button
+                    className="button-stylez butts"
+                    type="submit"
+                    onClick={this.handleRoomCreate}
+                  >
+                    Create
+                  </button>
+                  <button
+                    className="button-stylez butts"
+                    type="submit"
+                    onClick={this.handleRandomCreate}
+                  >
+                    Random
+                  </button>
+                  <button
+                    className="button-stylez butts"
+                    type="submit"
+                    onClick={this.demoGame}
+                  >
+                    Demo Game
+                  </button>
+                </div>
+              </>
+            )}
+          </form>
+          <div className="players-create-container">{players}</div>
+        </div>
       </>
     ); 
 
@@ -279,13 +315,14 @@ export default class CreateRoomForm extends Component {
         ((gameState.gameStarted) ? 
             (<div>
               {/* <div className="players-container">{players}</div> */}
-              <GameContainer gameState={this.state.gameState} socket={this.socket}/> </div>)
+              <GameContainer handle={this.props.user.handle} gameState={this.state.gameState} socket={this.socket}/> </div>)
             : (joinRoom))   
         : (joinRoom)
 
         
     return (
       <>
+      
       {(this.state.playing)
           ? <img onClick={this.muteAndUnmute} className="mute" src={unmute} alt="unmute" />
           : <img onClick={this.muteAndUnmute} className="mute" src={mute} alt="mute"/>

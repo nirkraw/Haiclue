@@ -54,7 +54,7 @@ class Game extends React.Component {
 
   return (
   <div>
-      <Logout quit={this.mainMenu} start={this.props.gameState.gameStarted} logout={this.props.logout} loggedIn={this.props.loggedIn} /> 
+      <Logout quit={this.mainMenu} start={this.props.gameState.gameStarted} handle={this.props.handle} logout={this.props.logout} loggedIn={this.props.loggedIn} /> 
       <h1 className="logo">Haiclue</h1>
       <div className="game-container">
           <div className="top-container">

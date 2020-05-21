@@ -1,6 +1,6 @@
 import LoginFormContainer from './login_form_container';
 import SignupFormContainer from './signup_form_container';
-import Instructions from './instructions';
+import InstructionsContainer from './instructions_container';
 import React from 'react';
 import { AuthRoute } from '../../util/route_util';
 import { Route, NavLink } from 'react-router-dom';
@@ -71,7 +71,7 @@ class Splash extends React.Component {
             <NavLink to='instructions' target="blank"><button className="instruction-hover">?</button></NavLink>
           </h1>
           {/* opens model that contains instructions picture? with x up top and can click outside to close it */}
-            <Route component={Instructions} />
+            <Route component={InstructionsContainer} />
             
           <h1 className="splash-label">Join a Game</h1>
             <div className='form-container'>
