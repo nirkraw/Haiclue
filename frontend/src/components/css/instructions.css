@@ -143,7 +143,6 @@ figure img {
 .instructions-center-tiles {
         display: flex;
         flex-direction: row;
-        width: 50%px;
         align-items: center;
 }
 

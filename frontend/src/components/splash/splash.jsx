@@ -9,8 +9,12 @@ import blue from '../images/blue-tile.png';
 import green from '../images/green-tile.png';
 import yellow from '../images/yellow-tile.png';
 import tbg from '../images/tbg-logo.png';
-import '../css/splash.css';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import nicole from '../images/nicole.jpg';
+import nir from '../images/nir.png';
+import edward from '../images/edward.jpg'; 
+import sammy from '../images/sammy.jpg';
+import '../css/splash.css';
 
 class Splash extends React.Component {
   constructor(props) {
@@ -37,6 +41,7 @@ class Splash extends React.Component {
         <a href="#howToPlay">How to Play</a>
         <a href="#logIn">Play</a>
         <a href="#signUp">Sign Up</a>
+        <a href='#devs'>Dev Team</a>
         <a target="blank" href="https://tigerboardgames.com/">Website</a>
         <a target="blank" href="https://github.com/nirkraw/Haiclue">Github</a>
       </div>)
@@ -78,6 +83,33 @@ class Splash extends React.Component {
               <AuthRoute path="/" component={LoginFormContainer} />
               <AuthRoute path="/" component={SignupFormContainer} />
             </div>
+          <h1 className="splash-label" id="devs">Dev Team</h1>
+          <div className='team-container'>
+              <figure className="profile">
+                  <a href="https://github.com/etrinidad132" target="_blank">
+                      <img src={edward} className="dev-img"></img>
+                      <figcaption>Edward</figcaption>
+                  </a>
+              </figure>
+            <figure className="profile">
+                <a href="https://github.com/nicolsama" target="_blank" >
+                    <img src={nicole} className="dev-img"></img>
+                    <figcaption>Nicole</figcaption>
+                  </a>
+              </figure>
+            <figure className="profile">
+                <a href="https://github.com/nirkraw" target="_blank" >
+                    <img src={nir} className="dev-img"></img>
+                    <figcaption>Nir</figcaption>
+                  </a>
+              </figure>
+            <figure className="profile">
+                <a href="https://github.com/Shrewbitz" target="_blank" >
+                    <img src={sammy} className="dev-img"></img>
+                    <figcaption>Sammy</figcaption>
+                  </a>
+              </figure>
+          </div>
         </div>  
         <footer>
             <a target="blank" href="https://tigerboardgames.com/">

@@ -4,8 +4,6 @@ class SignupForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            // login_email: '',
-            // login_password: '',
             handle: '',
             password: '',
             password2: '',
@@ -26,17 +24,15 @@ class SignupForm extends React.Component {
     handleSignupSubmit(e) {
         e.preventDefault();
         this.props.signup(this.state)
-        // .then(() => {this.props.login(this.state)})
     }
 
     render () {
 
         let signUpErrors; 
         if (this.props.errors) {
-            // debugger
-        signUpErrors = Object.values(this.props.errors).map( error => {
-            return (<li>{error}</li>)
-        });
+            signUpErrors = Object.values(this.props.errors).map( error => {
+                return (<li>{error}</li>)
+            });
         }   
 
     return (
@@ -48,10 +44,9 @@ class SignupForm extends React.Component {
                     <input type="text" value={this.state.email} onChange={this.handleInput('email')} placeholder="Email"/>
                     <input type="password" value={this.state.password} onChange={this.handleInput('password')}  placeholder="Password"/>
                     <input type="password" value={this.state.password2} onChange={this.handleInput('password2')}  placeholder="Confirm Password"/>
-                    <br/>
-                    <button onClick={this.handleSignupSubmit}>Signup</button>
-                    <ul>{signUpErrors}</ul>
                 </form>
+                <ul className="session-form-errors">{signUpErrors}</ul>
+                    <button onClick={this.handleSignupSubmit}>Signup</button>
             </div>
         </>)
     
