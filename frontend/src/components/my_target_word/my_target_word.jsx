@@ -13,11 +13,11 @@ class MyTargetWord extends React.Component {
   }
 
   getWord() {
-    const { gameState, user } = this.props;
+    const { gameState } = this.props;
     if (!gameState) return null;
 
     const player = Object.values(gameState.players).filter((player) => {
-      return player.handle === user.handle;
+      return player.socketId === this.props.socket.id;
     })[0];
 
     const currentColor = gameState.currentColor;
@@ -35,7 +35,7 @@ class MyTargetWord extends React.Component {
     const { gameState } = this.props;
     if (!gameState) return null;
 
-    if (gameState.over) return <></>;
+    if (gameState.over) return null;
 
     let myWord = this.getWord();
     let picNumber;
