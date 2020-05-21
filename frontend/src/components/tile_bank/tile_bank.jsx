@@ -18,7 +18,7 @@ class TileBank extends React.Component {
 
     const player = Object.values(this.props.gameState.players).filter(
       (player) => {
-        // return player.handle === this.props.user.handle;
+
         return player.socketId === this.props.socket.id;
       }
     )[0];
