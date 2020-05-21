@@ -13,11 +13,11 @@ class MyTargetWord extends React.Component {
   }
 
   getWord() {
-    const { gameState, user } = this.props;
+    const { gameState } = this.props;
     if (!gameState) return null;
 
     const player = Object.values(gameState.players).filter((player) => {
-      return player.socketId === prop.socket.id;
+      return player.socketId === this.props.socket.id;
     })[0];
 
     const currentColor = gameState.currentColor;
