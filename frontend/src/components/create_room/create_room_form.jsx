@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
-import GameContainer from '../game/game_container';
-import ENV from '../../util/socket_env';
-import Logout from '../global/logout-instructions-button'; 
-import '../css/create_room.css';
-import red from '../images/red-tile.png';
-import blue from '../images/blue-tile.png';
-import green from '../images/green-tile.png';
-import yellow from '../images/yellow-tile.png';
+import GameContainer from "../game/game_container";
+import ENV from "../../util/socket_env";
+import Logout from "../global/logout-instructions-button";
+import "../css/create_room.css";
+import red from "../images/red-tile.png";
+import blue from "../images/blue-tile.png";
+import green from "../images/green-tile.png";
+import yellow from "../images/yellow-tile.png";
 import song from "../../music/FunkJam.mp3";
 import mute from "../images/mute.png";
 import unmute from "../images/unmute.png";
@@ -25,12 +25,13 @@ export default class CreateRoomForm extends Component {
       roomName: "",
       message: "",
       errors: "",
-      gameState: null, 
+      gameState: null,
       readOnly: false,
       options: false,
       rounds: 3,
       timer: false,
-      playing: true
+      playing: true,
+      demoStart: false,
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -46,53 +47,45 @@ export default class CreateRoomForm extends Component {
   }
 
   componentDidMount() {
-    
     const audio = document.getElementById("theme");
-    audio.volume = .05;
+    audio.volume = 0.05;
     audio.loop = true;
     // audio.play();
+    this.props.fetchTiles();
+    this.socket = socketIOClient(ENV);
 
-    this.props.fetchTiles(); 
-    this.socket = socketIOClient(ENV); 
-    
-    this.socket.on("gameState", (gameState) => {
-      this.setState({gameState: gameState})
+    this.socket.on("game state", (gameState) => {
+      this.setState({ gameState: gameState });
     });
-    
-    this.socket.on("receiveMessage", (data) => {
+
+    this.socket.on("receive message", (data) => {
       this.setState({ message: data });
     });
-    
-    this.socket.on("sendErrors", (data) => {
+
+    this.socket.on("send errors", (data) => {
       this.setState({ errors: data });
-      {if (data === "this name is already taken") {
-        this.setState({options: false})
-      }}
+      {
+        if (data === "This name is already taken") {
+          this.setState({ options: false });
+        }
+      }
     });
-    
-    this.socket.on("connect", (socket) => {
-      console.log("Frontend Connected! Socket Id: " + this.socket.id);
-    });
-
-          
-
-    console.log("######################################It has mounted again ########################################")
   }
-  
-  handleInput(field) { 
+
+  handleInput(field) {
     return (e) => {
-      let upcase_room_name = e.currentTarget.value.toUpperCase()
+      let upcase_room_name = e.currentTarget.value.toUpperCase();
       this.setState({ [field]: upcase_room_name });
     };
   }
 
   randomRoom() {
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXTZ";
-    let room = ""
+    let room = "";
     for (let i = 0; i < 4; i++) {
-      room += chars[Math.floor(Math.random()*25)]
+      room += chars[Math.floor(Math.random() * 25)];
     }
-    return room
+    return room;
   }
 
   handleRoomCreate(event) {
@@ -100,232 +93,290 @@ export default class CreateRoomForm extends Component {
     const { roomName } = this.state;
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, this.props.user.handle);
-    this.setState({ roomName: "", options: true});
+    this.setState({ roomName: "", options: true });
   }
-
 
   handleRandomCreate(event) {
     event.preventDefault();
-    let roomName = this.randomRoom()
+    let roomName = this.randomRoom();
     this.props.storeRoomName(roomName);
     this.socket.emit("create", roomName, this.props.user.handle);
-    this.setState({ roomName: roomName, options: true});
+    this.setState({ roomName: roomName, options: true });
   }
-
 
   handleRoomJoin(event) {
     event.preventDefault();
     const { roomName } = this.state;
     this.props.storeRoomName(roomName);
-    this.socket.emit("join", roomName, this.props.user.handle, this.props.tiles);
+    this.socket.emit(
+      "join",
+      roomName,
+      this.props.user.handle,
+      this.props.tiles
+    );
     this.setState({ roomName: "" });
   }
 
   startGame(event) {
     event.preventDefault();
-    this.socket.emit("startGame", this.state.roomName, this.props.tiles, this.state.rounds, this.state.timer)
+    this.socket.emit(
+      "start game",
+      this.state.roomName,
+      this.props.tiles,
+      this.state.rounds,
+      this.state.timer
+    );
   }
 
   mainMenu(event) {
-   if (event !== undefined) {
-     event.preventDefault();
-   }
+    if (event !== undefined) {
+      event.preventDefault();
+    }
     window.location.reload();
   }
 
-
   changeRounds(event) {
     event.preventDefault();
-    if(event.currentTarget.innerText === "+") {
-      this.setState({rounds: (this.state.rounds + 1)}) 
+    if (event.currentTarget.innerText === "+") {
+      this.setState({ rounds: this.state.rounds + 1 });
     } else {
-       if(this.state.rounds === 1) return;
-       this.setState({rounds: (this.state.rounds - 1)}) 
+      if (this.state.rounds === 1) return;
+      this.setState({ rounds: this.state.rounds - 1 });
     }
   }
 
   changeTimer(event) {
     event.preventDefault();
     if (this.state.timer) {
-      this.setState({timer: false})
+      this.setState({ timer: false });
     } else {
-      this.setState({timer: true})
+      this.setState({ timer: true });
     }
   }
 
   muteAndUnmute() {
     const audio = document.getElementById("theme");
     if (!this.state.playing) {
-      audio.volume = .05;
-      this.setState({playing: true})
+      audio.volume = 0.05;
+      this.setState({ playing: true });
     } else {
       audio.volume = 0;
-      this.setState({ playing: false })
+      this.setState({ playing: false });
     }
   }
-  
+
   demoGame(e) {
     if (e !== undefined) {
       e.preventDefault();
     }
+    this.setState({ demoStart: true });
     this.socket.emit("demo", this.props.user.handle, "demo", this.props.tiles);
   }
 
   render() {
- 
-      if(this.props.user.handle === "Demo" && this.socket && !this.state.gameStarted) {  //dont think i need
-            this.demoGame();
-      }
-    
-    const {gameState} = this.state
+    if (
+      this.props.user.handle === "Demo" &&
+      this.socket &&
+      !this.state.demoStart
+    ) {
+      this.demoGame();
+    }
 
+    const { gameState } = this.state;
     let welcome = "Create or Join a Room";
+
     if (this.state.message) welcome = this.state.message;
+
     let players;
-    if(gameState) {
-    let joinedPlayers = Object.values(gameState.players).filter(player => player.joined) 
-    players = joinedPlayers.map(player => {
-      return (
-        <div key={player.socketId}>
-                {player.handle} joined! 
-              </div>)
-    })
-  } else {
+
+    if (gameState) {
+      let joinedPlayers = Object.values(gameState.players).filter(
+        (player) => player.joined
+      );
+
+      players = joinedPlayers.map((player) => {
+        return <div key={player.socketId}>{player.handle} joined!</div>;
+      });
+    } else {
       players = null;
     }
-  
-    let placeholder_text = (this.state.roomName.length) ? (this.state.roomName) : "Enter a Room Name" ;
-    let readOnlyVal = this.state.message.length &&
-      this.state.message !== ("this name is already taken" || "couldn't find a room with that name" || "sorry, this room is full")
-        ? true
-        : false;
-    let joinRoom = (
-      <>
-        <h1 className="logo">Haiclue</h1>
-        <div className="splash-container">
-          <section className="splash-cards">
-            <img src={blue} alt="blue" />
-            <img src={green} alt="green" />
-            <img src={red} alt="red" />
-            <img src={yellow} alt="yellow" />
-          </section>
-        </div>
-        <div className="room-container">
-          {this.state.errors ? (
-            <h1>{this.state.errors}</h1>
-          ) : (
-            <h1>{welcome}</h1>
-          )}
-          <form>
-            <label>
-              <input
-                type="text"
-                placeholder={placeholder_text}
-                value={this.state.roomName}
-                onChange={this.handleInput("roomName")}
-                readOnly={readOnlyVal}
-              />
-            </label>
-            {this.state.options ? (
-              <>
-                <div className="create-button-container">
-                  <button className="button-stylez" onClick={this.mainMenu}>
-                    Main Menu
-                  </button>
-                  <div className="round-container">
-                    Rounds
-                    <button className="rounds" onClick={this.changeRounds}>
-                      -
+
+    let placeholder_text;
+
+    if (this.state.roomName) {
+      placeholder_text = this.state.roomName;
+    } else {
+      placeholder_text = "Enter a Room Name";
+    }
+
+    // see if better way to do this
+    // let readOnlyVal =
+    //   this.state.message &&
+    //   this.state.message !==
+    //     ("This name is already taken" ||
+    //       "A game must have at least two players" ||
+    //       "Sorry, this room is full")
+    //     ? true
+    //     : false;
+    
+    let readOnlyVal = (!this.state.errors) ? true : false;
+
+    let joinRoom =
+      !gameState || !gameState.gameStarted ? (
+        <>
+          <h1 className="logo">Haiclue</h1>
+          <div className="splash-container">
+            <section className="splash-cards">
+              <img src={blue} alt="blue" />
+              <img src={green} alt="green" />
+              <img src={red} alt="red" />
+              <img src={yellow} alt="yellow" />
+            </section>
+          </div>
+          <div className="room-container">
+            {this.state.errors ? (
+              <h1>{this.state.errors}</h1>
+            ) : (
+              <h1>{welcome}</h1>
+            )}
+            <form>
+              <label>
+                <input
+                  type="text"
+                  placeholder={placeholder_text}
+                  value={this.state.roomName}
+                  onChange={this.handleInput("roomName")}
+                  readOnly={readOnlyVal}
+                />
+              </label>
+              {this.state.options ? (
+                <>
+                  <div className="create-button-container">
+                    <button className="button-stylez" onClick={this.mainMenu}>
+                      Main Menu
                     </button>
-                    {this.state.rounds}
-                    <button className="rounds" onClick={this.changeRounds}>
-                      +
+                    <div className="round-container">
+                      Rounds
+                      <button className="rounds" onClick={this.changeRounds}>
+                        -
+                      </button>
+                      {this.state.rounds}
+                      <button className="rounds" onClick={this.changeRounds}>
+                        +
+                      </button>
+                    </div>
+                    {this.state.timer ? (
+                      <div className="timer-on-off-container">
+                        Timer
+                        <button className="timer-on-active">On/</button>
+                        <button
+                          className="timer-off"
+                          onClick={this.changeTimer}
+                        >
+                          Off
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="timer-on-off-container">
+                        Timer
+                        <button className="timer-on" onClick={this.changeTimer}>
+                          On/
+                        </button>
+                        <button className="timer-off-active">Off</button>
+                      </div>
+                    )}
+                    <button className="button-stylez" onClick={this.startGame}>
+                      Start Game
                     </button>
                   </div>
-                  {this.state.timer ? (
-                    <div className="timer-on-off-container">
-                      Timer
-                      <button className="timer-on-active">On/</button>
-                      <button className="timer-off" onClick={this.changeTimer}>
-                        Off
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="timer-on-off-container">
-                      Timer
-                      <button className="timer-on" onClick={this.changeTimer}>
-                        On/
-                      </button>
-                      <button className="timer-off-active">Off</button>
-                    </div>
-                  )}
-                  <button className="button-stylez" onClick={this.startGame}>
-                    Start Game
-                  </button>
-                  {/* <button className="button-stylez">Timer Off</button> */}
-                  {/* <button className="button-stylez">Join Link</button> */}
-                  {/* <button>Timer On</button>  */}
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="create-button-container">
-                  <button
-                    className="button-stylez butts"
-                    type="submit"
-                    onClick={this.handleRoomJoin}
-                  >
-                    Join
-                  </button>
-                  <button
-                    className="button-stylez butts"
-                    type="submit"
-                    onClick={this.handleRoomCreate}
-                  >
-                    Create
-                  </button>
-                  <button
-                    className="button-stylez butts"
-                    type="submit"
-                    onClick={this.handleRandomCreate}
-                  >
-                    Random
-                  </button>
-                  <button
-                    className="button-stylez butts"
-                    type="submit"
-                    onClick={this.demoGame}
-                  >
-                    Demo Game
-                  </button>
-                </div>
-              </>
-            )}
-          </form>
-          <div className="players-create-container">{players}</div>
+                </>
+              ) : (
+                <>
+                  <div className="create-button-container">
+                    <button
+                      className="button-stylez butts"
+                      type="submit"
+                      onClick={this.handleRoomJoin}
+                    >
+                      Join
+                    </button>
+                    {/* <button
+                      className="button-stylez butts"
+                      type="submit"
+                      onClick={this.handleRoomCreate}
+                    >
+                      Create
+                    </button> */}
+                    <button
+                      className="button-stylez butts"
+                      type="submit"
+                      onClick={this.handleRandomCreate}
+                    >
+                      Create
+                    </button>
+                    {/* <button
+                      className="button-stylez butts"
+                      type="submit"
+                      onClick={this.demoGame}
+                    >
+                      Demo Game
+                    </button> */}
+                  </div>
+                </>
+              )}
+            </form>
+            <div className="players-create-container">{players}</div>
+          </div>
+        </>
+      ) : null;
+
+    let view =
+      gameState && gameState.gameStarted ? (
+        <div>
+          <GameContainer
+            handle={this.props.user.handle}
+            gameState={this.state.gameState}
+            socket={this.socket}
+          />
         </div>
-      </>
-    ); 
+      ) : (
+        joinRoom
+      );
 
-    let view = (gameState) ? 
-        ((gameState.gameStarted) ? 
-            (<div>
-              {/* <div className="players-container">{players}</div> */}
-              <GameContainer handle={this.props.user.handle} gameState={this.state.gameState} socket={this.socket}/> </div>)
-            : (joinRoom))   
-        : (joinRoom)
-
-        
     return (
       <>
-      {(gameState) 
-      ? <Logout quit={this.mainMenu} start={gameState.gameStarted} handle={this.props.user.handle} logout={this.props.logout} loggedIn={this.props.loggedIn} /> 
-      : <Logout quit={this.mainMenu} start={false} handle={this.props.user.handle} logout={this.props.logout} loggedIn={this.props.loggedIn} />
-      }
-      {(this.state.playing)
-          ? <img onClick={this.muteAndUnmute} className="mute" src={unmute} alt="unmute" />
-          : <img onClick={this.muteAndUnmute} className="mute" src={mute} alt="mute"/>
-      }
+        {gameState ? (
+          <Logout
+            quit={this.mainMenu}
+            start={gameState.gameStarted}
+            handle={this.props.user.handle}
+            logout={this.props.logout}
+            loggedIn={this.props.loggedIn}
+          />
+        ) : (
+          <Logout
+            quit={this.mainMenu}
+            start={false}
+            handle={this.props.user.handle}
+            logout={this.props.logout}
+            loggedIn={this.props.loggedIn}
+          />
+        )}
+        {this.state.playing ? (
+          <img
+            onClick={this.muteAndUnmute}
+            className="mute"
+            src={unmute}
+            alt="unmute"
+          />
+        ) : (
+          <img
+            onClick={this.muteAndUnmute}
+            className="mute"
+            src={mute}
+            alt="mute"
+          />
+        )}
         <audio id="theme" src={song}></audio>
         <audio id="tile-sound" src={tileSound}></audio>
         <audio id="submit-sound" src={submitSound}></audio>

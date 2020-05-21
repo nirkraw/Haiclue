@@ -82,7 +82,6 @@ class DemoRoom {
 
     startRound() {
 
-        console.log("START ROUND")
         this.resetPlayersSubmittedClue();
         this.game.clueSubmissionCount = 0
 
@@ -256,7 +255,6 @@ class DemoRoom {
     }
 
     guessingPhase() {
-        console.log("GUESSING PHASE")
         const humanPlayer = Object.values(this.game.players).filter((player) => {
            return player.number === 1;
         })[0];
@@ -279,7 +277,6 @@ class DemoRoom {
                 }, 5000);
             }
         } else {
-            console.log("ROUND2");
             if (this.game.currentPlayerTurn === 1) {
                 // spy badge brains smart 
                 setTimeout(() => {
@@ -300,7 +297,6 @@ class DemoRoom {
     }
 
     submitGuess(localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord, guessedIndex) {
-        console.log("SUBMIT GUESS")
         const localPlayer = this.game.players[localPlayerSocketId];
         const currentPlayer = this.game.players[currentPlayerSocketId];
 
