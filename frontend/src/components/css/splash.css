@@ -75,6 +75,7 @@ input:focus {
 }
 
 .demo-button, .demo-button a {
+    margin-top: 50px;
     box-sizing: border-box;
     text-align: center;
     text-decoration: none;
@@ -405,7 +406,6 @@ button .EZ-login-dropdown{
     color: black;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     z-index: 3;
     padding: 1px 0 1px 0;
 }

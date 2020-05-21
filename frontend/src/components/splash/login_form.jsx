@@ -69,7 +69,7 @@ class LoginForm extends React.Component {
                 <button onClick={this.handleLoginSubmit}>Login</button>
                 <button id='EZ' onClick={this.toggleDropDown}>
                     <ul className='EZ-login-dropdown'>
-                        <li className='button-dropdown'><span>Quick Login</span><span className="down-arrow">▼</span></li>
+                        <li className='button-dropdown'><span>Quick Login</span><span className="down-arrow">&nbsp;▼</span></li>
                         <ul className={`dropdown-toggle ${display}`}>
                             <li value="john@john.com" onClick={this.handleDemoSubmit}>John</li>
                             <li value="nancy@nancy.com" onClick={this.handleDemoSubmit}>Nancy</li>
