@@ -35,7 +35,7 @@ class MyTargetWord extends React.Component {
     const { gameState } = this.props;
     if (!gameState) return null;
 
-    if (gameState.over) return <></>;
+    if (gameState.over) return null;
 
     let myWord = this.getWord();
     let picNumber;
