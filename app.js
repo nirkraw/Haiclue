@@ -20,6 +20,7 @@ io.on("connect", (socket) => {
   console.log(socket.id + "has been connected");
 
   socket.on("create", (roomName, handle) => {
+    //need errors for no empty room name 
     if (!rooms[roomName]) {
       socket.join(roomName);
       socket.emit(
@@ -27,7 +28,7 @@ io.on("connect", (socket) => {
         `${handle} created and joined Game: ${roomName}`
       );
       const newRoom = new Room(roomName);
-      newRoom.addPlayer(handle, socket.id);
+      newRoom.addPlayer(handle, socket.id); //we can switch these two lines and do rooms[roomName].addPlayer
       rooms[roomName] = newRoom;
       rooms[roomName].submit(socket.id);
     } else {

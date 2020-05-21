@@ -31,6 +31,7 @@ export default class CreateRoomForm extends Component {
       rounds: 3,
       timer: false,
       playing: true,
+      demoStart: false,
     };
 
     this.handleRoomJoin = this.handleRoomJoin.bind(this);
@@ -50,7 +51,6 @@ export default class CreateRoomForm extends Component {
     audio.volume = 0.05;
     audio.loop = true;
     // audio.play();
-
     this.props.fetchTiles();
     this.socket = socketIOClient(ENV);
 
@@ -65,14 +65,10 @@ export default class CreateRoomForm extends Component {
     this.socket.on("send errors", (data) => {
       this.setState({ errors: data });
       {
-        if (data === "this name is already taken") {
+        if (data === "This name is already taken") {
           this.setState({ options: false });
         }
       }
-    });
-
-    this.socket.on("connect", (socket) => {
-      console.log("Frontend Connected! Socket Id: " + this.socket.id);
     });
   }
 
@@ -173,23 +169,31 @@ export default class CreateRoomForm extends Component {
     if (e !== undefined) {
       e.preventDefault();
     }
+    this.setState({ demoStart: true });
     this.socket.emit("demo", this.props.user.handle, "demo", this.props.tiles);
   }
 
   render() {
-    if (this.props.user.handle === "Demo" && this.socket) {
+    if (
+      this.props.user.handle === "Demo" &&
+      this.socket &&
+      !this.state.demoStart
+    ) {
       this.demoGame();
     }
 
     const { gameState } = this.state;
-
     let welcome = "Create or Join a Room";
+
     if (this.state.message) welcome = this.state.message;
+
     let players;
+
     if (gameState) {
       let joinedPlayers = Object.values(gameState.players).filter(
         (player) => player.joined
       );
+
       players = joinedPlayers.map((player) => {
         return <div key={player.socketId}>{player.handle} joined!</div>;
       });
@@ -197,141 +201,147 @@ export default class CreateRoomForm extends Component {
       players = null;
     }
 
-    let placeholder_text = this.state.roomName.length
-      ? this.state.roomName
-      : "Enter a Room Name";
-    let readOnlyVal =
-      this.state.message.length &&
-      this.state.message !==
-        ("this name is already taken" ||
-          "couldn't find a room with that name" ||
-          "sorry, this room is full")
-        ? true
-        : false;
-    let joinRoom = (
-      <>
-        <h1 className="logo">Haiclue</h1>
-        <div className="splash-container">
-          <section className="splash-cards">
-            <img src={blue} alt="blue" />
-            <img src={green} alt="green" />
-            <img src={red} alt="red" />
-            <img src={yellow} alt="yellow" />
-          </section>
-        </div>
-        <div className="room-container">
-          {this.state.errors ? (
-            <h1>{this.state.errors}</h1>
-          ) : (
-            <h1>{welcome}</h1>
-          )}
-          <form>
-            <label>
-              <input
-                type="text"
-                placeholder={placeholder_text}
-                value={this.state.roomName}
-                onChange={this.handleInput("roomName")}
-                readOnly={readOnlyVal}
-              />
-            </label>
-            {this.state.options ? (
-              <>
-                <div className="create-button-container">
-                  <button className="button-stylez" onClick={this.mainMenu}>
-                    Main Menu
-                  </button>
-                  <div className="round-container">
-                    Rounds
-                    <button className="rounds" onClick={this.changeRounds}>
-                      -
+    let placeholder_text;
+
+    if (this.state.roomName) {
+      placeholder_text = this.state.roomName;
+    } else {
+      placeholder_text = "Enter a Room Name";
+    }
+
+    // see if better way to do this
+    // let readOnlyVal =
+    //   this.state.message &&
+    //   this.state.message !==
+    //     ("This name is already taken" ||
+    //       "A game must have at least two players" ||
+    //       "Sorry, this room is full")
+    //     ? true
+    //     : false;
+    
+    let readOnlyVal = (!this.state.errors) ? true : false;
+
+    let joinRoom =
+      !gameState || !gameState.gameStarted ? (
+        <>
+          <h1 className="logo">Haiclue</h1>
+          <div className="splash-container">
+            <section className="splash-cards">
+              <img src={blue} alt="blue" />
+              <img src={green} alt="green" />
+              <img src={red} alt="red" />
+              <img src={yellow} alt="yellow" />
+            </section>
+          </div>
+          <div className="room-container">
+            {this.state.errors ? (
+              <h1>{this.state.errors}</h1>
+            ) : (
+              <h1>{welcome}</h1>
+            )}
+            <form>
+              <label>
+                <input
+                  type="text"
+                  placeholder={placeholder_text}
+                  value={this.state.roomName}
+                  onChange={this.handleInput("roomName")}
+                  readOnly={readOnlyVal}
+                />
+              </label>
+              {this.state.options ? (
+                <>
+                  <div className="create-button-container">
+                    <button className="button-stylez" onClick={this.mainMenu}>
+                      Main Menu
                     </button>
-                    {this.state.rounds}
-                    <button className="rounds" onClick={this.changeRounds}>
-                      +
+                    <div className="round-container">
+                      Rounds
+                      <button className="rounds" onClick={this.changeRounds}>
+                        -
+                      </button>
+                      {this.state.rounds}
+                      <button className="rounds" onClick={this.changeRounds}>
+                        +
+                      </button>
+                    </div>
+                    {this.state.timer ? (
+                      <div className="timer-on-off-container">
+                        Timer
+                        <button className="timer-on-active">On/</button>
+                        <button
+                          className="timer-off"
+                          onClick={this.changeTimer}
+                        >
+                          Off
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="timer-on-off-container">
+                        Timer
+                        <button className="timer-on" onClick={this.changeTimer}>
+                          On/
+                        </button>
+                        <button className="timer-off-active">Off</button>
+                      </div>
+                    )}
+                    <button className="button-stylez" onClick={this.startGame}>
+                      Start Game
                     </button>
                   </div>
-                  {this.state.timer ? (
-                    <div className="timer-on-off-container">
-                      Timer
-                      <button className="timer-on-active">On/</button>
-                      <button className="timer-off" onClick={this.changeTimer}>
-                        Off
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="timer-on-off-container">
-                      Timer
-                      <button className="timer-on" onClick={this.changeTimer}>
-                        On/
-                      </button>
-                      <button className="timer-off-active">Off</button>
-                    </div>
-                  )}
-                  <button className="button-stylez" onClick={this.startGame}>
-                    Start Game
-                  </button>
-                  {/* <button className="button-stylez">Timer Off</button> */}
-                  {/* <button className="button-stylez">Join Link</button> */}
-                  {/* <button>Timer On</button>  */}
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="create-button-container">
-                  <button
-                    className="button-stylez butts"
-                    type="submit"
-                    onClick={this.handleRoomJoin}
-                  >
-                    Join
-                  </button>
-                  <button
-                    className="button-stylez butts"
-                    type="submit"
-                    onClick={this.handleRoomCreate}
-                  >
-                    Create
-                  </button>
-                  <button
-                    className="button-stylez butts"
-                    type="submit"
-                    onClick={this.handleRandomCreate}
-                  >
-                    Random
-                  </button>
-                  <button
-                    className="button-stylez butts"
-                    type="submit"
-                    onClick={this.demoGame}
-                  >
-                    Demo Game
-                  </button>
-                </div>
-              </>
-            )}
-          </form>
-          <div className="players-create-container">{players}</div>
-        </div>
-      </>
-    );
+                </>
+              ) : (
+                <>
+                  <div className="create-button-container">
+                    <button
+                      className="button-stylez butts"
+                      type="submit"
+                      onClick={this.handleRoomJoin}
+                    >
+                      Join
+                    </button>
+                    {/* <button
+                      className="button-stylez butts"
+                      type="submit"
+                      onClick={this.handleRoomCreate}
+                    >
+                      Create
+                    </button> */}
+                    <button
+                      className="button-stylez butts"
+                      type="submit"
+                      onClick={this.handleRandomCreate}
+                    >
+                      Create
+                    </button>
+                    {/* <button
+                      className="button-stylez butts"
+                      type="submit"
+                      onClick={this.demoGame}
+                    >
+                      Demo Game
+                    </button> */}
+                  </div>
+                </>
+              )}
+            </form>
+            <div className="players-create-container">{players}</div>
+          </div>
+        </>
+      ) : null;
 
-    let view = gameState ? (
-      gameState.gameStarted ? (
+    let view =
+      gameState && gameState.gameStarted ? (
         <div>
-          {/* <div className="players-container">{players}</div> */}
           <GameContainer
             handle={this.props.user.handle}
             gameState={this.state.gameState}
             socket={this.socket}
-          />{" "}
+          />
         </div>
       ) : (
         joinRoom
-      )
-    ) : (
-      joinRoom
-    );
+      );
 
     return (
       <>
