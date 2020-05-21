@@ -41,9 +41,9 @@ class Splash extends React.Component {
         <a href="#howToPlay">How to Play</a>
         <a href="#logIn">Play</a>
         <a href="#signUp">Sign Up</a>
-        <a href='#devs'>Dev Team</a>
         <a target="blank" href="https://tigerboardgames.com/">Website</a>
-        <a target="blank" href="https://github.com/nirkraw/Haiclue">Github</a>
+        <a target="blank" href="https://github.com/nirkraw/Haiclue">Github <i class="devicon-github-plain"></i></a>
+        <a href='#devs'>Dev Team</a>
       </div>)
 
     return (
@@ -86,25 +86,29 @@ class Splash extends React.Component {
           <h1 className="splash-label" id="devs">Dev Team</h1>
           <div className='team-container'>
               <figure className="profile">
-                  <a href="https://github.com/etrinidad132" target="_blank">
+                  {/* <a href="https://github.com/etrinidad132" target="_blank"> */}
+                  <a href="https://etrinidad132.github.io/" target="_blank">
                       <img src={edward} className="dev-img"></img>
                       <figcaption>Edward</figcaption>
                   </a>
               </figure>
             <figure className="profile">
-                <a href="https://github.com/nicolsama" target="_blank" >
+                {/* <a href="https://github.com/nicolsama" target="_blank" > */}
+                <a href="https://www.nicolesamanich.com/" target="_blank" >
                     <img src={nicole} className="dev-img"></img>
                     <figcaption>Nicole</figcaption>
                   </a>
               </figure>
             <figure className="profile">
-                <a href="https://github.com/nirkraw" target="_blank" >
+                {/* <a href="https://github.com/nirkraw" target="_blank" > */}
+                <a href="https://nirkraw.github.io/" target="_blank" >
                     <img src={nir} className="dev-img"></img>
                     <figcaption>Nir</figcaption>
                   </a>
               </figure>
             <figure className="profile">
-                <a href="https://github.com/Shrewbitz" target="_blank" >
+                {/* <a href="https://github.com/Shrewbitz" target="_blank" > */}
+                <a href="https://shrewbitz.github.io/" target="_blank" >
                     <img src={sammy} className="dev-img"></img>
                     <figcaption>Sammy</figcaption>
                   </a>
@@ -114,6 +118,10 @@ class Splash extends React.Component {
         <footer>
             <a target="blank" href="https://tigerboardgames.com/">
             <img className="tbg-link" src={tbg} alt="tiger board games"/>
+            </a>
+
+            <a target="blank" className="gh-link" href="https://github.com/nirkraw/Haiclue">
+              <i class="devicon-github-plain"></i>
             </a>
         </footer>    
       </div>
