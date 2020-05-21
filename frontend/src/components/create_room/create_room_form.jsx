@@ -173,7 +173,7 @@ export default class CreateRoomForm extends Component {
 
   render() {
  
-      if(this.props.user.handle === "Demo" && this.socket) {
+      if(this.props.user.handle === "Demo" && this.socket && !this.state.gameStarted) {  //dont think i need
             this.demoGame();
       }
     
