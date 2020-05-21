@@ -24,7 +24,6 @@ export default class CreateRoomForm extends Component {
     this.state = {
       roomName: "",
       message: "",
-      errors: "",
       gameState: null,
       readOnly: false,
       options: false,
@@ -63,7 +62,7 @@ export default class CreateRoomForm extends Component {
     });
 
     this.socket.on("send errors", (data) => {
-      this.setState({ errors: data });
+      this.setState({ message: data });
       {
         if (data === "This name is already taken") {
           this.setState({ options: false });
@@ -219,7 +218,7 @@ export default class CreateRoomForm extends Component {
     //     ? true
     //     : false;
     
-    let readOnlyVal = (!this.state.errors) ? true : false;
+    let readOnlyVal = (this.state.message) ? true : false;
 
     let joinRoom =
       !gameState || !gameState.gameStarted ? (
@@ -234,8 +233,8 @@ export default class CreateRoomForm extends Component {
             </section>
           </div>
           <div className="room-container">
-            {this.state.errors ? (
-              <h1>{this.state.errors}</h1>
+            {this.state.message ? (
+              <h1>{this.state.message}</h1>
             ) : (
               <h1>{welcome}</h1>
             )}
@@ -253,7 +252,7 @@ export default class CreateRoomForm extends Component {
                 <>
                   <div className="create-button-container">
                     <button className="button-stylez" onClick={this.mainMenu}>
-                      Main Menu
+                      Back
                     </button>
                     <div className="round-container">
                       Rounds
