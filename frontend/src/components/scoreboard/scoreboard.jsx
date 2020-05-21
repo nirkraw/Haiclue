@@ -4,8 +4,8 @@ import thinking from "../images/thinking.png";
 import glasses from "../images/glasses.png";
 
 const ScoreBoard = (props) => {
-  if (this.props.over) return null;
-  let players = Object.values(this.props.players).map((player, index) => {
+  if (props.over) return null;
+  let players = Object.values(props.players).map((player, index) => {
     return (
       <div key={index} className="wrapper">
         {player.submittedClue ? (

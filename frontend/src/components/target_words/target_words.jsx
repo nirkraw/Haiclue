@@ -1,31 +1,24 @@
 import React from "react";
-import Scoreboard from "../scoreboard/scoreboard";
-import GameOver from "../game_over/game_over";
 import "../css/layout.css";
 import "../css/target_words.css";
 import blue from "../images/blue-tile.png";
 import red from "../images/red-tile.png";
 import green from "../images/green-tile.png";
 import yellow from "../images/yellow-tile.png";
-import '../css/splash.css'
+import "../css/splash.css";
 
 class TargetWords extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       currentColor: "white",
-      // sent: false
-    }
-
+    };
     this.handleSubmitGuess = this.handleSubmitGuess.bind(this);
-    this.scratch = this.scratch.bind(this);
   }
 
   handleSubmitGuess(e) {
     e.preventDefault();
     const { gameState, socket } = this.props;
-    // debugger
 
     const currentPlayer = Object.values(this.props.gameState.players).filter(
       (player) => {
@@ -33,21 +26,16 @@ class TargetWords extends React.Component {
       }
     )[0];
 
-    const localPlayer = Object.values(gameState.players).filter(
-      (player) => {
-        // return player.handle === this.props.user.handle;
-        return player.socketId === this.props.socket.id;
-      }
-    )[0];
+    const localPlayer = Object.values(gameState.players).filter((player) => {
+      return player.socketId === this.props.socket.id;
+    })[0];
 
-    
-    const currentPlayerTargetWord = currentPlayer.targetWord[gameState.currentColor];
-    const guessedWord = (e.currentTarget.nextElementSibling) 
-    ?
-    e.currentTarget.nextElementSibling.innerText
-    : 
-    e.currentTarget.innerText
-    
+    const currentPlayerTargetWord =
+      currentPlayer.targetWord[gameState.currentColor];
+    const guessedWord = e.currentTarget.nextElementSibling
+      ? e.currentTarget.nextElementSibling.innerText
+      : e.currentTarget.innerText;
+
     let guessTargetIndex;
 
     for (let i = 0; i < gameState.targetWords.length; i++) {
@@ -56,37 +44,39 @@ class TargetWords extends React.Component {
       }
     }
 
-    let matchBoolean = false
-    if (guessedWord === currentPlayerTargetWord) matchBoolean= true;
-    
-    socket.emit("submit guess", gameState.roomName, localPlayer.socketId, matchBoolean, currentPlayer.socketId, guessedWord, guessTargetIndex)
+    let matchBoolean = false;
+    if (guessedWord === currentPlayerTargetWord) matchBoolean = true;
+
+    socket.emit(
+      "submit guess",
+      gameState.roomName,
+      localPlayer.socketId,
+      matchBoolean,
+      currentPlayer.socketId,
+      guessedWord,
+      guessTargetIndex
+    );
 
     const sound = document.getElementById("submit-guess-sound");
-    sound.volume = .4;
+    sound.volume = 0.4;
     sound.play();
-  }
-
-  scratch() {
-    console.log("YOU MESSED UP");
   }
 
   render() {
     const { gameState } = this.props;
 
-    
-    if(!gameState) return null; 
+    if (!gameState) return null;
 
-    let flip;
+    let flip; //do we need this?
     if (gameState.currentColor !== this.state.currentColor) {
-        flip = true;
+      flip = true;
     }
-
 
     let targetWords;
     if (gameState) {
       targetWords = gameState.targetWords;
-    } 
-    
+    }
+
     if (!targetWords) return null;
 
     let cards = [
@@ -97,13 +87,9 @@ class TargetWords extends React.Component {
     ];
     let currentColor = gameState.currentColor;
 
-    const localPlayer = Object.values(gameState.players).filter(
-      (player) => {
-        // return player.handle === this.props.user.handle;
-        return player.socketId === this.props.socket.id;
-      }
-    )[0];
-
+    const localPlayer = Object.values(gameState.players).filter((player) => {
+      return player.socketId === this.props.socket.id;
+    })[0];
 
     if (gameState.over) {
       return targetWords.map((tile, index) => {
@@ -117,23 +103,16 @@ class TargetWords extends React.Component {
           </div>
         );
       });
-    } 
+    }
 
-    // setTimeout(() => {
-    //   this.setState({ currentColor: gameState.currentColor });
-    //   flip = false;
-    // }, 1300);
-
-    // let myFunction;
-    // if(!localPlayer.submittedGuess && !this.props.revealed) {
-    //   myFunction = this.handleSubmitGuess;
-    // } else {
-    //   myFunction = this.scratch
-    // }
-
-    if (gameState.phase === "clue guessing" && localPlayer.number !== gameState.currentPlayerTurn && !localPlayer.submittedGuess && !this.props.revealed) {
+    if (
+      gameState.phase === "clue guessing" &&
+      localPlayer.number !== gameState.currentPlayerTurn &&
+      !localPlayer.submittedGuess &&
+      !this.props.revealed
+    ) {
       return targetWords.map((tile, index) => {
-        let tileSide = tile[currentColor]; 
+        let tileSide = tile[currentColor];
         return (
           <div key={index} className="target-words-container">
             <img
@@ -142,30 +121,44 @@ class TargetWords extends React.Component {
               alt={Object.keys(cards[index])}
               onClick={this.handleSubmitGuess}
             />
-            {(flip) 
-            ? <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile hoverable flip`} >{tileSide}</div>
-            : <div onClick={this.handleSubmitGuess} className={`color-${currentColor} tile hoverable`} >{tileSide}</div>
-            }
+            {flip ? (
+              <div
+                onClick={this.handleSubmitGuess}
+                className={`color-${currentColor} tile hoverable flip`}
+              >
+                {tileSide}
+              </div>
+            ) : (
+              <div
+                onClick={this.handleSubmitGuess}
+                className={`color-${currentColor} tile hoverable`}
+              >
+                {tileSide}
+              </div>
+            )}
           </div>
         );
       });
     } else {
-        return targetWords.map((tile, index) => {
-          let tileSide = tile[currentColor]; //string "casino"
-          return (
-            <div key={index} className="target-words-container">
-              <img
-                src={Object.values(cards[index])}
-                className="target-img"
-                alt={Object.keys(cards[index])}
-              />
-              {(flip) 
-              ? <div className={`color-${currentColor} tile flip`}>{tileSide}</div>
-              : <div className={`color-${currentColor} tile`}>{tileSide}</div>
-              }
-            </div>
-          );
-        });
+      return targetWords.map((tile, index) => {
+        let tileSide = tile[currentColor];
+        return (
+          <div key={index} className="target-words-container">
+            <img
+              src={Object.values(cards[index])}
+              className="target-img"
+              alt={Object.keys(cards[index])}
+            />
+            {flip ? (
+              <div className={`color-${currentColor} tile flip`}>
+                {tileSide}
+              </div>
+            ) : (
+              <div className={`color-${currentColor} tile`}>{tileSide}</div>
+            )}
+          </div>
+        );
+      });
     }
   }
 }
