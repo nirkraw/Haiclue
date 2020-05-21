@@ -12,93 +12,84 @@ const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
 const io = socketIo(server);
-// const http = require("http").Server(app);
-// const io = require("socket.io")(http, {});
 const port = process.env.PORT || 5000;
 const DemoRoom = require("./demo_room");
-
-
 const rooms = {};
+
 io.on("connect", (socket) => {
   console.log(socket.id + "has been connected");
 
   socket.on("create", (roomName, handle) => {
-    // console.log(`create : ${roomName}`)
     if (!rooms[roomName]) {
       socket.join(roomName);
       socket.emit(
-        "receiveMessage",
+        "receive message",
         `${handle} created and joined Game: ${roomName}`
       );
       const newRoom = new Room(roomName);
-      // console.log(newRoom.roomName);
-      // console.log(roomName);
       newRoom.addPlayer(handle, socket.id);
       rooms[roomName] = newRoom;
       rooms[roomName].submit(socket.id);
-      
-      // console.log(`backend ${socket.id} : frontend ${frontEndSocket} : ${handle}`)
     } else {
-      socket.emit("sendErrors", "this name is already taken");
+      socket.emit("send errors", "This name is already taken");
     }
   });
 
-  socket.on("startGame", (roomName, tiles, rounds, timer) => { //change to "start game" for consistancy? 
+  socket.on("start game", (roomName, tiles, rounds, timer) => {
     if (rooms[roomName].playerCount > 1) {
       rooms[roomName].storeTiles(Object.values(tiles));
       rooms[roomName].startGame(rounds, timer);
-    }
-  })
-
-
-  socket.on("join", (roomName, handle, tiles) => {
-    // console.log(`join : ${roomName}`)
-    if (!rooms[roomName]) {
-      socket.emit("sendErrors", "couldn't find a room with that name");
-
     } else {
+      socket.emit("send errors", "A game must have at least two players");
+    }
+  });
 
-      if (rooms[roomName].playerCount < 10) { // change to 4
-
+  socket.on("join", (roomName, handle) => {
+    if (!rooms[roomName]) {
+      socket.emit("send errors", "Could not find a room with that name");
+    } else {
+      if (rooms[roomName].playerCount < 2) {
         socket.join(roomName);
         rooms[roomName].addPlayer(handle, socket.id);
-        
-        
-        // if (rooms[roomName].playerCount === 2) {//change to 4
-        //     rooms[roomName].storeTiles(Object.values(tiles));
-        //     rooms[roomName].startGame(); 
-        // }
-
         rooms[roomName].submit(socket.id);
-
+        socket.emit("receive message", `${handle} joined ${roomName}`);
       } else {
-        socket.emit("sendErrors", "sorry, this room is full");
+        socket.emit("send errors", "Sorry, this room is full");
       }
-
-        if (rooms[roomName].errors.length > 0) {
-          socket.emit("sendErrors", rooms[roomName].errors[0]); // perhaps just send the string directly instead?
-        }
-
-        socket.emit("receiveMessage", `${handle} joined ${roomName}`);
-      }
-   });
-      
+    }
+  });
 
   socket.on("select clue tile", (roomName, tile) => {
     rooms[roomName].selectClueTile(socket.id, tile);
-  })
+  });
 
   socket.on("remove clue tile", (roomName, tile) => {
     rooms[roomName].unselectClueTile(socket.id, tile);
   });
- 
+
   socket.on("submit clue", (roomName) => {
-    rooms[roomName].submitClue(socket.id); 
+    rooms[roomName].submitClue(socket.id);
   });
 
-  socket.on("submit guess", (roomName, localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord, guessIndex) => {
-    rooms[roomName].submitGuess(localPlayerSocketId, matchBoolean, currentPlayerSocketId, guessedWord, guessIndex);
-  });
+  socket.on(
+    "submit guess",
+    (
+      roomName,
+      localPlayerSocketId,
+      matchBoolean,
+      currentPlayerSocketId,
+      guessedWord,
+      guessIndex
+    ) => {
+      rooms[roomName].submitGuess(
+        localPlayerSocketId,
+        matchBoolean,
+        currentPlayerSocketId,
+        guessedWord,
+        guessIndex
+      );
+    }
+  );
 
   socket.on("unreveal clue", (roomName) => {
     rooms[roomName].unrevealClue(socket.id);
@@ -115,36 +106,32 @@ io.on("connect", (socket) => {
     rooms[roomName].restartGame();
   });
 
- ///////////////////////////////
-  socket.on("demo", (handle, roomName, tiles) => { // roomName will be demo -will this be an issue with two instances of demos goign on concurenetly
+  socket.on("demo", (handle, roomName, tiles) => {
     socket.join(roomName);
-    const demoRoom = new DemoRoom(roomName); // it can be demo because no one can create a lowercase room name
+    const demoRoom = new DemoRoom(roomName); 
     rooms[roomName] = demoRoom;
     rooms[roomName].addPlayer(handle, socket.id);
     rooms[roomName].addPlayer("Khaleel", "2");
     rooms[roomName].addPlayer("Sara", "3");
     rooms[roomName].storeTiles(Object.values(tiles));
     rooms[roomName].startGame();
-  
-    
 
-    if(rooms[roomName].phase === "clue guessing") {
-      rooms[roomName].guessingPhase(); 
+    if (rooms[roomName].phase === "clue guessing") {
+      rooms[roomName].guessingPhase();
     }
   });
- //////////////////////////////
 
- socket.on("disconnect", () => console.log("Client disconnected"));
+
+  socket.on("disconnect", () => console.log("Client disconnected"));
 }); // end of "connect" DONT DELETE
 
 setInterval(function () {
   for (let i in rooms) {
     let room = rooms[i];
     let gameState = room.getGameState();
-    io.to(room.roomName).emit("gameState", gameState);
+    io.to(room.roomName).emit("game state", gameState);
   }
 }, 100);
-
 
 server.listen(port, () => {
   console.log(`Listening on port ${port}`);
