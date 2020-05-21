@@ -1,6 +1,6 @@
 import React from 'react';
 import instruct from '../images/instructions.mp4';
-import arrow from '../images/arrow.png'
+import { Route, NavLink } from 'react-router-dom';
 import '../css/instructions.css';
 
 
@@ -26,7 +26,10 @@ class Instructions extends React.Component {
                     <source src={instruct} type="video/mp4"></source>
                     Your browser does not support the video tag.
                     </video>
-                    <button onClick={this.handleDemoSubmit} className="tutorial-button">Demo Game</button>
+                    <div className="video-buttons">
+                    <NavLink className="demo-button" to='instructions' target="blank">Instructions</NavLink>
+                    <button onClick={this.handleDemoSubmit} className="demo-button">Demo Game</button>
+                    </div>
                 </div>
         );
     }

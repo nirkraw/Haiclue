@@ -70,25 +70,32 @@ input:focus {
     outline: none;
 }
 
+.video-buttons {
+    width: 30%;
+}
 
-.tutorial-button {
+.demo-button, .demo-button a {
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
     transition-property: background-color, border-color;
     transition-duration: .3s;
     transition-timing-function: ease;
     padding: 10px;
+    margin-left: 10px;
     font-weight: bold;
     font-size: 18px;
     color: black;
     background-color: white;
     border-radius: 22px;
-    width: 30%;
+    width: 150px;
     cursor: pointer;
     float: right;
     border-style: none; 
 }
 
 
-.tutorial-button:hover {
+.demo-button:hover {
     transition-property: background-color, border-color;
     transition-duration: .3s;
     transition-timing-function: ease;
@@ -96,11 +103,16 @@ input:focus {
     border-color: #00c8a6;
 }
 
+.demo-button:focus {
+    outline:none;
+}
+
 .session-form button {
     transition-property: background-color, border-color;
     transition-duration: .3s;
     transition-timing-function: ease;
     margin-top: 50px;
+    margin-left: 10px;
     padding: 10px;
     font-weight: bold;
     font-size: 18px;
@@ -146,6 +158,34 @@ input:focus {
 }
 
 .instruction-hover:focus{
+    outline: none;
+}
+.splash-instructions {
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+    background-color: white;
+    border-radius: 22px;
+    /* width: 150px; */
+    /* width: 100%; */
+    height: 40px;
+    float: right;
+    cursor: pointer;
+    border-style: none;
+}
+
+.splash-instructions:hover {
+    transition-property: background-color, border-color;
+    transition-duration: .3s;
+    transition-timing-function: ease;  
+    background-color: #00c8a6;
+    border-color: #00c8a6;
+}
+
+.splash-instructions:focus{
     outline: none;
 }
 
@@ -410,9 +450,6 @@ button .EZ-login-dropdown{
     display: none;
 }
 
-#EZ {
-    margin-right: 5px;
-}
 
 #EZ:hover { 
     background-color: white;

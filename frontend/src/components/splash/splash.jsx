@@ -73,7 +73,7 @@ class Splash extends React.Component {
           </section>
 
           <h1 className="splash-label" className='how-to-play' id="howToPlay">How to Play 
-            <NavLink to='instructions' target="blank"><button className="instruction-hover">?</button></NavLink>
+            
           </h1>
           {/* opens model that contains instructions picture? with x up top and can click outside to close it */}
             <Route component={InstructionsContainer} />
