@@ -6,10 +6,13 @@ class LoginForm extends React.Component {
         this.state = {
             email: '',
             password: '',
+            hidden: true, 
+            bgToggled: false
         };
         this.handleInput = this.handleInput.bind(this);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
         this.handleDemoSubmit = this.handleDemoSubmit.bind(this);
+        this.toggleDropDown = this.toggleDropDown.bind(this);
     }
 
     handleInput(field) {
@@ -20,12 +23,15 @@ class LoginForm extends React.Component {
 
     handleDemoSubmit(e) {
         e.preventDefault();
-        const select = document.getElementById("EZ")
-        const user = select.options[select.selectedIndex].value;
+        const user = e.currentTarget.getAttribute('value');
         this.props.login({
             email: user,
             password: 'password',
         })
+    }
+
+    toggleDropDown() {
+        this.setState({hidden: !this.state.hidden, bgToggled: !this.state.bgToggled});
     }
 
     handleLoginSubmit(e) {
@@ -34,6 +40,13 @@ class LoginForm extends React.Component {
     }
 
     render() {
+
+        let display; 
+        if (this.state.hidden) {
+            display = 'hidden';
+        } else {
+            display = null;        
+        }
 
         let loginErrors; 
         if (this.props.errors) {
@@ -49,31 +62,32 @@ class LoginForm extends React.Component {
                 <h2 id="logIn">Log In</h2>
                 <input type="text" value={this.state.email} onChange={this.handleInput('email')} placeholder="Email" />
                 <input type="password" value={this.state.password} onChange={this.handleInput('password')} placeholder="Password" />
-                <br />
-                <button onClick={this.handleLoginSubmit}>Login</button>
-                <ul>{loginErrors}</ul>
+                <ul className="session-form-errors">{loginErrors}</ul>
+
             </form>
-            <button>
 
-            <select name="EZ Login" id="EZ" onChange={this.handleDemoSubmit} placeholder="EZ Login" >
-                <option value="">EZ Login</option>
-                <option value="john@john.com">John</option>
-                <option value="nancy@nancy.com">Nancy</option>
-                <option value="sophia@sophia.com">Sophia</option>
-                <option value="andre@andre.com">Andre</option>
-                <option value="nicole@nicole.com">Nicole</option>
-                <option value="simon@simon.com">Simon</option>
-                <option value="james@james.com">James</option>
-                <option value="bart@bart.com">Bartholomew</option>
-                <option value="eduardo@eduardo.com">Eduardo</option>
-                <option value="angela@angela.com">Angela</option>
-                <option value="alex@alex.com">Alex</option>
-                <option value="jasmine@jasmine.com">Jasmine</option>
-                <option value="paul@paul.com">Paul</option>
-                <option value="samantha@samantha.com">Samantha</option>
-            </select>
-            </button>
-
+                <button onClick={this.handleLoginSubmit}>Login</button>
+                <button id='EZ' onClick={this.toggleDropDown}>
+                    <ul className='EZ-login-dropdown'>
+                        <li className='button-dropdown'><span>EZ Login</span><span className="down-arrow">▼</span></li>
+                        <ul className={`dropdown-toggle ${display}`}>
+                            <li value="john@john.com" onClick={this.handleDemoSubmit}>John</li>
+                            <li value="nancy@nancy.com" onClick={this.handleDemoSubmit}>Nancy</li>
+                            <li value="sophia@sophia.com" onClick={this.handleDemoSubmit}>Sophia</li>
+                            <li value="andre@andre.com" onClick={this.handleDemoSubmit}>Andre</li>
+                            <li value="nicole@nicole.com" onClick={this.handleDemoSubmit}>Nicole</li>
+                            <li value="simon@simon.com" onClick={this.handleDemoSubmit}>Simon</li>
+                            <li value="james@james.com" onClick={this.handleDemoSubmit}>James</li>
+                            <li value="bart@bart.com" onClick={this.handleDemoSubmit}>Bartholomew</li>
+                            <li value="eduardo@eduardo.com" onClick={this.handleDemoSubmit}>Eduardo</li>
+                            <li value="angela@angela.com" onClick={this.handleDemoSubmit}>Angela</li>
+                            <li value="alex@alex.com" onClick={this.handleDemoSubmit}>Alex</li>
+                            <li value="jasmine@jasmine.com" onClick={this.handleDemoSubmit}>Jasmine</li>
+                            <li value="paul@paul.com" onClick={this.handleDemoSubmit}>Paul</li>
+                            <li value="samantha@samantha.com" onClick={this.handleDemoSubmit}>Samantha</li>
+                        </ul>
+                    </ul>
+                </button>
         </div> )
 
     }
