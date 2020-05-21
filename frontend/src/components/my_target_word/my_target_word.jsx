@@ -17,7 +17,7 @@ class MyTargetWord extends React.Component {
     if (!gameState) return null;
 
     const player = Object.values(gameState.players).filter((player) => {
-      return player.handle === user.handle;
+      return player.socketId === prop.socket.id;
     })[0];
 
     const currentColor = gameState.currentColor;

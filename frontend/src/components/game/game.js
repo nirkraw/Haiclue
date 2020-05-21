@@ -57,7 +57,7 @@ const Game = (props) => {
           </div>
         )}
         <div className="bottom-container">
-          <MyTargetWordContainer gameState={gameState} />
+          <MyTargetWordContainer socket={socket} gameState={gameState} />
           <Scoreboard over={gameState.over} players={gameState.players} />
         </div>
       </div>
