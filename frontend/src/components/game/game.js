@@ -1,6 +1,6 @@
 import React from "react";
 import MyTargetWordContainer from "../my_target_word/my_target_word_container";
-import TileBankContainer from "../tile_bank/tile_bank_container";
+import TileBank from "../tile_bank/tile_bank";
 import CurrentClue from "../current_clue/current_clue";
 import RevealedClue from "../revealed_clue/revealed_clue";
 import TargetWords from "../target_words/target_words";
@@ -48,7 +48,7 @@ const Game = (props) => {
         ) : (
           <div className="middle-container">
             <CurrentClue socket={socket} gameState={gameState} />
-            <TileBankContainer socket={socket} gameState={gameState} />
+            <TileBank socket={socket} gameState={gameState} />
             {gameState.over ? (
               <GameOver socket={socket} gameState={gameState} />
             ) : (
