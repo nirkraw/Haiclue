@@ -3,21 +3,15 @@ import { NavLink } from 'react-router-dom';
 import '../css/logout-instructions-buttons.css';  
 
 
-class LogoutInstructionsButton extends React.Component {
-    constructor(props) {
-        super(props)
-        
-    }
-    render() {
-        
+const LogoutInstructionsButton = (props) => {
         let quitButton;
-        if  (this.props.handle === "Demo") {
-            (quitButton = this.props.logout)
+        if  (props.handle === "Demo") {
+            (quitButton = props.logout)
         } else {
-            (quitButton = this.props.quit); 
+            (quitButton = props.quit); 
         }
     
-        if (this.props.start) {
+        if (props.start) {
             return (
                 <div className="button-container">
                     <div className="lo-button" onClick={quitButton}>Quit Game</div>
@@ -27,8 +21,8 @@ class LogoutInstructionsButton extends React.Component {
         } else {
             return (
                 <div className="button-container">
-                        {this.props.loggedIn ? (
-                            <div className="lo-button" onClick={this.props.logout}>
+                        {props.loggedIn ? (
+                            <div className="lo-button" onClick={props.logout}>
                                 Logout
                             </div>
                         ) : null }
@@ -38,6 +32,6 @@ class LogoutInstructionsButton extends React.Component {
         } 
         
     }
-}
+
 
 export default LogoutInstructionsButton; 

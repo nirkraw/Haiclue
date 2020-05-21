@@ -4,7 +4,6 @@ import TileBankContainer from "../tile_bank/tile_bank_container";
 import CurrentClueContainer from "../current_clue/current_clue_container";
 import RevealedClue from "../revealed_clue/revealed_clue";
 import TargetWordsContainer from "../target_words/target_words_container";
-import Logout from '../global/logout-instructions-button';
 import GameOver from "../game_over/game_over";
 import Scoreboard from "../scoreboard/scoreboard"; 
 
@@ -54,7 +53,6 @@ class Game extends React.Component {
 
   return (
   <div>
-      <Logout quit={this.mainMenu} start={this.props.gameState.gameStarted} handle={this.props.handle} logout={this.props.logout} loggedIn={this.props.loggedIn} /> 
       <h1 className="logo">Haiclue</h1>
       <div className="game-container">
           <div className="top-container">

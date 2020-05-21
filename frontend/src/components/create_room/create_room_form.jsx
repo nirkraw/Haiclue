@@ -178,6 +178,7 @@ export default class CreateRoomForm extends Component {
       }
     
     const {gameState} = this.state
+
     let welcome = "Create or Join a Room";
     if (this.state.message) welcome = this.state.message;
     let players;
@@ -210,11 +211,6 @@ export default class CreateRoomForm extends Component {
           </section>
         </div>
         <div className="room-container">
-          <Logout
-            // handle={this.props.user.handle}
-            logout={this.props.logout}
-            loggedIn={this.props.loggedIn}
-          />
           {this.state.errors ? (
             <h1>{this.state.errors}</h1>
           ) : (
@@ -322,7 +318,10 @@ export default class CreateRoomForm extends Component {
         
     return (
       <>
-      
+      {(gameState) 
+      ? <Logout quit={this.mainMenu} start={gameState.gameStarted} handle={this.props.user.handle} logout={this.props.logout} loggedIn={this.props.loggedIn} /> 
+      : <Logout quit={this.mainMenu} start={false} handle={this.props.user.handle} logout={this.props.logout} loggedIn={this.props.loggedIn} />
+      }
       {(this.state.playing)
           ? <img onClick={this.muteAndUnmute} className="mute" src={unmute} alt="unmute" />
           : <img onClick={this.muteAndUnmute} className="mute" src={mute} alt="mute"/>

@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     storeRoomName: (roomName) => dispatch(storeRoomName(roomName)),
     fetchTiles: () => dispatch(fetchTiles()),
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
   };
 };
 
