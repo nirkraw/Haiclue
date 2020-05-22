@@ -1,13 +1,14 @@
 .splash-container {
   width: 100%;
-  margin: 30px auto;
+  /* margin: 30px auto; */
   display: flex;
   flex-direction: column;
   height: auto;
 }
 
 .splash-container-2 {
-  width: 2000px;
+  width: 100px;
+  margin: 0px;
   margin: 30px auto;
   display: flex;
   flex-direction: column;
@@ -209,11 +210,15 @@ input:focus {
 .splash-cards {
   display: block;
   margin: 0 auto;
+  margin-top: 80px;
   width: 20%;
 }
+
+
 .splash-cards img {
   padding: 2%;
   width: 50%;
+  
   box-sizing: border-box;
 }
 
@@ -226,16 +231,48 @@ input:focus {
   position: fixed;
 }
 
-.gh-link {
-    bottom: 10px;
+.gh-link1 {
+    bottom: 85px;
     right: 0;
-    /* width: 180px; */
-    height: 98px;
     margin-right: 20px;
     position: fixed;
-    color: white;
-    font-size: 96px;
+    color: #da3832;
+    font-size: 18px;
     text-decoration: none;
+}
+
+.gh-link2 {
+  bottom: 60px;
+  right: 0;
+  margin-right: 20px;
+  position: fixed;
+  color: #e3ab00;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.gh-link3 {
+  bottom: 35px;
+  right: 0;
+  margin-right: 20px;
+  position: fixed;
+  color: #007cc2;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.gh-link4 {
+  bottom: 10px;
+  right: 0;
+  margin-right: 20px;
+  position: fixed;
+  color: #00c8a6;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.gh-hover:hover {
+  text-decoration: underline;
 }
 
 .hamburgers {
@@ -271,7 +308,7 @@ input:focus {
 .hamburger-menu {
   position: fixed;
   width: 180px;
-  height: 360px;
+  height: 300px;
   border: solid 3px white;
   z-index: 3;
   border-radius: 10px;

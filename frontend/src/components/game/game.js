@@ -27,9 +27,9 @@ const Game = (props) => {
   }
 
   return (
-    <div>
+    <>
       <h1 className="logo">Haiclue</h1>
-      <div className="game-container">
+      <div className="game-container game-holder">
         <div className="top-container">
           <TargetWords
             revealed={revealed}
@@ -61,7 +61,7 @@ const Game = (props) => {
           <Scoreboard over={gameState.over} players={gameState.players} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

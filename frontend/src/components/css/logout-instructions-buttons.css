@@ -15,13 +15,15 @@
   text-align: center;
 }
 
+
+
 .lo-button {
   display: block;
   transition-property: background-color, border-color;
   transition-duration: 0.3s;
   transition-timing-function: ease;
   padding: 10px;
-  margin: 10px;
+  margin: 0 10px;
   font-weight: bold;
   font-size: 18px;
   color: black;

@@ -43,7 +43,7 @@ class Splash extends React.Component {
         <a href="#signUp">Sign Up</a>
         <a target="blank" href="https://tigerboardgames.com/">Website</a>
         <a target="blank" href="https://github.com/nirkraw/Haiclue">Github <i class="devicon-github-plain"></i></a>
-        <a href='#devs'>Dev Team</a>
+        {/* <a href='#devs'>Dev Team</a> */}
       </div>)
 
     return (
@@ -83,45 +83,50 @@ class Splash extends React.Component {
               <AuthRoute path="/" component={LoginFormContainer} />
               <AuthRoute path="/" component={SignupFormContainer} />
             </div>
-          <h1 className="splash-label" id="devs">Dev Team</h1>
+          {/* <h1 className="splash-label" id="devs">Dev Team</h1>
           <div className='team-container'>
               <figure className="profile">
-                  {/* <a href="https://github.com/etrinidad132" target="_blank"> */}
                   <a href="https://etrinidad132.github.io/" target="_blank">
                       <img src={edward} className="dev-img"></img>
                       <figcaption>Edward</figcaption>
                   </a>
               </figure>
             <figure className="profile">
-                {/* <a href="https://github.com/nicolsama" target="_blank" > */}
                 <a href="https://www.nicolesamanich.com/" target="_blank" >
                     <img src={nicole} className="dev-img"></img>
                     <figcaption>Nicole</figcaption>
                   </a>
               </figure>
             <figure className="profile">
-                {/* <a href="https://github.com/nirkraw" target="_blank" > */}
                 <a href="https://nirkraw.github.io/" target="_blank" >
                     <img src={nir} className="dev-img"></img>
                     <figcaption>Nir</figcaption>
                   </a>
               </figure>
             <figure className="profile">
-                {/* <a href="https://github.com/Shrewbitz" target="_blank" > */}
                 <a href="https://shrewbitz.github.io/" target="_blank" >
                     <img src={sammy} className="dev-img"></img>
                     <figcaption>Sammy</figcaption>
                   </a>
               </figure>
-          </div>
+          </div> */}
         </div>  
         <footer>
             <a target="blank" href="https://tigerboardgames.com/">
             <img className="tbg-link" src={tbg} alt="tiger board games"/>
             </a>
 
-            <a target="blank" className="gh-link" href="https://github.com/nirkraw/Haiclue">
-              <i class="devicon-github-plain"></i>
+            <a target="blank" className="gh-link2 gh-hover" href="https://github.com/etrinidad132">
+            Edward Trinidad <i className="devicon-github-plain"></i>
+            </a>
+            <a target="blank" className="gh-link1 gh-hover" href="https://github.com/nicolsama">
+              Nicole Samanich <i className="devicon-github-plain"></i>
+            </a>
+            <a target="blank" className="gh-link3 gh-hover" href="https://github.com/nirkraw">
+            Nir Krawczyk <i className="devicon-github-plain"></i>
+            </a>
+            <a target="blank" className="gh-link4 gh-hover" href="https://github.com/Shrewbitz">
+              Samuel Gieseker <i className="devicon-github-plain"></i>
             </a>
         </footer>    
       </div>

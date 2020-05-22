@@ -331,13 +331,11 @@ export default class CreateRoomForm extends Component {
 
     let view =
       gameState && gameState.gameStarted ? (
-        <div>
-          <Game
+          <Game 
             handle={this.props.user.handle}
             gameState={this.state.gameState}
             socket={this.socket}
           />
-        </div>
       ) : (
         joinRoom
       );

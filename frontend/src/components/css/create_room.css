@@ -15,7 +15,7 @@
 }
 
 .room-container form {
-  margin: 60px auto;
+  margin: 20px auto;
 }
 
 .create-button-container {
@@ -31,7 +31,7 @@
 
 .room-container h1 {
   font-size: 48px;
-  margin-top: 50px;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -224,12 +224,13 @@ input:focus {
   font-weight: bold;
   width: fit-content;
   margin: 0 auto;
-  margin-top: 100px;
   text-align: center;
   color: #e3ab00;
 }
 
 .mute {
+  position: absolute;
+  top: 10px;
   height: 50px;
   width: 50px;
 }
