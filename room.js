@@ -161,6 +161,7 @@ class Room {
 
   selectClueTile(socketId, tile) {
     const player = this.game.players[socketId];
+    if (!player) return null;
     if (!player.selectedClueTiles.includes(tile)) {
       player.selectedClueTiles.push(tile);
       for (let i = 0; i < player.clueTiles.length; i++) {
@@ -173,6 +174,7 @@ class Room {
 
   unselectClueTile(socketId, tile) {
     const player = this.game.players[socketId];
+    if (!player) return null;
     if (!player.clueTiles.includes(tile)) {
       player.clueTiles.push(tile);
       for (let i = 0; i < player.selectedClueTiles.length; i++) {
