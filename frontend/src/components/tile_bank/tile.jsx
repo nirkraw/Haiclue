@@ -1,4 +1,5 @@
 import React from "react";
+import debounce from "lodash/debounce";
 
 class Tile extends React.Component {
   constructor(props) {
@@ -8,8 +9,8 @@ class Tile extends React.Component {
   }
 
   clueSubmit(event) {
-    const { roomName, player, tile } = this.props;
     event.preventDefault();
+    const { roomName, player, tile } = this.props;
     if (player.clueTiles.includes(tile)) {
       this.props.socket.emit("select clue tile", roomName, tile);
     } else {
@@ -42,7 +43,8 @@ class Tile extends React.Component {
           {this.props.display ? (
             <div
               className={`color-${currentColor} tile hoverable flip`}
-              onClick={this.clueSubmit}
+              // onClick={this.clueSubmit}
+              onClick={debounce(this.clueSubmit, 200, {leading: true})}
             >
               {tileWord}
             </div>

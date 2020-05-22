@@ -214,7 +214,7 @@ class Room {
   ) {
     const localPlayer = this.game.players[localPlayerSocketId];
     const currentPlayer = this.game.players[currentPlayerSocketId];
-    localPlayer.submittedGuess = true;////////////////////
+    localPlayer.submittedGuess = true;
 
     if (localPlayer.guessedWord === guessedWord) {
       return null;
@@ -237,7 +237,8 @@ class Room {
       currentPlayer.correctWord = targetWord[this.game.currentColor];
       currentPlayer.correctIndex = targetIndex;
 
-      currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor];
+      currentPlayer.correctWord =
+        currentPlayer.targetWord[this.game.currentColor];
       this.game.currentPlayerTurn++;
       this.game.clueGuessCount = 0;
 
@@ -268,7 +269,7 @@ class Room {
     Object.values(this.game.players).forEach((player) => {
       player.points = 0;
     });
-    
+
     this.startRound();
   }
 }

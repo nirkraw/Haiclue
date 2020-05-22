@@ -1,68 +1,70 @@
 .game-over-container {
-    margin: -60px auto;
-    }
+  margin: -60px auto;
+}
 
 .game-over-container ul {
-    margin: 0 auto;
-    font-weight: bold;
-    line-height: 40px;
-    width: 500px;
-    list-style: none;
-    font-size: 20px;
-    text-align: left;
-    padding: 0; 
+  margin: 0 auto;
+  font-weight: bold;
+  line-height: 40px;
+  width: 500px;
+  list-style: none;
+  font-size: 20px;
+  text-align: left;
+  padding: 0;
 }
 
 .game-over-container ul li {
-    border-bottom: 2px solid white;
+  border-bottom: 2px solid white;
 }
 
 .color-yellow {
-    color: #e3ab00;
+  color: #e3ab00;
 }
 
-.game-over {font-size: 60px;}
+.game-over {
+  font-size: 60px;
+}
 
 .color-blue {
-    color: #007cc2;
-    }
+  color: #007cc2;
+}
 
-.points { float: right;}
-
-
+.points {
+  float: right;
+}
 
 input:focus {
-    outline: none;
+  outline: none;
 }
 .game-over-buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .game-over-button {
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    margin-top: 50px;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 22px;
-    color: black;
-    background-color: white;
-    border-radius: 32px;
-    width: 175px;
-    height: 60px;
-    cursor: pointer;
-    float: right;
-    border-style: none;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  margin-top: 50px;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 22px;
+  color: black;
+  background-color: white;
+  border-radius: 32px;
+  width: 175px;
+  height: 60px;
+  cursor: pointer;
+  float: right;
+  border-style: none;
 }
 
-.game-over-button:hover {   
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    background-color: #00c8a6;
-    border-color: #00c8a6; 
+.game-over-button:hover {
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  background-color: #00c8a6;
+  border-color: #00c8a6;
 }

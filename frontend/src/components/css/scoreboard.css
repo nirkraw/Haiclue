@@ -1,54 +1,53 @@
 .wrapper {
-    width: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative; 
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
 }
 
 .points-div {
-    background-color: black;
-    color: white;
-    height: 20px;
-    width: 20px;
-    line-height: 20px;
-    text-align: center;
-    font-weight: bold;
-    border: 2px solid white;
-    border-radius: 26px;
-    padding: 10px;
-    margin: 0 auto;
+  background-color: black;
+  color: white;
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid white;
+  border-radius: 26px;
+  padding: 10px;
+  margin: 0 auto;
 }
 
 .handle-div {
-    color: white;
-    font-weight: bold;
-    margin-top: 10px;
-
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 .scoreboard-container {
-    padding-right: 35px;
-    right: 0;
-    bottom: 30px;
-    display: flex;
-    flex-direction: row; 
-    align-items: center;
-    justify-content: space-around;
+  padding-right: 35px;
+  right: 0;
+  bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .empty {
-    display: block;
-    height: 50px; 
-    width: 50px;
-    border: 2px solid red; 
+  display: block;
+  height: 50px;
+  width: 50px;
+  border: 2px solid red;
 }
 
 .emoji {
-    position: absolute;
-    height: 35px;
-    color: #00c8a6;
-    bottom: 60px;
-    left: 60px; 
+  position: absolute;
+  height: 35px;
+  color: #00c8a6;
+  bottom: 60px;
+  left: 60px;
 }
