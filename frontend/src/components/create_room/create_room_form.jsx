@@ -69,6 +69,11 @@ export default class CreateRoomForm extends Component {
         }
       }
     });
+
+    this.socket.on("disconnect reload", () => {
+     window.location.reload();
+     this.setState({ message: "Player disconnected, Game Over" });
+    });
   }
 
   handleInput(field) {
@@ -217,10 +222,10 @@ export default class CreateRoomForm extends Component {
     //       "Sorry, this room is full")
     //     ? true
     //     : false;
-    
+
     let readOnlyVal =
-      (this.state.message &&
-      this.state.message !== "Could not find a room with that name")
+      this.state.message &&
+      this.state.message !== "Could not find a room with that name"
         ? true
         : false;
 

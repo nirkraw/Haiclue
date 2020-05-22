@@ -139,7 +139,18 @@ io.on("connect", (socket) => {
     }
   });
 
-  socket.on("disconnect", () => console.log("Client disconnected"));
+  // socket.on("disconnect", () => console.log("Client disconnected"));
+  socket.on("disconnect", () => {
+    for (let i in rooms) {
+      let room = rooms[i];
+      let gameState = room.getGameState();
+      if (gameState.players.hasOwnProperty(socket.id)) {
+        console.log("player disconnected, game over");
+        io.to(room.roomName).emit("disconnect reload");
+      }
+    }
+    console.log("Client disconnected");
+  });
 }); // end of "connect" DONT DELETE
 
 setInterval(function () {
