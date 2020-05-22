@@ -1,456 +1,444 @@
 .splash-container {
-    width: 100%;
-    margin: 30px auto;
-    display: flex;
-    flex-direction: column;
-    height: auto;
+  width: 100%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  height: auto;
 }
 
 .splash-container-2 {
-    width: 2000px;
-    margin: 30px auto;
-    display: flex;
-    flex-direction: column;
-    height: auto;
+  width: 2000px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  height: auto;
 }
 
 .how-to-play {
-    margin-top: 150px;
-    width: 30%;
+  margin-top: 150px;
+  width: 30%;
 }
 
 .splash-container h1 {
-    font-size: 40px;
-    padding-left: 35%;
+  font-size: 40px;
+  padding-left: 35%;
 }
 
 .form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: left;
 }
 
 .session-form {
-    width: 30%;
-    margin-bottom: 150px;
+  width: 30%;
+  margin-bottom: 150px;
 }
 
 .session-form-errors {
-    color: #DA3832;
-    font-size: 16px;
+  color: #da3832;
+  font-size: 16px;
 }
 
 .session-form input {
-    width: 100%;
-    margin: 10px 0 10px 0 ;
-    font-weight: bold;
-    font-size: 18px;
-    color: white; 
-    background-color: rgb(6, 6, 6);
-    border: none;
-    border-bottom: white 2px solid;
-    padding:10px;
+  width: 100%;
+  margin: 10px 0 10px 0;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  background-color: rgb(6, 6, 6);
+  border: none;
+  border-bottom: white 2px solid;
+  padding: 10px;
 }
 
 .splash-label {
-    width: 30%;
-    display: flex;
-    justify-content: space-between;
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
 }
 
 input::placeholder {
-    color: #e3ab00;
-    opacity: 1;
+  color: #e3ab00;
+  opacity: 1;
 }
 
-
 input:focus {
-    outline: none;
+  outline: none;
 }
 
 .video-buttons {
-    width: 30%;
+  width: 30%;
 }
 
-.demo-button, .demo-button a {
-    margin-top: 50px;
-    box-sizing: border-box;
-    text-align: center;
-    text-decoration: none;
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    padding: 10px;
-    margin-left: 10px;
-    font-weight: bold;
-    font-size: 18px;
-    color: black;
-    background-color: white;
-    border-radius: 22px;
-    width: 150px;
-    cursor: pointer;
-    float: right;
-    border-style: none; 
+.demo-button,
+.demo-button a {
+  margin-top: 50px;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  padding: 10px;
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: black;
+  background-color: white;
+  border-radius: 22px;
+  width: 150px;
+  cursor: pointer;
+  float: right;
+  border-style: none;
 }
-
 
 .demo-button:hover {
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    background-color: #00c8a6;
-    border-color: #00c8a6;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  background-color: #00c8a6;
+  border-color: #00c8a6;
 }
 
 .demo-button:focus {
-    outline:none;
+  outline: none;
 }
 
 .session-form button {
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    margin-top: 50px;
-    margin-left: 10px;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 18px;
-    color: black;
-    background-color: white;
-    border-radius: 22px;
-    width: 150px;
-    cursor: pointer;
-    float: right;
-    border-style: none;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  margin-top: 50px;
+  margin-left: 10px;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: black;
+  background-color: white;
+  border-radius: 22px;
+  width: 150px;
+  cursor: pointer;
+  float: right;
+  border-style: none;
 }
 
-.session-form button:hover {   
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    background-color: #00c8a6;
-    border-color: #00c8a6;
+.session-form button:hover {
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  background-color: #00c8a6;
+  border-color: #00c8a6;
 }
 
 .instruction-hover {
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    font-weight: bold;
-    font-size: 22px;
-    color: black;
-    background-color: white;
-    border-radius: 22px;
-    width: 45px;
-    height: 45px;
-    float: right;
-    cursor: pointer;
-    border-style: none;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  font-weight: bold;
+  font-size: 22px;
+  color: black;
+  background-color: white;
+  border-radius: 22px;
+  width: 45px;
+  height: 45px;
+  float: right;
+  cursor: pointer;
+  border-style: none;
 }
 
 .instruction-hover:hover {
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;  
-    background-color: #00c8a6;
-    border-color: #00c8a6;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  background-color: #00c8a6;
+  border-color: #00c8a6;
 }
 
-.instruction-hover:focus{
-    outline: none;
+.instruction-hover:focus {
+  outline: none;
 }
 .splash-instructions {
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    font-weight: bold;
-    font-size: 18px;
-    color: black;
-    background-color: white;
-    border-radius: 22px;
-    /* width: 150px; */
-    /* width: 100%; */
-    height: 40px;
-    float: right;
-    cursor: pointer;
-    border-style: none;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  font-weight: bold;
+  font-size: 18px;
+  color: black;
+  background-color: white;
+  border-radius: 22px;
+  /* width: 150px; */
+  /* width: 100%; */
+  height: 40px;
+  float: right;
+  cursor: pointer;
+  border-style: none;
 }
 
 .splash-instructions:hover {
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;  
-    background-color: #00c8a6;
-    border-color: #00c8a6;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  background-color: #00c8a6;
+  border-color: #00c8a6;
 }
 
-.splash-instructions:focus{
-    outline: none;
+.splash-instructions:focus {
+  outline: none;
 }
 
-
-.session-form button:focus{
-    outline: none;
+.session-form button:focus {
+  outline: none;
 }
 
 .instructions-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .instructions-container video:focus {
-    outline: none;
-   
+  outline: none;
 }
 
 .instructions-container video:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .splash-cards {
-    display: block;
-    margin: 0 auto;
-    width: 20%;
+  display: block;
+  margin: 0 auto;
+  width: 20%;
 }
 .splash-cards img {
-    padding: 2%;
-    width: 50%;
-    box-sizing: border-box;
+  padding: 2%;
+  width: 50%;
+  box-sizing: border-box;
 }
 
 .tbg-link {
-    bottom: 10px;
-    left: 0;
-    width: 180px;
-    height: 98px;
-    margin-left: 20px;
-    position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 180px;
+  height: 98px;
+  margin-left: 20px;
+  position: fixed;
 }
 
 .hamburgers {
-    padding: 10px 0px 0px 15px;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    position: fixed;
-    z-index: 4;
-
+  padding: 10px 0px 0px 15px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  position: fixed;
+  z-index: 4;
 }
 
 .hamburgers:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
-
-
 
 .hamburgers div {
-    transition-property: background-color;
-    transition-duration: .3s;
-    background-color: white;
-    width: 30px;
-    height: 5px;
-    margin-top: 4px;
-    border-radius: 3px;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  background-color: white;
+  width: 30px;
+  height: 5px;
+  margin-top: 4px;
+  border-radius: 3px;
 }
 
-.hamburgers:hover div{
-    transition-property: background-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    background-color: #00c8a6;
+.hamburgers:hover div {
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  background-color: #00c8a6;
 }
 
 .hamburger-menu {
-    position: fixed;
-    width: 180px;
-    height: 360px;
-    border: solid 3px white;
-    z-index: 3;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
+  position: fixed;
+  width: 180px;
+  height: 360px;
+  border: solid 3px white;
+  z-index: 3;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .hamburger-menu a {
-    transition-property: color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    position: relative;
-    top: 40px;
-    left: 10px;
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 24px;
-    color: white;
-    text-decoration: none;
-    padding: 5px, 0, 5px, 10px;
-    width: fit-content;
+  transition-property: color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  position: relative;
+  top: 40px;
+  left: 10px;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  padding: 5px, 0, 5px, 10px;
+  width: fit-content;
 }
 
 .hamburger-menu a:hover {
-    transition-property: color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    color: #00c8a6;
+  transition-property: color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  color: #00c8a6;
 }
 
-
-
 .menu-enter {
-    opacity: 0;
-    transform: translateX(-100%);
-
+  opacity: 0;
+  transform: translateX(-100%);
 }
 
 .menu-enter.menu-enter-active {
-    opacity: 1; 
-    transition: opacity 800ms, transform 800ms;
-    transform: translateX(0);
-    left: 30px;
+  opacity: 1;
+  transition: opacity 800ms, transform 800ms;
+  transform: translateX(0);
+  left: 30px;
 }
 
 .menu-leave {
-    opacity: 1;
-
+  opacity: 1;
 }
 
 .menu-leave.menu-leave-active {
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: opacity 800ms, transform 800ms;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 800ms, transform 800ms;
 }
 
 html {
-    scroll-behavior: smooth;
-    scroll-padding: 150px 0 0 0;
+  scroll-behavior: smooth;
+  scroll-padding: 150px 0 0 0;
 }
 
 .EZ-login-dropdown {
-    background-color:transparent;
-    border: none;
-    font-weight: bold;
-    list-style: none;
-    margin: 0;
-    color: black;
-    margin-left: -40px;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  list-style: none;
+  margin: 0;
+  color: black;
+  margin-left: -40px;
 }
 
 ul .EZ-login-dropdown {
-    color: black;
+  color: black;
 }
 
 .EZ-login-dropdown:focus {
-    outline: none;
+  outline: none;
 }
 
-button .EZ-login-dropdown{
-    width: inherit;
+button .EZ-login-dropdown {
+  width: inherit;
 }
 
 .team-container {
-    max-width: 60%; 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    box-sizing: border-box;
-    padding-bottom:  150px;
+  max-width: 60%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding-bottom: 150px;
 }
 
 .profile {
-    min-width: 50%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 50px 5px;
-} 
+  min-width: 50%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 50px 5px;
+}
 .profile a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-.profile figcaption { 
-    color: white;
-    padding: 5px;
-    color: #00c8a6;
-    font-size: 24px;
+.profile figcaption {
+  color: white;
+  padding: 5px;
+  color: #00c8a6;
+  font-size: 24px;
 }
 
 .dev-img {
-    height: 150px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 50%;
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 
 .dev-img:hover {
-    -webkit-filter: none;
-    filter: none;
-    transition: filter 800ms,
-    transform 800ms;
+  -webkit-filter: none;
+  filter: none;
+  transition: filter 800ms, transform 800ms;
 }
 
 .button-dropdown {
-    height: auto;
-    width: inherit;
-    list-style: none;
-    position: relative;
-    color: black;
-    display: flex;
-    flex-direction: row;
-    z-index: 3;
-    padding: 1px 0 1px 0;
+  height: auto;
+  width: inherit;
+  list-style: none;
+  position: relative;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  z-index: 3;
+  padding: 1px 0 1px 0;
 }
 
 .dropdown-toggle li:hover {
-       background-color: #00c8a6;
-    overflow: hidden;
-} 
+  background-color: #00c8a6;
+  overflow: hidden;
+}
 
 .dropdown-toggle li:last-child:hover {
-       background-color: #00c8a6;
-    overflow: hidden;
-    border-radius: 0 0 16px 16px;
+  background-color: #00c8a6;
+  overflow: hidden;
+  border-radius: 0 0 16px 16px;
 }
 
 .dropdown-toggle {
-    position: absolute;
-    background-color: white;
-    width: inherit;
-    list-style: none;
-    padding: 15px 0 0 0;
-    margin-top: -10px;
-    margin-left: -10px;
-    border-radius: 0 0 16px 16px;
-    box-sizing: border-box;
-    z-index: -0;
+  position: absolute;
+  background-color: white;
+  width: inherit;
+  list-style: none;
+  padding: 15px 0 0 0;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 0 0 16px 16px;
+  box-sizing: border-box;
+  z-index: -0;
 }
 
 .dropdown-toggle:hover + .button-dropdown {
-    background-color: #00c8a6;
+  background-color: #00c8a6;
 }
 
 .dropdown-toggle li {
-    list-style: none;
-    padding: 8px;
-    margin: 0;
-    box-sizing: border-box;
-    overflow: hidden;
+  list-style: none;
+  padding: 8px;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
-
-#EZ:hover { 
-    background-color: white;
+#EZ:hover {
+  background-color: white;
 }

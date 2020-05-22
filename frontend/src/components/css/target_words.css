@@ -1,33 +1,31 @@
 .target-words-container {
-    width: 130px;
-    padding: 5px;
-    display: inline-block;
+  width: 130px;
+  padding: 5px;
+  display: inline-block;
 }
 
 .target-img {
-    width: 100%;
-    padding-bottom: 5px;
+  width: 100%;
+  padding-bottom: 5px;
 }
 
 .target-img:hover + .tile.color-white.hoverable {
-        background-color: #00c8a6;
-        border-color: #059c83;
-        cursor: pointer;
+  background-color: #00c8a6;
+  border-color: #059c83;
+  cursor: pointer;
 }
 
 .target-img.hoverable:hover {
-        cursor: pointer;
+  cursor: pointer;
 }
 
 .target-img:hover + .tile.color-black.hoverable {
-    background-color: rgba(7, 192, 161, 0.287);
-    border-color: rgb(7, 192, 161);
-    cursor: pointer;
+  background-color: rgba(7, 192, 161, 0.287);
+  border-color: rgb(7, 192, 161);
+  cursor: pointer;
 }
 
 .target-img::selection {
-    color: none;
-    background: none;
+  color: none;
+  background: none;
 }
-
-

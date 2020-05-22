@@ -1,112 +1,110 @@
-.top-container { 
-    width: 60%;
-    margin: 50px auto;
-    text-align: center;
+.top-container {
+  width: 60%;
+  margin: 50px auto;
+  text-align: center;
 }
 
 .middle-container {
-    height: 270px; 
-    padding-top: 30px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 90%;
-    margin: 20px auto;
-    text-align: center;
-    margin-bottom: 50px;
-} 
+  height: 270px;
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+  margin: 20px auto;
+  text-align: center;
+  margin-bottom: 50px;
+}
 
 .bottom-container {
-    width: 100%; 
-    display: flex; 
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .color-black {
-    width: 120px;
+  width: 120px;
 
-    transform: rotateX(0);
-    border-color: white;
-    color: white; 
-    background-color: rgb(6, 6, 6);
+  transform: rotateX(0);
+  border-color: white;
+  color: white;
+  background-color: rgb(6, 6, 6);
 }
 
 .color-white {
-        transform: rotateX(0);
-        color: black;
-        background-color:white;
+  transform: rotateX(0);
+  color: black;
+  background-color: white;
 }
 
 .flip {
-    animation: flip 500ms;
-    perspective: 1000px;
-    position: relative;
-    transform-style: preserve-3d;
+  animation: flip 500ms;
+  perspective: 1000px;
+  position: relative;
+  transform-style: preserve-3d;
 }
 
-
 @keyframes flip {
-    from {
-        transform: rotateX(90deg);
-    }
+  from {
+    transform: rotateX(90deg);
+  }
 
-    to {
-        transform: rotateX(0deg);
-    }
+  to {
+    transform: rotateX(0deg);
+  }
 }
 
 @-webkit-keyframes flip {
-    from {
-        transform: rotateX(90deg);
-    }
+  from {
+    transform: rotateX(90deg);
+  }
 
-    to {
-        transform: rotateX(0deg);
-    }
+  to {
+    transform: rotateX(0deg);
+  }
 }
 
-.tile { 
-        min-width: 120px;
-        border: 3px solid; 
-        padding: 10px; 
-        margin: 6px;
-        font-size: 18px;
-        border-radius: 10px;
-        display: inline-block;
-        font-weight: bold;
-        box-sizing: border-box;
-        border-style: outset;
-        text-align: center; 
-        cursor: pointer;
-    
+.tile {
+  min-width: 120px;
+  border: 3px solid;
+  padding: 10px;
+  margin: 6px;
+  font-size: 18px;
+  border-radius: 10px;
+  display: inline-block;
+  font-weight: bold;
+  box-sizing: border-box;
+  border-style: outset;
+  text-align: center;
+  cursor: pointer;
 }
 
 .emptyTileSpace {
-    width: 120px;
-    padding: 9px;
-    border: 2px solid;
-    border-color: rgb(6, 6, 6);
-    border-radius: 12px;
-    display: inline-block;
-    margin: 6px;
-    font-weight: bold;
-    box-sizing: border-box;
+  width: 120px;
+  padding: 9px;
+  border: 2px solid;
+  border-color: rgb(6, 6, 6);
+  border-radius: 12px;
+  display: inline-block;
+  margin: 6px;
+  font-weight: bold;
+  box-sizing: border-box;
 }
 
 .tile.color-black.hoverable:hover {
-    background-color:rgba(7, 192, 161, 0.287);
-    border-color:rgb(7, 192, 161);
-    cursor: pointer;
+  background-color: rgba(7, 192, 161, 0.287);
+  border-color: rgb(7, 192, 161);
+  cursor: pointer;
 }
 
 .tile.color-white.hoverable:hover {
-    background-color: #00c8a6;
-    border-color: #059c83;
-    cursor: pointer;
+  background-color: #00c8a6;
+  border-color: #059c83;
+  cursor: pointer;
 }
 
 .tile::selection {
-    color: none;
-    background: none;
+  color: none;
+  background: none;
 }

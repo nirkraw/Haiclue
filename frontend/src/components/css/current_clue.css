@@ -1,15 +1,11 @@
 .currentClue {
-
 }
 
 .selector-tri {
-        
-       -moz-transform: scale(-1, -1);
-       -o-transform: scale(-1, -1);
-       -webkit-transform: scale(-1, -1);
-       transform: scale(-1, -1);
-
-
+  -moz-transform: scale(-1, -1);
+  -o-transform: scale(-1, -1);
+  -webkit-transform: scale(-1, -1);
+  transform: scale(-1, -1);
 }
 
 /* .selector-tri path {
@@ -18,18 +14,18 @@
 } */
 
 .add-line {
-       padding-left: 10px;
-       padding-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .add-line.color-black:hover {
-       background-color:rgba(7, 192, 161, 0.287);
-       border-color:rgb(7, 192, 161);
-       cursor: pointer;
-   }
-   
-   .add-line.color-white:hover {
-       background-color: #00c8a6;
-       border-color: #059c83;
-       cursor: pointer;
-   }
+  background-color: rgba(7, 192, 161, 0.287);
+  border-color: rgb(7, 192, 161);
+  cursor: pointer;
+}
+
+.add-line.color-white:hover {
+  background-color: #00c8a6;
+  border-color: #059c83;
+  cursor: pointer;
+}
