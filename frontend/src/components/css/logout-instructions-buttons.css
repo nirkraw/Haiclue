@@ -8,7 +8,7 @@
   top: 0px;
   right: 0px;
   padding: 6px;
-  width: 200px;
+  width: 280px;
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -70,5 +70,35 @@
 }
 
 .button-container .instruction-hover:focus {
+  outline: none;
+}
+
+.button-container .git-hover {
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  font-weight: bold;
+  font-size: 22px;
+  color: black;
+  margin: 10px;
+  background-color: white;
+  border-radius: 22px;
+  width: 32px;
+  height: 25px;
+  line-height: 15px;
+  padding: 10px;
+  cursor: pointer;
+  border-style: none;
+}
+
+.button-container .git-hover:hover {
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  background-color: #00c8a6;
+  border-color: #00c8a6;
+}
+
+.button-container .git-hover:focus {
   outline: none;
 }

@@ -13,25 +13,31 @@ const LogoutInstructionsButton = (props) => {
   if (props.start) {
     return (
       <div className="button-container">
-        <div className="lo-button" onClick={quitButton}>
-          Quit Game
-        </div>
+        <a className="git-hover" href="https://github.com/nirkraw/Haiclue" target="blank">
+          <i class="devicon-github-plain"></i>
+        </a>
         <NavLink to="instructions" target="blank">
           <button className="instruction-hover">?</button>
         </NavLink>
+        <div className="lo-button" onClick={quitButton}>
+          Quit Game
+        </div>
       </div>
     );
   } else {
     return (
       <div className="button-container">
+        <a className="git-hover" href="https://github.com/nirkraw/Haiclue" target="blank">
+          <i class="devicon-github-plain"></i>
+        </a>
+        <NavLink to="instructions" target="blank">
+          <button className="instruction-hover">?</button>
+        </NavLink>
         {props.loggedIn ? (
           <div className="lo-button" onClick={props.logout}>
             Logout
           </div>
         ) : null}
-        <NavLink to="instructions" target="blank">
-          <button className="instruction-hover">?</button>
-        </NavLink>
       </div>
     );
   }

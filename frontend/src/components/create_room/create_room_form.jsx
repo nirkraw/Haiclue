@@ -49,7 +49,7 @@ export default class CreateRoomForm extends Component {
     const audio = document.getElementById("theme");
     audio.volume = 0.05;
     audio.loop = true;
-    // audio.play();
+    audio.play();
     this.props.fetchTiles();
     this.socket = socketIOClient(ENV);
 
@@ -250,6 +250,7 @@ export default class CreateRoomForm extends Component {
             <form>
               <label>
                 <input
+                  spellcheck="false"
                   type="text"
                   placeholder={placeholder_text}
                   value={this.state.roomName}
