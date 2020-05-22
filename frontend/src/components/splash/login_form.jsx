@@ -40,6 +40,16 @@ class LoginForm extends React.Component {
 
   handleLoginSubmit(e) {
     e.preventDefault();
+    let logInEmail = document.getElementById("Log In Email").value;
+    let logInPassword = document.getElementById("Log In Password").value;
+    if (!this.state.email && !this.state.password) {
+      if (logInEmail && logInPassword) {
+        this.setState({ email: logInEmail });
+        this.setState({ password: logInPassword });
+        this.props.login({ email: logInEmail, password: logInPassword });
+        return;
+      }
+    }
     this.props.login(this.state);
   }
 
@@ -60,15 +70,17 @@ class LoginForm extends React.Component {
 
     return (
       <div className="session-form">
-        <form>
+        <form id="Log In Form">
           <h2 id="logIn">Log In</h2>
           <input
+            id="Log In Email"
             type="text"
             value={this.state.email}
             onChange={this.handleInput("email")}
             placeholder="Email"
           />
           <input
+            id="Log In Password"
             type="password"
             value={this.state.password}
             onChange={this.handleInput("password")}
