@@ -218,7 +218,11 @@ export default class CreateRoomForm extends Component {
     //     ? true
     //     : false;
     
-    let readOnlyVal = (this.state.message) ? true : false;
+    let readOnlyVal =
+      (this.state.message &&
+      this.state.message !== "Could not find a room with that name")
+        ? true
+        : false;
 
     let joinRoom =
       !gameState || !gameState.gameStarted ? (

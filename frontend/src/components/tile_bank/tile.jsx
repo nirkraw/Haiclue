@@ -44,7 +44,7 @@ class Tile extends React.Component {
             <div
               className={`color-${currentColor} tile hoverable flip`}
               // onClick={this.clueSubmit}
-              onClick={debounce(this.clueSubmit, 200, { leading: true })}
+              onClick={debounce(this.clueSubmit, 500, { leading: true })}
             >
               {tileWord}
             </div>

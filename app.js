@@ -61,15 +61,21 @@ io.on("connect", (socket) => {
   });
 
   socket.on("select clue tile", (roomName, tile) => {
-    rooms[roomName].selectClueTile(socket.id, tile);
+    if (rooms[roomName]) {
+      rooms[roomName].selectClueTile(socket.id, tile);
+    }
   });
 
   socket.on("remove clue tile", (roomName, tile) => {
-    rooms[roomName].unselectClueTile(socket.id, tile);
+    if (rooms[roomName]) {
+      rooms[roomName].unselectClueTile(socket.id, tile);
+    }
   });
 
   socket.on("submit clue", (roomName) => {
-    rooms[roomName].submitClue(socket.id);
+    if (rooms[roomName]) {
+      rooms[roomName].submitClue(socket.id);
+    }
   });
 
   socket.on(
@@ -82,29 +88,40 @@ io.on("connect", (socket) => {
       guessedWord,
       guessIndex
     ) => {
-      rooms[roomName].submitGuess(
-        localPlayerSocketId,
-        matchBoolean,
-        currentPlayerSocketId,
-        guessedWord,
-        guessIndex
-      );
+      if (rooms[roomName]) {
+        rooms[roomName].submitGuess(
+          localPlayerSocketId,
+          matchBoolean,
+          currentPlayerSocketId,
+          guessedWord,
+          guessIndex
+        );
+      }
     }
   );
 
   socket.on("unreveal clue", (roomName) => {
-    rooms[roomName].unrevealClue(socket.id);
+    if (rooms[roomName]) {
+      rooms[roomName].unrevealClue(socket.id);
+    }
   });
 
   socket.on("insert line", (roomName) => {
-    rooms[roomName].insertLine(socket.id);
+    if (rooms[roomName]) {
+      rooms[roomName].insertLine(socket.id);
+    }
   });
 
   socket.on("remove line", (roomName, lineIndex) => {
-    rooms[roomName].removeLine(socket.id, lineIndex);
+    if (rooms[roomName]) {
+      rooms[roomName].removeLine(socket.id, lineIndex);
+    }
   });
+
   socket.on("play again", (roomName) => {
-    rooms[roomName].restartGame();
+    if (rooms[roomName]) {
+      rooms[roomName].restartGame();
+    }
   });
 
   socket.on("demo", (handle, roomName, tiles) => {
