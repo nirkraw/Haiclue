@@ -30,8 +30,8 @@ class TargetWords extends React.Component {
       return player.socketId === this.props.socket.id;
     })[0];
 
-    const currentPlayerTargetWord =
-      currentPlayer.targetWord[gameState.currentColor];
+    const currentPlayerTargetWord = currentPlayer.targetWord[gameState.currentColor];
+    
     const guessedWord = e.currentTarget.nextElementSibling
       ? e.currentTarget.nextElementSibling.innerText
       : e.currentTarget.innerText;
