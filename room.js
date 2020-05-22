@@ -214,7 +214,7 @@ class Room {
   ) {
     const localPlayer = this.game.players[localPlayerSocketId];
     const currentPlayer = this.game.players[currentPlayerSocketId];
-    localPlayer.submittedGuess = true;
+    localPlayer.submittedGuess = true;////////////////////
 
     if (localPlayer.guessedWord === guessedWord) {
       return null;

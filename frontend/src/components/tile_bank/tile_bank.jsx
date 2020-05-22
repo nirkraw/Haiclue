@@ -13,7 +13,7 @@ const TileBank = (props) => {
   })[0];
 
   const tiles = player.clueTiles;
-  let newTiles = tiles.map((tile, index) => {
+  const newTiles = tiles.map((tile, index) => {
     return (
       <Tile
         key={index}

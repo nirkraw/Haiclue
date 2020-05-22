@@ -64,8 +64,8 @@ const CurrentClue = (props) => {
               secs={30}
               socket={socket}
               roomName={gameState.roomName}
-              localPlayerHandle={localPlayer.handle}
-              currentPlayerHandle={currentPlayer.handle}
+              localPlayerSocketId={localPlayer.socketId}
+              currentPlayerSocketId={currentPlayer.socketId}
             />
           ) : (
             <div></div>

@@ -1,18 +1,20 @@
 <script type="text/javascript">
-function countDown(sec, ele) {
+  function countDown(sec, ele) {
     var element = document.getElementById(ele);
-    element.innerHTML = secs+" seconds left";
+    element.innerHTML = secs + " seconds left";
     if (secs < 1) {
-        //stops whatever you called your timer
-        clearTimeout(timer);
-        //call function handle submit etc
+      //stops whatever you called your timer
+      clearTimeout(timer);
+      //call function handle submit etc
     }
     secs--;
     //use set timeout to set a break between hitting the function
-    var timer = setTimeout(countDown(secs, ele),1000);
-}
+    var timer = setTimeout(countDown(secs, ele), 1000);
+  }
 </script>
 
 <div id="status"></div>
 
-<script type="text/javascript">countDown(20, "status");</script>
+<script type="text/javascript">
+  countDown(20, "status");
+</script>

@@ -20,7 +20,7 @@ io.on("connect", (socket) => {
   console.log(socket.id + "has been connected");
 
   socket.on("create", (roomName, handle) => {
-    //need errors for no empty room name 
+    //need errors for no empty room name
     if (!rooms[roomName]) {
       socket.join(roomName);
       socket.emit(
@@ -109,7 +109,7 @@ io.on("connect", (socket) => {
 
   socket.on("demo", (handle, roomName, tiles) => {
     socket.join(roomName);
-    const demoRoom = new DemoRoom(roomName); 
+    const demoRoom = new DemoRoom(roomName);
     rooms[roomName] = demoRoom;
     rooms[roomName].addPlayer(handle, socket.id);
     rooms[roomName].addPlayer("Khaleel", "2");
@@ -121,7 +121,6 @@ io.on("connect", (socket) => {
       rooms[roomName].guessingPhase();
     }
   });
-
 
   socket.on("disconnect", () => console.log("Client disconnected"));
 }); // end of "connect" DONT DELETE
