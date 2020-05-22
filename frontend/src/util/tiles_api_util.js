@@ -1,5 +1,5 @@
-import axios from "axios"
+import axios from "axios";
 
 export const fetchTiles = () => {
-    return axios.get("/api/tiles")
-}
+  return axios.get("/api/tiles");
+};

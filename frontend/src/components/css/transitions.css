@@ -1,25 +1,24 @@
 .tiles-enter {
-    /* opacity: 0.01; */
-    /* transform: rotateX(90deg); */
+  /* opacity: 0.01; */
+  /* transform: rotateX(90deg); */
 }
 
 .tiles-enter.tiles-enter-active {
-    /* opacity: 1; */
-    /* transform: rotateX(0); */
-    /* transform-style: preserve-3d; */
-    /* transition: opacity 200ms linear; */
+  /* opacity: 1; */
+  /* transform: rotateX(0); */
+  /* transform-style: preserve-3d; */
+  /* transition: opacity 200ms linear; */
 }
 
 .tiles-leave {
-    /* transform: rotateX(0); */
-    /* opacity: 0.01; */
-
+  /* transform: rotateX(0); */
+  /* opacity: 0.01; */
 }
 
 .tiles-leave.tiles-leave-active {
-    /* opacity: 1; */
-    /* transform: rotateX(90deg); */
-    /* transform-style: preserve-3d; */
-    /* transition: opacity 200ms linear */
-    /* transform 600ms linear; */
+  /* opacity: 1; */
+  /* transform: rotateX(90deg); */
+  /* transform-style: preserve-3d; */
+  /* transition: opacity 200ms linear */
+  /* transform 600ms linear; */
 }

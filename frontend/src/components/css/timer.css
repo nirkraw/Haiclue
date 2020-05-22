@@ -1,19 +1,19 @@
 .timer {
-    position: absolute;
-    left: 120px;
-    top: 165px;
-    transition: 1s box-shadow ease;
-    box-shadow: none;
-    background-color: transparent;
-    font-size: 38px;
+  position: absolute;
+  left: 120px;
+  top: 165px;
+  transition: 1s box-shadow ease;
+  box-shadow: none;
+  background-color: transparent;
+  font-size: 38px;
 }
 
 .timer-flash {
-    transition: 1s color ease;
-    color: red; 
-    /* box-shadow: 0px 0px 40px 10px crimson; */
+  transition: 1s color ease;
+  color: red;
+  /* box-shadow: 0px 0px 40px 10px crimson; */
 }
 
-.timer:hover{
-    border-color:  white; 
+.timer:hover {
+  border-color: white;
 }

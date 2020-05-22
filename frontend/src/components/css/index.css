@@ -1,39 +1,35 @@
 @import-normalize;
 
 body {
-    color: white; 
-    background-color: rgb(6, 6, 6);
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: bold;
+  color: white;
+  background-color: rgb(6, 6, 6);
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: bold;
 }
 
-.logo { 
-    font-size: 64px;
-    text-align: center; 
-    width: auto;
-    margin:  0 auto;
-    padding-top: 30px;
+.logo {
+  font-size: 64px;
+  text-align: center;
+  width: auto;
+  margin: 0 auto;
+  padding-top: 30px;
 }
 
 .instruction-link {
-    background: red;
-    display: block;
-    height: 100px; 
-    width: 100px;
+  background: red;
+  display: block;
+  height: 100px;
+  width: 100px;
 }
 
-
-
 @media screen and (max-width: 1000px) {
-    * {
-        zoom: .96;
-    }
-
+  * {
+    zoom: 0.96;
+  }
 }
 
 @media screen and (max-width: 675px) {
-    .top-container {
-        width: 400px;
-    }
-
+  .top-container {
+    width: 400px;
+  }
 }

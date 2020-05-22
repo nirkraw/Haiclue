@@ -1,73 +1,72 @@
 .button-container a {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .button-container {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    padding: 6px;
-    width: 200px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    text-align: center;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 6px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
 }
 
 .lo-button {
-    display: block;
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    padding: 10px;
-    margin: 10px;
-    font-weight: bold;
-    font-size: 18px;
-    color: black;
-    background-color: white;
-    border-radius: 22px;
-    width: 150px;
-    line-height: 25px;
-    cursor: pointer;
-    float: right;
+  display: block;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  padding: 10px;
+  margin: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  color: black;
+  background-color: white;
+  border-radius: 22px;
+  width: 150px;
+  line-height: 25px;
+  cursor: pointer;
+  float: right;
 }
 
 .lo-button:hover {
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    background-color: #00c8a6;
-    border-color: #00c8a6;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  background-color: #00c8a6;
+  border-color: #00c8a6;
 }
 
 .button-container .instruction-hover {
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    font-weight: bold;
-    font-size: 22px;
-    color: black;
-    margin: 10px;
-    background-color: white;
-    border-radius: 22px;
-    width: 45px;
-    height: 45px;
-    line-height: 15px;
-    padding: 10px;
-    cursor: pointer;
-    border-style: none;
-
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  font-weight: bold;
+  font-size: 22px;
+  color: black;
+  margin: 10px;
+  background-color: white;
+  border-radius: 22px;
+  width: 45px;
+  height: 45px;
+  line-height: 15px;
+  padding: 10px;
+  cursor: pointer;
+  border-style: none;
 }
 
 .button-container .instruction-hover:hover {
-    transition-property: background-color, border-color;
-    transition-duration: .3s;
-    transition-timing-function: ease;
-    background-color: #00c8a6;
-    border-color: #00c8a6;
+  transition-property: background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  background-color: #00c8a6;
+  border-color: #00c8a6;
 }
 
 .button-container .instruction-hover:focus {
-    outline: none;
+  outline: none;
 }

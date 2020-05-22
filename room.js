@@ -161,6 +161,7 @@ class Room {
 
   selectClueTile(socketId, tile) {
     const player = this.game.players[socketId];
+    if (!player) return null;
     if (!player.selectedClueTiles.includes(tile)) {
       player.selectedClueTiles.push(tile);
       for (let i = 0; i < player.clueTiles.length; i++) {
@@ -173,6 +174,7 @@ class Room {
 
   unselectClueTile(socketId, tile) {
     const player = this.game.players[socketId];
+    if (!player) return null;
     if (!player.clueTiles.includes(tile)) {
       player.clueTiles.push(tile);
       for (let i = 0; i < player.selectedClueTiles.length; i++) {
@@ -214,7 +216,7 @@ class Room {
   ) {
     const localPlayer = this.game.players[localPlayerSocketId];
     const currentPlayer = this.game.players[currentPlayerSocketId];
-    localPlayer.submittedGuess = true;////////////////////
+    localPlayer.submittedGuess = true;
 
     if (localPlayer.guessedWord === guessedWord) {
       return null;
@@ -237,7 +239,8 @@ class Room {
       currentPlayer.correctWord = targetWord[this.game.currentColor];
       currentPlayer.correctIndex = targetIndex;
 
-      currentPlayer.correctWord = currentPlayer.targetWord[this.game.currentColor];
+      currentPlayer.correctWord =
+        currentPlayer.targetWord[this.game.currentColor];
       this.game.currentPlayerTurn++;
       this.game.clueGuessCount = 0;
 
@@ -268,7 +271,7 @@ class Room {
     Object.values(this.game.players).forEach((player) => {
       player.points = 0;
     });
-    
+
     this.startRound();
   }
 }

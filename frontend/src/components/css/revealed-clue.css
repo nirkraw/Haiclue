@@ -1,33 +1,33 @@
 .revealed-clue-img {
-    width: 150px; 
-    height: auto;
-    padding: 25px;
+  width: 150px;
+  height: auto;
+  padding: 25px;
 }
 
 .revealed-clue-text {
-    color: #e3ab00;
+  color: #e3ab00;
 }
 
 .player-guesses {
-    list-style: none;
-    padding: 0;
-    font-size: 32px;
+  list-style: none;
+  padding: 0;
+  font-size: 32px;
 }
 
 .guess-li {
-    width:610px;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-bottom: 5px;
+  width: 610px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 5px;
 }
 
 .guess-img {
-    height: 50px;
+  height: 50px;
 }
 
 .color-yellow {
-        padding: 0;
-        color: #e3ab00;
+  padding: 0;
+  color: #e3ab00;
 }
