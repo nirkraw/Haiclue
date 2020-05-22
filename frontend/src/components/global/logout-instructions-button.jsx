@@ -14,7 +14,7 @@ const LogoutInstructionsButton = (props) => {
     return (
       <div className="button-container">
         <a className="git-hover" href="https://github.com/nirkraw/Haiclue" target="blank">
-          <i class="devicon-github-plain"></i>
+          <i className="devicon-github-plain"></i>
         </a>
         <NavLink to="instructions" target="blank">
           <button className="instruction-hover">?</button>
@@ -28,7 +28,7 @@ const LogoutInstructionsButton = (props) => {
     return (
       <div className="button-container">
         <a className="git-hover" href="https://github.com/nirkraw/Haiclue" target="blank">
-          <i class="devicon-github-plain"></i>
+          <i className="devicon-github-plain"></i>
         </a>
         <NavLink to="instructions" target="blank">
           <button className="instruction-hover">?</button>

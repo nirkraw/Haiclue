@@ -43,19 +43,19 @@ const ExtInstructions = () => {
                     <div className='right'>
                         <div className='instructions-center-tiles'>
                             <figure>
-                                <img src={blue}></img>
+                                <img src={blue} alt="blue"></img>
                                 <figcaption><div className="tile color-white">wallet</div></figcaption>
                             </figure>
                             <figure>
-                                <img src={red}></img>
+                                <img src={red} alt="red"></img>
                                 <figcaption><div className="tile color-white">trailer</div></figcaption>
                             </figure>
                             <figure>
-                                <img src={green}></img>
+                                <img src={green} alt="green"></img>
                                 <figcaption><div className="tile color-white">electric</div></figcaption>
                             </figure>
                             <figure>
-                                <img src={yellow}></img>
+                                <img src={yellow} alt="yellow"></img>
                                 <figcaption><div className="tile color-white">jam</div></figcaption>
                             </figure>
                         </div>
@@ -66,7 +66,7 @@ const ExtInstructions = () => {
                     <div className='left'>3.  <br></br>A player's assigned card will appear in the lower left corner next to it's associated tile.</div>
                     <div className='right'>
                         <div className='target-word-imgs'>
-                            <img className='card' src={blue}></img>
+                            <img className='card' src={blue} alt="blue"></img>
                             <div className="tile color-white">wallet</div>
                         </div>
                     </div>
@@ -76,11 +76,11 @@ const ExtInstructions = () => {
                     <div className='left'>4.  <br></br>Wait for all of the other players to submit their clues. You can tell if a player has submitted by their emojis on the scoreboard.</div> 
                     <div className='right'> 
                         <div className='emoji-container'>
-                            <figure><img src={thinking}></img>
+                            <figure><img src={thinking} alt="thinking"></img>
                                 <figcaption><span className='color-red'>not submitted  &#10006;</span></figcaption> 
                             </figure>
                             
-                            <figure><img src={glasses}></img>
+                            <figure><img src={glasses} alt="glasses"></img>
                                 <figcaption><span className='color-green'>submitted  &#10003;</span></figcaption>  </figure>    
                         </div>
                     </div>    
@@ -126,9 +126,9 @@ const ExtInstructions = () => {
                 <li><div className='left'>7.  <br></br>Once everyone has submitted their clues, players take turn guessing each other's word.</div>
                     <div className='right'>
                         <div className='instructions-guess'>
-                            <h3><span className='color-green'>&#10003;</span>  <span>Paul's guess was <span className='color-yellow'>wallet</span></span><img src={blue}></img>  </h3>
-                            <h3><span className='color-red'>&#10006;</span>  <span>Sara's guess was <span className='color-yellow'>electric</span></span><img src={green}></img>   </h3>
-                            <h3><span className='color-red'>&#10006;</span>  <span>Khaleel's guess was <span className='color-yellow'>jam</span></span><img src={yellow}></img>   </h3>
+                            <h3><span className='color-green'>&#10003;</span>  <span>Paul's guess was <span className='color-yellow'>wallet</span></span><img src={blue} alt="blue" ></img>  </h3>
+                            <h3><span className='color-red'>&#10006;</span>  <span>Sara's guess was <span className='color-yellow'>electric</span></span><img src={green} alt="green"></img>   </h3>
+                            <h3><span className='color-red'>&#10006;</span>  <span>Khaleel's guess was <span className='color-yellow'>jam</span></span><img src={yellow} alt="yellow"></img>   </h3>
                         </div>
                     </div>
                 </li>  

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import blue from "../images/blue-tile.png";
 import red from "../images/red-tile.png";
 import green from "../images/green-tile.png";
@@ -47,10 +47,13 @@ const RevealedClue = (props) => {
             {player.handle}'s guess was{" "}
             <span className="color-yellow">{player.guessedWord}</span>
           </span>
-          <img src={cards[player.guessIndex]} className="guess-img"></img>
+          <img src={cards[player.guessIndex]} className="guess-img" alt="guess-card"></img>
         </li>
       );
+    } else {
+      return null
     }
+
   });
 
   if (playerTargetWord) {

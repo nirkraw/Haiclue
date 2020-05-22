@@ -3,17 +3,17 @@ import SignupFormContainer from './signup_form_container';
 import InstructionsContainer from './instructions_container';
 import React from 'react';
 import { AuthRoute } from '../../util/route_util';
-import { Route, NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import red from '../images/red-tile.png';
 import blue from '../images/blue-tile.png';
 import green from '../images/green-tile.png';
 import yellow from '../images/yellow-tile.png';
 import tbg from '../images/tbg-logo.png';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import nicole from '../images/nicole.jpg';
-import nir from '../images/nir.png';
-import edward from '../images/edward.jpg'; 
-import sammy from '../images/sammy.jpg';
+// import nicole from '../images/nicole.jpg';
+// import nir from '../images/nir.png';
+// import edward from '../images/edward.jpg'; 
+// import sammy from '../images/sammy.jpg';
 import '../css/splash.css';
 
 class Splash extends React.Component {
@@ -42,7 +42,7 @@ class Splash extends React.Component {
         <a href="#logIn">Play</a>
         <a href="#signUp">Sign Up</a>
         <a target="blank" href="https://tigerboardgames.com/">Website</a>
-        <a target="blank" href="https://github.com/nirkraw/Haiclue">Github <i class="devicon-github-plain"></i></a>
+        <a target="blank" href="https://github.com/nirkraw/Haiclue">Github <i className="devicon-github-plain"></i></a>
         {/* <a href='#devs'>Dev Team</a> */}
       </div>)
 
@@ -72,7 +72,7 @@ class Splash extends React.Component {
             <img src={yellow} alt="yellow"/>
           </section>
 
-          <h1 className="splash-label" className='how-to-play' id="howToPlay">How to Play 
+          <h1 className="splash-label how-to-play" id="howToPlay">How to Play 
             
           </h1>
           {/* opens model that contains instructions picture? with x up top and can click outside to close it */}

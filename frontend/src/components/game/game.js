@@ -14,7 +14,7 @@ const Game = (props) => {
 
   const players = Object.values(gameState.players);
 
-  let playerTargetWord;
+  // let playerTargetWord;
   let revealed = false;
 
   for (let index = 0; index < players.length; index++) {
@@ -22,7 +22,7 @@ const Game = (props) => {
 
     if (player.revealedClue) {
       revealed = true;
-      playerTargetWord = player.correctWord;
+      // playerTargetWord = player.correctWord;
     }
   }
 

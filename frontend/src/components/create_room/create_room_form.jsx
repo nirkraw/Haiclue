@@ -63,11 +63,9 @@ export default class CreateRoomForm extends Component {
 
     this.socket.on("send errors", (data) => {
       this.setState({ message: data });
-      {
         if (data === "This name is already taken") {
           this.setState({ options: false });
         }
-      }
     });
 
     this.socket.on("disconnect reload", () => {
@@ -250,7 +248,7 @@ export default class CreateRoomForm extends Component {
             <form>
               <label>
                 <input
-                  spellcheck="false"
+                  spellCheck="false"
                   type="text"
                   placeholder={placeholder_text}
                   value={this.state.roomName}
