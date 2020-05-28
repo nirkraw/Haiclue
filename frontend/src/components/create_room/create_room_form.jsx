@@ -159,10 +159,12 @@ export default class CreateRoomForm extends Component {
   muteAndUnmute() {
     const audio = document.getElementById("theme");
     if (!this.state.playing) {
-      audio.volume = 0.05;
+      // audio.volume = 0.05;
+      audio.play()
       this.setState({ playing: true });
     } else {
-      audio.volume = 0;
+      // audio.volume = 0;
+      audio.pause();
       this.setState({ playing: false });
     }
   }
@@ -301,28 +303,28 @@ export default class CreateRoomForm extends Component {
                 <>
                   <div className="create-button-container">
                     <button
-                      className="button-stylez butts"
+                      className="button-stylez button-style2"
                       type="submit"
                       onClick={this.handleRoomJoin}
                     >
                       Join
                     </button>
                     {/* <button
-                      className="button-stylez butts"
+                      className="button-stylez button-style2"
                       type="submit"
                       onClick={this.handleRoomCreate}
                     >
                       Create
                     </button> */}
                     <button
-                      className="button-stylez butts"
+                      className="button-stylez button-style2"
                       type="submit"
                       onClick={this.handleRandomCreate}
                     >
                       Create
                     </button>
                     {/* <button
-                      className="button-stylez butts"
+                      className="button-stylez button-style2"
                       type="submit"
                       onClick={this.demoGame}
                     >

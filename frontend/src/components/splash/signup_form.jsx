@@ -1,5 +1,7 @@
 import React from "react";
 
+
+
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
@@ -21,27 +23,27 @@ class SignupForm extends React.Component {
       });
   }
 
-  handleSignupSubmit(e) {
-    e.preventDefault();
-    this.props.signup(this.state).then(() => {
-      let logInEmail = document.getElementById("Log In Email");
-      let logInPassword = document.getElementById("Log In Password");
-      logInEmail.value = this.state.email;
-      logInPassword.value = this.state.password;
-    });
+  // handleSignupSubmit(e) {
+  //   e.preventDefault();
+  //   this.props.signup(this.state).then(() => {
+  //     let logInEmail = document.getElementById("Log In Email");
+  //     let logInPassword = document.getElementById("Log In Password");
+  //     logInEmail.value = this.state.email;
+  //     logInPassword.value = this.state.password;
+  //   });
 
-    // this.setState({
-    //   handle: "",
-    //   password: "",
-    //   password2: "",
-    //   email: "",
-    // });
-  }
+  //   // this.setState({
+  //   //   handle: "",
+  //   //   password: "",
+  //   //   password2: "",
+  //   //   email: "",
+  //   // });
+  // }
 
-  //   handleSignupSubmit(e) {
-  //     e.preventDefault();
-  //     this.props.signup(this.state);
-  //   }
+    handleSignupSubmit(e) {
+      e.preventDefault();
+      this.props.signup(this.state);
+    }
 
   render() {
     let signUpErrors;

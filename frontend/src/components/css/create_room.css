@@ -1,15 +1,15 @@
-.butts {
+.button-style2 {
   width: 100px;
   height: 50px;
   font-size: 24px;
   font-weight: bold;
 }
 
-.butts:hover {
+.button-style2:hover {
   cursor: pointer;
 }
 
-.room-container {
+.room-container, .room-container label {
   width: 800px;
   margin: 0 auto;
 }
@@ -22,7 +22,6 @@
   width: fit-content;
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;
 }
 
 .players-container {
@@ -36,10 +35,11 @@
 }
 
 .room-container .button-stylez {
+  height: 45px;
   transition-property: background-color, border-color;
   transition-duration: 0.3s;
   transition-timing-function: ease;
-  margin: 50px 0 0 25px;
+  margin: 50px 20px 20px 20px;
   padding: 10px;
   font-weight: bold;
   font-size: 18px;
@@ -64,8 +64,9 @@
 }
 
 .round-container {
-  margin: 50px 0 0 25px;
-  padding: 10px 0 10px 6px;
+  height: 45px;
+  margin: 50px 20px 20px 20px;
+  padding: 12px 0px 12px 8px;
   text-align: center;
   font-weight: bold;
   font-size: 18px;
@@ -75,11 +76,13 @@
   width: 150px;
   float: right;
   border-style: none;
+  box-sizing: border-box;
 }
 
 .timer-on-off-container {
-  margin: 50px 0 0 25px;
-  padding: 10px 0 10px 6px;
+  height: 45px;
+  margin: 50px 20px 20px 20px;
+  padding: 12px 0 12px 6px;
   text-align: center;
   font-weight: bold;
   font-size: 18px;
@@ -89,6 +92,7 @@
   width: 150px;
   float: right;
   border-style: none;
+  box-sizing: border-box;
 }
 
 .timer-on {

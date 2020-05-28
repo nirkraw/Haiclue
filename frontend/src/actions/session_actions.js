@@ -53,20 +53,19 @@ export const login = (user) => (dispatch) =>
       dispatch(receiveLoginErrors(err.response.data));
     });
 
-export const signup = (user) => (dispatch) =>
-  APIUtil.signup(user)
-    .then(
-      () => dispatch(receiveUserSignIn()),
-      (err) => dispatch(receiveSignUpErrors(err.response.data))
-    )
-    .then(() => {
-      setTimeout(() => {
-        APIUtil.login(user).then((res) => {
-          const { token } = res.data;
-          localStorage.setItem("jwtToken", token);
-          APIUtil.setAuthToken(token);
-          const decoded = jwt_decode(token);
-          dispatch(receiveCurrentUser(decoded));
-        });
-      }, 100);
-    });
+
+  export const signup = (user) => (dispatch) =>
+    APIUtil.signup(user)
+      .then(
+        () => {
+          dispatch(receiveUserSignIn())
+          APIUtil.login(user).then((res) => {
+            const { token } = res.data;
+            localStorage.setItem("jwtToken", token);
+            APIUtil.setAuthToken(token);
+            const decoded = jwt_decode(token);
+            dispatch(receiveCurrentUser(decoded));
+          });
+        },
+        (err) => dispatch(receiveSignUpErrors(err.response.data))
+      )

@@ -37,6 +37,8 @@ module.exports = function ValidateRegisterInput(data) {
     errors.password2 = "Passwords must match";
   }
 
+
+
   return {
     errors,
     isValid: Object.keys(errors).length === 0,
