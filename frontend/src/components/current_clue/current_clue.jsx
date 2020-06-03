@@ -61,7 +61,7 @@ const CurrentClue = (props) => {
           {gameState.timer ? (
             <Timer
               phase={"submit guess"}
-              secs={30}
+              secs={5}
               socket={socket}
               roomName={gameState.roomName}
               localPlayerSocketId={localPlayer.socketId}

@@ -49,7 +49,7 @@ io.on("connect", (socket) => {
     if (!rooms[roomName]) {
       socket.emit("send errors", "Could not find a room with that name");
     } else {
-      if (rooms[roomName].playerCount < 10) {
+      if (rooms[roomName].playerCount < 10 && !rooms[roomName].game.gameStarted) {
         socket.join(roomName);
         rooms[roomName].addPlayer(handle, socket.id);
         rooms[roomName].submit(socket.id);

@@ -47,7 +47,10 @@ const RevealedClue = (props) => {
             {player.handle}'s guess was{" "}
             <span className="color-yellow">{player.guessedWord}</span>
           </span>
-          <img src={cards[player.guessIndex]} className="guess-img" alt="guess-card"></img>
+          {player.guessIndex 
+          ? <img src={cards[player.guessIndex]} className="guess-img" alt="guess-card"></img>
+          : <div></div>
+          } 
         </li>
       );
     } else {
