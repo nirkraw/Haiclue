@@ -336,22 +336,22 @@ export default class CreateRoomForm extends Component {
                   ) : (
                     <div className="create-button-container">
                       <button className="button-stylez" onClick={this.mainMenu}>
-                        Back
+                        Leave Game
                       </button>
-                      <button
+                      {/* <button
                         className="button-stylez button-style2"
                         type="submit"
                         onClick={this.handleRoomJoin}
                       >
                         Join
-                      </button>
-                      <button
+                      </button> */}
+                      {/* <button
                         className="button-stylez button-style2"
                         type="submit"
                         onClick={this.handleRandomCreate}
                       >
                         Create
-                      </button>
+                      </button> */}
                       {/* <button
                       className="button-stylez button-style2"
                       type="submit"

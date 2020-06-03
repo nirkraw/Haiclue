@@ -49,7 +49,10 @@ io.on("connect", (socket) => {
     if (!rooms[roomName]) {
       socket.emit("send errors", "Could not find a room with that name");
     } else {
-      if (rooms[roomName].playerCount < 10 && !rooms[roomName].game.gameStarted) {
+      if (
+        rooms[roomName].playerCount < 10 &&
+        !rooms[roomName].game.gameStarted
+      ) {
         socket.join(roomName);
         rooms[roomName].addPlayer(handle, socket.id);
         rooms[roomName].submit(socket.id);
@@ -145,12 +148,17 @@ io.on("connect", (socket) => {
       let room = rooms[i];
       let gameState = room.getGameState();
       // check if game started before reload
-      
-      if (!room.game.gameStarted) {
-        room.deletePlayer(socket.id);
-      }
 
-      if (gameState.players.hasOwnProperty(socket.id)) {
+      if (!room.game.gameStarted) {
+        if (
+          room.game.players[socket.id] &&
+          room.game.players[socket.id].number === 1
+        ) {
+          console.log("host disconnected, game over");
+          io.to(room.roomName).emit("disconnect reload");
+        }
+        room.deletePlayer(socket.id);
+      } else if (gameState.players.hasOwnProperty(socket.id)) {
         console.log("player disconnected, game over");
         io.to(room.roomName).emit("disconnect reload");
       }

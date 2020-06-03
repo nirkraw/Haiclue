@@ -70,10 +70,10 @@ class Room {
       this.playerCount++;
     }
   }
-
+  
   deletePlayer(socketId) {
     if (this.game.players.hasOwnProperty(socketId)) {
-      delete this.game.players.socketId;
+      delete this.game.players[socketId];
       this.playerCount--;
     }
   }
