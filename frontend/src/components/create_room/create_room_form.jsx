@@ -116,7 +116,7 @@ export default class CreateRoomForm extends Component {
       this.props.user.handle,
       this.props.tiles
     );
-    this.setState({ roomName: "" });
+    // this.setState({ roomName: "" });
   }
 
   startGame(event) {
@@ -224,10 +224,11 @@ export default class CreateRoomForm extends Component {
     //     : false;
 
     let readOnlyVal =
-      this.state.message &&
-      this.state.message !== "Could not find a room with that name"
+      this.state.message 
+      && 
+      (this.state.message.includes("joined") || this.state.message.includes("created")) 
         ? true
-        : false;
+        : false
 
     let joinRoom =
       !gameState || !gameState.gameStarted ? (
@@ -301,36 +302,65 @@ export default class CreateRoomForm extends Component {
                 </>
               ) : (
                 <>
-                  <div className="create-button-container">
-                    <button
-                      className="button-stylez button-style2"
-                      type="submit"
-                      onClick={this.handleRoomJoin}
-                    >
-                      Join
-                    </button>
-                    {/* <button
+                  {!this.state.message.includes("joined") ? (
+                    <div className="create-button-container">
+                      <button
+                        className="button-stylez button-style2"
+                        type="submit"
+                        onClick={this.handleRoomJoin}
+                      >
+                        Join
+                      </button>
+                      {/* <button
                       className="button-stylez button-style2"
                       type="submit"
                       onClick={this.handleRoomCreate}
                     >
                       Create
                     </button> */}
-                    <button
-                      className="button-stylez button-style2"
-                      type="submit"
-                      onClick={this.handleRandomCreate}
-                    >
-                      Create
-                    </button>
-                    {/* <button
+                      <button
+                        className="button-stylez button-style2"
+                        type="submit"
+                        onClick={this.handleRandomCreate}
+                      >
+                        Create
+                      </button>
+                      {/* <button
                       className="button-stylez button-style2"
                       type="submit"
                       onClick={this.demoGame}
                     >
                       Demo Game
                     </button> */}
-                  </div>
+                    </div>
+                  ) : (
+                    <div className="create-button-container">
+                      <button className="button-stylez" onClick={this.mainMenu}>
+                        Back
+                      </button>
+                      <button
+                        className="button-stylez button-style2"
+                        type="submit"
+                        onClick={this.handleRoomJoin}
+                      >
+                        Join
+                      </button>
+                      <button
+                        className="button-stylez button-style2"
+                        type="submit"
+                        onClick={this.handleRandomCreate}
+                      >
+                        Create
+                      </button>
+                      {/* <button
+                      className="button-stylez button-style2"
+                      type="submit"
+                      onClick={this.demoGame}
+                    >
+                      Demo Game
+                    </button> */}
+                    </div>
+                  )}
                 </>
               )}
             </form>

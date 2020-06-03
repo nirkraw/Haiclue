@@ -144,6 +144,12 @@ io.on("connect", (socket) => {
     for (let i in rooms) {
       let room = rooms[i];
       let gameState = room.getGameState();
+      // check if game started before reload
+      
+      if (!room.game.gameStarted) {
+        room.deletePlayer(socket.id);
+      }
+
       if (gameState.players.hasOwnProperty(socket.id)) {
         console.log("player disconnected, game over");
         io.to(room.roomName).emit("disconnect reload");

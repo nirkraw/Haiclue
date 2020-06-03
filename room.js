@@ -39,6 +39,7 @@ class Room {
     this.insertLine = this.insertLine.bind(this);
     this.removeLine = this.removeLine.bind(this);
     this.restartGame = this.restartGame.bind(this);
+    this.deletePlayer = this.deletePlayer.bind(this);
   }
 
   addPlayer(handle, socketId) {
@@ -67,6 +68,13 @@ class Room {
       this.game.players[socketId] = player;
       console.log(`${socketId} : ${handle}`);
       this.playerCount++;
+    }
+  }
+
+  deletePlayer(socketId) {
+    if (this.game.players.hasOwnProperty(socketId)) {
+      delete this.game.players.socketId;
+      this.playerCount--;
     }
   }
 
