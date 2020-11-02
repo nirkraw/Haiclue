@@ -1,11 +1,19 @@
-import React from "react";
+//wh
+import React, {useContext} from "react";
+
 import "../css/layout.css";
 import "../css/current_clue.css";
 import Tile from "../tile_bank/tile";
 import Timer from "../timer/timer";
+//wh
+import {MyContext} from "../game/game"
 
 const CurrentClue = (props) => {
-  const { gameState, socket } = props;
+  const { gametate, socket } = props;
+  // debugger
+
+  //wh
+  const gameState = useContext(MyContext)
   if (!gameState) return null;
   if (gameState.over) return null;
 
