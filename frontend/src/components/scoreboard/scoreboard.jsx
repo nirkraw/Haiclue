@@ -1,17 +1,11 @@
-//wh
-import React, {useContext} from "react";
+import React from "react";
 import "../css/scoreboard.css";
 import thinking from "../images/thinking.png";
 import glasses from "../images/glasses.png";
 
-//wh
-import {MyContext} from "../game/game"
-
 const ScoreBoard = (props) => {
-  //wh
-  const newPlayers = useContext(MyContext).players 
   if (props.over) return null;
-  let players = Object.values(newPlayers).map((player, index) => {
+  let players = Object.values(props.players).map((player, index) => {
     return (
       <div key={index} className="wrapper">
         {player.submittedClue ? (

@@ -1,11 +1,10 @@
-import React, {useContext} from "react";
+import React from "react";
 import blue from "../images/blue-tile.png";
 import red from "../images/red-tile.png";
 import green from "../images/green-tile.png";
 import yellow from "../images/yellow-tile.png";
 import "../css/revealed-clue.css";
 import "../css/layout.css";
-import {MyContext} from '../game/game'
 
 const RevealedClue = (props) => {
   const cards = {
@@ -15,8 +14,8 @@ const RevealedClue = (props) => {
     3: yellow,
   };
 
-  const gameState = useContext(MyContext)
-  // const { gameState } = props;
+  const { gameState } = props;
+
   if (!gameState) return null;
 
   const players = Object.values(gameState.players);

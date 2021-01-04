@@ -1,4 +1,4 @@
-import React , {createContext}from "react";
+import React from "react";
 import MyTargetWordContainer from "../my_target_word/my_target_word_container";
 import TileBank from "../tile_bank/tile_bank";
 import CurrentClue from "../current_clue/current_clue";
@@ -6,19 +6,13 @@ import RevealedClue from "../revealed_clue/revealed_clue";
 import TargetWords from "../target_words/target_words";
 import GameOver from "../game_over/game_over";
 import Scoreboard from "../scoreboard/scoreboard";
-//wh
-// import {createContext} from "react";
-
-///wh
-export const MyContext = createContext();
 
 const Game = (props) => {
   const { gameState, socket } = props;
 
   if (!gameState) return null;
- 
-  const players = Object.values(gameState.players);
 
+  const players = Object.values(gameState.players);
 
   // let playerTargetWord;
   let revealed = false;
@@ -33,7 +27,7 @@ const Game = (props) => {
   }
 
   return (
-    <MyContext.Provider value={gameState}>
+    <>
       <h1 className="logo">Haiclue</h1>
       <div className="game-container game-holder">
         <div className="top-container">
@@ -67,7 +61,7 @@ const Game = (props) => {
           <Scoreboard over={gameState.over} players={gameState.players} />
         </div>
       </div>
-    </MyContext.Provider>
+    </>
   );
 };
 

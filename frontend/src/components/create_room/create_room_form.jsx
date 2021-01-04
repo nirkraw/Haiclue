@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import socketIOClient from "socket.io-client";
 import Game from "../game/game";
-
 import ENV from "../../util/socket_env";
 import Logout from "../global/logout-instructions-button";
 import "../css/create_room.css";
@@ -18,7 +17,6 @@ import gameOverSound from "../../music/gameOver.wav";
 import submitGuessSound from "../../music/submitWord.wav";
 import timeUp from "../../music/time-up.wav";
 import countdown from "../../music/countdown.wav";
-
 
 export default class CreateRoomForm extends Component {
   constructor(props) {
@@ -51,7 +49,7 @@ export default class CreateRoomForm extends Component {
     const audio = document.getElementById("theme");
     audio.volume = 0.05;
     audio.loop = true;
-    // audio.play();
+    audio.play();
     this.props.fetchTiles();
     this.socket = socketIOClient(ENV);
 
@@ -373,12 +371,11 @@ export default class CreateRoomForm extends Component {
 
     let view =
       gameState && gameState.gameStarted ? (
-
           <Game 
             handle={this.props.user.handle}
             gameState={this.state.gameState}
             socket={this.socket}
-            />
+          />
       ) : (
         joinRoom
       );
