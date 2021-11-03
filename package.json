@@ -28,7 +28,7 @@
     "passport-jwt": "^4.0.0",
     "socket.io": "^2.3.0",
     "utf-8-validate": "^5.0.2",
-    "validator": "^13.0.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
